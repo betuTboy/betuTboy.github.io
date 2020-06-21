@@ -1,3 +1,19 @@
 .menu{
-    align-items:right
+    background-color:lightgreen;
+}
+.menu-item{
+    align-content:right;
+}
+.settings{
+    background: #DCDCDC;
+}
+left-fieldsets{
+    display:inline;
+}
+input[type=text]{
+    text-align: right
+    
+}
+nav{
+    
 }
