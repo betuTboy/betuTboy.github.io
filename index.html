@@ -8,19 +8,22 @@
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="lib/bootstrap-4.0.5-dist/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="css/csisza.css">
+    <link rel="stylesheet" href="css/tooltip.css">
     <title>Csisza</title>
 </head>
 
 <body>
-    <nav class="menu-bar">
+    <nav>
         <a class=menu-item href="index.html"><img src="img/csisza2.gif" alt="logó"></a>
-        <a href="index.html">Főoldal</a>
-        <a href="index.html#download">Hozzáférés</a>
-        <a href="index.html#images">Képek</a>
-        <a href="index.html#videos">Videók</a>
-        <a href="jatek.html">Játék</a>
-        <a href="forum.html">Fórum</a>
-        <a href="szotar.html">Szótár</a>
+        <div class="menubar">
+            <a href="index.html">Főoldal</a>
+            <a href="index.html#download">Hozzáférés</a>
+            <a href="index.html#images">Képek</a>
+            <a href="index.html#videos">Videók</a>
+            <a href="jatek.html">Játék</a>
+            <a href="forum.html">Fórum</a>
+            <a href="szotar.html">Szótár</a>
+        </div>
     </nav>
     <!--<nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="index.html">Csisza</a>
@@ -77,58 +80,57 @@
         János)
     </p>
     <h1>Csisza: betűjáték készítő eszköz</h1>
-    <a target="blank" href="img/fullscreen.png"><img width=50% src="img/fullscreen.png" alt="Minden egy képen"></a>
-    <p>A Csisza egy szabadon használható eszköz, amellyel betűjátékokat lehet tág határok között változtatható alapelemekből
-        összeállítani. Hasonló magyar nyelvű játékokból nagyon szűk volt a kínálat a születése idején, ez adta az ötletet
-        az elkészítéséhez.</p>
+    <p><a target="blank" href="img/fullscreen.png"><img style="float:right" hspace="30" width="300" src="img/fullscreen.png"
+                alt="Minden egy képen"></a>A Csisza egy szabadon használható eszköz, amellyel betűjátékokat lehet tág határok
+        között változtatható alapelemekből összeállítani. Hasonló magyar nyelvű játékokból nagyon szűk volt a kínálat a születése
+        idején, ez adta az ötletet az elkészítéséhez.</p>
     <h3>Sztori</h3>
-    <a target="blank" href="http://hu.wikipedia.org/wiki/Linux"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Tux.png/220px-Tux.png"
-            alt="Tux"></a>
-    <p>2006-ban vettem egy új számítógépet, és Linux került rá. Időnként szerettem volna egy kis játékkal lazulni, de nagyon
-        szerény volt a feltelepített kínálat, a lassú és drága mobilinternetemmel pedig nem nagyon volt lehetőségem ezt a
-        világhálóról bővíteni. Akadt viszont a telepített játékok között egy konzolos, angol nyelvű scrabble. Ezt a játékot
-        akkor még csak hírből ismertem, itt volt lehetőségem először nem túl acélos angolomat bevetni a gép ellen, úgy rémlik,
-        nem sok sikerrel. De megtetszett a dolog, és rákerestem az interneten a játékra. Az <a target=blank href="http://www.isc.ro">ISC</a>
+    <p><a target="blank" href="http://hu.wikipedia.org/wiki/Linux"><img style="float:left" hspace="30" src="http://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Tux.png/220px-Tux.png"
+                alt="Tux"></a>2006-ban vettem egy új számítógépet, és Linux került rá. Időnként szerettem volna egy kis játékkal
+        lazulni, de nagyon szerény volt a feltelepített kínálat, a lassú és drága mobilinternetemmel pedig nem nagyon volt
+        lehetőségem ezt a világhálóról bővíteni. Akadt viszont a telepített játékok között egy konzolos, angol nyelvű scrabble.
+        Ezt a játékot akkor még csak hírből ismertem, itt volt lehetőségem először nem túl acélos angolomat bevetni a gép
+        ellen, úgy rémlik, nem sok sikerrel. De megtetszett a dolog, és rákerestem az interneten a játékra. Az <a target=blank
+            href="http://www.isc.ro">ISC</a>
         (Internet Scrabble Club) oldalán kötöttem ki , letöltöttem a kliensprogramot, elkezdtem játszani és néhány évre ott is ragadtam.
         Felküzdöttem magam az átlagos játékosok szintjére. Egy időre átnyergeltem a <a target=balank href="http://www.lexulous.com">Lexulousra</a>
         is, majd magyar nyelvű játék után néztem. Szórablót játszottam időnként az akkor még létező jatek.hu oldalon. Bevallom, nem
         tetszett igazán, de nem találtam más lehetőséget. Az ottani versenyzős variánssal szemben, én a hagyományos stratégiai
         elemeket is mutató hagyományos társasjáték módot preferálom. 2013-ban aztán a jatek.hu megszűnt, és legfeljebb a
-        Jó játék oldalon játszható Szóváltás maradt utolsó lehetóségnek, a maga fura bozótharcával.</p>
-    <a target=blank href="http://sourceforge.net/projects/scrabble"><img width=50% src="http://a.fsdn.com/con/app/proj/scrabble/screenshots/ss2.png/max/max/1"
-            alt=""></a>
-    <p>De akkor, egy 2014. decemberi napon, beírtam a keresőbe: "scrabble". Rátaláltam a Scrabble3D nevű nyílt forrású játékra
-        szerverestől, fórumostól, és ami a legfontosabb, a magyar nyelvű játékot lehetővé tevő, komplett támogatásostól.
-        Voltak hát ékezetes betűk és kétjegyű mássalhangzók, de nem volt szótár, és a program sem magyarul szólt a felhasználóhoz.
-        Sok időbe került, de sikerült elkészítenem mindegyikből egy kezdetleges verziót, miután megbizonyosodtam róla, hogy
-        nincs olyan szógyűjtemény, ami legalább egy nem hivatalos scrabble-szótárnak megfelelne. Ismét december lett, volt
-        egy szótárkezdeményem, és kedvet kaptam hobbi szinten kicsit programozást tanulni. A <a target=blank href="https://hu.wikipedia.org/wiki/Python_(programozási_nyelv)">Python
+        Jó játék oldalon játszható Szóváltás maradt utolsó lehetőségnek, a maga fura bozótharcával.</p>
+    <p><a target=blank href="http://sourceforge.net/projects/scrabble"><img style="float:right" hspace="30" width="300" src="http://a.fsdn.com/con/app/proj/scrabble/screenshots/ss2.png/max/max/1"
+                alt=""></a>De akkor, egy 2014. decemberi napon, beírtam a keresőbe: "scrabble". Rátaláltam a Scrabble3D nevű
+        nyílt forrású játékra szerverestől, fórumostól, és ami a legfontosabb, a magyar nyelvű játékot lehetővé tevő, komplett
+        támogatásostól. Voltak hát ékezetes betűk és kétjegyű mássalhangzók, de nem volt szótár, és a program sem magyarul
+        szólt a felhasználóhoz. Sok időbe került, de sikerült elkészítenem mindegyikből egy kezdetleges verziót, miután megbizonyosodtam
+        róla, hogy nincs olyan szógyűjtemény, ami legalább egy nem hivatalos scrabble-szótárnak megfelelne. Ismét december
+        lett, volt egy szótárkezdeményem, és kedvet kaptam hobbi szinten kicsit programozást tanulni. A <a target=blank href="https://hu.wikipedia.org/wiki/Python_(programozási_nyelv)">Python
             nyelvre
         </a> esett a választásom, mert multiplatform, divatos, könnyen tanulhatónak mondják, és bár 20 évvel korábban valamelyest
         próbálkoztam Basic-kel és C-vel, de ez nem sok nyomot hagyott bennem akkorra. </p>
-    <a target=blank href="http://mek.oszk.hu/08400/08435/"><img width=10% src="https://mek.oszk.hu/08400/08435/borito.jpg"></a>
-    <p>Gérard Swinnen Tanuljunk ​meg programozni Python nyelven című könyvéből kezdtem el ismerkedni a nyelvvel, aztán az
-        ebben lévő példaprogramok jelentették a program alapját. Arra gondoltam, hogy a szintén a jatek.hu-n korábban játszható
-        Játék a betűkkelt próbálom megvalósítani, de közben folyamatosan ott motoszkált a fejemben, hogy valahogy a különböző
-        betűjétékokból megismert alapelemekből mit lehetne kihozni. Aztán elkészült a tábla, lehetett a tartóról betűket
-        húzogatni rá, a program ellenőrizte szótár alapján a szavak érvényességét. Kiegészítettem ezt úgy, hogy minden lépés
-        után mutassa meg az összes lehetséges szót. Innen már csak egy nagyobbacska átalakítás kellett, hogy a gép is játsszon.
-        Készült egy szerver program és egy kliens a játékosnak, egy pedig a gépnek. Frissült a szótár, a gépi ellenfeleket
-        pedig már többféleképpen is lehet gyengíteni. Egyszer felmerült, hogy mi legyen a neve.</p>
+    <p><a target=blank href="http://mek.oszk.hu/08400/08435/"><img style="float:left" hspace="30" width="150" src="https://mek.oszk.hu/08400/08435/borito.jpg"
+                alt=""></a>Gérard Swinnen Tanuljunk ​meg programozni Python nyelven című könyvéből kezdtem el ismerkedni a nyelvvel,
+        aztán az ebben lévő példaprogramok jelentették a program alapját. Arra gondoltam, hogy a szintén a jatek.hu-n korábban
+        játszható Játék a betűkkelt próbálom megvalósítani, de közben folyamatosan ott motoszkált a fejemben, hogy valahogy
+        a különböző betűjátékokból megismert alapelemekből mit lehetne kihozni. Aztán elkészült a tábla, lehetett a tartóról
+        betűket húzogatni rá, a program ellenőrizte szótár alapján a szavak érvényességét. Kiegészítettem ezt úgy, hogy minden
+        lépés után mutassa meg az összes lehetséges szót. Innen már csak egy nagyobbacska átalakítás kellett, hogy a gép
+        is játsszon. Készült egy szerver program és egy kliens a játékosnak, egy pedig a gépnek. Frissült a szótár, a gépi
+        ellenfeleket pedig már többféleképpen is lehet gyengíteni. Egyszer felmerült, hogy mi legyen a neve.</p>
 
 
     <h3>Név</h3>
     <p>A Csináld szavad név ötlött rögtön az eszembe, a csináld magad kifejezés mintájára, és nem is tudtam megszabadulni
-        a gondolatttól, ez írta le legjobban, hogy mi a program célja. De hosszúnak és bumfordinak tűnt, így a két szó első
+        a gondolattól, ez írta le legjobban, hogy mi a program célja. De hosszúnak és bumfordinak tűnt, így a két szó első
         szótagját összevontam, és lett belőle Csisza, amire a kereső szintén hozott figyelemre méltó találatot a múltból.
         Jelentése: csiszoló. </p>
     <h3>Állapot</h3>
     <p>Vannak bizonyos részek, amik egész jól le lettek tesztelve az évek folyamán, mások legfeljebb kipróbálva voltak. Bizonyos
-        beállítások, egyidejű bekapcsolása a táblára kikerülő szavak szétesését okozhatja. Távoli játékot soha nem sikerült
+        beállítások, egyidejű bekapcsolása a táblára kikerülő szavak szétesését okozhatja. A távoli játékot soha nem sikerült
         kipróbálnom, valószínűleg nem is működik. A programot bárki tetszése szerint használhatja, de csak a saját felelősségére,
         semmilyen támogatás nem jár hozzá. A GPLv3 licenszt jelöltem meg hozzá.</p>
     <h3>Mentegetőzés</h3>
-    <p>Mivel sem a programozásban, sem a nyelvészkedésben nem vagyok járatos, csak egy hobbista, aki "játékosként", saját
+    <p>Mivel sem a programozásban, sem a nyelvészkedésben nem vagyok jártas, csak egy hobbista, aki "játékosként", saját
         kedvtelésére fogott ebbe a projektbe, legfeljebb remélhetem, hogy az mások számára is hasznos lehet. A Python nyelvvel
         éppen csak ismerkedve készítettem, nem "clean code", és valószínűleg még sok egyéb követelménynek sem felel meg.
         Én annak is örülök, ha nagyjából működik. :) Linuxon készült, a Windowsos megjelenésén jócskán lenne mit alakítani.</p>
@@ -138,27 +140,26 @@
         után új játékként el is lehet menteni későbbi használatra. Van lehetőség teljesen új táblát létrehozni. Ekkor az
         eredetileg betöltött játék egyéb beállításai öröklődnek. A beállított játék játszható egyedül vagy 1-3 gépi játékos
         ellen. A gépi ellenfelek erőssége többféleképpen befolyásolható. Létezik egy hálózati játék opció is, de csak egyetlen
-        számítógépen, több kliensprogram csatlakoztatásával volt kipróbálva, internetes játékra valószínűleg nem alkalmas.
+        számítógépen több kliensprogram csatlakoztatásával volt kipróbálva, internetes játékra valószínűleg nem alkalmas.
         Használata nem javasolt.A játékmód lehet normál, ekkor a játékosok egymás után következnek saját betűikből szót alkotni,
-        vagy szimultán, ekkor minden játékos egyidőben alkot szót közös betűkből, és a legmagasabb pontértékű kerül a táblára.
+        vagy szimultán, ekkor minden játékos egy időben alkot szót közös betűkből, és a legmagasabb pontértékű kerül a táblára.
         Szimultán játékban lehetőség van rá, hogy mindenki külön táblán játsszon. (A játék a betűkkel működött így, azt hiszem.)
         Beállítható a gondolkodási idő és a kihúzott betűk száma. Az is beállítható, hogy az új szónak kapcsolódnia kell-e
-        a már táblán lévőkkel. Ha igen, akkor megadható kezdő mező, amit az első szónak kötelezően fel kell használnia. Előre
-        megadható, hogy hány fordulóból álljon a játék. A betűkészlet kezelésére 3 lehetőség áll rendelkezésre. A készlet
-        minden esetben előre megadott számút tartalmaz az egyes betűkből, az eltérés az, hogy a táblára kerültekkel csökken-e
-        a még kíhúzhatók száma. Az alapeset a csökkenés, a másik két lehetőség között a különbség, hogy csak a táblára kerültek
-        pótlódnak a kihúzható készletben, vagy a teljes tartó tartalma. (Az utolsó esetben, a tartón levő betűk készlete
-        minden fordulóban teljesen kicserélődik.) Egy külön tartón az összes játékosnak rendelkezésére álló, közös betűk
-        adhatók meg. Így például, lehet mindenkinek ugyanannyi dzsókere. (Ajánlott, hogy egy betű csak vagy az egyik, vagy
-        a másik tartóra legyen beállítva, egyébként összezavarodhat a program.) A felhasznált betűk pontértéke lehet állandó,
-        vagy véletlenszerű. Állandó pontértékeknél egy véletlenszerű szorzó sorsolása is beállítható. A kirakott szavak érvényességének
-        ellenőrzése történhet a mellékelt szótár alapján, vagy helyesírás-ellenőrző program által. (Utóbbi esetben gépi játékos
-        nem állítható be.) A dzsókerek a táblán a kívánt betűre cserélhetőek, vagy maradhatnak a táblán is dzsókerek, így
-        vízszintesen és függőlegesen más-más betűt reprezentálhatnak. A dzsókerek felvehetik a becserélt betűhöz megadott
-        pontértéket. A pontozás történhet csak a lerakott betűk irányába. A keresztirányú szavaknak ekkor is érvényeseknek
-        kell lenniük, de a pontértékük nem számít. Jutalmak adhatók a lerakott betűk száma alapján, vagy a már táblán levő
-        betűk felhasználásáért. Jutalom adható a játékot befejező játékosnak, és pontlevonás történhet a megmaradt betűk
-        alapján.
+        a már táblán lévőkkel. Megadható kezdő mező, amit az első szónak kötelezően fel kell használnia. Előre megadható,
+        hogy hány fordulóból álljon a játék. A betűkészlet kezelésére 3 lehetőség áll rendelkezésre. A készlet minden esetben
+        előre megadott számút tartalmaz az egyes betűkből, az eltérés az, hogy a táblára kerültekkel csökken-e a még kihúzhatók
+        száma. Az alapeset a csökkenés, a másik két lehetőség között a különbség, hogy csak a táblára kerültek pótlódnak
+        a kihúzható készletben, vagy a teljes tartó tartalma. (Az utolsó esetben, a tartón levő betűk készlete minden fordulóban
+        teljesen kicserélődik.) Egy külön tartón az összes játékosnak rendelkezésére álló, közös betűk adhatók meg. Így például,
+        lehet mindenkinek ugyanannyi dzsókere. (Ajánlott, hogy egy betű csak vagy az egyik, vagy a másik tartóra legyen beállítva,
+        egyébként összezavarodhat a program.) A felhasznált betűk pontértéke lehet állandó, vagy véletlenszerű. Állandó pontértékeknél
+        egy véletlenszerű szorzó sorsolása is beállítható. A kirakott szavak érvényességének ellenőrzése történhet a mellékelt
+        szótár alapján, vagy helyesírás-ellenőrző program által. (Utóbbi esetben gépi játékos nem állítható be.) A dzsókerek
+        a táblán a kívánt betűre cserélhetőek, vagy maradhatnak a táblán is dzsókerek, így vízszintesen és függőlegesen más-más
+        betűt reprezentálhatnak. A dzsókerek felvehetik a becserélt betűhöz megadott pontértéket. A pontozás történhet csak
+        a lerakott betűk irányába. A keresztirányú szavaknak ekkor is érvényeseknek kell lenniük, de a pontértékük nem számít.
+        Jutalmak adhatók a lerakott betűk száma alapján, vagy a már táblán levő betűk felhasználásáért. Jutalom adható a
+        játékot befejező játékosnak, és pontlevonás történhet a megmaradt betűk alapján.
     </p>
     <h3>Részletek</h3>
     <div class="container">
@@ -168,43 +169,90 @@
                 <div class="left-fieldsets">
                     <fieldset>
                         <legend>Játék</legend>
-                        <input type="radio" name="game" id="single" value="single" checked>
-                        <label for="single">Egyedül játszom</label>
-                        <br>
-                        <input type="radio" name="game" id="ai" value="ai">
-                        <label for="single">Gép ellen játszom</label>
-                        <select name="player-num" id="player-num">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                        <label for="player-num">ellenféllel szemben</label>
-                        <input type="checkbox" name=sim id=sim value=sim>
-                        <label for="sim">szimultán,</label>
-                        <input type="checkbox" name=independent id=independent value=independent>
-                        <label for="independent">külön táblán.</label>
-                        <br>
-                        <input type="radio" name="game" id="network" value="network">
-                        <label for="single">Hálózaton játszom</label>
-                        <select name="player-num" id="player-num">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                        </select>
-                        <br>
-                        <label for="time">Gondolkodási idő:</label>
-                        <input type="text" name="time" id="time" value="60" size="3" maxlength="4">
+                        <div class="tooltip">
+                            <input type="radio" name="game" id="single" value="single" checked>
+                            <label for="single">Egyedül játszom</label>
+                            <span class="tooltiptext">Egyszemélyes gyakorló játék beállítása. </span>
+                        </div>
+                        <div>
+                            <table class="t1">
+                                <tr>
+                                    <td>
+                                        <div class="tooltip">
+                                            <input type="radio" name="game" id="ai" value="ai">
+                                            <label for="single">Gép ellen játszom</label>
+                                            <span class="tooltiptext">0-3 gépi gátékos elleni játék bellítása</span>
+                                        </div>
+                                        <div class="tooltip">
+                                            <select name="player-num1" id="player-num1">
+                                                <option value="0">0</option>
+                                                <option value="1" selected>1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                            <span class="tooltiptext">Itt állítható be az ellenfelek száma. 0 beállítása
+                                                esetén egyszemélyes játékot indít a szerver. Ez nem azonos az Egyedül játszom
+                                                beállítással, ahol nincs szerver. A játékban az ellenfelek részletes beállítására
+                                                a Gépi ellenfelek lapon kerülhet sor.</span>
+                                        </div>
+                                    </td>
+                                    <td rowspan="2">
+                                        <label for="player-num1">ellenféllel szemben</label>
+                                        <div class="tooltip">
+                                            <input type="checkbox" name=sim id=sim value=sim>
+                                            <label for="sim">szimultán,</label>
+                                            <span class="tooltiptext">Bejelölve, a játékosok nem egymásután, hanem egyidejűleg
+                                                alkotnak szót azonos betűkből, és a legmagasabb pontértékű szó kerül a táblára.</span>
+                                        </div>
+                                        <div class="tooltip">
+                                            <input type="checkbox" name=independent id=independent value=independent>
+                                            <label for="independent">külön táblán.</label>
+                                            <span class="tooltiptext">Csak szimultán játékban állítható be. Ekkor minden
+                                                játékos szava csak az ő saját tábláján jelenik meg.</span>
+                                        </div>
+                                    </td>
+                                    <tr>
+                                        <td>
+                                            <div class="tooltip">
+                                                <input type="radio" name="game" id="network" value="network">
+                                                <label for="single">Hálózaton játszom</label>
+                                                <span class="tooltiptext">Egy számítógépen belül több játékos csatlakozására
+                                                    ad lehetőséget (gép és ember vegyesen). Távoli játákban való kipróbálása
+                                                    nem történt, valószínűleg nem is működik. Használata nem ajánlott.</span>
+                                            </div>
+                                            <div class="tooltip">
+                                                <select name="player-num2" id="player-num2">
+                                                    <option value="0">0</option>
+                                                    <option value="1" selected>1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                </select>
+                                                <span class="tooltiptext">Itt állítható be az ellenfelek száma.</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            </table>
+                        </div>
+                        <div class="tooltip">
+                            <label for="time">Gondolkodási idő:</label>
+                            <input type="text" name="time" id="time" value="60" size="1" maxlength="4">
+                            <span class="tooltiptext">A játékos számára fordulónként rendelkezésre álló gondolkodási idő
+                                itt adható meg másodpercben.</span>
+                        </div>
                     </fieldset>
                     <fieldset>
                         <legend>Szabályok megadása</legend>
-                        <label for="letter-num">Kapott betűk száma</label>
-                        <select name="letter-num" id="letter-num">
+                        <div class="tooltip">
+                            <label for="letter-num">Kapott betűk száma</label>
+                            <span class="tooltiptext">A készletből kisorsolt betűk száma.</span>
+                        </div>
+                        <select class="to-the-right" name="letter-num" id="letter-num">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -226,136 +274,228 @@
                             <option value="19">19</option>
                             <option value="20">20</option>
                         </select>
-                        <input type="checkbox" name="connection" id="connection" value="connection" checked>
-                        <label for="connection">Az új szónak kapcsolódni kell a már táblán lévőkkel</label>
                         <br>
-                        <input type="checkbox" name="startfield" id="startfield" value="startfield" checked>
-                        <label for="startfield">Meghatározott kezdő mezőre kell kerülnie az első szónak</label>
-                        <input type="text" name="row" id="row" value="A" size="2" maxlength="2">
-                        <input type="text" name="col" id="col" value="1" size="2" maxlength="2">
+                        <div class="tooltip">
+                            <input type="checkbox" name="connection" id="connection" value="connection" checked>
+                            <label for="connection">Az új szónak kapcsolódni kell a már táblán lévőkkel</label>
+                            <span class="tooltiptext"></span>
+                        </div>
                         <br>
-                        <input type="checkbox" name="turn-num-yes" id="turn-num" value="turn-num-yes">
-                        <label for="turn-num-yes">Körök száma előre meghatározott</label>
-                        <input type="text" name="turn-num" id="turn-num" value="24" size="2">
+                        <div class="tooltip">
+                            <input type="checkbox" name="startfield" id="startfield" value="startfield" checked>
+                            <label for="startfield">Meghatározott kezdő mezőre kell kerülnie az első szónak</label>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <input class="to-the-right" type="text" name="col" id="col" value="1" size="1" maxlength="2">
+                        <input class="to-the-right" type="text" name="row" id="row" value="A" size="1" maxlength="2">
                         <br>
-                        <input type="checkbox" name="change-num" id="change-num" value="change-num">
-                        <label for="change-num">A cserék száma számítson bele a passzok számába</label>
+                        <div class="tooltip">
+                            <input type="checkbox" name="turn-num-yes" id="turn-num-yes" value="turn-num-yes">
+                            <label for="turn-num-yes">Körök száma előre meghatározott</label>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <input class="to-the-right" type="text" name="turn-num" id="turn-num" value="24" size="1">
+                        <br>
+                        <div class="tooltip">
+                            <input type="checkbox" name="change-num" id="change-num" value="change-num">
+                            <label for="change-num">A cserék száma számítson bele a passzok számába</label>
+                            <span class="tooltiptext"></span>
+                        </div>
                         <br>
                         <label>Betűk</label>
                         <br>
-                        <input type="radio" name="letterset" id="fix" value="fix" checked>
-                        <label for="fix">Fix készlet</label>
-                        <button>Készlet</button>
+                        <div class="tooltip">
+                            <input type="radio" name="letterset" id="fix" value="fix" checked>
+                            <label for="fix">Fix készlet</label>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <button class="to-the-right">Készlet</button>
                         <br>
-                        <input type="radio" name="letterset" id="used-back" value="used-back">
-                        <label for="fix">Fix készlet, felhasználtak visszarakva</label>
+                        <div class="tooltip">
+                            <input type="radio" name="letterset" id="used-back" value="used-back">
+                            <label for="fix">Fix készlet, felhasználtak visszarakva</label>
+                            <span class="tooltiptext"></span>
+                        </div>
                         <br>
-                        <input type="radio" name="letterset" id="all-back" value="all-back">
-                        <label for="fix">Fix készlet, mind visszarakva</label>
+                        <div class="tooltip">
+                            <input type="radio" name="letterset" id="all-back" value="all-back">
+                            <label for="fix">Fix készlet, mind visszarakva</label>
+                            <span class="tooltiptext"></span>
+                        </div>
                         <br>
-                        <input type="checkbox" name="shared" id="shared" value=shared>
-                        <label for="shared">Közös betűk</label>
-                        <button>Készlet</button>
+                        <div class="tooltip">
+                            <input type="checkbox" name="shared" id="shared" value=shared>
+                            <label for="shared">Közös betűk</label>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <button class="to-the-right">Készlet</button>
                         <br>
                         <label>Betűk pontértéke</label>
                         <br>
-                        <input type="radio" name="values" id="const-value" value="const-value" checked>
-                        <label for="const-value">Fix pontszámok</label>
+                        <div class="tooltip">
+                            <input type="radio" name="values" id="const-value" value="const-value" checked>
+                            <label for="const-value">Fix pontszámok</label>
+                            <span class="tooltiptext"></span>
+                        </div>
                         <br>
-                        <input type="radio" name="values" id="rand-value" value="rand-value">
-                        <label for="rand-value">Véletlen pontszámok</label>
-                        <button>Készlet</button>
+                        <div class="tooltip">
+                            <input type="radio" name="values" id="rand-value" value="rand-value">
+                            <label for="rand-value">Véletlen pontszámok</label>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <button class="to-the-right">Készlet</button>
                         <br>
-                        <input type="checkbox" name="rand-multiplier" id="rand-multiplier" value="rand-multiplier">
-                        <label for="rand-multiplier">Véletlen szorzó</label>
-                        <button>Készlet</button>
+                        <div class="tooltip">
+                            <input type="checkbox" name="rand-multiplier" id="rand-multiplier" value="rand-multiplier">
+                            <label for="rand-multiplier">Véletlen szorzó</label>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <button class="to-the-right">Készlet</button>
                         <br>
                         <label>Érvényesség ellenőrzése</label>
-                        <input type="radio" name=check-word id="check-dict" value="check-dict" checked>
-                        <label for="check-dict">Szótár alapján</label>
                         <br>
-                        <input type="radio" name="check-word" id="no-check" value="no-check">
-                        <label for="no-check">Nincs</label>
+                        <div class="tooltip">
+                            <input type="radio" name=check-word id="check-dict" value="check-dict" checked>
+                            <label for="check-dict">Szótár alapján</label>
+                            <span class="tooltiptext"></span>
+                        </div>
                         <br>
-                        <input type="radio" name="check-word" id="spell-checker" value="spell-checker">
-                        <label for="spell-checker">Helyesírás-ellenőrző program használatával</label>
+                        <div class="tooltip">
+                            <input type="radio" name="check-word" id="no-check" value="no-check">
+                            <label for="no-check">Nincs</label>
+                            <span class="tooltiptext"></span>
+                        </div>
                         <br>
-                        <input type="checkbox" name=dont-change-joker id="dont-change-joker" value=dont-change-joker>
-                        <label for="dont-change-joker">Dzsóker bármilyen betűt helyettesíthet a táblán</label>
+                        <div class="tooltip">
+                            <input type="radio" name="check-word" id="spell-checker" value="spell-checker">
+                            <label for="spell-checker">Helyesírás-ellenőrző program használatával</label>
+                            <span class="tooltiptext"></span>
+                        </div>
                         <br>
-                        <input type="checkbox" name="changed-letter-value" id="changed-letter-value" value="changed-letter-value">
-                        <label for="changed-letter-value">Dzsóker pontértéke is változik</label>
+                        <div class="tooltip">
+                            <input type="checkbox" name=dont-change-joker id="dont-change-joker" value=dont-change-joker>
+                            <label for="dont-change-joker">Dzsóker bármilyen betűt helyettesíthet a táblán</label>
+                            <span class="tooltiptext"></span>
+                        </div>
                         <br>
-                        <input type="checkbox" name="one-direction" id="one-direction" value="one-direction">
-                        <label for="one-direction">Csak az utoljára lerakott betűk irányába eső szóra jár pont</label>
+                        <div class="tooltip">
+                            <input type="checkbox" name="changed-letter-value" id="changed-letter-value" value="changed-letter-value">
+                            <label for="changed-letter-value">Dzsóker pontértéke is változik</label>
+                            <span class="tooltiptext"></span>
+                        </div>
+                        <br>
+                        <div class="tooltip">
+                            <input type="checkbox" name="one-direction" id="one-direction" value="one-direction">
+                            <label for="one-direction">Csak az utoljára lerakott betűk irányába eső szóra jár pont</label>
+                            <span class="tooltiptext"></span>
+                        </div>
                     </fieldset>
                 </div>
-                <fieldset>
+                <fieldset class="right-fieldset">
                     <legend>Jutalmak, levonások</legend>
-                    <input type="checkbox" name="length-bonus" id="length-bonus" value="length-bonus" checked>
-                    <label for="length-bonus">Adott hosszúságú szavakra</label>
-                    <button>Mutat</button>
+                    <div class="tooltip">
+                        <input type="checkbox" name="length-bonus" id="length-bonus" value="length-bonus" checked>
+                        <label for="length-bonus">Adott hosszúságú szavakra</label>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <button class="to-the-right">Mutat</button>
                     <br>
-                    <input type="checkbox" name="use-old-bonus" id="use-old-bonus" value="use-old-bonus">
-                    <label for="use-old-bonus">A már táblán lévőkért</label>
-                    <input type="text" name="old-bomus-value" id="old-bonus-value" value="10" size="2" maxlength="2">
+                    <div class="tooltip">
+                        <input type="checkbox" name="use-old-bonus" id="use-old-bonus" value="use-old-bonus">
+                        <label for="use-old-bonus">A már táblán lévőkért</label>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <input class="to-the-right" type="text" name="old-bomus-value" id="old-bonus-value" value="10" size="1" maxlength="2">
                     <br>
-                    <input type="checkbox" name="old-bonus-only" id="old-bonus-only" value="old-bonus-only">
-                    <label for="old-bonus-only">A már a táblán lévőkért nem jár a rajtuk lévő pontszám</label>
+                    <div class="tooltip">
+                        <input type="checkbox" name="old-bonus-only" id="old-bonus-only" value="old-bonus-only">
+                        <label for="old-bonus-only">A már a táblán lévőkért nem jár a rajtuk lévő pontszám</label>
+                        <span class="tooltiptext"></span>
+                    </div>
                     <br>
-                    <input type="checkbox" name="word-per-turn-bonus" id="word-per-turn-bonus" value="word-per-turn-bonus">
-                    <label for="word-per-turn-bonus">Egy körben létrejött szavak száma alapján</label>
+                    <div class="tooltip">
+                        <input type="checkbox" name="word-per-turn-bonus" id="word-per-turn-bonus" value="word-per-turn-bonus">
+                        <label for="word-per-turn-bonus">Egy körben létrejött szavak száma alapján</label>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <input class=to-the-right type="text" name="word-per-turn-bonus-value" id="word-per-turn-bonus-value" value="5" size="1"
+                        maxlength="2">
                     <br>
-                    <input type="checkbox" name="using-all-bonus" id="using-all-bonus" value="using-all-bonus">
-                    <label for="using-all-bonus">A játékot befejező játékosnak:</label>
+                    <div class="tooltip">
+                        <input type="checkbox" name="using-all-bonus" id="using-all-bonus" value="using-all-bonus">
+                        <label for="using-all-bonus">A játékot befejező játékosnak:</label>
+                        <span class="tooltiptext"></span>
+                    </div>
                     <br>
-                    <input type="checkbox" name="const-point" id="const-point" value="const-point">
-                    <label for="const-point">Adott pontszám</label>
-                    <input type="text" name="using-all-value" id="using-all-value" value="20" size="2" maxlength="2">
+                    <div class="tooltip">
+                        <input type="checkbox" name="const-point" id="const-point" value="const-point">
+                        <label for="const-point">Adott pontszám</label>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <input class="to-the-right" type="text" name="using-all-value" id="using-all-value" value="20" size="1" maxlength="2">
                     <br>
-                    <input type="checkbox" name="for-each-letter" id="for-each-letter" value="for-each-letter">
-                    <label for="for-each-letter">A megmaradt betűk értéke, egyébként betűnként</label>
-                    <input type="text" name="for-each-letter-value" id="for-each-letter-value" value="5" size="2" maxlength="2">
+                    <div class="tooltip">
+                        <input type="checkbox" name="for-each-letter" id="for-each-letter" value="for-each-letter">
+                        <label for="for-each-letter">A megmaradt betűk értéke, egyébként betűnként</label>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <input class="to-the-right" type="text" name="for-each-letter-value" id="for-each-letter-value" value="5" size="1" maxlength="2">
                     <br>
-                    <input type="checkbox" name="penalty-for-left" id="penalty-for-left" value="penalty-for-left">
-                    <label for="penalty-for-left">Pontlevonás a megmaradt betűkért</label>
+                    <div class="tooltip">
+                        <input type="checkbox" name="penalty-for-left" id="penalty-for-left" value="penalty-for-left">
+                        <label for="penalty-for-left">Pontlevonás a megmaradt betűkért</label>
+                        <span class="tooltiptext"></span>
+                    </div>
                     <br>
-                    <input type="checkbox" name="p-for-each-letter" id="p-for-each-letter" value="p-for-each-letter">
-                    <label for="p-for-each-letter">A negmaradt betűk értéke, egyébként</label>
-                    <input type="text" name="p-for-each-letter-value" id="p-for-each-letter-value" value="5" size="2" maxlength="2">
+                    <div class="tooltip">
+                        <input type="checkbox" name="p-for-each-letter" id="p-for-each-letter" value="p-for-each-letter">
+                        <label for="p-for-each-letter">A megmaradt betűk értéke, egyébként</label>
+                        <span class="tooltiptext"></span>
+                    </div>
+                    <input class="to-the-right" type="text" name="p-for-each-letter-value" id="p-for-each-letter-value" value="5" size="1" maxlength="2">
                 </fieldset>
             </fieldset>
         </form>
     </div>
     <h3 id="download">Hozzáférés</h3>
-    <a target="blank" href="https://github.com/betuTboy/CsiSza">https://github.com/betuTboy/CsiSza</a>
+    <p><a target="blank" href="https://github.com/betuTboy/CsiSza">https://github.com/betuTboy/CsiSza</a></p>
+    <br>
+    <p>A letöltött .zip fájlt tetszés szerinti néven létrehozott könyvtárba ki kell bontani.</p>
+    <h3>Üzembe helyezés</h3>
+    <p>A program futtatásához a Python futtató környezet 3. verziójának telepítése szükséges.</p>
+    <br>
+    <p><a target="blank" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></p>
+    <br>
+    <p>A játék könyvtárában állva, Windowson a <b>python csiszaclient.py</b>, Linuxon <b>python3 csiszaclient.py</b>
+        paranccsal indíthatjuk el.</p>
     <h3 id="images">Képek</h3>
-    <a target=blank href="img/jatek1.png"><img height="150" src="img/jatek1.png" alt="játék 1"></a>
-    <a target=blank href="img/jatek2.png"><img height="150" src="img/jatek2.png" alt="játék 2"></a>
-    <a target=blank href="img/jatek3.png"><img height="150" src="img/jatek3.png" alt="játék 3"></a>
-    <a target=blank href="img/jatek4.png"><img height="150" src="img/jatek4.png" alt="játék 4"></a>
-    <a target=blank href="img/jatek5.png"><img height="150" src="img/jatek5.png" alt="játék 5"></a>
-    <a target=blank href="img/jatek6.png"><img height="150" src="img/jatek6.png" alt="játék 6"></a>
-
+    <p>
+        <a target=blank href="img/jatek1.png"><img class="imagecollection" height="150" src="img/jatek1.png" alt="játék 1"></a>
+        <a target=blank href="img/jatek2.png"><img class="imagecollection" height="150" src="img/jatek2.png" alt="játék 2"></a>
+        <a target=blank href="img/jatek3.png"><img class="imagecollection" height="150" src="img/jatek3.png" alt="játék 3"></a>
+        <a target=blank href="img/jatek4.png"><img class="imagecollection" height="150" src="img/jatek4.png" alt="játék 4"></a>
+        <a target=blank href="img/jatek5.png"><img class="imagecollection" height="150" src="img/jatek5.png" alt="játék 5"></a>
+        <a target=blank href="img/jatek6.png"><img class="imagcollections" height="150" src="img/jatek6.png" alt="játék 6"></a>
+    </p>
     <h3 id="videos">Videók</h3>
-    <div>
+    <p>
         <a target="blank" href="https://www.youtube.com/watch?v=sdEwS4L4Xv0&t=357s">
             <img height="150" src="img/video1.png" alt="játék 1">
         </a>
         Játék indítása
-    </div>
-    <div>
+    </p>
+    <p>
         <a target="blank" href="https://www.youtube.com/watch?v=4o6K9Khqmko&t=212s">
             <img height="150" src="img/video2.png" alt="játék 2">
         </a>
         Új játék készítése
-    </div>
-    <div>
+    </p>
+    <p>
         <a target="blank" href="https://www.youtube.com/watch?v=004qgSYt-ac">
             <img height="150" src="img/video3.png" alt="játék 3">
         </a>
         A betűkészlet szerkesztése és gépi játékosok beállítása
-    </div>
+    </p>
 </body>
 
 </html>

@@ -1,19 +1,85 @@
-.menu{
+
+html{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+nav{
+    margin-left: 2%;
+}
+
+h1, h3{
+    margin-left: 2%;
+}
+
+.menubar{
+    display:inline-block;
     background-color:lightgreen;
 }
-.menu-item{
-    align-content:right;
+
+p{
+    display: inline-block;
+    text-align: justify;
+    margin-left: 2%;
+    margin-right: 2%;
 }
+
 .settings{
-    background: #DCDCDC;
+    display:inline-block;
+    background-color: #DCDCDC;
+    line-height: 125%;
+    margin-left: 2%;
 }
-left-fieldsets{
-    display:inline;
-}
+
 input[type=text]{
-    text-align: right
-    
+    text-align: right;
 }
-nav{
-    
+
+fieldset{
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border: 2px groove;
 }
+
+legend{
+    padding-left: 2px;
+    padding-right: 2px;
+    border: none;
+}
+
+.left-fieldsets{ 
+    display: inline-block;
+}
+
+.right-fieldset{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.to-the-right{
+    float: right;
+}
+
+button{
+    height: 18px;
+}
+
+input[type=radio] input[type=checkbox]{
+    background-color: white;
+}
+
+input#old-bonus-only{
+    text-indent: 10px;
+}
+
+/*.t1{
+    margin: 0px;
+}*/
+
+/*.imagecollection{
+    height: "150px";
+}*/
