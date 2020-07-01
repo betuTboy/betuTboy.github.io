@@ -4,17 +4,45 @@ html{
     margin-right: 2%;
 }
 
+.motto{
+    background-color:lightgrey;
+    margin-left: 2%;
+    margin-right: 2%;
+    color: white;
+} 
+
 nav{
     margin-left: 2%;
+    margin-right: 2%;
+    font-size: 1.5em;
+    background-image: url('/img/borito.png');
+    background-repeat: no-repeat;
+    /*background-attachment: fixed;*/ 
+    background-size: cover;
 }
 
 h1, h3{
     margin-left: 2%;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
 
 .menubar{
-    display:inline-block;
+    color: white;
     background-color:lightgreen;
+}
+
+.menuitem{
+    background-color:green; 
+    color: white;
+    text-decoration: none;
+    vertical-align: bottom;
+    box-shadow: 5px 5px rgb(68, 66, 66);
+}
+
+.menuitem:hover{
+    color: white;
+    background-color:blue;
 }
 
 p{
@@ -62,6 +90,7 @@ legend{
 
 .to-the-right{
     float: right;
+    display: inline-block;
 }
 
 button{
@@ -73,7 +102,15 @@ input[type=radio] input[type=checkbox]{
 }
 
 input#old-bonus-only{
-    text-indent: 10px;
+    padding-right: 100px;
+}
+
+.vtitle{
+    vertical-align: top; 
+}
+
+.tab{
+    margin-left: 15px;
 }
 
 /*.t1{
