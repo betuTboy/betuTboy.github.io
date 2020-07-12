@@ -126,43 +126,5 @@ input#old-bonus-only{
     margin: 10px;
 }
 
-.normal-field, .rack-field{
-    width: 29px;
-    height: 29px;
-    background-color: lightgrey;
-    border: none;
-    text-decoration: none;
-    margin: 0px;
-    padding: 0px;
-}
-
-.wall-field{
-    width: 29px;
-    height: 29px; 
-    background-color: black;
-    border: none;
-    text-decoration: none;
-    margin: 0px;
-    padding: 0px;
-}
-
-#game-div{
-    margin-left: 2%;
-    margin-right: 2%;
-    background-color:rgb(235, 235, 235);
-}
-
-.letter-button{
-    width: 29px;
-    height: 29px; 
-    background-color: rgb(21, 202, 202);
-    color: black;
-    font-size:140%;
-    text-align: center;
-    border: none;
-    text-decoration: none;
-    margin: 0px;
-    padding: 0px;
-}
 
 

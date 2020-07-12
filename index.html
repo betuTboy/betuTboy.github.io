@@ -176,88 +176,91 @@
                         </div>
                         <div>
                             <table class="t1">
-                                <tr>
-                                    <td>
-                                        <div class="tooltip">
-                                            <input type="radio" name="game" id="ai" value="ai">
-                                            <label for="single">Gép ellen játszom</label>
-                                            <span class="tooltiptext">0-3 gépi játékos elleni játék bellítása</span>
-                                        </div>
-                                        <div class="tooltip">
-                                            <select name="player-num1" id="player-num1">
-                                                <script>
-                                                    function createOptions(startitem, enditem, selecteditem) {
-                                                        var sel = document.getElementById("player-num1");
-                                                        var val = startitem;
-                                                        for (var i = 0; i < enditem - startitem + 1; i++) {
-                                                            var option = document.createElement("option");
-                                                            option.value = val.toString();
-                                                            option.text = val.toString();
-                                                            sel.add(option);
-                                                            if (val == selecteditem) {
-                                                                sel.options[i].selected = true;
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="tooltip">
+                                                <input type="radio" name="game" id="ai" value="ai">
+                                                <label for="single">Gép ellen játszom</label>
+                                                <span class="tooltiptext">0-3 gépi játékos elleni játék bellítása</span>
+                                            </div>
+                                            <div class="tooltip">
+                                                <select name="player-num1" id="player-num1">
+                                                    <script>
+                                                        function createOptions(startitem, enditem, selecteditem) {
+                                                            var sel = document.getElementById("player-num1");
+                                                            var val = startitem;
+                                                            for (var i = 0; i < enditem - startitem + 1; i++) {
+                                                                var option = document.createElement("option");
+                                                                option.value = val.toString();
+                                                                option.text = val.toString();
+                                                                sel.add(option);
+                                                                if (val == selecteditem) {
+                                                                    sel.options[i].selected = true;
+                                                                }
+                                                                val++;
                                                             }
-                                                            val++;
                                                         }
-                                                    }
-                                                    createOptions(0, 3, 1);
-                                                </script>
-                                            </select>
-                                            <span class="tooltiptext">Itt állítható be az ellenfelek száma. 0 beállítása
-                                                esetén egyszemélyes játékot indít a szerver. Ez nem azonos az Egyedül játszom
-                                                beállítással, ahol nincs szerver. A játékban az ellenfelek részletes beállítására
-                                                a Gépi ellenfelek lapon kerülhet sor.</span>
-                                        </div>
-                                    </td>
-                                    <td rowspan="2">
-                                        <label for="player-num1">ellenféllel szemben</label>
-                                        <div class="tooltip">
-                                            <input type="checkbox" name=sim id=sim value=sim>
-                                            <label for="sim">szimultán,</label>
-                                            <span class="tooltiptext">Bejelölve, a játékosok nem egymásután, hanem egyidejűleg
-                                                alkotnak szót azonos betűkből, és a legmagasabb pontértékű szó kerül a táblára.</span>
-                                        </div>
-                                        <div class="tooltip">
-                                            <input type="checkbox" name=independent id=independent value=independent>
-                                            <label for="independent">külön táblán.</label>
-                                            <span class="tooltiptext">Csak szimultán játékban állítható be. Ekkor minden
-                                                játékos szava csak az ő saját tábláján jelenik meg.</span>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="tooltip">
-                                            <input type="radio" name="game" id="network" value="network">
-                                            <label for="single">Hálózaton játszom</label>
-                                            <span class="tooltiptext">Egy számítógépen belül több játékos csatlakozására
-                                                ad lehetőséget (gép és ember vegyesen). Távoli játákban való kipróbálása
-                                                nem történt, valószínűleg nem is működik. Használata nem ajánlott.</span>
-                                        </div>
-                                        <div class="tooltip">
-                                            <select name="player-num2" id="player-num2">
-                                                <script>
-                                                    function createOptions(startitem, enditem, selecteditem) {
-                                                        var sel = document.getElementById("player-num2");
-                                                        var val = startitem;
-                                                        for (var i = 0; i < enditem - startitem + 1; i++) {
-                                                            var option = document.createElement("option");
-                                                            option.value = val.toString();
-                                                            option.text = val.toString();
-                                                            sel.add(option);
-                                                            if (val == selecteditem) {
-                                                                sel.options[i].selected = true;
+                                                        createOptions(0, 3, 1);
+                                                    </script>
+                                                </select>
+                                                <span class="tooltiptext">Itt állítható be az ellenfelek száma. 0 beállítása
+                                                    esetén egyszemélyes játékot indít a szerver. Ez nem azonos az Egyedül
+                                                    játszom beállítással, ahol nincs szerver. A játékban az ellenfelek részletes
+                                                    beállítására a Gépi ellenfelek lapon kerülhet sor.</span>
+                                            </div>
+                                        </td>
+                                        <td rowspan="2">
+                                            <label for="player-num1">ellenféllel szemben</label>
+                                            <div class="tooltip">
+                                                <input type="checkbox" name=sim id=sim value=sim>
+                                                <label for="sim">szimultán,</label>
+                                                <span class="tooltiptext">Bejelölve, a játékosok nem egymásután, hanem egyidejűleg
+                                                    alkotnak szót azonos betűkből, és a legmagasabb pontértékű szó kerül
+                                                    a táblára.</span>
+                                            </div>
+                                            <div class="tooltip">
+                                                <input type="checkbox" name=independent id=independent value=independent>
+                                                <label for="independent">külön táblán.</label>
+                                                <span class="tooltiptext">Csak szimultán játékban állítható be. Ekkor minden
+                                                    játékos szava csak az ő saját tábláján jelenik meg.</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="tooltip">
+                                                <input type="radio" name="game" id="network" value="network">
+                                                <label for="single">Hálózaton játszom</label>
+                                                <span class="tooltiptext">Egy számítógépen belül több játékos csatlakozására
+                                                    ad lehetőséget (gép és ember vegyesen). Távoli játákban való kipróbálása
+                                                    nem történt, valószínűleg nem is működik. Használata nem ajánlott.</span>
+                                            </div>
+                                            <div class="tooltip">
+                                                <select name="player-num2" id="player-num2">
+                                                    <script>
+                                                        function createOptions(startitem, enditem, selecteditem) {
+                                                            var sel = document.getElementById("player-num2");
+                                                            var val = startitem;
+                                                            for (var i = 0; i < enditem - startitem + 1; i++) {
+                                                                var option = document.createElement("option");
+                                                                option.value = val.toString();
+                                                                option.text = val.toString();
+                                                                sel.add(option);
+                                                                if (val == selecteditem) {
+                                                                    sel.options[i].selected = true;
+                                                                }
+                                                                val++;
                                                             }
-                                                            val++;
                                                         }
-                                                    }
-                                                    createOptions(0, 9, 1);
-                                                </script>
-                                            </select>
-                                            <span class="tooltiptext">Itt állítható be az ellenfelek száma.</span>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                        createOptions(0, 9, 1);
+                                                    </script>
+                                                </select>
+                                                <span class="tooltiptext">Itt állítható be az ellenfelek száma.</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                         <div class="tooltip">
@@ -359,7 +362,7 @@
                         <br>
                         <div>
                             <div class="tooltip">
-                                <input type="checkbox" name="shared" id="shared" value=shared>
+                                <input type="checkbox" name="shared" id="shared" value="shared">
                                 <label for="shared">Közös betűk</label>
                                 <span class="tooltiptext">Ha be van jelölve, akkor egy külön tartón az összes játékos számára
                                     rendelkezésre álló betűk adhatók meg. Ha egy betű mindkét tartón szerepelhet, az a táblára
@@ -510,7 +513,7 @@
                             <span class="tooltiptext">Ha be van jelölve, akkor a játékot befejező játékosnak az előre megadott
                                 pontszám jár.</span>
                         </div>
-                    <input class="to-the-right" type="text" name="using-all-value" id="using-all-value" value="20" size="1" maxlength="2">
+                        <input class="to-the-right" type="text" name="using-all-value" id="using-all-value" value="20" size="1" maxlength="2">
                     </div>
                     <div class="tab">
                         <div class="tooltip">
@@ -519,7 +522,7 @@
                             <span class="tooltiptext">Ha be van jelölve, akkor a játékot befejező játékosnak az ellenfelek
                                 megmaradt betűinek értéke jár jutalomként. Egyébként betűnként a megadott pontszám jár jutalomként.</span>
                         </div>
-                    <input class="to-the-right" type="text" name="for-each-letter-value" id="for-each-letter-value" value="5" size="1" maxlength="2">
+                        <input class="to-the-right" type="text" name="for-each-letter-value" id="for-each-letter-value" value="5" size="1" maxlength="2">
                     </div>
                     <br>
                     <div class="tooltip">

@@ -1,0 +1,115 @@
+#board-form, #rack-form{
+    display: inline-block;
+}
+
+.normal-field, .rack-field{
+    width: 29px;
+    height: 29px;
+    background-color: lightgrey;
+    border: none;
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.wall-field{
+    width: 29px;
+    height: 29px; 
+    background-color: black;
+    border: none;
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#game-div{
+    margin-left: 2%;
+    margin-right: 2%;
+    background-color:rgb(235, 235, 235);
+}
+
+#board-rack{
+    display: inline-block;
+}
+
+#dashboard{
+    display: inline-block;
+    vertical-align: top;
+    background-color:rgb(235, 235, 235);
+    border-style: solid;
+    border-width: 1px;
+    border-color:white;
+    margin: 10px;
+    padding: 5px;
+}
+
+#rules{
+    display: inline-block;
+    background-color:rgb(235, 235, 235);
+    border-style: solid;
+    border-width: 1px;
+    border-color:white;
+    width:40%;
+    vertical-align: top;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px; 
+    padding: 5px;
+}
+
+
+.letter-button{
+    width: 29px;
+    height: 29px; 
+    background-color: rgb(21, 202, 202);
+    color: black;
+    font-size:140%;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+button{
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 100px;
+}
+
+input{
+    color: #4CAF50; 
+    border: none;
+    background-color: white;
+    padding: 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 50px;
+}
+
+label{
+    margin: 4px 2px; 
+}
+
+input[type=text]{
+    text-align: center;
+}
+
+p{
+    text-align: justify;
+    display: inline-block;
+}
