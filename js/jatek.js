@@ -52,6 +52,12 @@ let letters = [['*', 30, 1,],
 
 let racksize = 12;
 
+let timelimit = 120;
+let currenttime;
+let timeout;
+
+let fields = [];
+
 function createTd(fieldtype, parent, id) {
     let td = document.createElement("td");
     td.setAttribute("id", id);
@@ -71,18 +77,22 @@ function createTd(fieldtype, parent, id) {
             break;
     }
     parent.appendChild(td);
+    return td;
 }
 
 function drawBoard() {
     fieldtable = document.querySelector("#board");
     for (let i = 0; i < board.length; i++) {
+        fields[i] = [];
         let tr = document.createElement("tr");
         for (let j = 0; j < board[i].length; ++j) {
             let id = "fieldtable-" + i.toString() + "-" + j.toString();
-            createTd(board[i][j], tr, id);
+            td = createTd(board[i][j], tr, id);
+            fields[i].push(td);
         }
         fieldtable.appendChild(tr);
     }
+    console.log(fields);
 }
 
 function drawRack() {
@@ -100,13 +110,12 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("text/plain", ev.target.id);
 }
 
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    console.log(data);
+    var data = ev.dataTransfer.getData("text/plain");
     ev.target.appendChild(document.getElementById(data));
 }
 
@@ -123,39 +132,94 @@ function loadRack(sack) {
             } else jokeronrack = true;
         }
         rack.push(randletter);
-        let letterbutton = document.createElement("input");
-        let id= "lbutton"+lettercount.toString();
-        letterbutton.setAttribute("id",id);
-        letterbutton.setAttribute("class","letter-button");
-        letterbutton.setAttribute("type","text");
-        let value= randletter[0];
-        letterbutton.setAttribute("value",value)
-        letterbutton.setAttribute("dragable",true);
-        letterbutton.setAttribute("ondragstart","drag(event)");
-        letterbutton.setAttribute("disabled",true);
-        rackfields[lettercount].appendChild(letterbutton)
+        let letteri = document.createElement("input");
+        let id = "letter" + lettercount.toString();
+        letteri.setAttribute("id", id);
+        letteri.setAttribute("class", "letter");
+        letteri.setAttribute("type", "text");
+        let value = randletter[0];
+        letteri.setAttribute("value", value);
+        /*letteri.innerHTML = randletter[0];*/
+        letteri.setAttribute("dragable", true);
+        letteri.setAttribute("ondragstart", "drag(event)");
+        letteri.setAttribute("disabled", true);
+        rackfields[lettercount].appendChild(letteri)
         lettercount++;
     }
-
 }
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function bindButtons() {
+    let startbutton = document.querySelector("#start");
+    startbutton.addEventListener("click", startGame);
+    let shufflebutton = document.querySelector("#shuffle");
+    shufflebutton.addEventListener("click", shuffle);
+    let donebutton = document.querySelector("#done");
+    donebutton.addEventListener("click", getDirection);
+}
+
 function startGame() {
-    var div = document.createElement('div');
-    if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
-        console.log("Drag and Drop API is supported!");
     let sack = [];
     for (let i = 0; i < letters.length; i++) {
         for (let j = 0; j < letters[i][1]; j++) {
             sack.push([letters[i][0], letters[i][2]]);
         }
     }
-    drawBoard();
-    drawRack();
     loadRack(sack);
+    let t = document.querySelector("#time");
+    currenttime = timelimit;
+    t.setAttribute("value", timelimit);
+    timer();
 }
 
-startGame();
+function shuffle() {
+    let rackfields = document.querySelectorAll(".rack-field");
+    let lettersonrack = [];
+    for (let i = 0; i < rackfields.length; i++) {
+        let letter = rackfields[i].getElementsByClassName("letter");
+        lettersonrack.push(letter[0]);
+        rackfields[i].removeChild(letter[0]);
+    }
+    let i = 0;
+    while (lettersonrack.length > 0) {
+        rand = getRndInteger(0, lettersonrack.length);
+        rackfields[i].appendChild(lettersonrack[rand]);
+        lettersonrack.splice(rand, 1);
+        i++
+    }
+}
+
+function getDirection(){
+    
+}
+
+function validate() {
+
+}
+
+function timer() {
+        timeout = setInterval(displayTime, 1000);
+    }
+
+function displayTime() {
+    let t = document.querySelector("#time");
+    t.setAttribute("value", currenttime);
+    if(currenttime==0){
+        clearInterval(timeout);
+    }
+    currenttime-=1;
+}
+
+function initGame() {
+    var div = document.createElement('div');
+    if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
+        console.log("Drag and Drop API is supported!");
+    drawBoard();
+    drawRack();
+    bindButtons();
+}
+
+initGame();
