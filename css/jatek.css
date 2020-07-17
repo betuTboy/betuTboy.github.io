@@ -75,7 +75,7 @@ button{
     background-color: #4CAF50; 
     border: none;
     color: white;
-    padding: 18px;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -90,7 +90,7 @@ input{
     color: #4CAF50; 
     border: none;
     background-color: white;
-    padding: 18px;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -98,7 +98,7 @@ input{
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 8px;
-    width: 63px;
+    width: 79px;
 }
 
 label{

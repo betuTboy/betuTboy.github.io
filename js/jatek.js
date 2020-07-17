@@ -52,7 +52,11 @@ let letters = [['*', 30, 1,],
 
 let racksize = 12;
 
-let timelimit = 120;
+let sack = [];
+
+let turn = 1; 
+
+let timelimit = 60;
 let currenttime;
 let timeout;
 
@@ -82,6 +86,7 @@ function createTd(fieldtype, parent, id) {
 
 function drawBoard() {
     fieldtable = document.querySelector("#board");
+    fieldtable.innerHTML = '';
     for (let i = 0; i < board.length; i++) {
         fields[i] = [];
         let tr = document.createElement("tr");
@@ -97,6 +102,7 @@ function drawBoard() {
 
 function drawRack() {
     rackfieldtable = document.querySelector("#rack");
+    rackfieldtable.innerHTML = ''
     let tr = document.createElement("tr");
     for (let i = 0; i < racksize; i++) {
         let id = "rackfieldtable-" + i.toString() + "-0";
@@ -110,20 +116,25 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
+    ev.dataTransfer.setData("application/x-moz-node", ev.target.id);
     ev.dataTransfer.setData("text/plain", ev.target.id);
 }
 
 function drop(ev) {
     ev.preventDefault();
+    var data = ev.dataTransfer.getData("application/x-moz-node");
     var data = ev.dataTransfer.getData("text/plain");
     ev.target.appendChild(document.getElementById(data));
+    ev.target.setAttribute("ondragover", "");
+
 }
 
-function loadRack(sack) {
+function loadRack() {
     let rack = [];
     let rackfields = document.querySelectorAll(".rack-field");
     let jokeronrack = false;
     let lettercount = 0;
+    displayTurn();
     while (lettercount < racksize) {
         let randletter = sack[getRndInteger(0, sack.length)];
         if (randletter[0] == '*') {
@@ -133,18 +144,36 @@ function loadRack(sack) {
         }
         rack.push(randletter);
         let letteri = document.createElement("input");
-        let id = "letter" + lettercount.toString();
+        let id = "letter" + turn.toString()+"-"+ lettercount.toString();
+        console.log(id);
         letteri.setAttribute("id", id);
-        letteri.setAttribute("class", "letter");
+        letteri.setAttribute("class", "letter letter-on-rack");
         letteri.setAttribute("type", "text");
         let value = randletter[0];
         letteri.setAttribute("value", value);
         /*letteri.innerHTML = randletter[0];*/
         letteri.setAttribute("dragable", true);
         letteri.setAttribute("ondragstart", "drag(event)");
-        letteri.setAttribute("disabled", true);
+        letteri.setAttribute("readonly", "readonly");
+        /*letteri.setAttribute("disabled", true);*/
         rackfields[lettercount].appendChild(letteri)
         lettercount++;
+    }
+    turn++;
+}
+
+function displayTurn(){
+    t = document.querySelector("#turn");
+    t.setAttribute("value", turn);
+}
+
+function emptyRack() {
+    let rackfields = document.querySelectorAll(".rack-field");
+    for (let i = 0; i < rackfields.length; i++) {
+        let letteronrack = rackfields[i].getElementsByClassName("letter");
+        if (letteronrack.length > 0) {
+            rackfields[i].removeChild(letteronrack[0]);
+        }
     }
 }
 
@@ -162,17 +191,16 @@ function bindButtons() {
 }
 
 function startGame() {
-    let sack = [];
-    for (let i = 0; i < letters.length; i++) {
-        for (let j = 0; j < letters[i][1]; j++) {
-            sack.push([letters[i][0], letters[i][2]]);
-        }
-    }
-    loadRack(sack);
-    let t = document.querySelector("#time");
-    currenttime = timelimit;
-    t.setAttribute("value", timelimit);
-    timer();
+    drawBoard();
+    drawRack();
+    emptyRack();
+    loadRack();
+    clearInterval(timeout);
+    resetTimer();
+}
+
+function back() {
+
 }
 
 function shuffle() {
@@ -192,34 +220,55 @@ function shuffle() {
     }
 }
 
-function getDirection(){
-    
+function getDirection() {
+    emptyRack();
+    loadRack();
+    clearInterval(timeout);
+    resetTimer();
 }
-
 function validate() {
 
 }
 
 function timer() {
-        timeout = setInterval(displayTime, 1000);
-    }
+    timeout = setInterval(displayTime, 1000);
+}
 
 function displayTime() {
     let t = document.querySelector("#time");
     t.setAttribute("value", currenttime);
-    if(currenttime==0){
+    if (currenttime == 0) {
         clearInterval(timeout);
+        emptyRack();
+        loadRack();
+        resetTimer();
     }
-    currenttime-=1;
+    currenttime -= 1;
+}
+
+function resetTimer() {
+    let t = document.querySelector("#time");
+    currenttime = timelimit;
+    t.setAttribute("value", timelimit);
+    timer();
+}
+
+function createSack() {
+    for (let i = 0; i < letters.length; i++) {
+        for (let j = 0; j < letters[i][1]; j++) {
+            sack.push([letters[i][0], letters[i][2]]);
+        }
+    }
 }
 
 function initGame() {
     var div = document.createElement('div');
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
+    bindButtons();
+    createSack();
     drawBoard();
     drawRack();
-    bindButtons();
 }
 
 initGame();

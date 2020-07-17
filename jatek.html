@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    <br>
     <div id="game-div">
         <div id="board-rack">
             <form id="board-form">
@@ -35,7 +34,17 @@
                         </tr>
                         <tr>
                             <td>
-                                <button id="start"  type="button">Új játék</button>
+                                <button id="start" type="button">Új játék</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="turn">Forduló:</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input name="turn" id="turn" type="text" value="0" size="1" maxlength="5" style="text-align: right" disabled>
                             </td>
                         </tr>
                         <tr>
@@ -69,6 +78,9 @@
                             </td>
                         </tr>
                         <tr>
+                            <td> <button id="back" type="button">Vissza</button></td>
+                        </tr>
+                        <tr>
                             <td> <button id="shuffle" type="button">Keverés</button></td>
                         </tr>
                         <tr>
@@ -80,7 +92,7 @@
         </div>
         <div id="rules">
             <h1>Szóló :)</h1>
-            <p>A játék célja a keresztrejtvénytábla minél kevesebb fordulón belüli teljes kitöltése, és a lehető legmagasabb
+            <p style="margin:5px">A játék célja a keresztrejtvénytábla minél kevesebb fordulón belüli teljes kitöltése, és a lehető legmagasabb
                 pontszám elérése.</p>
         </div>
     </div>
