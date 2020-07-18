@@ -54,7 +54,7 @@ let racksize = 12;
 
 let sack = [];
 
-let turn = 1; 
+let turn = 1;
 
 let timelimit = 60;
 let currenttime;
@@ -62,17 +62,20 @@ let timeout;
 
 let fields = [];
 
+let draggedletter;
+let parentofdraggedletter;
+
 function createTd(fieldtype, parent, id) {
     let td = document.createElement("td");
     td.setAttribute("id", id);
     switch (fieldtype) {
         case '.':
-            td.setAttribute("class", "normal-field");
+            td.setAttribute("class", "normal-field empty");
             td.setAttribute("ondrop", "drop(event)");
             td.setAttribute("ondragover", "allowDrop(event)");
             break;
         case '-':
-            td.setAttribute("class", "rack-field");
+            td.setAttribute("class", "rack-field empty");
             td.setAttribute("ondrop", "drop(event)");
             td.setAttribute("ondragover", "allowDrop(event)");
             break;
@@ -118,15 +121,43 @@ function allowDrop(ev) {
 function drag(ev) {
     ev.dataTransfer.setData("application/x-moz-node", ev.target.id);
     ev.dataTransfer.setData("text/plain", ev.target.id);
+    draggedletter = ev.target;
+    parentofdraggedletter = draggedletter.parentElement;
+    console.log(draggedletter, parentofdraggedletter);
 }
 
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("application/x-moz-node");
     var data = ev.dataTransfer.getData("text/plain");
-    ev.target.appendChild(document.getElementById(data));
+    appendedletter = ev.target.appendChild(document.getElementById(data));
     ev.target.setAttribute("ondragover", "");
+    if (ev.target.getAttribute("class") == "normal-field empty") {
+        ev.target.setAttribute("class", "normal-field occupied");
+        /*appendedletter.setAttribute("class", "letter letter-on-board")*/
+    } else if (ev.target.getAttribute("class") == "rack-field empty") {
+        ev.target.setAttribute("class", "rack-field occupied");
+        /*appendedletter.setAttribute("class", "letter letter-on-rack");*/
+    }
+    if (ev.target != parentofdraggedletter) {
+        parentofdraggedletter.setAttribute("ondragover", "allowDrop(event)");
+        if (parentofdraggedletter.getAttribute("class") == "normal-field occupied") {
+            parentofdraggedletter.setAttribute("class", "normal-field empty");
+        } else if (parentofdraggedletter.getAttribute("class") == "rack-field occupied") {
+            parentofdraggedletter.setAttribute("class", "rack-field empty");
+        }
+    }
+}
 
+function setStateOfLetters() {
+    for (let i = 0; i < fields.length; i++) {
+        for (let j = 0; j < fields[i].length; ++j) {
+            if (fields[i][j].hasChildNodes()) {
+                fields[i][j].children[0].setAttribute("draggable", false);
+                fields[i][j].children[0].setAttribute("class", "letter letter-on-board");
+            }
+        }
+    }
 }
 
 function loadRack() {
@@ -144,25 +175,25 @@ function loadRack() {
         }
         rack.push(randletter);
         let letteri = document.createElement("input");
-        let id = "letter" + turn.toString()+"-"+ lettercount.toString();
-        console.log(id);
+        let id = "letter" + turn.toString() + "-" + lettercount.toString();
         letteri.setAttribute("id", id);
         letteri.setAttribute("class", "letter letter-on-rack");
         letteri.setAttribute("type", "text");
         let value = randletter[0];
         letteri.setAttribute("value", value);
-        /*letteri.innerHTML = randletter[0];*/
-        letteri.setAttribute("dragable", true);
+        /*letteri.innerHTML = randletter[0].toString();*/
+        letteri.setAttribute("draggable", true);
         letteri.setAttribute("ondragstart", "drag(event)");
         letteri.setAttribute("readonly", "readonly");
         /*letteri.setAttribute("disabled", true);*/
         rackfields[lettercount].appendChild(letteri)
+        rackfields[lettercount].setAttribute("ondragover", "");
         lettercount++;
     }
     turn++;
 }
 
-function displayTurn(){
+function displayTurn() {
     t = document.querySelector("#turn");
     t.setAttribute("value", turn);
 }
@@ -186,11 +217,15 @@ function bindButtons() {
     startbutton.addEventListener("click", startGame);
     let shufflebutton = document.querySelector("#shuffle");
     shufflebutton.addEventListener("click", shuffle);
+    let backbutton = document.querySelector("#back");
+    backbutton.addEventListener("click", back);
     let donebutton = document.querySelector("#done");
     donebutton.addEventListener("click", getDirection);
 }
 
 function startGame() {
+    turn = 1;
+    displayTurn();
     drawBoard();
     drawRack();
     emptyRack();
@@ -200,12 +235,29 @@ function startGame() {
 }
 
 function back() {
-
+    let lettersonrack = document.querySelectorAll(".letter-on-rack");
+    let rackfields = document.querySelectorAll(".rack-field");
+    for (let i = 0; i < lettersonrack.length; i++) {
+        if (lettersonrack[i].parentElement.getAttribute("class") == "normal-field occupied") {
+            lettersonrack[i].parentElement.setAttribute("class", "normal-field empty");
+            lettersonrack[i].parentElement.setAttribute("ondragover", "allowDrop(event)");
+            lettersonrack[i].setAttribute("class", "letter letter-on-rack");
+        }
+        /*lettersonrack[i].parentElement.removeChild(lettersonrack[i]);*/
+        for (let j = 0; j < racksize; j++) {
+            if (!rackfields[j].hasChildNodes()) {
+                rackfields[j].appendChild(lettersonrack[i]);
+                rackfields[j].setAttribute("class", "rack-field occupied");
+                rackfields[j].setAttribute("ondragover", "");
+            }
+        }
+    }
 }
 
 function shuffle() {
     let rackfields = document.querySelectorAll(".rack-field");
     let lettersonrack = [];
+    back();
     for (let i = 0; i < rackfields.length; i++) {
         let letter = rackfields[i].getElementsByClassName("letter");
         lettersonrack.push(letter[0]);
@@ -221,6 +273,7 @@ function shuffle() {
 }
 
 function getDirection() {
+    setStateOfLetters();
     emptyRack();
     loadRack();
     clearInterval(timeout);
@@ -239,6 +292,7 @@ function displayTime() {
     t.setAttribute("value", currenttime);
     if (currenttime == 0) {
         clearInterval(timeout);
+        back();
         emptyRack();
         loadRack();
         resetTimer();
