@@ -65,6 +65,8 @@ let fields = [];
 let draggedletter;
 let parentofdraggedletter;
 
+let popup1;
+
 function createTd(fieldtype, parent, id) {
     let td = document.createElement("td");
     td.setAttribute("id", id);
@@ -100,7 +102,6 @@ function drawBoard() {
         }
         fieldtable.appendChild(tr);
     }
-    console.log(fields);
 }
 
 function drawRack() {
@@ -123,7 +124,6 @@ function drag(ev) {
     ev.dataTransfer.setData("text/plain", ev.target.id);
     draggedletter = ev.target;
     parentofdraggedletter = draggedletter.parentElement;
-    console.log(draggedletter, parentofdraggedletter);
 }
 
 function drop(ev) {
@@ -134,10 +134,8 @@ function drop(ev) {
     ev.target.setAttribute("ondragover", "");
     if (ev.target.getAttribute("class") == "normal-field empty") {
         ev.target.setAttribute("class", "normal-field occupied");
-        /*appendedletter.setAttribute("class", "letter letter-on-board")*/
     } else if (ev.target.getAttribute("class") == "rack-field empty") {
         ev.target.setAttribute("class", "rack-field occupied");
-        /*appendedletter.setAttribute("class", "letter letter-on-rack");*/
     }
     if (ev.target != parentofdraggedletter) {
         parentofdraggedletter.setAttribute("ondragover", "allowDrop(event)");
@@ -145,6 +143,13 @@ function drop(ev) {
             parentofdraggedletter.setAttribute("class", "normal-field empty");
         } else if (parentofdraggedletter.getAttribute("class") == "rack-field occupied") {
             parentofdraggedletter.setAttribute("class", "rack-field empty");
+        }
+    }
+    if (appendedletter.className == "letter letter-on-rack joker") {
+        if (ev.target.className == "normal-field occupied") {
+            createPopup(ev.target);
+        } else if (ev.target.className == "rack-field occupied") {
+            appendedletter.value = '*';
         }
     }
 }
@@ -177,15 +182,19 @@ function loadRack() {
         let letteri = document.createElement("input");
         let id = "letter" + turn.toString() + "-" + lettercount.toString();
         letteri.setAttribute("id", id);
-        letteri.setAttribute("class", "letter letter-on-rack");
         letteri.setAttribute("type", "text");
         let value = randletter[0];
+        if (value == '*') {
+            letteri.setAttribute("class", "letter letter-on-rack joker")
+        } else {
+            letteri.setAttribute("class", "letter letter-on-rack");
+        }
         letteri.setAttribute("value", value);
         /*letteri.innerHTML = randletter[0].toString();*/
         letteri.setAttribute("draggable", true);
         letteri.setAttribute("ondragstart", "drag(event)");
         letteri.setAttribute("readonly", "readonly");
-        /*letteri.setAttribute("disabled", true);*/
+        letteri.setAttribute("disabled", true);
         rackfields[lettercount].appendChild(letteri)
         rackfields[lettercount].setAttribute("ondragover", "");
         lettercount++;
@@ -241,12 +250,13 @@ function back() {
         if (lettersonrack[i].parentElement.getAttribute("class") == "normal-field occupied") {
             lettersonrack[i].parentElement.setAttribute("class", "normal-field empty");
             lettersonrack[i].parentElement.setAttribute("ondragover", "allowDrop(event)");
-            lettersonrack[i].setAttribute("class", "letter letter-on-rack");
         }
-        /*lettersonrack[i].parentElement.removeChild(lettersonrack[i]);*/
         for (let j = 0; j < racksize; j++) {
             if (!rackfields[j].hasChildNodes()) {
                 rackfields[j].appendChild(lettersonrack[i]);
+                if (lettersonrack[i].className == "letter letter-on-rack joker") {
+                    lettersonrack[i].value = '*';
+                }
                 rackfields[j].setAttribute("class", "rack-field occupied");
                 rackfields[j].setAttribute("ondragover", "");
             }
@@ -272,6 +282,29 @@ function shuffle() {
     }
 }
 
+function lockOnUI() {
+    let uibuttons = document.querySelectorAll(".UI-button");
+    for (let i = 0; i < uibuttons.length; i++) {
+        uibuttons[i].setAttribute("disabled", true);
+    }
+    let lettersonrack = document.querySelectorAll(".letter-on-rack");
+    console.log(lettersonrack);
+    for (let j = 0; j < lettersonrack.length; j++) {
+        lettersonrack[j].setAttribute("draggable", false);
+    }
+}
+
+function lockOffUI() {
+    let uibuttons = document.querySelectorAll(".UI-button");
+    for (let i = 0; i < uibuttons.length; i++) {
+        uibuttons[i].disabled = false;
+    }
+    let lettersonrack = document.querySelectorAll(".letter-on-rack");
+    for (let j = 0; j < lettersonrack.length; j++) {
+        lettersonrack[j].setAttribute("draggable", true);
+    }
+}
+
 function getDirection() {
     setStateOfLetters();
     emptyRack();
@@ -279,8 +312,49 @@ function getDirection() {
     clearInterval(timeout);
     resetTimer();
 }
+
 function validate() {
 
+}
+
+function createPopup(tfield) {
+    lockOnUI();
+    popup1 = document.createElement("div");
+    popup1.setAttribute("class", "popup");
+    tfield.appendChild(popup1);
+    let form1 = document.createElement("form");
+    form1.setAttribute("class", "popupcontent");
+    popup1.appendChild(form1);
+    let table1 = document.createElement("table");
+    table1.setAttribute("id", "changejoker");
+    form1.appendChild(table1);
+    let k = 1;
+    for (i = 0; i < letters.length / 7 + 1; i++) {
+        let row1 = document.createElement("tr");
+        table1.appendChild(row1);
+        for (j = 0; j < 7 && k < letters.length; j++) {
+            let td1 = document.createElement("td");
+            row1.appendChild(td1);
+            let input1 = document.createElement("input");
+            td1.appendChild(input1);
+            input1.setAttribute("type", "text");
+            input1.setAttribute("class", "letter");
+            input1.setAttribute("draggable", false);
+            input1.setAttribute("readonly", "readonly");
+            /* input1.setAttribute("disabled", false);*/
+            /*input1.setAttribute("onclick", changeJoker);*/
+            input1.addEventListener("click", changeJoker);
+            input1.setAttribute("value", letters[k][0]);
+            k++;
+        }
+    }
+}
+
+function changeJoker(ev) {
+    tfield = popup1.parentElement;
+    tfield.children[0].setAttribute("value", ev.target.value);
+    popup1.remove();
+    lockOffUI();
 }
 
 function timer() {
@@ -292,6 +366,9 @@ function displayTime() {
     t.setAttribute("value", currenttime);
     if (currenttime == 0) {
         clearInterval(timeout);
+        try {
+            popup1.remove();
+        } catch (err) { }
         back();
         emptyRack();
         loadRack();
