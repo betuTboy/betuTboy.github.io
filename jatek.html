@@ -28,9 +28,9 @@
                 <table>
                     <tbody>
                         <tr>
-                            <form>
-                                <td><button id="main" class="UI-button" formaction="index.html">Főoldal</button></td>
-                            </form>
+                            <td>
+                                <button id="main" class="UI-button" formaction="index.html">Főoldal</button>
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -39,17 +39,22 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="turn">Forduló:</label>
+                                <button id="pause" class="UI-button" type="button">Szünet</button>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input name="turn" id="turn" type="text" value="0" size="1" maxlength="5" style="text-align: right" disabled>
+                                <label for="turn"><small>Forduló/Tétlen:</small></label>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label for="time">Idő:</label>
+                                <input name="turn" id="turn" type="text" value="0 / 0" size="1" maxlength="5" style="text-align: right" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="time"><small>Idő:</small></label>
                             </td>
                         </tr>
                         <tr>
@@ -57,9 +62,12 @@
                                 <input name="time" id="time" type="text" value="0" size="1" maxlength="5" style="text-align: right" disabled>
                             </td>
                         </tr>
+                        <tr id="progressbar-container">
+                            <td><progress value="0" max="100"></progress></td>
+                        </tr>
                         <tr>
                             <td>
-                                <label for="lscore">Utolsó szó:</label>
+                                <label for="lscore"><small>Utolsó szó:</small></label>
                             </td>
                         </tr>
                         <tr>
@@ -69,12 +77,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="score">Összpontszám:</label>
+                                <label for="score"><small>Összpontszám:</small></label>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input name="score" id="lscore" type="text" value="0" size="1" maxlength="5" style="text-align: right" disabled>
+                                <input name="score" id="score" type="text" value="0" size="1" maxlength="5" style="text-align: right" disabled>
                             </td>
                         </tr>
                         <tr>
@@ -91,9 +99,27 @@
             </form>
         </div>
         <div id="rules">
-            <h1>Szóló :)</h1>
-            <p style="margin:5px">A játék célja a keresztrejtvény minél kevesebb fordulón belüli teljes kitöltése, és a lehető legmagasabb
-                pontszám elérése.</p>
+            <div id="rulesdiv">
+                <h1>Szóló :)</h1>
+                <p style="margin:5px">A játék célja a keresztrejtvény minél kevesebb fordulón belüli teljes kitöltése, és
+                    a lehető legmagasabb pontszám elérése. Fordulónként 100 másodperc áll a játékos rendelkezésére a szóalkotásra.
+                    A lerakott új betűknek egy vonalba kell esniük. Minden forduló végén csak a használt szótárban található
+                    szavak maradnak a táblán. A szótár több mint 38000 szót tartalmaz. Összesen három olyan fordulót követően,
+                    amelyben nem kerül új betű a táblára, a játék automatikusan véget ér. Az egy fordulóban táblára került
+                    betűk darabonként egy pontot érnek, de ha négy vagy több betű kerül egyszerre a táblára, akkor azokért
+                    a következő jutalompontok járnak:
+                </p>
+                <ul>
+                    <li>4 betű - 2 pont</li>
+                    <li>5 betű - 4 pont</li>
+                    <li>6 betű - 8 pont</li>
+                    <li>7 betű - 16 pont</li>
+                    <li>8 betű - 32 pont</li>
+                </ul>
+                <p style="margin:5px">Az eredmények rangsorolása szempontjából elsődleges a kitöltöttség százalékos aránya.
+                    Azonos arány esetén a fordulók száma, továbbra is azonos eredmény esetén az elért pontszám dönt. Jó játékot!
+                </p>
+            </div>
         </div>
     </div>
     <script src="js/jatek.js"></script>
