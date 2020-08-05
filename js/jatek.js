@@ -111,8 +111,9 @@ let sack = [];
 let turns = 1;
 
 let timelimit = 100;
-let currenttime;
+let currenttime = 0;
 let timeout;
+let totaltime = 0;
 let progressbar;
 
 let fields = [];
@@ -129,6 +130,8 @@ let limitofidleturns = 3;
 let score = 0;
 
 let ingame = false;
+
+let wordsingame=[];
 
 function createTd(fieldtype, parent, id) {
     let td = document.createElement("td");
@@ -153,7 +156,7 @@ function createTd(fieldtype, parent, id) {
 }
 
 function drawBoard() {
-    fieldtable = document.querySelector("#board");
+    let fieldtable = document.querySelector("#board");
     fieldtable.innerHTML = '';
     for (let i = 0; i < board.length; i++) {
         fields[i] = [];
@@ -168,7 +171,7 @@ function drawBoard() {
 }
 
 function drawRack() {
-    rackfieldtable = document.querySelector("#rack");
+    let rackfieldtable = document.querySelector("#rack");
     rackfieldtable.innerHTML = ''
     let tr = document.createElement("tr");
     for (let i = 0; i < racksize; i++) {
@@ -183,6 +186,7 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
+    if (ev.target.className == "letter letter-on-board") return;
     ev.dataTransfer.setData("application/x-moz-node", ev.target.id);
     ev.dataTransfer.setData("text/plain", ev.target.id);
     draggedletter = ev.target;
@@ -193,6 +197,8 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("application/x-moz-node");
     var data = ev.dataTransfer.getData("text/plain");
+    if (ev.target.className == "letter letter-on-rack" || ev.target.className == "letter letter-on-rack joker") return;
+    if (ev.target.hasChildNodes()) return;
     appendedletter = ev.target.appendChild(document.getElementById(data));
     ev.target.setAttribute("ondragover", "");
     if (ev.target.getAttribute("class") == "normal-field empty") {
@@ -223,7 +229,7 @@ function setStateOfLetters() {
             if (fields[i][j].hasChildNodes()) {
                 fields[i][j].children[0].draggable = false;
                 fields[i][j].children[0].disabled = true;
-                fields[i][j].children[0].setAttribute("class", "letter letter-on-board");         
+                fields[i][j].children[0].setAttribute("class", "letter letter-on-board");
             }
         }
     }
@@ -246,7 +252,11 @@ function loadRack() {
         let letteri = document.createElement("input");
         let id = "letter" + turns.toString() + "-" + lettercount.toString();
         letteri.setAttribute("id", id);
-        letteri.setAttribute("type", "text");
+        if (navigator.userAgent.indexOf("Firefox") != -1) {
+            letteri.setAttribute("type", "text");
+        } else {
+            letteri.setAttribute("type", "button");
+        }
         let value = randletter[0];
         if (value == '*') {
             letteri.setAttribute("class", "letter letter-on-rack joker")
@@ -256,8 +266,8 @@ function loadRack() {
         letteri.setAttribute("value", value);
         letteri.draggable = true;
         letteri.setAttribute("ondragstart", "drag(event)");
+        letteri.setAttribute("onkeydown", "return false");
         letteri.readonly = true;
-       /* letteri.disabled = true;*/
         rackfields[lettercount].appendChild(letteri)
         rackfields[lettercount].setAttribute("ondragover", "");
         lettercount++;
@@ -266,7 +276,7 @@ function loadRack() {
 }
 
 function displayTurn() {
-    t = document.querySelector("#turn");
+    let t = document.querySelector("#turn");
     t.setAttribute("value", `${turns} / ${idleturns}`);
 }
 
@@ -302,6 +312,7 @@ function startGame() {
         destroyPopup();
     } catch (err) { }
     turns = 1;
+    totaltime = 0;
     idleturns = 0;
     ingame = true;
     displayTurn();
@@ -333,7 +344,7 @@ function hideBoard() {
             if (fields[i][j].hasChildNodes()) {
                 fields[i][j].firstChild.style.display = "none";
             }
-            e = document.createElement("div");
+            let e = document.createElement("div");
             e.className = "blind"
             e.innerHTML = '?';
             fields[i][j].appendChild(e);
@@ -344,7 +355,7 @@ function hideBoard() {
         if (rackfields[i].hasChildNodes()) {
             rackfields[i].firstChild.style.display = "none";
         }
-        e = document.createElement("div");
+        let e = document.createElement("div");
         e.className = "blind"
         e.innerHTML = '?';
         rackfields[i].appendChild(e);
@@ -401,7 +412,7 @@ function shuffle() {
     }
     let i = 0;
     while (lettersonrack.length > 0) {
-        rand = getRndInteger(0, lettersonrack.length);
+        let rand = getRndInteger(0, lettersonrack.length);
         rackfields[i].appendChild(lettersonrack[rand]);
         lettersonrack.splice(rand, 1);
         i++
@@ -445,13 +456,14 @@ function validateNewWords() {
             return;
         }
         let words = getAllStrings(lettersontheboard, direction);
-        notfound = checkDictionary(words);
+        let notfound = checkDictionary(words);
         if (notfound.length > 0) {
-            nfjoined = notfound.join(', ');
+            let nfjoined = notfound.join(', ');
             displayMessage("Szabálytalan!", `${nfjoined} nem található a szótárban`, destroyPopup);
             return;
         }
-        displayScore(lettersontheboard.length);
+        let sc=displayScore(lettersontheboard.length);
+        wordsingame.push([words,lettersontheboard,sc])
         setStateOfLetters();
     }
     if (isFilledOut() == 1) {
@@ -481,14 +493,14 @@ function isFilledOut() {
 }
 
 function collectNewLettersOnBoard() {
-    lettersonrack = document.querySelectorAll(".letter-on-rack");
+    let lettersonrack = document.querySelectorAll(".letter-on-rack");
     let lettersontheboard = [];
     for (k = 0; k < lettersonrack.length; k++) {
-        found = false;
+        let found = false;
         for (rindex = 0; rindex < fields.length; rindex++) {
             let cindex = fields[rindex].indexOf(lettersonrack[k].parentElement);
             if (cindex > -1) {
-                lob = [lettersonrack[k], rindex, cindex];
+                let lob = [lettersonrack[k], rindex, cindex];
                 lettersontheboard.push(lob);
                 found = true;
             }
@@ -565,7 +577,7 @@ function destroyPopupResult() {
 
 function resultText() {
     let fillrate = (isFilledOut() * 100).toFixed(2);
-    rtext = `<div>A keresztrejtvény kitöltöttsége: ${fillrate}%-os.</div><br><div>A fordulók száma: ${turns}</div><br><div>Az elért pontszám: ${score}</div> `
+    let rtext = `<div>A keresztrejtvény kitöltöttsége: ${fillrate}%-os.</div><br><div>A fordulók száma: ${document.getElementById("turn").value.split('/')[0]}</div><br><div>A tétlen fordulók száma: ${idleturns}</div><br><div>Az elért pontszám: ${score}</div><br><div>Az összes játékban töltött idő: ${totaltime} másodperc.</div> `
     return rtext;
 }
 
@@ -709,7 +721,7 @@ function getAllStrings(lettersontheboard, direction) {
 
 function checkDictionary(words) {
     let notfound = [];
-    for (word of words) {
+    for (let word of words) {
         if (!dictionary.includes(word)) {
             notfound.push(word);
         }
@@ -719,11 +731,12 @@ function checkDictionary(words) {
 
 function displayScore(numberofletters) {
     let turnscore = numberofletters + bonuses[numberofletters.toString()];
-    ls = document.querySelector("#lscore");
+    let ls = document.querySelector("#lscore");
     ls.setAttribute("value", turnscore);
-    sc = document.querySelector("#score");
+    let sc = document.querySelector("#score");
     score += turnscore;
     sc.value = score;
+    return score;
 }
 
 function displayMessage(legend, message, command) {
@@ -802,7 +815,7 @@ function createPopup(tfield) {
 }
 
 function changeJoker(ev) {
-    tfield = popup1.parentElement;
+    let tfield = popup1.parentElement;
     tfield.children[0].setAttribute("value", ev.target.value);
     popup1.remove();
     lockOffUI();
@@ -833,6 +846,8 @@ function displayTime() {
 }
 
 function resetTimer(ctime) {
+    let tofturn = (timelimit - currenttime)
+    totaltime += tofturn;
     let t = document.querySelector("#time");
     currenttime = ctime;
     t.setAttribute("value", currenttime);
