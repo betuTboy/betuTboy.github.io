@@ -2,7 +2,12 @@
     display: inline-block;
 }
 
+input:focus{
+    outline: none;
+}
+
 .normal-field, .rack-field{
+    text-align: center;
     width: 29px;
     height: 29px;
     background-color: lightgrey;
@@ -140,6 +145,31 @@ button{
     width: 100px;
 }
 
+button:disabled{
+    color:rgb(194, 202, 194); 
+}
+
+button:focus{
+    outline: none;
+}
+
+button::-moz-focus-inner{
+    border: 0;
+}
+
+b{
+    color: red;
+    background-color: lightgrey; 
+    font-weight: 900;
+    -webkit-touch-callout: none;    /* iOS Safari */
+    -webkit-user-select: none;      /* Safari */
+    -khtml-user-select: none;       /* Konqueror HTML */
+    -moz-user-select: none;         /* Old versions of Firefox */
+    -ms-user-select: none;          /* Internet Explorer/Edge */
+    user-select: none;              /* Non-prefixed version, currently
+                                       supported by Chrome, Edge, Opera and Firefox */
+}
+
 input{
     color: #4CAF50; 
     border: none;
@@ -161,6 +191,7 @@ label{
 
 input[type=text]{
     text-align: center;
+    caret-color: rgb(21, 202, 202);
 }
 
 p{
@@ -180,7 +211,7 @@ h1{
 
 ul{
     list-style-type: none;
-    }
+}
 
 #message-text{
     text-align: center;
@@ -215,8 +246,13 @@ ul{
     border-radius: 6px;
     padding: 8px;
     display: block;
- /*   width: 40%;*/
-    vertical-align: top;
+ /*   width: 40%;
+    vertical-align: top;*/
+}
+
+.words-table{
+    margin-right: 5px;
+    padding: 5px;
 }
 
 @-webkit-keyframes fadeIn {

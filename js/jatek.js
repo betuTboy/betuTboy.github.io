@@ -131,7 +131,11 @@ let score = 0;
 
 let ingame = false;
 
-let wordsingame=[];
+let wordsingame = [];
+
+let mode = "draganddrop";
+
+let arrowposition = [];
 
 function createTd(fieldtype, parent, id) {
     let td = document.createElement("td");
@@ -141,6 +145,7 @@ function createTd(fieldtype, parent, id) {
             td.setAttribute("class", "normal-field empty");
             td.setAttribute("ondrop", "drop(event)");
             td.setAttribute("ondragover", "allowDrop(event)");
+            td.setAttribute("onclick", "changeMode(event)");
             break;
         case '-':
             td.setAttribute("class", "rack-field empty");
@@ -181,11 +186,124 @@ function drawRack() {
     rackfieldtable.appendChild(tr);
 }
 
+// Mouse click  ------------------------------------------------------------------------------------
+
+function changeMode(ev) {
+    if (ev.target.nodeName != "TD" && ev.target.parentElement != arrowposition[0]) return;
+    if (ev.target.className == "normal-field empty") {
+        if (!ev.target.hasChildNodes()) {
+            mode = "mouseclick";
+            tryToRemoveArrow();
+            arrowposition = [ev.target, "right"];
+        }
+    }
+    changeDirection();
+}
+
+function changeDirection() {
+    if (arrowposition[0].innerHTML == '' || arrowposition[1] == "down") {
+        arrowposition[1] = "right";
+        arrowposition[0].innerHTML = `<b id="arrow">&#8594</b>`;
+    } else {
+        arrowposition[1] = "down";
+        arrowposition[0].innerHTML = `<b id="arrow">&#8595</b>`;
+    }
+}
+
+function placeLetter(ev) {
+    let parentofclickedletter = ev.target.parentElement;
+    if (mode == "mouseclick" && arrowposition != []) {
+        if ((ev.target.className == "letter letter-on-rack" || ev.target.className == "letter letter-on-rack joker") && arrowposition != []) {
+            tryToRemoveArrow();
+            arrowposition[0].appendChild(ev.target);
+            arrowposition[0].setAttribute("ondragover", "");
+            if (arrowposition[0].getAttribute("class") == "normal-field empty") {
+                arrowposition[0].setAttribute("class", "normal-field occupied");
+            }
+            parentofclickedletter.setAttribute("ondragover", "allowDrop(event)");
+            if (parentofclickedletter.getAttribute("class") == "normal-field occupied") {
+                parentofclickedletter.setAttribute("class", "normal-field empty");
+            }
+            if (ev.target.className == "letter letter-on-rack joker") {
+                createPopup(ev.target.parentElement);
+            }
+            stepField();
+        }
+    }
+}
+
+function stepField() {
+    let rindex;
+    let cindex;
+    let found = false;
+    for (rindex = 0; rindex < fields.length; rindex++) {
+        cindex = fields[rindex].indexOf(arrowposition[0]);
+        if (cindex > -1) {
+            found = true;
+        }
+        if (found) break;
+    }
+    if (arrowposition[1] == "right") {
+        if (cindex == fields[0].length - 1){ 
+            arrowposition = [];
+            return;
+        }
+        let k = 1;
+        while (cindex + k < fields[0].length) {
+            if (fields[rindex][cindex + k].className == "normal-field empty" && !fields[rindex][cindex + k].hasChildNodes()) {
+                arrowposition[0] = fields[rindex][cindex + k];
+                arrowposition[0].innerHTML = `<b id="arrow">&#8594</b>`;
+                break;
+            } else {
+                if (fields[rindex][cindex + k].className == "wall-field") {
+                    arrowposition = [];
+                    break;
+                } else {
+                    k++
+                }
+            }
+        }
+    }
+    if (arrowposition[1] == "down") {
+        if(rindex == fields.length - 1){
+            arrowposition = [];
+            return;
+        }
+        let k = 1;
+        while (rindex + k < fields.length) {
+            if (fields[rindex + k][cindex].className == "normal-field empty" && !fields[rindex + k][cindex].hasChildNodes()) {
+                arrowposition[0] = fields[rindex + k][cindex];
+                arrowposition[0].innerHTML = `<b id="arrow">&#8595</b>`;
+                break;
+            } else {
+                if (fields[rindex + k][cindex].className == "wall-field") {
+                    arrowposition = [];
+                    break;
+                } else {
+                    k++
+                }
+            }
+        }
+    }
+}
+
+function tryToRemoveArrow() {
+    let arrow = document.querySelector("#arrow");
+    if (arrow) {
+        arrow.remove();
+    }
+}
+
+// Drag and Drop ------------------------------------------------------------------------------------
+
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
 function drag(ev) {
+    tryToRemoveArrow();
+    arrowposition = [];
+    mode = "draganddrop";
     if (ev.target.className == "letter letter-on-board") return;
     ev.dataTransfer.setData("application/x-moz-node", ev.target.id);
     ev.dataTransfer.setData("text/plain", ev.target.id);
@@ -222,6 +340,8 @@ function drop(ev) {
         }
     }
 }
+
+//-----------------------------------------------------------------------------------------
 
 function setStateOfLetters() {
     for (let i = 0; i < fields.length; i++) {
@@ -267,6 +387,7 @@ function loadRack() {
         letteri.draggable = true;
         letteri.setAttribute("ondragstart", "drag(event)");
         letteri.setAttribute("onkeydown", "return false");
+        letteri.setAttribute("onclick", "placeLetter(event)");
         letteri.readonly = true;
         rackfields[lettercount].appendChild(letteri)
         rackfields[lettercount].setAttribute("ondragover", "");
@@ -315,6 +436,8 @@ function startGame() {
     totaltime = 0;
     idleturns = 0;
     ingame = true;
+    wordsingame = [];
+    arrowposition = [];
     displayTurn();
     score = 0;
     displayScore(0);
@@ -324,6 +447,7 @@ function startGame() {
     loadRack();
     clearInterval(timeout);
     resetTimer(timelimit);
+    lockOffUI();
 }
 
 function pause() {
@@ -381,6 +505,8 @@ function showBoard() {
 }
 
 function back() {
+    tryToRemoveArrow();
+    arrowposition = [];
     let lettersonrack = document.querySelectorAll(".letter-on-rack");
     let rackfields = document.querySelectorAll(".rack-field");
     for (let i = 0; i < lettersonrack.length; i++) {
@@ -442,6 +568,8 @@ function lockOffUI() {
 }
 
 function validateNewWords() {
+    tryToRemoveArrow();
+    arrowposition = [];
     let lettersontheboard = collectNewLettersOnBoard();
     if (lettersontheboard.length == 0) {
         pass1();
@@ -462,8 +590,12 @@ function validateNewWords() {
             displayMessage("Szabálytalan!", `${nfjoined} nem található a szótárban`, destroyPopup);
             return;
         }
-        let sc=displayScore(lettersontheboard.length);
-        wordsingame.push([words,lettersontheboard,sc])
+        let sc = displayScore(lettersontheboard.length);
+        let lobvalues = [];
+        for (let letter of lettersontheboard) {
+            lobvalues.push(letter[0].value);
+        }
+        wordsingame.push([words, lobvalues, [sc.toString()]])
         setStateOfLetters();
     }
     if (isFilledOut() == 1) {
@@ -566,6 +698,13 @@ function displayResult() {
     button1.className = "UI-button";
     button1.addEventListener("click", destroyPopupResult);
     td2.appendChild(button1);
+    let button2 = document.createElement("button");
+    button2.innerHTML = "Részletek";
+    button2.id = "reszletek";
+    button2.type = "button";
+    button2.className = "UI-button";
+    button2.addEventListener("click", displayDetails);
+    td2.appendChild(button2);
 }
 
 function destroyPopupResult() {
@@ -573,6 +712,20 @@ function destroyPopupResult() {
     rulesdiv.style.display = "block";
     document.getElementById("main").disabled = false;
     document.getElementById("start").disabled = false;
+}
+
+function displayDetails() {
+    fset = document.querySelector("fieldset");
+    for (let words of wordsingame) {
+        let tr1 = document.createElement("tr");
+        fset.appendChild(tr1);
+        for (let field = 0; field < words.length; field++) {
+            let td1 = document.createElement("td");
+            tr1.appendChild(td1);
+            td1.innerHTML = `<div class="words-table">${words[field].join(', ')}</div>`;
+        }
+    }
+    document.getElementById("reszletek").disabled = true;
 }
 
 function resultText() {
@@ -736,7 +889,7 @@ function displayScore(numberofletters) {
     let sc = document.querySelector("#score");
     score += turnscore;
     sc.value = score;
-    return score;
+    return turnscore;
 }
 
 function displayMessage(legend, message, command) {
