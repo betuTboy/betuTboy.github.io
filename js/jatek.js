@@ -117,12 +117,14 @@ let totaltime = 0;
 let progressbar;
 
 let fields = [];
+let rackfields = [];
+let fieldsize = 29;
 
 let draggedletter;
 let parentofdraggedletter;
 
 let popup1;
-let rulesdiv;
+let resultsdiv;
 
 let idleturns = 0;
 let limitofidleturns = 3;
@@ -181,7 +183,8 @@ function drawRack() {
     let tr = document.createElement("tr");
     for (let i = 0; i < racksize; i++) {
         let id = "rackfieldtable-" + i.toString() + "-0";
-        createTd('-', tr, id);
+        td = createTd('-', tr, id);
+        rackfields.push(td);
     }
     rackfieldtable.appendChild(tr);
 }
@@ -244,7 +247,7 @@ function stepField() {
         if (found) break;
     }
     if (arrowposition[1] == "right") {
-        if (cindex == fields[0].length - 1){ 
+        if (cindex == fields[0].length - 1) {
             arrowposition = [];
             return;
         }
@@ -265,7 +268,7 @@ function stepField() {
         }
     }
     if (arrowposition[1] == "down") {
-        if(rindex == fields.length - 1){
+        if (rindex == fields.length - 1) {
             arrowposition = [];
             return;
         }
@@ -360,6 +363,8 @@ function loadRack() {
     let rackfields = document.querySelectorAll(".rack-field");
     let jokeronrack = false;
     let lettercount = 0;
+    const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    let fieldsize = Math.floor(height / 20);
     displayTurn();
     while (lettercount < racksize) {
         let randletter = sack[getRndInteger(0, sack.length)];
@@ -389,6 +394,8 @@ function loadRack() {
         letteri.setAttribute("onkeydown", "return false");
         letteri.setAttribute("onclick", "placeLetter(event)");
         letteri.readonly = true;
+        letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+        letteri.setAttribute("border-radius", "25%");
         rackfields[lettercount].appendChild(letteri)
         rackfields[lettercount].setAttribute("ondragover", "");
         lettercount++;
@@ -443,6 +450,7 @@ function startGame() {
     displayScore(0);
     drawBoard();
     drawRack();
+    adaptToChangedSize();
     emptyRack();
     loadRack();
     clearInterval(timeout);
@@ -664,12 +672,10 @@ function endOfGame() {
 }
 
 function displayResult() {
-    let rules1 = document.getElementById("rules");
-    rulesdiv = document.getElementById("rulesdiv");
-    rulesdiv.style.display = "none";
+    let resultsdiv = document.getElementById("game-results");
     popup1 = document.createElement("div");
     popup1.setAttribute("class", "popupresult");
-    rules1.appendChild(popup1);
+    resultsdiv.appendChild(popup1);
     let form1 = document.createElement("form");
     form1.setAttribute("class", "popupresultcontent");
     popup1.appendChild(form1);
@@ -709,8 +715,8 @@ function displayResult() {
 
 function destroyPopupResult() {
     popup1.remove();
-    rulesdiv.style.display = "block";
     document.getElementById("main").disabled = false;
+    document.getElementById("rules").disabled = false;
     document.getElementById("start").disabled = false;
 }
 
@@ -924,7 +930,7 @@ function displayMessage(legend, message, command) {
     let td2 = document.createElement("td");
     tr2.appendChild(td2);
     let button1 = document.createElement("button");
-    button1.setAttribute("class", "popupcontent");
+ /*   button1.setAttribute("class", "popupcontent"); */
     button1.innerHTML = "Rendben";
     button1.addEventListener("click", command);
     button1.type = "button";
@@ -947,6 +953,8 @@ function createPopup(tfield) {
     popup1.appendChild(form1);
     let table1 = document.createElement("table");
     form1.appendChild(table1);
+    const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    let fieldsize = Math.floor(height / 20);
     let k = 1;
     for (i = 0; i < letters.length / 7 + 1; i++) {
         let row1 = document.createElement("tr");
@@ -954,10 +962,13 @@ function createPopup(tfield) {
         for (j = 0; j < 7 && k < letters.length; j++) {
             let td1 = document.createElement("td");
             row1.appendChild(td1);
+            td1.setAttribute("width", fieldsize.toString() + "px");
+            td1.setAttribute("height", fieldsize.toString() + "px");
             let input1 = document.createElement("input");
             td1.appendChild(input1);
             input1.setAttribute("type", "text");
             input1.setAttribute("class", "letter");
+            input1.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
             input1.draggable = false;
             input1.readonly = true;
             input1.addEventListener("click", changeJoker);
@@ -1019,15 +1030,59 @@ function createSack() {
     }
 }
 
+function adaptToChangedSize() {
+    /*let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;*/
+
+    console.log(window.innerHeight, document.documentElement.clientHeight, document.body.clientHeight);
+    const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    let fieldsize = Math.floor(height / 20);
+    console.log(height, fieldsize);
+    for (let rindex = 0; rindex < fields.length; rindex++) {
+        for (let cindex = 0; cindex < fields[0].length; cindex++) {
+            fields[rindex][cindex].setAttribute("width", fieldsize.toString() + "px");
+            fields[rindex][cindex].setAttribute("height", fieldsize.toString() + "px");
+        }
+    }
+    for (let cindex = 0; cindex < rackfields.length; cindex++) {
+        rackfields[cindex].setAttribute("width", fieldsize.toString() + "px");
+        rackfields[cindex].setAttribute("height", fieldsize.toString() + "px");
+    }
+    let letters = document.querySelectorAll(".letter");
+    for (let letter of letters) {
+        letter.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+    }
+    let buttons = document.querySelectorAll("button");
+    for (let button of buttons) {
+        /*    button.setAttribute("width", Math.floor(fieldsize / 31 * 100).toString() + "px");
+            button.setAttribute("height", "100%"); */
+        button.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+    }
+    let inputs = document.querySelectorAll("input");
+    for (let input of inputs) {
+        /*    input.setAttribute("width", Math.floor(fieldsize / 31 * 82).toString() + "px");
+            input.setAttribute("height", "100%"); */
+        input.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+    }
+    let labels = document.querySelectorAll("label");
+    for (let label of labels) {
+        label.style.fontSize = Math.floor((fieldsize - 2) * 0.5).toString() + "px";
+    }
+    try {
+        document.querySelector("#arrow").style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+    } catch (err) { }
+}
+
 function initGame() {
     var div = document.createElement('div');
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
+    window.addEventListener("resize", adaptToChangedSize);
     progressbar = document.querySelector("progress");
     bindButtons();
     createSack();
     drawBoard();
     drawRack();
+    adaptToChangedSize();
 }
 
 initGame();

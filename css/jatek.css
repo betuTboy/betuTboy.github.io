@@ -1,15 +1,21 @@
+body{
+    margin: 2px;
+}
+
+#game-div{
+    background-color:rgb(235, 235, 235);
+}
+
+#board-rack{
+    display: inline-block;
+}
+
 #board-form, #rack-form{
     display: inline-block;
 }
 
-input:focus{
-    outline: none;
-}
-
 .normal-field, .rack-field{
     text-align: center;
-    width: 29px;
-    height: 29px;
     background-color: lightgrey;
     border: none;
     text-decoration: none;
@@ -19,8 +25,6 @@ input:focus{
 }
 
 .wall-field{
-    width: 29px;
-    height: 29px; 
     background-color: black;
     border: none;
     text-decoration: none;
@@ -30,8 +34,8 @@ input:focus{
 }
 
 .blind{
-    width: 29px;
-    height: 29px;
+    width: 100%;
+    height: 100%;
     background-color:green;
     border: none;
     text-decoration: none;
@@ -42,64 +46,18 @@ input:focus{
     z-index: 2;
    /* position: relative;
     top: 0px;
-    left: 0px;*/
-}
-
-#game-div{
-    margin-left: 2%;
-    margin-right: 2%;
-    background-color:rgb(235, 235, 235);
-}
-
-#board-rack{
-    display: inline-block;
-}
-
-#dashboard{
-    display: inline-block;
-    vertical-align: top;
-    background-color:rgb(235, 235, 235);
-    border-style: solid;
-    border-width: 1px;
-    border-color:white;
-    margin: 10px;
-    padding: 5px;
-}
-
-#progressbar-container{
-    height:5px;
-}
-
-progress[value]{
-    color:green;
-    width: 100px;
-    height: 5px;
-    vertical-align:top;
-} 
-
-#rules{
-    display: inline-block;
-    background-color:rgb(235, 235, 235);
-    border-style: solid;
-    border-width: 1px;
-    border-color:white;
-    width:40%;
-    vertical-align: top;
-    margin-top: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px; 
-    padding: 5px;
+    left: 0px; */
 }
 
 .letter{
-    width: 27px;
-    height: 27px; 
+    height: 100%;
+    width: 100%;
     border-style: solid;
     border-width: 1px;
     border-color:  rgb(21, 202, 202);
     background-color: rgb(21, 202, 202);
     color: black;
-    font-size:130%;
+  /*  font-size: 90%; */
     text-align: center;
     text-decoration: none;
     margin: 0px;
@@ -130,31 +88,97 @@ progress[value]{
     background-color:rgb(214, 142, 214);
 }
 
-button{
+#dashboard{
+    display: inline-block;
+    vertical-align: top;
+    background-color:rgb(235, 235, 235);
+    border-style: solid;
+    border-width: 1px;
+    border-color:white;
+    margin: 0.5%;
+    padding: 0.5%;
+}
+
+.UI-button{
     background-color: #4CAF50; 
     border: none;
     color: white;
-    padding: 8px;
+ /*    padding: 8px; */
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
+   /* display: inline-block;*/
+  /*  font-size: 15px; */
+  /*  margin: 4px 2px;  */
     cursor: pointer;
     border-radius: 8px;
-    width: 100px;
+    width: 100%;
 }
 
-button:disabled{
+.UI-button:disabled{
     color:rgb(194, 202, 194); 
 }
 
-button:focus{
+.UI-button:focus{
     outline: none;
 }
 
-button::-moz-focus-inner{
+.UI-button::-moz-focus-inner{
     border: 0;
+}
+
+input{
+    color: #4CAF50; 
+    border: none;
+    background-color: white;
+  /*  padding: 8px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+ /*   font-size: 15px;   */
+  /*  margin: 4px 2px; */
+    cursor: pointer;
+    border-radius: 8px;  
+/*    width: 82px;   */
+    width: 100%;
+    height: 100%;
+}
+
+input:focus{
+    outline: none;
+}
+
+label{
+  /*  margin: 4px 2px; */ 
+}
+
+input[type=text]{
+    text-align: center;
+    caret-color: rgb(21, 202, 202);
+}
+
+#progressbar-container{
+    height:5px;
+}
+
+progress[value]{
+    color:green;
+    width: 100%;
+    height: 5px;
+    vertical-align:top;
+} 
+
+#game-rules{
+    display: inline-block;
+    background-color:rgb(235, 235, 235);
+    border-style: solid;
+    border-width: 1px;
+    border-color:white;
+    width:40%;
+    vertical-align: top;
+    margin-top: 0.5%;
+    margin-right: 0.5%;
+    margin-bottom: 0.5%; 
+    padding: 0.5%;
 }
 
 b{
@@ -168,30 +192,6 @@ b{
     -ms-user-select: none;          /* Internet Explorer/Edge */
     user-select: none;              /* Non-prefixed version, currently
                                        supported by Chrome, Edge, Opera and Firefox */
-}
-
-input{
-    color: #4CAF50; 
-    border: none;
-    background-color: white;
-    padding: 8px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 15px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
-    width: 82px;
-}
-
-label{
-    margin: 4px 2px; 
-}
-
-input[type=text]{
-    text-align: center;
-    caret-color: rgb(21, 202, 202);
 }
 
 p{
@@ -228,7 +228,7 @@ ul{
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
-    width: 234px;
+/*    width: 234px; */
     background-color: #555;
     color: #fff;
     text-align: center;
@@ -240,21 +240,6 @@ ul{
     left: 172px;
 }
   
-.popupresult{
-    background-color: #555;
-    color: #fff;
-    border-radius: 6px;
-    padding: 8px;
-    display: block;
- /*   width: 40%;
-    vertical-align: top;*/
-}
-
-.words-table{
-    margin-right: 5px;
-    padding: 5px;
-}
-
 @-webkit-keyframes fadeIn {
     from {opacity: 0;} 
     to {opacity: 1;}
@@ -264,3 +249,24 @@ ul{
     from {opacity: 0;}
     to {opacity: 1;}
 }
+
+#game-results{
+   
+    display: inline-block;  
+    width: 40%;
+    vertical-align: top;
+}
+
+.popupresult{
+    border-radius: 6px;
+    padding: 8px;
+    background-color: #555;
+    color: #fff;    
+    display: inline-block;
+}
+
+.words-table{
+    margin-right: 5px;
+    padding: 5px;
+}
+

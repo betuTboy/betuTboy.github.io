@@ -34,6 +34,11 @@
                         </tr>
                         <tr>
                             <td>
+                                <button id="rules" class="UI-button" formaction="szolojatekszabaly.html" formtarget="blank">Játékszabály</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <button id="start" class="UI-button" type="button">Új játék</button>
                             </td>
                         </tr>
@@ -44,7 +49,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="turn"><small>Forduló/Tétlen:</small></label>
+                                <label for="turn">Forduló/Tétlen:</label>
                             </td>
                         </tr>
                         <tr>
@@ -54,7 +59,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="time"><small>Idő:</small></label>
+                                <label for="time">Idő:</label>
                             </td>
                         </tr>
                         <tr>
@@ -67,7 +72,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="lscore"><small>Utolsó szó:</small></label>
+                                <label for="lscore">Utolsó szó:</label>
                             </td>
                         </tr>
                         <tr>
@@ -77,7 +82,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="score"><small>Összpontszám:</small></label>
+                                <label for="score">Összpontszám:</label>
                             </td>
                         </tr>
                         <tr>
@@ -98,30 +103,7 @@
                 </table>
             </form>
         </div>
-        <div id="rules">
-            <div id="rulesdiv">
-                <h1>Szóló :)</h1>
-                <p style="margin:5px">A játék célja a keresztrejtvény minél kevesebb fordulón belüli teljes kitöltése, és
-                    a lehető legmagasabb pontszám elérése. Fordulónként 100 másodperc áll a játékos rendelkezésére a szóalkotásra.
-                    A lerakott új betűknek egy vonalba kell esniük. Minden forduló végén csak a használt szótárban található
-                    szavak maradnak a táblán. A szótár több mint 38000 szót tartalmaz. Összesen három olyan fordulót követően,
-                    amelyben nem kerül új betű a táblára, a játék automatikusan véget ér. Az egy fordulóban táblára került
-                    betűk darabonként egy pontot érnek, de ha négy vagy több betű kerül egyszerre a táblára, akkor azokért
-                    a következő jutalompontok járnak:
-                </p>
-                <ul>
-                    <li>4 betű - 2 pont</li>
-                    <li>5 betű - 4 pont</li>
-                    <li>6 betű - 8 pont</li>
-                    <li>7 betű - 16 pont</li>
-                    <li>8 betű - 32 pont</li>
-                </ul>
-                <p style="margin:5px">Az eredmények rangsorolása szempontjából elsődleges a kitöltöttség százalékos aránya.
-                    Azonos arány esetén a fordulók száma, továbbra is azonos eredmény esetén az elért pontszám dönt. Végső
-                    esetben azé a jobb eredmény, aki kevesebb időt töltött a játékban. Jó játékot! &#8594
-                </p>
-            </div>
-        </div>
+        <div id="game-results"></div>
     </div>
     <script src="js/jatek.js"></script>
 </body>
