@@ -99,6 +99,10 @@ body{
     padding: 0.5%;
 }
 
+#dashboard-top{
+    background-color:rgb(235, 235, 235);
+}    
+
 #dashboard-bottom{
     margin-top: 20px;
     background-color:rgb(235, 235, 235);

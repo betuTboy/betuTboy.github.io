@@ -447,11 +447,12 @@ function bindButtons() {
         startbutton.addEventListener("click", startGame);
         let pausebutton = document.querySelector("#pause-top");
         pausebutton.addEventListener("click", pause);
-        let shufflebutton = document.querySelector("#shuffle-top");
+        let shufflebutton = document.querySelector("#shuffle-bottom");
         shufflebutton.addEventListener("click", shuffle);
         let backbutton = document.querySelector("#back-bottom");
         backbutton.addEventListener("click", back);
         let donebutton = document.querySelector("#done-bottom");
+        donebutton.addEventListener("click", validateNewWords);
     }
 }
 
@@ -1063,7 +1064,6 @@ function createSack() {
 
 function adaptToChangedSize() {
     /*let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;*/
-
     console.log(window.innerHeight, document.documentElement.clientHeight, document.body.clientHeight);
     const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     let fieldsize = Math.floor(height / 20);
@@ -1084,14 +1084,10 @@ function adaptToChangedSize() {
     }
     let buttons = document.querySelectorAll("button");
     for (let button of buttons) {
-        /*    button.setAttribute("width", Math.floor(fieldsize / 31 * 100).toString() + "px");
-            button.setAttribute("height", "100%"); */
         button.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
     }
     let inputs = document.querySelectorAll("input");
     for (let input of inputs) {
-        /*    input.setAttribute("width", Math.floor(fieldsize / 31 * 82).toString() + "px");
-            input.setAttribute("height", "100%"); */
         input.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
     }
     let labels = document.querySelectorAll("label");
@@ -1121,6 +1117,7 @@ function initGame() {
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
     touchdevice = ('ontouchstart' in document.documentElement);
+    //touchdevice = true;
     adaptToTouchDevice();
     window.addEventListener("resize", adaptToChangedSize);
     progressbar = document.querySelector("progress");
