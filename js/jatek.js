@@ -1063,10 +1063,15 @@ function createSack() {
 }
 
 function adaptToChangedSize() {
-    /*let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;*/
-    console.log(window.innerHeight, document.documentElement.clientHeight, document.body.clientHeight);
+    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    let fieldsize = Math.floor(height / 20);
+    height>width ? orientation= "portrait" : orientation= "landscape";
+    let fieldsize;
+    if (orientation == "portrait" && touchdevice){
+        fieldsize = Math.floor(width / 17);
+    } else {                  
+        fieldsize = Math.floor(height / 20);
+    }
     console.log(height, fieldsize);
     for (let rindex = 0; rindex < fields.length; rindex++) {
         for (let cindex = 0; cindex < fields[0].length; cindex++) {
