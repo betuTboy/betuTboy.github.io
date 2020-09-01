@@ -99,6 +99,11 @@ body{
     padding: 0.5%;
 }
 
+#dashboard-bottom{
+    margin-top: 20px;
+    background-color:rgb(235, 235, 235);
+}
+
 .UI-button{
     background-color: #4CAF50; 
     border: none;

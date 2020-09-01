@@ -139,6 +139,8 @@ let mode = "draganddrop";
 
 let arrowposition = [];
 
+let touchdevice;
+
 function createTd(fieldtype, parent, id) {
     let td = document.createElement("td");
     td.setAttribute("id", id);
@@ -404,7 +406,12 @@ function loadRack() {
 }
 
 function displayTurn() {
-    let t = document.querySelector("#turn");
+    let t;
+    if (!touchdevice) {
+        t = document.querySelector("#turn");
+    } else {
+        t = document.querySelector("#turn-top");
+    }
     t.setAttribute("value", `${turns} / ${idleturns}`);
 }
 
@@ -423,16 +430,29 @@ function getRndInteger(min, max) {
 }
 
 function bindButtons() {
-    let startbutton = document.querySelector("#start");
-    startbutton.addEventListener("click", startGame);
-    let pausebutton = document.querySelector("#pause");
-    pausebutton.addEventListener("click", pause);
-    let shufflebutton = document.querySelector("#shuffle");
-    shufflebutton.addEventListener("click", shuffle);
-    let backbutton = document.querySelector("#back");
-    backbutton.addEventListener("click", back);
-    let donebutton = document.querySelector("#done");
-    donebutton.addEventListener("click", validateNewWords);
+    if (!touchdevice) {
+        let startbutton = document.querySelector("#start");
+        startbutton.addEventListener("click", startGame);
+        let pausebutton = document.querySelector("#pause");
+        pausebutton.addEventListener("click", pause);
+        let shufflebutton = document.querySelector("#shuffle");
+        shufflebutton.addEventListener("click", shuffle);
+        let backbutton = document.querySelector("#back");
+        backbutton.addEventListener("click", back);
+        let donebutton = document.querySelector("#done");
+        donebutton.addEventListener("click", validateNewWords);
+    }
+    else {
+        let startbutton = document.querySelector("#start-top");
+        startbutton.addEventListener("click", startGame);
+        let pausebutton = document.querySelector("#pause-top");
+        pausebutton.addEventListener("click", pause);
+        let shufflebutton = document.querySelector("#shuffle-top");
+        shufflebutton.addEventListener("click", shuffle);
+        let backbutton = document.querySelector("#back-bottom");
+        backbutton.addEventListener("click", back);
+        let donebutton = document.querySelector("#done-bottom");
+    }
 }
 
 function startGame() {
@@ -890,9 +910,15 @@ function checkDictionary(words) {
 
 function displayScore(numberofletters) {
     let turnscore = numberofletters + bonuses[numberofletters.toString()];
-    let ls = document.querySelector("#lscore");
+    let ls, sc;
+    if (!touchdevice) {
+        ls = document.querySelector("#lscore");
+        sc = document.querySelector("#score");
+    } else {
+        ls = document.querySelector("#lscore-top");
+        sc = document.querySelector("#score-top");
+    }
     ls.setAttribute("value", turnscore);
-    let sc = document.querySelector("#score");
     score += turnscore;
     sc.value = score;
     return turnscore;
@@ -930,7 +956,7 @@ function displayMessage(legend, message, command) {
     let td2 = document.createElement("td");
     tr2.appendChild(td2);
     let button1 = document.createElement("button");
- /*   button1.setAttribute("class", "popupcontent"); */
+    /*   button1.setAttribute("class", "popupcontent"); */
     button1.innerHTML = "Rendben";
     button1.addEventListener("click", command);
     button1.type = "button";
@@ -985,12 +1011,17 @@ function changeJoker(ev) {
     lockOffUI();
 }
 
-function timer() {
+function timer() { 
     timeout = setInterval(displayTime, 1000);
 }
 
 function displayTime() {
-    let t = document.querySelector("#time");
+    let t
+    if (!touchdevice) {
+        t = document.querySelector("#time");
+    } else {
+        t = document.querySelector("#time-top");
+    }
     t.setAttribute("value", currenttime);
     manageProgressbar();
     if (currenttime == 0) {
@@ -1072,10 +1103,25 @@ function adaptToChangedSize() {
     } catch (err) { }
 }
 
+function adaptToTouchDevice() {
+    if (touchdevice) {
+        document.querySelector("#dashboard").style.display = "none";
+        document.querySelector("#dashboard-top").style.display = "block";
+        document.querySelector("#dashboard-bottom").style.display = "block";
+    }
+    else {
+        document.querySelector("#dashboard").style.display = "inline-block";
+        document.querySelector("#dashboard-top").style.display = "none";
+        document.querySelector("#dashboard-bottom").style.display = "none";
+    }
+}
+
 function initGame() {
-    var div = document.createElement('div');
+    let div = document.createElement('div');
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
+    touchdevice = ('ontouchstart' in document.documentElement);
+    adaptToTouchDevice();
     window.addEventListener("resize", adaptToChangedSize);
     progressbar = document.querySelector("progress");
     bindButtons();
