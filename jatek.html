@@ -12,7 +12,7 @@
 
 <body>
     <div id="dashboard-top">
-        <form>
+        <form id="top-form">
             <table>
                 <tbody>
                     <tr>
@@ -36,7 +36,7 @@
                         </td>
                         <td>
                             <label for="time-top">Idő:</label>
-                            <input name="time-top" id="time-top" type="text" value="0" size="1" maxlength="5" style="text-align: right" disabled>    
+                            <input name="time-top" id="time-top" type="text" value="0" size="1" maxlength="5" style="text-align: right" disabled>
                         </td>
                         <td>
                             <label for="lscore-top">Utolsó szó:</label>
@@ -49,8 +49,8 @@
                     </tr>
                     <tr>
                         <td colspan="4">
-                            <progress  value="0" max="100"></progress>
-                        </td>                   
+                            <progress id="progress-top" value="0" max="100"></progress>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -72,76 +72,76 @@
             <form>
                 <table>
                     <tbody>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <button id="main" class="UI-button" formaction="index.html">Főoldal</button>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <button id="rules" class="UI-button" formaction="szolojatekszabaly.html" formtarget="blank">Játékszabály</button>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <button id="start" class="UI-button" type="button">Új játék</button>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <button id="pause" class="UI-button" type="button" disabled>Szünet</button>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <label for="turn">Forduló/Tétlen:</label>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <input name="turn" id="turn" type="text" value="0 / 0" size="1" maxlength="5" style="text-align: right" disabled>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <label for="time">Idő:</label>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <input name="time" id="time" type="text" value="0" size="1" maxlength="5" style="text-align: right" disabled>
                             </td>
                         </tr>
-                        <tr id="progressbar-container">
-                            <td><progress value="0" max="100"></progress></td>
+                        <tr id="progressbar-container" class="dashboard-tr">
+                            <td><progress id="progress" value="0" max="100"></progress></td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <label for="lscore">Utolsó szó:</label>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <input name="lscore" id="lscore" type="text" value="0" size="1" maxlength="5" style="text-align: right" disabled>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <label for="score">Összpontszám:</label>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td>
                                 <input name="score" id="score" type="text" value="0" size="1" maxlength="5" style="text-align: right" disabled>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td> <button id="back" class="UI-button" type="button" disabled>Vissza</button></td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td> <button id="shuffle" class="UI-button" type="button" disabled>Keverés</button></td>
                         </tr>
-                        <tr>
+                        <tr class="dashboard-tr">
                             <td><button id="done" class="UI-button" type="button" disabled>Kész</button></td>
                         </tr>
                     </tbody>

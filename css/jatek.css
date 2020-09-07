@@ -1,5 +1,6 @@
 body{
     margin: 2px;
+    font-family:  "Sans serif", "Times New Roman", Times;
 }
 
 #game-div{
@@ -44,12 +45,10 @@ body{
     text-align:center;
     color: white;
     z-index: 2;
-   /* position: relative;
-    top: 0px;
-    left: 0px; */
 }
 
 .letter{
+    font-family: inherit;
     height: 100%;
     width: 100%;
     border-style: solid;
@@ -57,7 +56,6 @@ body{
     border-color:  rgb(21, 202, 202);
     background-color: rgb(21, 202, 202);
     color: black;
-  /*  font-size: 90%; */
     text-align: center;
     text-decoration: none;
     margin: 0px;
@@ -89,6 +87,7 @@ body{
 }
 
 #dashboard{
+    font-family: inherit;
     display: inline-block;
     vertical-align: top;
     background-color:rgb(235, 235, 235);
@@ -99,25 +98,29 @@ body{
     padding: 0.5%;
 }
 
+#top-form{
+    font-family: inherit;
+    display: inline-block;
+}
+
 #dashboard-top{
+    font-family: inherit;
     background-color:rgb(235, 235, 235);
 }    
 
 #dashboard-bottom{
+    font-family: inherit;
     margin-top: 20px;
     background-color:rgb(235, 235, 235);
 }
 
 .UI-button{
+    font-family: inherit;
     background-color: #4CAF50; 
     border: none;
     color: white;
- /*    padding: 8px; */
     text-align: center;
     text-decoration: none;
-   /* display: inline-block;*/
-  /*  font-size: 15px; */
-  /*  margin: 4px 2px;  */
     cursor: pointer;
     border-radius: 8px;
     width: 100%;
@@ -136,28 +139,21 @@ body{
 }
 
 input{
+    font-family: inherit;
     color: #4CAF50; 
     border: none;
     background-color: white;
-  /*  padding: 8px; */
     text-align: center;
     text-decoration: none;
     display: inline-block;
- /*   font-size: 15px;   */
-  /*  margin: 4px 2px; */
     cursor: pointer;
     border-radius: 8px;  
-/*    width: 82px;   */
     width: 100%;
     height: 100%;
 }
 
 input:focus{
     outline: none;
-}
-
-label{
-  /*  margin: 4px 2px; */ 
 }
 
 input[type=text]{
@@ -191,6 +187,7 @@ progress[value]{
 }
 
 b{
+    font-family: inherit;
     color: red;
     background-color: lightgrey; 
     font-weight: 900;
@@ -204,11 +201,13 @@ b{
 }
 
 p{
+    font-family: inherit;
     text-align: justify;
     display: block;
 }
 
 h1{
+    font-family: inherit;
     margin: 5px;
     padding: 10px;
     height: 300px;
@@ -219,14 +218,17 @@ h1{
 }
 
 ul{
+    font-family: inherit;
     list-style-type: none;
 }
 
 #message-text{
+    font-family: inherit;
     text-align: center;
 }
 
 .popup {
+    font-family: inherit;
     position: fixed;
     display: inline-block;
     cursor: pointer;
@@ -234,19 +236,18 @@ ul{
 }
   
 .popup .popupcontent {
+    font-family: inherit;
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
-/*    width: 234px; */
     background-color: #555;
     color: #fff;
     text-align: center;
     border-radius: 6px;
     padding: 8px;
+    margin: 0px; 
     position: fixed;
     z-index: 3;
-    bottom: 225px;
-    left: 172px;
 }
   
 @-webkit-keyframes fadeIn {
@@ -260,21 +261,23 @@ ul{
 }
 
 #game-results{
-   
+    font-family: inherit;
     display: inline-block;  
     width: 40%;
     vertical-align: top;
 }
 
 .popupresult{
+    font-family: inherit;
     border-radius: 6px;
     padding: 8px;
     background-color: #555;
     color: #fff;    
-    display: inline-block;
+   /* display: inline-block; */
 }
 
 .words-table{
+    font-family: inherit;
     margin-right: 5px;
     padding: 5px;
 }

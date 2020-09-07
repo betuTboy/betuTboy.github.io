@@ -612,7 +612,7 @@ function validateNewWords() {
             displayMessage("Szabálytalan!", "A betűk nem folyamatosan vannak lerakva.", destroyPopup);
             return;
         }
-        let words = getAllStrings(lettersontheboard, direction);
+        let words = getAllString(lettersontheboard, direction);
         let notfound = checkDictionary(words);
         if (notfound.length > 0) {
             let nfjoined = notfound.join(', ');
@@ -724,6 +724,7 @@ function displayResult() {
     button1.type = "button";
     button1.className = "UI-button";
     button1.addEventListener("click", destroyPopupResult);
+    button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
     td2.appendChild(button1);
     let button2 = document.createElement("button");
     button2.innerHTML = "Részletek";
@@ -731,14 +732,22 @@ function displayResult() {
     button2.type = "button";
     button2.className = "UI-button";
     button2.addEventListener("click", displayDetails);
+    button2.style.height = Math.floor(fieldsize * 1).toString() + "px";
+    button2.style.marginTop = "2px";
     td2.appendChild(button2);
 }
 
 function destroyPopupResult() {
     popup1.remove();
-    document.getElementById("main").disabled = false;
-    document.getElementById("rules").disabled = false;
-    document.getElementById("start").disabled = false;
+    if (touchdevice) {
+        document.getElementById("main-top").disabled = false;
+        document.getElementById("rules-top").disabled = false;
+        document.getElementById("start-top").disabled = false;
+    } else {
+        document.getElementById("main").disabled = false;
+        document.getElementById("rules").disabled = false;
+        document.getElementById("start").disabled = false;
+    }
 }
 
 function displayDetails() {
@@ -842,7 +851,7 @@ function continuous(lettersontheboard, direction) {
     return true;
 }
 
-function getAllStrings(lettersontheboard, direction) {
+function getAllString(lettersontheboard, direction) {
     let words = [];
     let fieldrc = fields.length;
     let fieldcc = fields[0].length;
@@ -962,7 +971,14 @@ function displayMessage(legend, message, command) {
     button1.addEventListener("click", command);
     button1.type = "button";
     button1.className = "UI-button";
+    button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
     td2.appendChild(button1);
+    let boardandrack = document.querySelector("#board-rack");
+    let rectb = getElementPosition(boardandrack);
+    let rectp = getElementPosition(popup1);
+    popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    console.log("left-top", rectp.left, rectp.top);
 }
 
 function destroyPopup() {
@@ -1003,6 +1019,12 @@ function createPopup(tfield) {
             k++;
         }
     }
+    let boardandrack = document.querySelector("#board-rack");
+    let rectb = getElementPosition(boardandrack);
+    let rectp = getElementPosition(popup1);
+    popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    console.log("left-top", rectp.left, rectp.top);
 }
 
 function changeJoker(ev) {
@@ -1012,7 +1034,7 @@ function changeJoker(ev) {
     lockOffUI();
 }
 
-function timer() { 
+function timer() {
     timeout = setInterval(displayTime, 1000);
 }
 
@@ -1063,13 +1085,13 @@ function createSack() {
 }
 
 function adaptToChangedSize() {
-    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    height>width ? orientation= "portrait" : orientation= "landscape";
-    let fieldsize;
-    if (orientation == "portrait" && touchdevice){
+    let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    // height = 1000;
+    height > width ? orientation = "portrait" : orientation = "landscape";
+    if (orientation == "portrait" && touchdevice) {
         fieldsize = Math.floor(width / 17);
-    } else {                  
+    } else {
         fieldsize = Math.floor(height / 20);
     }
     console.log(height, fieldsize);
@@ -1087,13 +1109,19 @@ function adaptToChangedSize() {
     for (let letter of letters) {
         letter.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
     }
+    let dashboardtrs = document.querySelectorAll(".dashboard-tr");
+    for (let tr of dashboardtrs) {
+        tr.style.height = (fieldsize * 1.1).toString() + "px";
+    }
     let buttons = document.querySelectorAll("button");
     for (let button of buttons) {
-        button.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+        button.style.fontSize = Math.floor((fieldsize - 2) * 0.7).toString() + "px";
+        button.style.height = Math.floor(fieldsize * 1).toString() + "px";
     }
     let inputs = document.querySelectorAll("input");
     for (let input of inputs) {
-        input.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+        input.style.fontSize = Math.floor((fieldsize - 2) * 0.7).toString() + "px";
+        input.style.height = Math.floor(fieldsize * 1).toString() + "px";
     }
     let labels = document.querySelectorAll("label");
     for (let label of labels) {
@@ -1109,6 +1137,9 @@ function adaptToTouchDevice() {
         document.querySelector("#dashboard").style.display = "none";
         document.querySelector("#dashboard-top").style.display = "block";
         document.querySelector("#dashboard-bottom").style.display = "block";
+        let gameres = document.querySelector("#game-results");
+        gameres.style.display = "block";
+        gameres.style.width = "100%";
     }
     else {
         document.querySelector("#dashboard").style.display = "inline-block";
@@ -1117,15 +1148,24 @@ function adaptToTouchDevice() {
     }
 }
 
+function getElementPosition(element) {
+    let rect = element.getBoundingClientRect();
+    return rect;
+}
+
 function initGame() {
     let div = document.createElement('div');
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
     touchdevice = ('ontouchstart' in document.documentElement);
-    //touchdevice = true;
+    // touchdevice = true;
     adaptToTouchDevice();
     window.addEventListener("resize", adaptToChangedSize);
-    progressbar = document.querySelector("progress");
+    if (touchdevice) {
+        progressbar = document.querySelector("#progress-top");
+    } else {
+        progressbar = document.querySelector("#progress");
+    }
     bindButtons();
     createSack();
     drawBoard();
