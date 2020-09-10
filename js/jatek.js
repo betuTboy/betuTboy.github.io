@@ -1087,14 +1087,15 @@ function createSack() {
 function adaptToChangedSize() {
     let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    // height = 1000;
+    height = 2000;
     height > width ? orientation = "portrait" : orientation = "landscape";
     if (orientation == "portrait" && touchdevice) {
-        fieldsize = Math.floor(width / 17);
+        console.log("w",width, fieldsize);
+        fieldsize = Math.floor(width / 18);
     } else {
         fieldsize = Math.floor(height / 20);
-    }
-    console.log(height, fieldsize);
+        console.log("h",height, fieldsize);
+    } 
     for (let rindex = 0; rindex < fields.length; rindex++) {
         for (let cindex = 0; cindex < fields[0].length; cindex++) {
             fields[rindex][cindex].setAttribute("width", fieldsize.toString() + "px");
@@ -1117,6 +1118,8 @@ function adaptToChangedSize() {
     for (let button of buttons) {
         button.style.fontSize = Math.floor((fieldsize - 2) * 0.7).toString() + "px";
         button.style.height = Math.floor(fieldsize * 1).toString() + "px";
+        //console.log("buttonwidth",Math.floor(document.querySelector("#board-rack").style.width / 4).toString()+"px")
+        //button.style.width = Math.floor(document.querySelector("#board-rack").style.width / 4).toString()+"px";
     }
     let inputs = document.querySelectorAll("input");
     for (let input of inputs) {
@@ -1126,6 +1129,7 @@ function adaptToChangedSize() {
     let labels = document.querySelectorAll("label");
     for (let label of labels) {
         label.style.fontSize = Math.floor((fieldsize - 2) * 0.5).toString() + "px";
+        label.style.height = Math.floor(fieldsize * 1).toString() + "px";
     }
     try {
         document.querySelector("#arrow").style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
@@ -1157,8 +1161,8 @@ function initGame() {
     let div = document.createElement('div');
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
-    touchdevice = ('ontouchstart' in document.documentElement);
-    // touchdevice = true;
+    //touchdevice = ('ontouchstart' in document.documentElement);
+    touchdevice = true;
     adaptToTouchDevice();
     window.addEventListener("resize", adaptToChangedSize);
     if (touchdevice) {

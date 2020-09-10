@@ -1,6 +1,7 @@
 body{
     margin: 2px;
     font-family:  "Sans serif", "Times New Roman", Times;
+    background-color:rgb(235, 235, 235);
 }
 
 #game-div{
@@ -111,6 +112,7 @@ body{
 #dashboard-bottom{
     font-family: inherit;
     margin-top: 20px;
+    color:rgb(235, 235, 235);
     background-color:rgb(235, 235, 235);
 }
 
