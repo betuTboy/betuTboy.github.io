@@ -119,6 +119,8 @@ let progressbar;
 let fields = [];
 let rackfields = [];
 let fieldsize = 29;
+let height;
+let width;
 
 let draggedletter;
 let parentofdraggedletter;
@@ -366,7 +368,6 @@ function loadRack() {
     let jokeronrack = false;
     let lettercount = 0;
     const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    let fieldsize = Math.floor(height / 20);
     displayTurn();
     while (lettercount < racksize) {
         let randletter = sack[getRndInteger(0, sack.length)];
@@ -997,7 +998,7 @@ function createPopup(tfield) {
     let table1 = document.createElement("table");
     form1.appendChild(table1);
     const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    let fieldsize = Math.floor(height / 20);
+   // let fieldsize = Math.floor(height / 20);
     let k = 1;
     for (i = 0; i < letters.length / 7 + 1; i++) {
         let row1 = document.createElement("tr");
@@ -1085,17 +1086,17 @@ function createSack() {
 }
 
 function adaptToChangedSize() {
-    let width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    let height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     //height = 2000;
     height > width ? orientation = "portrait" : orientation = "landscape";
     if (orientation == "portrait" && touchdevice) {
-        console.log("w",width, fieldsize);
-        fieldsize = Math.floor(width / 18);
+        console.log("w", width, fieldsize);
+        fieldsize = Math.floor(width / 20);
     } else {
         fieldsize = Math.floor(height / 20);
-        console.log("h",height, fieldsize);
-    } 
+        console.log("h", height, fieldsize);
+    }
     for (let rindex = 0; rindex < fields.length; rindex++) {
         for (let cindex = 0; cindex < fields[0].length; cindex++) {
             fields[rindex][cindex].setAttribute("width", fieldsize.toString() + "px");
@@ -1118,13 +1119,21 @@ function adaptToChangedSize() {
     for (let button of buttons) {
         button.style.fontSize = Math.floor((fieldsize - 3) * 0.7).toString() + "px";
         button.style.height = Math.floor(fieldsize * 1).toString() + "px";
-        button.style.width = Math.floor(fieldsize*17/4).toString()+"px";
+        if (orientation == "portrait" && touchdevice) {
+            button.style.width = Math.floor(width / 4.4).toString() + "px";
+        } else {
+            button.style.width = Math.floor(width / 4.4).toString() + "px";
+        }
     }
     let inputs = document.querySelectorAll("input");
     for (let input of inputs) {
         input.style.fontSize = Math.floor((fieldsize - 3) * 0.7).toString() + "px";
         input.style.height = Math.floor(fieldsize * 1).toString() + "px";
-        input.style.width = Math.floor(fieldsize*17/4).toString()+"px";
+        if (orientation == "portrait" && touchdevice) {
+            input.style.width = Math.floor(width / 4.4).toString() + "px";
+        } else {
+            input.style.width = Math.floor(width / 4.4).toString() + "px";
+        }
     }
     let labels = document.querySelectorAll("label");
     for (let label of labels) {
