@@ -121,6 +121,9 @@ let rackfields = [];
 let fieldsize = 29;
 let height;
 let width;
+let fontsizeletter;
+let fontsizebutton;
+let fontsizelabel;
 
 let draggedletter;
 let parentofdraggedletter;
@@ -697,6 +700,7 @@ function displayResult() {
     let resultsdiv = document.getElementById("game-results");
     popup1 = document.createElement("div");
     popup1.setAttribute("class", "popupresult");
+    popup1.style.fontSize = fontsizebutton;
     resultsdiv.appendChild(popup1);
     let form1 = document.createElement("form");
     form1.setAttribute("class", "popupresultcontent");
@@ -943,6 +947,7 @@ function displayMessage(legend, message, command) {
     let gamediv = document.getElementById("game-div");
     popup1 = document.createElement("div");
     popup1.setAttribute("class", "popup");
+    popup1.style.fontSize = fontsizebutton;
     gamediv.appendChild(popup1);
     let form1 = document.createElement("form");
     form1.setAttribute("class", "popupcontent");
@@ -977,9 +982,8 @@ function displayMessage(legend, message, command) {
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(popup1);
-    popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
-    console.log("left-top", rectp.left, rectp.top);
+    popup1.style.left = Math.floor(rectb.left + rectb.width / 4).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + rectb.height / 4).toString() + "px";
 }
 
 function destroyPopup() {
@@ -991,6 +995,7 @@ function createPopup(tfield) {
     lockOnUI();
     popup1 = document.createElement("div");
     popup1.setAttribute("class", "popup");
+    popup1.style.fontSize = fontsizeletter;
     tfield.appendChild(popup1);
     let form1 = document.createElement("form");
     form1.setAttribute("class", "popupcontent");
@@ -998,7 +1003,7 @@ function createPopup(tfield) {
     let table1 = document.createElement("table");
     form1.appendChild(table1);
     const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-   // let fieldsize = Math.floor(height / 20);
+    // let fieldsize = Math.floor(height / 20);
     let k = 1;
     for (i = 0; i < letters.length / 7 + 1; i++) {
         let row1 = document.createElement("tr");
@@ -1023,9 +1028,8 @@ function createPopup(tfield) {
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(popup1);
-    popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
-    console.log("left-top", rectp.left, rectp.top);
+    popup1.style.left = Math.floor(rectb.left + rectb.width  / 4).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + rectb.height  / 4).toString() + "px";
 }
 
 function changeJoker(ev) {
@@ -1091,12 +1095,15 @@ function adaptToChangedSize() {
     //height = 2000;
     height > width ? orientation = "portrait" : orientation = "landscape";
     if (orientation == "portrait" && touchdevice) {
-        console.log("w", width, fieldsize);
         fieldsize = Math.floor(width / 20);
+        console.log("w", width, fieldsize);
     } else {
         fieldsize = Math.floor(height / 20);
         console.log("h", height, fieldsize);
     }
+    fontsizeletter = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+    fontsizebutton = Math.floor((fieldsize - 3) * 0.7).toString() + "px";
+    fontsizelabel = Math.floor((fieldsize - 3) * 0.5).toString() + "px";
     for (let rindex = 0; rindex < fields.length; rindex++) {
         for (let cindex = 0; cindex < fields[0].length; cindex++) {
             fields[rindex][cindex].setAttribute("width", fieldsize.toString() + "px");
@@ -1109,35 +1116,33 @@ function adaptToChangedSize() {
     }
     let letters = document.querySelectorAll(".letter");
     for (let letter of letters) {
-        letter.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+        letter.style.fontSize = fontsizeletter;
+        letter.style.width = fieldsize.toString() + "px";
+        letter.style.height = fieldsize.toString() + "px";
     }
     let dashboardtrs = document.querySelectorAll(".dashboard-tr");
     for (let tr of dashboardtrs) {
         tr.style.height = (fieldsize * 1.1).toString() + "px";
     }
-    let buttons = document.querySelectorAll("button");
+    let buttons = document.querySelectorAll(".UI-button");
     for (let button of buttons) {
-        button.style.fontSize = Math.floor((fieldsize - 3) * 0.7).toString() + "px";
+        button.style.fontSize = fontsizebutton;
         button.style.height = Math.floor(fieldsize * 1).toString() + "px";
         if (orientation == "portrait" && touchdevice) {
             button.style.width = Math.floor(width / 4.4).toString() + "px";
-        } else {
-            button.style.width = Math.floor(width / 4.4).toString() + "px";
         }
     }
-    let inputs = document.querySelectorAll("input");
+    let inputs = document.querySelectorAll(".UI-input");
     for (let input of inputs) {
-        input.style.fontSize = Math.floor((fieldsize - 3) * 0.7).toString() + "px";
+        input.style.fontSize = fontsizebutton;
         input.style.height = Math.floor(fieldsize * 1).toString() + "px";
         if (orientation == "portrait" && touchdevice) {
-            input.style.width = Math.floor(width / 4.4).toString() + "px";
-        } else {
             input.style.width = Math.floor(width / 4.4).toString() + "px";
         }
     }
     let labels = document.querySelectorAll("label");
     for (let label of labels) {
-        label.style.fontSize = Math.floor((fieldsize - 3) * 0.5).toString() + "px";
+        label.style.fontSize = fontsizelabel;
         label.style.height = Math.floor(fieldsize * 1).toString() + "px";
     }
     try {
