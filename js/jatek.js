@@ -401,7 +401,7 @@ function loadRack() {
         letteri.setAttribute("onclick", "placeLetter(event)");
         letteri.readonly = true;
         letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
-        letteri.setAttribute("border-radius", "25%");
+        letteri.setAttribute("border-radius", "20%");
         rackfields[lettercount].appendChild(letteri)
         rackfields[lettercount].setAttribute("ondragover", "");
         lettercount++;
@@ -1028,8 +1028,8 @@ function createPopup(tfield) {
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(popup1);
-    popup1.style.left = Math.floor(rectb.left + rectb.width  / 4).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + rectb.height  / 4).toString() + "px";
+    popup1.style.left = Math.floor(rectb.left + rectb.width / 4).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + rectb.height / 4).toString() + "px";
 }
 
 function changeJoker(ev) {
@@ -1106,13 +1106,13 @@ function adaptToChangedSize() {
     fontsizelabel = Math.floor((fieldsize - 3) * 0.5).toString() + "px";
     for (let rindex = 0; rindex < fields.length; rindex++) {
         for (let cindex = 0; cindex < fields[0].length; cindex++) {
-            fields[rindex][cindex].setAttribute("width", fieldsize.toString() + "px");
-            fields[rindex][cindex].setAttribute("height", fieldsize.toString() + "px");
+            fields[rindex][cindex].style.width= fieldsize.toString() + "px";
+            fields[rindex][cindex].style.height= fieldsize.toString() + "px";
         }
     }
     for (let cindex = 0; cindex < rackfields.length; cindex++) {
-        rackfields[cindex].setAttribute("width", fieldsize.toString() + "px");
-        rackfields[cindex].setAttribute("height", fieldsize.toString() + "px");
+        rackfields[cindex].style.width = fieldsize.toString() + "px";
+        rackfields[cindex].style.height = fieldsize.toString() + "px";
     }
     let letters = document.querySelectorAll(".letter");
     for (let letter of letters) {
@@ -1175,8 +1175,8 @@ function initGame() {
     let div = document.createElement('div');
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
-    touchdevice = ('ontouchstart' in document.documentElement);
-    //touchdevice = true;
+    //touchdevice = ('ontouchstart' in document.documentElement);
+    touchdevice = true;
     adaptToTouchDevice();
     window.addEventListener("resize", adaptToChangedSize);
     if (touchdevice) {
