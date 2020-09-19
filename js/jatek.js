@@ -454,7 +454,7 @@ function loadRack() {
         letteri.readonly = true;
         letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
         letteri.setAttribute("border-radius", "20%");
-        rackfields[lettercount].appendChild(letteri)
+        rackfields[lettercount].appendChild(letteri);
         rackfields[lettercount].setAttribute("ondragover", "");
         lettercount++;
     }
@@ -803,6 +803,10 @@ function displayResult() {
 
 function destroyPopupResult() {
     popup1.remove();
+    lockOffMain_Rules_Start();
+}
+
+function lockOffMain_Rules_Start() {
     if (touchdevice) {
         document.getElementById("main-top").disabled = false;
         document.getElementById("rules-top").disabled = false;
@@ -1041,7 +1045,6 @@ function displayMessage(legend, message, command) {
     td2.appendChild(button1);
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
-    let rectp = getElementPosition(popup1);
     popup1.style.left = Math.floor(rectb.left + rectb.width / 4).toString() + "px";
     popup1.style.top = Math.floor(rectb.top + rectb.height / 4).toString() + "px";
 }
@@ -1124,7 +1127,8 @@ function displaySelectLanguage() {
     hunbutton.style.display = "inline-block";
     hunbutton.style.border = "none";
     hunbutton.style.background = "#555";
-    hunbutton.innerHTML = '<a href="https://www.animatedimages.org/cat-hungary-flag-909.htm"><img src="https://www.animatedimages.org/data/media/909/animated-hungary-flag-image-0014.gif" border="0" style="background-color=#555" alt="animated-hungary-flag-image-0014" /></a>'
+    hunbutton.type = "button";
+    hunbutton.innerHTML = '<img src="https://www.animatedimages.org/data/media/909/animated-hungary-flag-image-0014.gif" border="0" style="background-color=#555" alt="animated-hungary-flag-image-0014" />';
     hunbutton.setAttribute("onclick", "selectLanguage('hun')");
     td1.appendChild(hunbutton);
     let td2 = document.createElement("td");
@@ -1133,12 +1137,12 @@ function displaySelectLanguage() {
     engbutton.style.display = "inline-block";
     engbutton.style.border = "none";
     engbutton.style.background = "#555";
-    engbutton.innerHTML = '<a href="https://www.animatedimages.org/cat-great-britain-flag-771.htm"><img src="https://www.animatedimages.org/data/media/771/animated-great-britain-flag-image-0025.gif" border="0" style="background-color=#555" alt="animated-great-britain-flag-image-0025" /></a>'
+    engbutton.type = "button";
+    engbutton.innerHTML = '<img src="https://www.animatedimages.org/data/media/771/animated-great-britain-flag-image-0025.gif" border="0" style="background-color=#555" alt="animated-great-britain-flag-image-0025" />';
     engbutton.setAttribute("onclick", "selectLanguage('eng')");
     td2.appendChild(engbutton);
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
-    let rectp = getElementPosition(popup1);
     popup1.style.left = Math.floor(rectb.left + rectb.width / 4).toString() + "px";
     popup1.style.top = Math.floor(rectb.top + rectb.height / 4).toString() + "px";
 }
@@ -1153,7 +1157,6 @@ function selectLanguage(language) {
         letters = letters_eng;
     }
     createSack();
-    console.log(languade);
 }
 
 function timer() {
