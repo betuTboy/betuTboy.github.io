@@ -127,7 +127,7 @@ let letters_hun = [['*', 30, 1,],
 ['Z', 7, 1]];
 
 let letters_eng = [['*', 30, 1,],
-['A', 8, 1],
+['A', 6, 1],
 ['B', 2, 1],
 ['C', 2, 1],
 ['D', 5, 1],
@@ -141,7 +141,7 @@ let letters_eng = [['*', 30, 1,],
 ['L', 7, 1],
 ['M', 4, 1],
 ['N', 5, 1],
-['O', 7, 1],
+['O', 6, 1],
 ['P', 2, 1],
 ['Q', 1, 1],
 ['R', 8, 1],
@@ -149,6 +149,8 @@ let letters_eng = [['*', 30, 1,],
 ['T', 4, 1],
 ['U', 4, 1],
 ['V', 2, 1],
+['W', 2, 1],
+['X', 1, 1],
 ['Y', 2, 1],
 ['Z', 1, 1]];
 
@@ -418,20 +420,10 @@ function setStateOfLetters() {
 }
 
 function loadRack() {
-    let rack = [];
     let rackfields = document.querySelectorAll(".rack-field");
-    let jokeronrack = false;
-    let lettercount = 0;
-    const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     displayTurn();
-    while (lettercount < racksize) {
-        let randletter = sack[getRndInteger(0, sack.length)];
-        if (randletter[0] == '*') {
-            if (jokeronrack) {
-                continue;
-            } else jokeronrack = true;
-        }
-        rack.push(randletter);
+    let rack = drawLetters();
+    for (let lettercount = 0; lettercount < racksize; lettercount++) {
         let letteri = document.createElement("input");
         let id = "letter" + turns.toString() + "-" + lettercount.toString();
         letteri.setAttribute("id", id);
@@ -440,7 +432,7 @@ function loadRack() {
         } else {
             letteri.setAttribute("type", "button");
         }
-        let value = randletter[0];
+        let value = rack[lettercount][0];
         if (value == '*') {
             letteri.setAttribute("class", "letter letter-on-rack joker")
         } else {
@@ -456,9 +448,26 @@ function loadRack() {
         letteri.setAttribute("border-radius", "20%");
         rackfields[lettercount].appendChild(letteri);
         rackfields[lettercount].setAttribute("ondragover", "");
-        lettercount++;
     }
     turns++;
+}
+
+function drawLetters() {
+    let rack = [];
+    let jokeronrack = false;
+    let drawn = [];
+    while (rack.length < racksize) {
+        rand = getRndInteger(0, sack.length);
+        if (drawn.includes(rand)) continue;
+        if (sack[rand][0] == '*') {
+            if (jokeronrack) {
+                continue;
+            } else jokeronrack = true;
+        }
+        rack.push(sack[rand]);
+        drawn.push(rand);
+    }
+    return rack;
 }
 
 function displayTurn() {
@@ -516,6 +525,17 @@ function startGame() {
     try {
         destroyPopup();
     } catch (err) { }
+    if (ingame) {
+        displayMessage("Figyelem!", "Valóban új játékot akarsz kezdeni?<br> Ebben az esetben a megkezdett<br> játékban eddig elért eredményed<br> elvész.", newGame, cancel);
+    } else {
+        newGame();
+    }
+}
+
+function newGame() {
+    try {
+        destroyPopup();
+    } catch (err) { }
     turns = 1;
     totaltime = 0;
     idleturns = 0;
@@ -535,10 +555,16 @@ function startGame() {
     lockOffUI();
 }
 
+function cancel() {
+    try {
+        destroyPopup();
+    } catch (err) { }
+}
+
 function pause() {
     hideBoard();
     clearInterval(timeout);
-    displayMessage("Szünet", "Kattints a gombra a folytatáshoz!", continueGame);
+    displayMessage("Szünet", "Kattints a gombra a folytatáshoz!", continueGame, "");
 }
 
 function continueGame() {
@@ -661,18 +687,18 @@ function validateNewWords() {
     } else {
         let direction = decideDirection(lettersontheboard);
         if (direction == "nem esnek egy vonalba") {
-            displayMessage("Szabálytalan!", "A lerakott betűk nem esnek egy vonalba.", destroyPopup);
+            displayMessage("Szabálytalan!", "A lerakott betűk nem esnek egy vonalba.", destroyPopup, "");
             return;
         }
         if (!continuous(lettersontheboard, direction) || direction == "nem folyamatos") {
-            displayMessage("Szabálytalan!", "A betűk nem folyamatosan vannak lerakva.", destroyPopup);
+            displayMessage("Szabálytalan!", "A betűk nem folyamatosan vannak lerakva.", destroyPopup, "");
             return;
         }
         let words = getAllString(lettersontheboard, direction);
         let notfound = checkDictionary(words);
         if (notfound.length > 0) {
             let nfjoined = notfound.join(', ');
-            displayMessage("Szabálytalan!", `${nfjoined} nem található a szótárban`, destroyPopup);
+            displayMessage("Szabálytalan!", `${nfjoined} nem található a szótárban`, destroyPopup, "");
             return;
         }
         let sc = displayScore(lettersontheboard.length);
@@ -734,7 +760,7 @@ function pass1() {
         endOfGame();
     } else {
         displayScore(0);
-        displayMessage("Figyelem!", "További " + (limitofidleturns - idleturns).toString() + " passz és a játék véget ér.", destroyPopup);
+        displayMessage("Figyelem!", "További " + (limitofidleturns - idleturns).toString() + " passz és a játék véget ér.", destroyPopup, "");
     }
 }
 
@@ -820,9 +846,11 @@ function lockOffMain_Rules_Start() {
 
 function displayDetails() {
     fset = document.querySelector("fieldset");
+    let table1 = document.createElement("table");
+    fset.appendChild(table1);
     for (let words of wordsingame) {
         let tr1 = document.createElement("tr");
-        fset.appendChild(tr1);
+        table1.appendChild(tr1);
         for (let field = 0; field < words.length; field++) {
             let td1 = document.createElement("td");
             tr1.appendChild(td1);
@@ -830,6 +858,7 @@ function displayDetails() {
         }
     }
     document.getElementById("reszletek").disabled = true;
+    table1.style.overflowY = "scroll";
 }
 
 function resultText() {
@@ -1002,7 +1031,7 @@ function displayScore(numberofletters) {
     return turnscore;
 }
 
-function displayMessage(legend, message, command) {
+function displayMessage(legend, message, command1, command2) {
     try {
         destroyPopup();
     } catch (err) { }
@@ -1035,14 +1064,27 @@ function displayMessage(legend, message, command) {
     let td2 = document.createElement("td");
     tr2.appendChild(td2);
     let button1 = document.createElement("button");
-    /*   button1.setAttribute("class", "popupcontent"); */
     button1.innerHTML = "Rendben";
-    button1.addEventListener("click", command);
+    button1.addEventListener("click", command1);
     button1.type = "button";
     button1.className = "UI-button";
     button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
     button1.style.fontSize = fontsizebutton;
     td2.appendChild(button1);
+    if (command2) {
+        let button2 = document.createElement("button");
+        button2.innerHTML = "Mégsem";
+        button2.addEventListener("click", command2);
+        button2.type = "button";
+        button2.className = "UI-button";
+        button2.style.height = Math.floor(fieldsize * 1).toString() + "px";
+        button2.style.fontSize = fontsizebutton;
+        button1.style.width = "40%";
+        button2.style.width = "40%";
+        button1.style.marginLeft = "1%";
+        button1.style.marginRight = "1%";
+        td2.appendChild(button2);
+    }
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
     popup1.style.left = Math.floor(rectb.left + rectb.width / 4).toString() + "px";
@@ -1148,7 +1190,8 @@ function displaySelectLanguage() {
 }
 
 function selectLanguage(language) {
-    destroyPopup();
+    popup1.remove();
+    lockOffMain_Rules_Start();
     if (language == "hun") {
         dictionary = dictionary_hun;
         letters = letters_hun;
