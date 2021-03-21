@@ -1344,7 +1344,7 @@ function initGame() {
     touchdevice = ('ontouchstart' in document.documentElement);
     //touchdevice = true
     adaptToTouchDevice();
-    window.addEventListener("resize", adaptToChangedSize);
+    //window.addEventListener("resize", adaptToChangedSize);
     if (touchdevice) {
         progressbar = document.querySelector("#progress-top");
     } else {
