@@ -545,9 +545,9 @@ function newGame() {
     displayTurn();
     score = 0;
     displayScore(0);
-    drawBoard();
-    drawRack();
-    adaptToChangedSize();
+    //drawBoard();
+    //drawRack();
+    //adaptToChangedSize();
     emptyRack();
     loadRack();
     clearInterval(timeout);
@@ -1255,9 +1255,9 @@ function createSack() {
 function adaptToChangedSize() {
     width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    height > width ? orientation = "portrait" : orientation = "landscape";
-    //orientation = "portrait";
-    if (orientation == "portrait" && touchdevice) {
+    height > width ? orientation1 = "portrait" : orientation1 = "landscape";
+    //orientation1 = "portrait";
+    if (orientation1 == "portrait" && touchdevice) {
         fieldsize = Math.floor(width / 20);
         console.log("w", width, fieldsize);
     } else {
@@ -1291,7 +1291,7 @@ function adaptToChangedSize() {
     for (let button of buttons) {
         button.style.fontSize = fontsizebutton;
         button.style.height = Math.floor(fieldsize * 1).toString() + "px";
-        if (orientation == "portrait" && touchdevice) {
+        if (orientation1 == "portrait" && touchdevice) {
             button.style.width = Math.floor(width / 4.4).toString() + "px";
         }
     }
@@ -1299,7 +1299,7 @@ function adaptToChangedSize() {
     for (let input of inputs) {
         input.style.fontSize = fontsizebutton;
         input.style.height = Math.floor(fieldsize * 1).toString() + "px";
-        if (orientation == "portrait" && touchdevice) {
+        if (orientation1 == "portrait" && touchdevice) {
             input.style.width = Math.floor(width / 4.4).toString() + "px";
         }
     }
@@ -1344,7 +1344,7 @@ function initGame() {
     touchdevice = ('ontouchstart' in document.documentElement);
     //touchdevice = true
     adaptToTouchDevice();
-    window.addEventListener("resize", adaptToChangedSize);
+    //window.addEventListener("resize", adaptToChangedSize);
     if (touchdevice) {
         progressbar = document.querySelector("#progress-top");
     } else {
