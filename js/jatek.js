@@ -269,9 +269,11 @@ function changeDirection() {
     if (arrowposition[0].innerHTML == '' || arrowposition[1] == "down") {
         arrowposition[1] = "right";
         arrowposition[0].innerHTML = `<b id="arrow">&#8594</b>`;
+        document.querySelector("#arrow").style.fontSize = fontSizeLetter
     } else {
         arrowposition[1] = "down";
         arrowposition[0].innerHTML = `<b id="arrow">&#8595</b>`;
+        document.querySelector("#arrow").style.fontSize = fontSizeLetter
     }
 }
 
@@ -1313,7 +1315,7 @@ function adaptToChangedSize() {
         label.style.height = Math.floor(fieldsize * 1).toString() + "px";
     }
     try {
-        document.querySelector("#arrow").style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+        document.querySelector("#arrow").style.fontSize = fontSizeLetter//Math.floor((fieldsize - 2) * 0.8).toString() + "px";
     } catch (err) { }
     try {
         popup1.style.fontSize = fontsizebutton;
