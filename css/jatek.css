@@ -6,7 +6,7 @@ body{
 
 #game-div{
     background-color:rgb(235, 235, 235);
-    min-width: 1000px;
+    min-width: 1000px; 
 }
 
 #board-rack{

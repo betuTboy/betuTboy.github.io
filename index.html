@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--<link rel="stylesheet" href="lib/bootstrap-4.5.0-dist/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="css/csisza.css">
@@ -330,14 +330,23 @@
                             </span>
                         </div>
                         <br>
-                        <label>Betűk</label>
+                        <div class="tooltip">
+                            <input type="checkbox" name="visibility" id="visibility" value="visibility">
+                            <label for="change-num">A tábla látható területének korlátozása</label>
+                            <span class="tooltiptext">Ha be van kapcsolva, a tartó méretére korlátozza a láthatóságot. 
+                                Akkor érdemes bekapcsolni, ha a tábla felfedezése célja a játéknak.
+                                (Csak egyjátékos módban.)  
+                            </span>
+                        </div>
+                        <br>
+                        <label>Betűk kezelése</label>
                         <br>
                         <div>
                             <div class="tooltip">
                                 <input type="radio" name="letterset" id="fix" value="fix" checked>
-                                <label for="fix">Fix betűkészlet</label>
-                                <span class="tooltiptext">A betűk sorsolása előre meghatározott készletből történik, mely
-                                    a kisorsolt betűkkel folyamatosan csökken.</span>
+                                <label for="fix">Adott betűkészletből, melyből a kihúzottak eltűnnak.</label>
+                                <span class="tooltiptext">A betűk húzása egy előre meghatározott betűkészletből történik, amely
+                                    a kisorsolt betűkkel csökken.</span>
                             </div>
                             <div class="to-the-right">
                                 <div class="tooltip">
@@ -348,17 +357,25 @@
                         </div>
                         <div class="tooltip">
                             <input type="radio" name="letterset" id="used-back" value="used-back">
-                            <label for="fix">Fix készlet, felhasználtak visszarakva</label>
-                            <span class="tooltiptext">A betűk sorsolása előre meghatározott készletből történik, a táblára
-                                került betűk pótlódnak, és újra kihúzhatóak.</span>
+                            <label for="fix">Adott betűkészletből, melyben a felhasználtak pótlódnak</label>
+                            <span class="tooltiptext">A betűk húzása egy előre meghatározott betűkészletből történik, minden
+                                forduló után pótlódnak a zsákban a táblára került betűk.</span>
+                            </span>
                         </div>
                         <br>
                         <div class="tooltip">
                             <input type="radio" name="letterset" id="all-back" value="all-back">
-                            <label for="fix">Fix készlet, mind visszarakva</label>
-                            <span class="tooltiptext">A betűk sorsolása előre meghatározott készletből történik, minden forduló
-                                után az összes betű újra kihúzhatóvá válik.</span>
+                            <label for="fix">Adott készlet, mely nem csökken, a teljes tartó cserélődik</label>
+                            <span class="tooltiptext">A betűk húzása egy előre meghatározott készletből történik, minden forduló
+                                után a játékos összes betűje cserélődik.</span>
                         </div>
+                        <br>
+                        <div>
+                            <div class="tooltip">
+                                <input type="checkbox" name="rate" id="rate" value="rate">
+                                <label for="shared">A magánhangzók és mássalhangzók arányának befolyásolása</label>
+                                <span class="tooltiptext">A sorsolt magánhangzók+dzsókerek arányát 40-60% körül tartja.</span>
+                            </div>
                         <br>
                         <div>
                             <div class="tooltip">
@@ -368,14 +385,21 @@
                                     rendelkezésre álló betűk adhatók meg. Ha egy betű mindkét tartón szerepelhet, az a táblára
                                     kerülő szavak széteséséhez vezethez, ezért ezt érdemes elkerülni. Szimultán játékban
                                     nem állítható be.</span>
-                            </div>
+                            </div>    
                             <div class="to-the-right">
                                 <div class="tooltip">
                                     <button>Készlet</button>
                                     <span class="tooltiptext"><img width="400" src="img/kbetutabla.png" alt="Közös betűk"></span>
                                 </div>
-                            </div>
+                            </div>    
                         </div>
+                        <div>
+                            <div class="tooltip">
+                                <input type="checkbox" name="resetfrack" id="resetfrack" value="resetfrack">
+                                <label for="shared">A közös betűk nem fogynak</label>
+                                <span class="tooltiptext">A kirakott betű helyén egy új jelenik meg a tartón.</span>
+                            </div>
+                        <div>   
                         <label>Betűk pontértéke</label>
                         <br>
                         <div class="tooltip">
@@ -412,42 +436,50 @@
                                 </div>
                             </div>
                         </div>
-                        <label>Érvényesség ellenőrzése</label>
+                        <label>Szavak érvényessége</label>
                         <br>
                         <div class="tooltip">
                             <input type="radio" name=check-word id="check-dict" value="check-dict" checked>
-                            <label for="check-dict">Szótár alapján</label>
-                            <span class="tooltiptext">A létrejött szavak érvényességének ellenőrzése szótár alapján történik.</span>
+                            <label for="check-dict">Csak ha benne van a szótárban</label>
+                            <span class="tooltiptext">A összes újonnan létrejött szó érvényességének ellenőrzése a lépés továbbítása előtt.</span>
                         </div>
                         <br>
                         <div class="tooltip">
                             <input type="radio" name="check-word" id="no-check" value="no-check">
-                            <label for="no-check">Nincs</label>
-                            <span class="tooltiptext">Ha be van jelölve, akkor a létrejött szavak érvényességének ellenőrzése
-                                nem történik meg.</span>
+                            <label for="no-check">Ha nincs benne a szótárban, figyelmeztetés</label>
+                            <span class="tooltiptext">Ha be van jelölve, minden kirakott szó érvényesnek számít. A játékost a program figyelmezteti, hogy a szó nincs a szótárban.</span>
                         </div>
                         <br>
                         <div class="tooltip">
                             <input type="radio" name="check-word" id="spell-checker" value="spell-checker">
-                            <label for="spell-checker">Helyesírás-ellenőrző program használatával</label>
-                            <span class="tooltiptext">Ha be van jelölve, akkor a létrejött szavak érvényességének ellenőrzése
-                                a számítógépre telepített helyesírás-ellenőrző program segítségével történik. Csak egyszemélyes
-                                játékban állítható be.</span>
+                            <label for="spell-checker">Helyesírás-ellenőrző program</label>
+                            <span class="tooltiptext">Az összes újonnan létrejött szó érvényességének ellenőrzése a telepített helyesírás-ellenőrző programmal. 
+                                (Csak egyjátékos módban állítható be.</span>
                         </div>
+                        <br>
+                        <div class="tooltip">
+                            <input type="radio" name="check-word" id="check-at-the-end" value="check-at-the-end">
+                            <label for="spell-checker">Csak ajáték végén</label>
+                            <span class="tooltiptext">A kirakott szavak érvényességét csak a játék végén ellenőrzi. 
+                                (Csak egyjátékos módban állítható be.</span>
+                        </div>
+                        <br>
+                        <label>Dzsóker kezelése</label>
                         <br>
                         <div class="tooltip">
                             <input type="checkbox" name="dont-change-joker" id="dont-change-joker" value=dont-change-joker>
                             <label for="dont-change-joker">Dzsóker bármilyen betűt helyettesíthet a táblán</label>
-                            <span class="tooltiptext">Ha be van jelölve, akkor a dzsókerek vízszintesen és függőlegesen más
-                                betűt reprezentálhatnak.</span>
+                            <span class="tooltiptext">A lerakott dzsóker a táblán is dzsóker marad, és bármilyen betűként felhasználható a keresztező szóban.</span>
                         </div>
                         <br>
                         <div class="tooltip">
                             <input type="checkbox" name="changed-letter-value" id="changed-letter-value" value="changed-letter-value">
                             <label for="changed-letter-value">Dzsóker pontértéke is változik.</label>
-                            <span class="tooltiptext">Ha be van állítva, akkor a dzsóker a táblán a becserélt betű értékét
-                                veszi fel. Véletlenszerűen sorsolt pontszámok esetén nem állítható be.</span>
+                            <span class="tooltiptext">A lerakott dzsóker a helyettesített betű pontértékét is megkapja.
+                                Véletlenszerűen sorsolt pontszámok és gép elleni játék esetén nem állítható be.</span>
                         </div>
+                        <br>
+                        <label>Pontszámítás</label>
                         <br>
                         <div class="tooltip">
                             <input type="checkbox" name="one-direction" id="one-direction" value="one-direction">

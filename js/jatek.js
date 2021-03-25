@@ -548,9 +548,9 @@ function newGame() {
     displayTurn();
     score = 0;
     displayScore(0);
-    //drawBoard();
-    //drawRack();
-    //adaptToChangedSize();
+    drawBoard();
+    drawRack();
+    adaptToChangedSize();
     emptyRack();
     loadRack();
     clearInterval(timeout);
@@ -1173,7 +1173,7 @@ function displaySelectLanguage() {
     hunbutton.style.border = "none";
     hunbutton.style.background = "#555";
     hunbutton.type = "button";
-    hunbutton.innerHTML = '<img src="https://www.animatedimages.org/data/media/909/animated-hungary-flag-image-0014.gif" border="0" style="background-color=#555" alt="animated-hungary-flag-image-0014" />';
+    hunbutton.innerHTML = '<img src="img/animated-hungary-flag-image-0014.gif" border="0" style="background-color=#555" alt="animated-hungary-flag-image-0014" />';
     hunbutton.setAttribute("onclick", "selectLanguage('hun')");
     td1.appendChild(hunbutton);
     let td2 = document.createElement("td");
@@ -1183,7 +1183,7 @@ function displaySelectLanguage() {
     engbutton.style.border = "none";
     engbutton.style.background = "#555";
     engbutton.type = "button";
-    engbutton.innerHTML = '<img src="https://www.animatedimages.org/data/media/771/animated-great-britain-flag-image-0025.gif" border="0" style="background-color=#555" alt="animated-great-britain-flag-image-0025" />';
+    engbutton.innerHTML = '<img src="img/animated-great-britain-flag-image-0025.gif" border="0" style="background-color=#555" alt="animated-great-britain-flag-image-0025" />';
     engbutton.setAttribute("onclick", "selectLanguage('eng')");
     td2.appendChild(engbutton);
     let boardandrack = document.querySelector("#board-rack");
@@ -1348,7 +1348,7 @@ function initGame() {
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
     touchdevice = ('ontouchstart' in document.documentElement);
-    //touchdevice = true
+    touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
