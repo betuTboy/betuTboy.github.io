@@ -2,6 +2,7 @@ body{
     margin: 2px;
     font-family:  "Sans serif", "Times New Roman", Times;
     background-color:rgb(235, 235, 235);
+    
 }
 
 #game-div{
@@ -16,6 +17,11 @@ body{
 #board-form, #rack-form{
     display: inline-block;
 }
+
+#rack-form{
+    padding-top: 30px;
+}
+
 
 .normal-field, .rack-field{
     text-align: center;
