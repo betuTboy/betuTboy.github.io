@@ -1144,8 +1144,8 @@ function displayMessage(legend, message, command1, command2) {
     }
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
-    popup1.style.left = Math.floor(rectb.left + rectb.width / 4).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + rectb.height / 4).toString() + "px";
+    popup1.style.left = Math.floor(rectb.left + (rectb.width-250) / 2).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + (rectb.height-150) / 2).toString() + "px";
 }
 
 function destroyPopup() {
@@ -1189,8 +1189,8 @@ function createPopup(tfield) {
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(popup1);
-    popup1.style.left = Math.floor(rectb.left + (rectb.width-620) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height-250) / 2).toString() + "px";
+    popup1.style.left = Math.floor(rectb.left + (rectb.width-250) / 2).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + (rectb.height-150) / 2).toString() + "px";
 }
 
 function changeJoker(ev) {
