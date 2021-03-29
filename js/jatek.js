@@ -238,7 +238,7 @@ let parentofdraggedletter;
 
 let popup1;
 let resultsdiv;
-
+Math.floor(width / 20);
 let idleturns = 0;
 const limitofidleturns = 3;
 
@@ -272,7 +272,7 @@ function createTd(fieldtype, parent, id) {
             break;
         case '!':
             td.setAttribute("class", "wall-field");
-            break;
+            break;Math.floor(width / 20);
     }
     parent.appendChild(td);
     return td;
@@ -529,10 +529,10 @@ function drawLetters() {
 
 function displayTurn() {
     let t;
-    if (!touchdevice) {
-        t = document.querySelector("#turn");
-    } else {
+    if (touchdevice && orientation1 == "portrait") {
         t = document.querySelector("#turn-top");
+    } else {
+        t = document.querySelector("#turn");
     }
     t.setAttribute("value", `${turns} / ${idleturns}`);
 }
@@ -552,19 +552,7 @@ function getRndInteger(min, max) {
 }
 
 function bindButtons() {
-    if (!touchdevice) {
-        let startbutton = document.querySelector("#start");
-        startbutton.addEventListener("click", startGame);
-        let pausebutton = document.querySelector("#pause");
-        pausebutton.addEventListener("click", pause);
-        let shufflebutton = document.querySelector("#shuffle");
-        shufflebutton.addEventListener("click", shuffle);
-        let backbutton = document.querySelector("#back");
-        backbutton.addEventListener("click", back);
-        let donebutton = document.querySelector("#done");
-        donebutton.addEventListener("click", validateNewWords);
-    }
-    else {
+    if (touchdevice && orientation1 == "portrait"){
         let startbutton = document.querySelector("#start-top");
         startbutton.addEventListener("click", startGame);
         let pausebutton = document.querySelector("#pause-top");
@@ -574,6 +562,18 @@ function bindButtons() {
         let backbutton = document.querySelector("#back-bottom");
         backbutton.addEventListener("click", back);
         let donebutton = document.querySelector("#done-bottom");
+        donebutton.addEventListener("click", validateNewWords);
+    }    
+    else {
+        let startbutton = document.querySelector("#start");
+        startbutton.addEventListener("click", startGame);
+        let pausebutton = document.querySelector("#pause");
+        pausebutton.addEventListener("click", pause);
+        let shufflebutton = document.querySelector("#shuffle");
+        shufflebutton.addEventListener("click", shuffle);
+        let backbutton = document.querySelector("#back");
+        backbutton.addEventListener("click", back);
+        let donebutton = document.querySelector("#done");
         donebutton.addEventListener("click", validateNewWords);
     }
 }
@@ -890,7 +890,7 @@ function destroyPopupResult() {
 }
 
 function lockOffMain_Rules_Start() {
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         document.getElementById("main-top").disabled = false;
         document.getElementById("rules-top").disabled = false;
         document.getElementById("start-top").disabled = false;
@@ -1189,8 +1189,8 @@ function createPopup(tfield) {
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(popup1);
-    popup1.style.left = Math.floor(rectb.left + rectb.width / 4).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + rectb.height / 4).toString() + "px";
+    popup1.style.left = Math.floor(rectb.left + (rectb.width-620) / 2).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + (rectb.height-250) / 2).toString() + "px";
 }
 
 function changeJoker(ev) {
@@ -1242,8 +1242,8 @@ function displaySelectLanguage() {
     td2.appendChild(engbutton);
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
-    popup1.style.left = Math.floor(rectb.left + rectb.width / 4).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + rectb.height / 4).toString() + "px";
+    popup1.style.left = Math.floor(rectb.left + (rectb.width-375) / 2).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + (rectb.height-175) / 2).toString() + "px";
 }
 
 function selectLanguage(language) {
@@ -1319,9 +1319,11 @@ function adaptToChangedSize() {
     //orientation1 = "portrait";
     if (orientation1 == "portrait" && touchdevice) {
         fieldsize = Math.floor(width / 20);
+        rackfieldsize = Math.floor(width / (racksize+2));
         console.log("w", width, fieldsize);
     } else {
         fieldsize = Math.floor(height / 20);
+        rackfieldsize = fieldsize;
         console.log("h", height, fieldsize);
     }
     fontsizeletter = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
@@ -1334,14 +1336,20 @@ function adaptToChangedSize() {
         }
     }
     for (let cindex = 0; cindex < rackfields.length; cindex++) {
-        rackfields[cindex].style.width = fieldsize.toString() + "px";
-        rackfields[cindex].style.height = fieldsize.toString() + "px";
+        rackfields[cindex].style.width = rackfieldsize.toString() + "px";
+        rackfields[cindex].style.height = rackfieldsize.toString() + "px";
     }
     let letters = document.querySelectorAll(".letter");
     for (let letter of letters) {
         letter.style.fontSize = fontsizeletter;
         letter.style.width = fieldsize.toString() + "px";
         letter.style.height = fieldsize.toString() + "px";
+    }
+    let lettersonrack = document.querySelectorAll(".letter-on-rack");
+    for (let letter of lettersonrack) {
+        letter.style.fontSize = fontsizeletter;
+        letter.style.width = rackfieldsize.toString() + "px";
+        letter.style.height = rackfieldsize.toString() + "px";
     }
     let dashboardtrs = document.querySelectorAll(".dashboard-tr");
     for (let tr of dashboardtrs) {
@@ -1384,6 +1392,7 @@ function adaptToTouchDevice() {
         let gameres = document.querySelector("#game-results");
         gameres.style.display = "block";
         gameres.style.width = "100%";
+        document.querySelector("body").style.textAlign = "center";
     }
     else {
         document.querySelector("#dashboard").style.display = "inline-block";
@@ -1402,7 +1411,7 @@ function initGame() {
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
     touchdevice = ('ontouchstart' in document.documentElement);
-    //touchdevice = true
+    touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
