@@ -1397,7 +1397,10 @@ function adaptToTouchDevice() {
         gameres.style.display = "block";
         gameres.style.width = "100%";
         document.querySelector("body").style.textAlign = "center";
+        document.querySelector("#top-form").style.textAlign = "center";
         document.querySelector("#game-div").style.textAlign = "center";
+        document.querySelector("#bottom-form").style.textAlign = "center";
+
     }
     else {
         document.querySelector("#dashboard").style.display = "inline-block";
