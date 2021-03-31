@@ -212,7 +212,7 @@ let letters;
 let dictionary;
 const bonuses = { "0": 0, "1": 0, "2": 0, "3": 0, "4": 2, "5": 4, "6": 8, "7": 16, "8": 32 };
 
-const racksize = 12;
+const racksize = 10;
 
 let sack = [];
 
@@ -1172,8 +1172,8 @@ function createPopup(tfield) {
         for (j = 0; j < 7 && k < letters.length; j++) {
             let td1 = document.createElement("td");
             row1.appendChild(td1);
-            td1.setAttribute("width", fieldsize.toString() + "px");
-            td1.setAttribute("height", fieldsize.toString() + "px");
+            td1.setAttribute("width", rackfieldsize.toString() + "px");
+            td1.setAttribute("height", rackfieldsize.toString() + "px");
             let input1 = document.createElement("input");
             td1.appendChild(input1);
             input1.setAttribute("type", "text");
@@ -1359,7 +1359,7 @@ function adaptToChangedSize() {
     for (let button of buttons) {
         if (orientation1 == "portrait" && touchdevice) {
             button.style.fontSize = fontsizebutton * 1.5;
-            button.style.width = Math.floor(width / 4.8).toString() + "px";
+            button.parentElement.style.width = Math.floor(width / 4.4).toString() + "px";
             button.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
         }
         else{
@@ -1372,7 +1372,7 @@ function adaptToChangedSize() {
         input.style.fontSize = fontsizebutton;
         input.style.height = Math.floor(fieldsize * 1).toString() + "px";
         if (orientation1 == "portrait" && touchdevice) {
-            input.style.width = Math.floor(width / 5.0).toString() + "px";
+            input.parentElement.style.width = Math.floor(width / 5.0).toString() + "px";
         }
     }
     let labels = document.querySelectorAll("label");

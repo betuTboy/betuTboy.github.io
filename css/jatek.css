@@ -105,7 +105,7 @@ body{
     padding: 0.5%;
 }
 
-#top-form{
+#top-form #bottom-form{
     font-family: inherit;
     display: inline-block;
 }
