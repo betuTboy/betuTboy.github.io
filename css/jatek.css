@@ -175,7 +175,7 @@ input[type=text]{
 
 progress[value]{
     color:green;
-    width: 100%;
+    width: 95%;
     height: 5px;
     vertical-align:top;
 } 

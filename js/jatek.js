@@ -1075,12 +1075,12 @@ function checkDictionary(words) {
 function displayScore(numberofletters) {
     let turnscore = numberofletters + bonuses[numberofletters.toString()];
     let ls, sc;
-    if (!touchdevice) {
-        ls = document.querySelector("#lscore");
-        sc = document.querySelector("#score");
-    } else {
+    if (touchdevice && orientation1 == "portrait") {
         ls = document.querySelector("#lscore-top");
         sc = document.querySelector("#score-top");
+    } else {
+        ls = document.querySelector("#lscore");
+        sc = document.querySelector("#score");
     }
     ls.setAttribute("value", turnscore);
     score += turnscore;
@@ -1265,10 +1265,10 @@ function timer() {
 
 function displayTime() {
     let t
-    if (!touchdevice) {
-        t = document.querySelector("#time");
-    } else {
+    if (touchdevice && orientation1 == "portrait") {
         t = document.querySelector("#time-top");
+    } else {
+        t = document.querySelector("#time"); 
     }
     t.setAttribute("value", currenttime);
     manageProgressbar();
@@ -1357,10 +1357,14 @@ function adaptToChangedSize() {
     }
     let buttons = document.querySelectorAll(".UI-button");
     for (let button of buttons) {
-        button.style.fontSize = fontsizebutton;
-        button.style.height = Math.floor(fieldsize * 1).toString() + "px";
         if (orientation1 == "portrait" && touchdevice) {
-            button.style.width = Math.floor(width / 4.4).toString() + "px";
+            button.style.fontSize = fontsizebutton * 1.5;
+            button.style.width = Math.floor(width / 4.8).toString() + "px";
+            button.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
+        }
+        else{
+            button.style.fontSize = fontsizebutton;
+            button.style.height = Math.floor(fieldsize * 1).toString() + "px";
         }
     }
     let inputs = document.querySelectorAll(".UI-input");
@@ -1368,7 +1372,7 @@ function adaptToChangedSize() {
         input.style.fontSize = fontsizebutton;
         input.style.height = Math.floor(fieldsize * 1).toString() + "px";
         if (orientation1 == "portrait" && touchdevice) {
-            input.style.width = Math.floor(width / 4.4).toString() + "px";
+            input.style.width = Math.floor(width / 5.0).toString() + "px";
         }
     }
     let labels = document.querySelectorAll("label");
@@ -1393,6 +1397,7 @@ function adaptToTouchDevice() {
         gameres.style.display = "block";
         gameres.style.width = "100%";
         document.querySelector("body").style.textAlign = "center";
+        document.querySelector("#game-div").style.textAlign = "center";
     }
     else {
         document.querySelector("#dashboard").style.display = "inline-block";
