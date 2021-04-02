@@ -1,0 +1,26 @@
+h1{
+    font-family: inherit;
+    margin: 5px;
+    padding: 10px;
+    height: 300px;
+    background-image: url('/img/szolo.png');
+    background-repeat: no-repeat;
+    /*background-attachment: fixed;*/
+    background-size: 80%;
+}
+
+p{
+    font-family: inherit;
+    text-align: justify;
+    margin: 10%;
+}
+
+ul{
+    font-family: inherit;
+    list-style-type: none;
+}
+
+#game-rules{
+    background-color:rgb(235, 235, 235);
+    margin: 2%;
+}

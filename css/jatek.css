@@ -175,24 +175,10 @@ input[type=text]{
 
 progress[value]{
     color:green;
-    width: 95%;
+    width: 100%;
     height: 5px;
     vertical-align:top;
 } 
-
-#game-rules{
-    display: inline-block;
-    background-color:rgb(235, 235, 235);
-    border-style: solid;
-    border-width: 1px;
-    border-color:white;
-    width:40%;
-    vertical-align: top;
-    margin-top: 0.5%;
-    margin-right: 0.5%;
-    margin-bottom: 0.5%; 
-    padding: 0.5%;
-}
 
 b{
     font-family: inherit;
@@ -216,13 +202,13 @@ p{
 
 h1{
     font-family: inherit;
-    margin: 5px;
+   /* margin: 5px;
     padding: 10px;
     height: 300px;
     background-image: url('/img/szolo.png');
     background-repeat: no-repeat;
-    /*background-attachment: fixed;*/ 
-    background-size: 100%;
+    background-attachment: fixed; 
+    background-size: 100%;*/
 }
 
 ul{

@@ -529,7 +529,7 @@ function drawLetters() {
 
 function displayTurn() {
     let t;
-    if (touchdevice && orientation1 == "portrait") {
+    if (touchdevice) {
         t = document.querySelector("#turn-top");
     } else {
         t = document.querySelector("#turn");
@@ -552,7 +552,7 @@ function getRndInteger(min, max) {
 }
 
 function bindButtons() {
-    if (touchdevice && orientation1 == "portrait"){
+    if (touchdevice){
         let startbutton = document.querySelector("#start-top");
         startbutton.addEventListener("click", startGame);
         let pausebutton = document.querySelector("#pause-top");
@@ -890,7 +890,7 @@ function destroyPopupResult() {
 }
 
 function lockOffMain_Rules_Start() {
-    if (touchdevice && orientation1 == "portrait") {
+    if (touchdevice) {
         document.getElementById("main-top").disabled = false;
         document.getElementById("rules-top").disabled = false;
         document.getElementById("start-top").disabled = false;
@@ -1075,7 +1075,7 @@ function checkDictionary(words) {
 function displayScore(numberofletters) {
     let turnscore = numberofletters + bonuses[numberofletters.toString()];
     let ls, sc;
-    if (touchdevice && orientation1 == "portrait") {
+    if (touchdevice) {
         ls = document.querySelector("#lscore-top");
         sc = document.querySelector("#score-top");
     } else {
@@ -1265,7 +1265,7 @@ function timer() {
 
 function displayTime() {
     let t
-    if (touchdevice && orientation1 == "portrait") {
+    if (touchdevice) {
         t = document.querySelector("#time-top");
     } else {
         t = document.querySelector("#time"); 
@@ -1317,12 +1317,12 @@ function decideOrientation() {
 
 function adaptToChangedSize() {
     //orientation1 = "portrait";
-    if (orientation1 == "portrait" && touchdevice) {
+    if (touchdevice) {
         fieldsize = Math.floor(width / 20);
         rackfieldsize = Math.floor(width / (racksize+2));
         console.log("w", width, fieldsize);
     } else {
-        fieldsize = Math.floor(height / 20);
+        fieldsize = Math.floor(height / 21);
         rackfieldsize = fieldsize;
         console.log("h", height, fieldsize);
     }
@@ -1357,9 +1357,10 @@ function adaptToChangedSize() {
     }
     let buttons = document.querySelectorAll(".UI-button");
     for (let button of buttons) {
-        if (orientation1 == "portrait" && touchdevice) {
+        if (touchdevice) {
             button.style.fontSize = fontsizebutton * 1.5;
             button.parentElement.style.width = Math.floor(width / 4.4).toString() + "px";
+            button.style.width = Math.floor(width / 4.4).toString() + "px";
             button.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
         }
         else{
@@ -1371,7 +1372,7 @@ function adaptToChangedSize() {
     for (let input of inputs) {
         input.style.fontSize = fontsizebutton;
         input.style.height = Math.floor(fieldsize * 1).toString() + "px";
-        if (orientation1 == "portrait" && touchdevice) {
+        if (touchdevice) {
             input.parentElement.style.width = Math.floor(width / 5.0).toString() + "px";
         }
     }
@@ -1381,7 +1382,7 @@ function adaptToChangedSize() {
         label.style.height = Math.floor(fieldsize * 1).toString() + "px";
     }
     try {
-        document.querySelector("#arrow").style.fontSize = fontSizeLetter//Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+        document.querySelector("#arrow").style.fontSize = fontsizeletter//Math.floor((fieldsize - 2) * 0.8).toString() + "px";
     } catch (err) { }
     try {
         popup1.style.fontSize = fontsizebutton;
@@ -1389,7 +1390,7 @@ function adaptToChangedSize() {
 }
 
 function adaptToTouchDevice() {
-    if (touchdevice && orientation1 == "portrait") {
+    if (touchdevice) {
         document.querySelector("#dashboard").style.display = "none";
         document.querySelector("#dashboard-top").style.display = "block";
         document.querySelector("#dashboard-bottom").style.display = "block";
@@ -1419,11 +1420,11 @@ function initGame() {
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
     touchdevice = ('ontouchstart' in document.documentElement);
-    touchdevice = true
+    //touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
-    if (touchdevice && orientation1 == "portrait") {
+    if (touchdevice) {
         progressbar = document.querySelector("#progress-top");
     } else {
         progressbar = document.querySelector("#progress");
