@@ -323,11 +323,11 @@ function changeDirection() {
     if (arrowposition[0].innerHTML == '' || arrowposition[1] == "down") {
         arrowposition[1] = "right";
         arrowposition[0].innerHTML = `<b id="arrow">&#8594</b>`;
-        document.querySelector("#arrow").style.fontSize = fontSizeLetter
+        document.querySelector("#arrow").style.fontSize = fontsizeletter
     } else {
         arrowposition[1] = "down";
         arrowposition[0].innerHTML = `<b id="arrow">&#8595</b>`;
-        document.querySelector("#arrow").style.fontSize = fontSizeLetter
+        document.querySelector("#arrow").style.fontSize = fontsizeletter
     }
 }
 
