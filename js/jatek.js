@@ -374,6 +374,7 @@ function stepField() {
             if (fields[rindex][cindex + k].className == "normal-field empty" && !fields[rindex][cindex + k].hasChildNodes()) {
                 arrowposition[0] = fields[rindex][cindex + k];
                 arrowposition[0].innerHTML = `<b id="arrow">&#8594</b>`;
+                document.querySelector("#arrow").style.fontSize = fontsizeletter
                 break;
             } else {
                 if (fields[rindex][cindex + k].className == "wall-field") {
@@ -395,6 +396,7 @@ function stepField() {
             if (fields[rindex + k][cindex].className == "normal-field empty" && !fields[rindex + k][cindex].hasChildNodes()) {
                 arrowposition[0] = fields[rindex + k][cindex];
                 arrowposition[0].innerHTML = `<b id="arrow">&#8595</b>`;
+                document.querySelector("#arrow").style.fontSize = fontsizeletter
                 break;
             } else {
                 if (fields[rindex + k][cindex].className == "wall-field") {
