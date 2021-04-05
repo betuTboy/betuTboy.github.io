@@ -238,7 +238,6 @@ let parentofdraggedletter;
 
 let popup1;
 let resultsdiv;
-Math.floor(width / 20);
 let idleturns = 0;
 const limitofidleturns = 3;
 
@@ -272,7 +271,7 @@ function createTd(fieldtype, parent, id) {
             break;
         case '!':
             td.setAttribute("class", "wall-field");
-            break;Math.floor(width / 20);
+            break;
     }
     parent.appendChild(td);
     return td;
@@ -922,7 +921,14 @@ function displayDetails() {
 
 function resultText() {
     let fillrate = (isFilledOut() * 100).toFixed(2);
-    let rtext = `<div>A keresztrejtvény kitöltöttsége: ${fillrate}%-os.</div><br><div>A fordulók száma: ${document.getElementById("turn").value.split('/')[0]}</div><br><div>A tétlen fordulók száma: ${idleturns}</div><br><div>Az elért pontszám: ${score}</div><br><div>Az összes játékban töltött idő: ${totaltime} másodperc.</div> `
+    let turn1;
+    if (touchdevice){
+        turn1 = document.getElementById("turn-top").value.split('/')[0];
+    }
+    else{    
+        turn1 = document.getElementById("turn").value.split('/')[0];
+    }
+    let rtext = `<div>A keresztrejtvény kitöltöttsége: ${fillrate}%-os.</div><br><div>A fordulók száma: ${turn1}</div><br><div>A tétlen fordulók száma: ${idleturns}</div><br><div>Az elért pontszám: ${score}</div><br><div>Az összes játékban töltött idő: ${totaltime} másodperc.</div> `
     return rtext;
 }
 
@@ -1422,7 +1428,7 @@ function initGame() {
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
     touchdevice = ('ontouchstart' in document.documentElement);
-    touchdevice = true
+    //touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
