@@ -1422,7 +1422,7 @@ function initGame() {
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
     touchdevice = ('ontouchstart' in document.documentElement);
-    //touchdevice = true
+    touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
