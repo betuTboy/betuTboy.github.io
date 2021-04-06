@@ -1439,7 +1439,7 @@ function initGame() {
         console.log("Drag and Drop API is supported!");
     touchdevice = ('ontouchstart' in document.documentElement);
     touchdevice = true
-    decideOrientation();
+    //decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
     if (touchdevice) {
