@@ -1332,9 +1332,9 @@ function decideOrientation() {
 function adaptToChangedSize() {
     //orientation1 = "portrait";
     if (touchdevice) {
-        fieldsize = Math.floor((width - fields.length[0]) / fields.length);
+        fieldsize = Math.floor((width - fields[0].length) / fields.length);
         //fieldsize = Math.floor(width / 20);
-        rackfieldsize = Math.floor((width - fields.length[0]) / racksize);
+        rackfieldsize = Math.floor((width - fields[0].length) / racksize);
         //rackfieldsize = Math.floor(width / (racksize + 1));
         console.log("w", width, fieldsize);
     } else {
@@ -1393,8 +1393,9 @@ function adaptToChangedSize() {
             input.parentElement.style.width = Math.floor(width / 5.0).toString() + "px";
         }
     }
-    let labels = document.querySelectorAll("label");
+    let labels = document.querySelectorAll(".input-label");
     for (let label of labels) {
+        console.log("label")
         label.style.fontSize = fontsizelabel;
         label.style.height = Math.floor(fieldsize * 0.8).toString() + "px";
     }
@@ -1437,7 +1438,7 @@ function initGame() {
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
     touchdevice = ('ontouchstart' in document.documentElement);
-    //touchdevice = true
+    touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
