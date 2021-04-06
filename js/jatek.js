@@ -1318,6 +1318,12 @@ function createSack() {
 }
 
 function decideOrientation() {
+    console.log("window.innerWidth", window.innerWidth);
+    console.log("document.documentElement.clientWidth", document.documentElement.clientWidth);
+    console.log("document.body.clientWidth", document.body.clientWidth);
+    console.log("window.innerHeight", window.innerHeight);
+    console.log("document.documentElement.clientHeight", document.documentElement.clientHeight);
+    console.log("document.body.clientHeight", document.body.clientHeight);
     width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     height > width ? orientation1 = "portrait" : orientation1 = "landscape";
@@ -1326,11 +1332,14 @@ function decideOrientation() {
 function adaptToChangedSize() {
     //orientation1 = "portrait";
     if (touchdevice) {
-        fieldsize = Math.floor(width / 20);
-        rackfieldsize = Math.floor(width / (racksize+2));
+        fieldsize = Math.floor((width - fields.length[0]) / fields.length);
+        //fieldsize = Math.floor(width / 20);
+        rackfieldsize = Math.floor((width - fields.length[0]) / racksize);
+        //rackfieldsize = Math.floor(width / (racksize + 1));
         console.log("w", width, fieldsize);
     } else {
-        fieldsize = Math.floor(height / 21);
+        //fieldsize = Math.floor(height / 21);
+        fieldsize = Math.floor((height - fields.length) / (fields.length + 4));
         rackfieldsize = fieldsize;
         console.log("h", height, fieldsize);
     }
@@ -1387,10 +1396,10 @@ function adaptToChangedSize() {
     let labels = document.querySelectorAll("label");
     for (let label of labels) {
         label.style.fontSize = fontsizelabel;
-        label.style.height = Math.floor(fieldsize * 1).toString() + "px";
+        label.style.height = Math.floor(fieldsize * 0.8).toString() + "px";
     }
     try {
-        document.querySelector("#arrow").style.fontSize = fontsizeletter//Math.floor((fieldsize - 2) * 0.8).toString() + "px";
+        document.querySelector("#arrow").style.fontSize = fontsizelette
     } catch (err) { }
     try {
         popup1.style.fontSize = fontsizebutton;
