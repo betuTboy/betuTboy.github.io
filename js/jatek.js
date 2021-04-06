@@ -1332,20 +1332,17 @@ function decideOrientation() {
 function adaptToChangedSize() {
     //orientation1 = "portrait";
     if (touchdevice) {
-        fieldsize = Math.floor((width - fields[0].length) / fields.length);
-        //fieldsize = Math.floor(width / 20);
+        fieldsize = Math.floor((width - fields[0].length) / (fields.length + 1));
         rackfieldsize = Math.floor((width - fields[0].length) / racksize);
-        //rackfieldsize = Math.floor(width / (racksize + 1));
         console.log("w", width, fieldsize);
     } else {
-        //fieldsize = Math.floor(height / 21);
         fieldsize = Math.floor((height - fields.length) / (fields.length + 4));
         rackfieldsize = fieldsize;
         console.log("h", height, fieldsize);
     }
-    fontsizeletter = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
-    fontsizebutton = Math.floor((fieldsize - 3) * 0.7).toString() + "px";
-    fontsizelabel = Math.floor((fieldsize - 3) * 0.5).toString() + "px";
+    fontsizeletter = Math.floor(fieldsize * 0.8).toString() + "px";
+    fontsizebutton = Math.floor(fieldsize * 0.7).toString() + "px";
+    fontsizelabel = Math.floor(fieldsize * 0.4).toString() + "px";
     for (let rindex = 0; rindex < fields.length; rindex++) {
         for (let cindex = 0; cindex < fields[0].length; cindex++) {
             fields[rindex][cindex].style.width = fieldsize.toString() + "px";
@@ -1375,9 +1372,9 @@ function adaptToChangedSize() {
     let buttons = document.querySelectorAll(".UI-button");
     for (let button of buttons) {
         if (touchdevice) {
-            button.style.fontSize = fontsizebutton * 1.5;
-            button.parentElement.style.width = Math.floor(width / 4.4).toString() + "px";
-            button.style.width = Math.floor(width / 4.4).toString() + "px";
+            button.style.fontSize = fontsizebutton;
+            button.parentElement.style.width = Math.floor(width / 4.1).toString() + "px";
+            button.style.width = Math.floor(width / 4.1).toString() + "px";
             button.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
         }
         else{
@@ -1390,7 +1387,7 @@ function adaptToChangedSize() {
         input.style.fontSize = fontsizebutton;
         input.style.height = Math.floor(fieldsize * 1).toString() + "px";
         if (touchdevice) {
-            input.parentElement.style.width = Math.floor(width / 5.0).toString() + "px";
+            input.parentElement.style.width = Math.floor(width / 4.2).toString() + "px";
         }
     }
     let labels = document.querySelectorAll(".input-label");
@@ -1438,7 +1435,7 @@ function initGame() {
     if ('draggable' in div || ('ondragstart' in div && 'ondrop' in div))
         console.log("Drag and Drop API is supported!");
     touchdevice = ('ontouchstart' in document.documentElement);
-    //touchdevice = true
+    touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
