@@ -12,6 +12,7 @@ body{
 
 #board-rack{
     display: inline-block;
+    text-align: center;
 }
 
 #board-form, #rack-form{

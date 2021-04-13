@@ -254,6 +254,8 @@ let arrowposition = [];
 let touchdevice;
 let orientation1;
 
+let rect;
+
 function createTd(fieldtype, parent, id) {
     let td = document.createElement("td");
     td.setAttribute("id", id);
@@ -1152,8 +1154,9 @@ function displayMessage(legend, message, command1, command2) {
     }
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
-    popup1.style.left = Math.floor(rectb.left + (rectb.width-250) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height-150) / 2).toString() + "px";
+    let rectp = getElementPosition(form1);
+    popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
 
 function destroyPopup() {
@@ -1172,7 +1175,7 @@ function createPopup(tfield) {
     popup1.appendChild(form1);
     let table1 = document.createElement("table");
     form1.appendChild(table1);
-    const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    //const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     let k = 1;
     for (i = 0; i < letters.length / 7 + 1; i++) {
         let row1 = document.createElement("tr");
@@ -1196,9 +1199,9 @@ function createPopup(tfield) {
     }
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
-    let rectp = getElementPosition(popup1);
-    popup1.style.left = Math.floor(rectb.left + (rectb.width-250) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height-150) / 2).toString() + "px";
+    let rectp = getElementPosition(form1);
+    popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
 
 function changeJoker(ev) {
@@ -1215,7 +1218,7 @@ function displaySelectLanguage() {
     popup1.setAttribute("class", "popup");
     popup1.style.fontSize = fontsizebutton;
     gamediv.appendChild(popup1);
-    form1 = document.createElement("form");
+    let form1 = document.createElement("form");
     form1.setAttribute("class", "popupcontent");
     form1.style.background = "#555";
     popup1.appendChild(form1);
@@ -1230,7 +1233,7 @@ function displaySelectLanguage() {
     table1.appendChild(tr1);
     let td1 = document.createElement("td");
     tr1.appendChild(td1);
-    hunbutton = document.createElement("button");
+    let hunbutton = document.createElement("button");
     hunbutton.style.display = "inline-block";
     hunbutton.style.border = "none";
     hunbutton.style.background = "#555";
@@ -1240,7 +1243,7 @@ function displaySelectLanguage() {
     td1.appendChild(hunbutton);
     let td2 = document.createElement("td");
     tr1.appendChild(td2);
-    engbutton = document.createElement("button");
+    let engbutton = document.createElement("button");
     engbutton.style.display = "inline-block";
     engbutton.style.border = "none";
     engbutton.style.background = "#555";
@@ -1250,8 +1253,9 @@ function displaySelectLanguage() {
     td2.appendChild(engbutton);
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
-    popup1.style.left = Math.floor(rectb.left + (rectb.width-375) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height-175) / 2).toString() + "px";
+    let rectp = getElementPosition(form1);
+    popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
+    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
 
 function selectLanguage(language) {
@@ -1392,10 +1396,10 @@ function adaptToChangedSize() {
     }
     let labels = document.querySelectorAll(".input-label");
     for (let label of labels) {
-        console.log("label")
         label.style.fontSize = fontsizelabel;
         label.style.height = Math.floor(fieldsize * 0.8).toString() + "px";
     }
+    document.querySelector("h1").style.fontSize = fontsizebutton;
     try {
         document.querySelector("#arrow").style.fontSize = fontsizelette
     } catch (err) { }
@@ -1425,8 +1429,9 @@ function adaptToTouchDevice() {
     }
 }
 
-function getElementPosition(element) {
+function getElementPosition(element) { 
     let rect = element.getBoundingClientRect();
+    console.log("rect", rect);
     return rect;
 }
 
