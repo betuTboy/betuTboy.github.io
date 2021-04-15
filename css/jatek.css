@@ -138,6 +138,8 @@ body{
 
 .UI-button:disabled{
     color:rgb(194, 202, 194); 
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .UI-button:focus{
@@ -204,13 +206,6 @@ p{
 
 h1{
     font-family: inherit;
-   /* margin: 5px;
-    padding: 10px;
-    height: 300px;
-    background-image: url('/img/szolo.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-size: 100%;*/
 }
 
 ul{
@@ -227,6 +222,7 @@ ul{
     font-family: inherit;
     position: fixed;
     display: inline-block;
+    /*text-align: center;*/
     cursor: pointer;
     z-index: 3;
 }

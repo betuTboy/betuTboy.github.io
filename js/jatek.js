@@ -1238,7 +1238,7 @@ function displaySelectLanguage() {
     hunbutton.style.border = "none";
     hunbutton.style.background = "#555";
     hunbutton.type = "button";
-    hunbutton.innerHTML = '<img src="img/animated-hungary-flag-image-0014.gif" border="0" style="background-color=#555" alt="animated-hungary-flag-image-0014" />';
+    hunbutton.innerHTML = '<img src="img/animated-hungary-flag-image-0014.gif" border="0" style="background-color=#555 width=${4*fieldsize}" alt="animated-hungary-flag-image-0014" />';
     hunbutton.setAttribute("onclick", "selectLanguage('hun')");
     td1.appendChild(hunbutton);
     let td2 = document.createElement("td");
@@ -1248,7 +1248,7 @@ function displaySelectLanguage() {
     engbutton.style.border = "none";
     engbutton.style.background = "#555";
     engbutton.type = "button";
-    engbutton.innerHTML = '<img src="img/animated-great-britain-flag-image-0025.gif" border="0" style="background-color=#555" alt="animated-great-britain-flag-image-0025" />';
+    engbutton.innerHTML = '<img src="img/animated-great-britain-flag-image-0025.gif" border="0" style="background-color=#555 width=${4*fieldsize}" alt="animated-great-britain-flag-image-0025" />';
     engbutton.setAttribute("onclick", "selectLanguage('eng')");
     td2.appendChild(engbutton);
     let boardandrack = document.querySelector("#board-rack");
@@ -1256,6 +1256,7 @@ function displaySelectLanguage() {
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
     popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    console.log("rectb.left=", rectb.left, "rectb.width=", rectb.width, "rectp.width=", rectp.width, "popup1.style.left",  popup1.style.left);
 }
 
 function selectLanguage(language) {
@@ -1328,7 +1329,7 @@ function decideOrientation() {
     console.log("window.innerHeight", window.innerHeight);
     console.log("document.documentElement.clientHeight", document.documentElement.clientHeight);
     console.log("document.body.clientHeight", document.body.clientHeight);
-    width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
     height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     height > width ? orientation1 = "portrait" : orientation1 = "landscape";
 }
@@ -1420,7 +1421,6 @@ function adaptToTouchDevice() {
         document.querySelector("#top-form").style.textAlign = "center";
         document.querySelector("#game-div").style.textAlign = "center";
         document.querySelector("#bottom-form").style.textAlign = "center";
-
     }
     else {
         document.querySelector("#dashboard").style.display = "inline-block";
