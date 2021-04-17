@@ -1,18 +1,22 @@
-h1{
+
+#game-rules{
+    background-color:rgb(235, 235, 235);
+}
+
+h1, h3{
     font-family: inherit;
-    margin: 5px;
-    padding: 10px;
+    margin: 2%;
     /*height: 300px;*/
-    background-image: url('/img/szolo.png');
-    background-repeat: no-repeat;
+    /*background-image: url('/img/szolo.png');*/
+    /*background-repeat: no-repeat;*/
     /*background-attachment: fixed;*/
-    background-size: 80%;
+    /*background-size: 80%*/;
 }
 
 p{
+    margin: 2%;
     font-family: inherit;
     text-align: justify;
-    margin: 10%;
 }
 
 ul{
@@ -20,7 +24,3 @@ ul{
     list-style-type: none;
 }
 
-#game-rules{
-    background-color:rgb(235, 235, 235);
-    margin: 2%;
-}

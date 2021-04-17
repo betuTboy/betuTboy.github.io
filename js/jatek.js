@@ -930,7 +930,7 @@ function resultText() {
     else{    
         turn1 = document.getElementById("turn").value.split('/')[0];
     }
-    let rtext = `<div>A keresztrejtvény kitöltöttsége: ${fillrate}%-os.</div><br><div>A fordulók száma: ${turn1}</div><br><div>A tétlen fordulók száma: ${idleturns}</div><br><div>Az elért pontszám: ${score}</div><br><div>Az összes játékban töltött idő: ${totaltime} másodperc.</div> `
+    let rtext = `<div>A keresztrejtvény kitöltöttsége: ${fillrate}%</div><br><div>A fordulók száma: ${turn1}</div><br><div>A tétlen fordulók száma: ${idleturns}</div><br><div>Az elért pontszám: ${score}</div><br><div>Az összes játékban töltött idő: ${totaltime} másodperc</div> `
     return rtext;
 }
 

@@ -1,24 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/jatekszabaly.css">
-    <title>Szóló játékszabály</title>
+    <title>Ne hagyd üresen! - játékszabály</title>
 </head>
 
 <body>
     <div id="game-rules">
         <div id="rulesdiv">
-            <h1>Szóló :)</h1>
-            <p style="margin:5px">A játék célja a keresztrejtvény minél kevesebb fordulón belüli teljes kitöltése, és a lehető
-                legmagasabb pontszám elérése. Fordulónként 100 másodperc áll a játékos rendelkezésére a szóalkotásra. A lerakott
-                új betűknek egy vonalba kell esniük. Minden forduló végén csak a használt szótárban található szavak maradnak
-                a táblán. A  magyar szótár több mint 38000 szót tartalmaz, az angol pedig több mint 21000-t. Összesen három olyan fordulót követően, amelyben nem kerül
-                új betű a táblára, a játék automatikusan véget ér. Az egy fordulóban táblára került betűk darabonként egy
-                pontot érnek, de ha négy vagy több betű kerül egyszerre a táblára, akkor azokért a következő jutalompontok
+            <h1>Ne hagyd üresen! - játékszabály</h1>
+            <p>A Ne hagyd üresen! egy keresztrejtvény-készítő betűjáték, ahol a keresztrejtvényfejtéssel ellentétben,
+                nincsenek meghatározások, a négyzetháló teljes kitöltésében csak a kihúzott betűk, az időkorlát, a saját előrelátásunk, 
+                szókincsünk, és végül, a beépített szótár korlátoz bennünket. (Szóval elég sok dolog. :) ) A játék célja a négyzetháló 
+                minél kevesebb fordulón belüli teljes kitöltése, és a lehető legmagasabb pontszám elérése. Fordulónként 100 másodperc 
+                áll a játékos rendelkezésére a szóalkotásra. A lerakott új betűknek egy vonalba kell esniük, és minden forduló végén
+                csak a beépített szótárban található szavak maradhatnak a táblán. Összesen - tehát nem szükségszerűen egymást követően - 
+                három olyan fordulót követően, amelyben nem kerül új betű a táblára, a játék automatikusan véget ér. 
+            </p>
+            <h3>Kezelés</h3>
+            <p>A játék számítógépen és mobil eszközökön egyaránt használható. Ajánlott böngésző a Google Chrome.
+                Számítógépen két lehetőség áll rendelkezésre a betűk táblára való helyezésére. A tartóról az egér jobb oldali gombjának
+                lenyomva tartása mellett húzhatjuk őket a tábla kívánt mezőjére, vagy kattinthatunk a táblának arra a mezőjére, ahová a
+                lerakni kívánt szó első betűjét szánjuk, ekkor abban megjelenik egy nyíl, ami a lerakás irányát jelzi - ha újra rákattintunk,
+                akkor az irány vízszintesről függőlegesre változik, és viszont -, majd a tartón levő betűkre kattintunk, abban a sorrendben,
+                ahogyan a szóban követik egymást. Érintőkijelzős eszközökön csak a második lehetőség adott. Az első betű négyzetébe koppintunk,
+                majd sorban a tartón levő betűkre, ahogyan a szóban követik egymást.   
+            </p>
+            <h3>A játék menete</h3>
+            <p>Az Új játék gombra kattintással kezdeményezhetünk újabb játékot. Ha megkezdett játék során tesszük ezt, figyelmeztető üzenetet
+                kapunk arról, hogy ha továbblépünk, akkor a korábbi játékot már nem tudjuk folytatni. A Mégse gomb használatával visszatérhetünk
+                folyamatban levő játékunk folytatásához.  
+            </p>
+            <p>A játék megkezdése után minden fordulóban 10 új betű áll a rendelkezésünkre, melyből 100 másodperc (1 perc 40 másodperc)
+                alatt kell legalább egyet elhelyeznünk a táblán. A hátralevő idő pillanatnyi állását mind számjegyekkel, mind grafikusan, egy
+                folyamatjelző sáv segítségével kijelzi a program.    
+            </p>
+            <p>Ha a fordulóban nem kerül új betű a táblára, azt tétlenségként értékeli a játék. Az aktuális forduló számát, és a tétlen körök számát
+                egy közös kijelzőben "/" jellel elválasztva láthatjuk. Ha a tétlen körök száma eléri a hármat, a játék véget ér. 
+            </p>
+            <p>A Szünet gomb használatával a játék megállítható, majd folytatható. A szünet ideje alatt a tábla pillanatnyi állása, és a
+                tartón levő betűk nem láthatóak.
+            </p>
+            <p>A kihúzott betűk között - a játék megkönnyítésére - gyakran jelennek meg "*" (dzsóker) karakterek, melyek a táblára kerülésükkor,
+                egy az ábécé betűit felsoroló felugróból való választással, a kívánt betűre cserélhetőek.
+            </p>
+            <h3>Stratégia</h3>
+            <p>Az elsődleges cél, a tábla teljes kitöltése (erre utal a játék címe is), ezért nem biztos, hogy a leghosszabb kirakható szó táblára
+                helyezése a legoptimálisabb ennek az eléréséhez, miközben a másodlagos cél, a minél kevesebb fordulón belüli teljesítés, és
+                a harmadlagos cél, a pontmaximalizálás szempontja esetleg ezt kívánná meg. Érdemes a hosszabb szavakat kitölteni hamarabb, bár nem
+                feltétlenül 1-2 fordulón belül. Folyamatosan érdemes figyelni arra, hogy a keresztező szavak későbbi illeszkedésére is hagyjunk
+                lehetőleg minél több lehetőséget.      
+            </p> 
+            <h3>Pontozás</h3>  
+            <p>Az egy fordulóban táblára került betűk darabonként egy pontot érnek, de ha négy vagy több betű kerül 
+                egyszerre a táblára, akkor azokért a következő jutalompontok
                 járnak:
             </p>
             <ul>
@@ -28,7 +67,7 @@
                 <li>7 betű - 16 pont</li>
                 <li>8 betű - 32 pont</li>
             </ul>
-            <p style="margin:5px">Az eredmények rangsorolása szempontjából elsődleges a kitöltöttség százalékos aránya. Azonos
+            <p>Az eredmények rangsorolása szempontjából elsődleges a kitöltöttség százalékos aránya. Azonos
                 arány esetén a fordulók száma, továbbra is azonos eredmény esetén az elért pontszám dönt. Végső esetben azé
                 a jobb eredmény, aki kevesebb időt töltött a játékban. Jó játékot!</p>
         </div>
