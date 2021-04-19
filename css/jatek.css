@@ -136,6 +136,22 @@ body{
     width: 100%;
 }
 
+.UI-button#start-top{
+    background-color: purple; 
+}
+
+.UI-button#back-bottom{
+    background-color: brown; 
+}
+
+.UI-button#shuffle-bottom{
+    background-color: blue; 
+}
+
+.UI-button#done-bottom{
+    background-color: crimson; 
+}
+
 .UI-button:disabled{
     color:rgb(194, 202, 194); 
     opacity: 0.5;
