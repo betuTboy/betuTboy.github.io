@@ -136,19 +136,18 @@ body{
     width: 100%;
 }
 
-.UI-button#start-top{
-    background-color: purple; 
+.UI-button#start,  .UI-button#start-top{
+    background-color: purple; }
+
+.UI-button#back, .UI-button#back-bottom{
+    background-color: orange; 
 }
 
-.UI-button#back-bottom{
-    background-color: brown; 
-}
-
-.UI-button#shuffle-bottom{
+.UI-button#shuffle, .UI-button#shuffle-bottom{
     background-color: blue; 
 }
 
-.UI-button#done-bottom{
+.UI-button#done, .UI-button#done-bottom{
     background-color: crimson; 
 }
 
