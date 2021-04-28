@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="css/csisza.css">
     <link rel="stylesheet" href="css/tooltip.css">
     <title>Csisza</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y1R5KXXFR5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-Y1R5KXXFR5');
+    </script>
 </head>
 
 <body>
@@ -18,7 +27,7 @@
         </p>
     </div>
     <nav class="menubar">
-        <a href="index.html"><img src="img/csisza2.gif" alt="logó"  width="20%"></a>
+        <a href="index.html"><img src="img/csisza2.gif" alt="logó" width="20%"></a>
         <!--a class="menuitem" href="index.html">Főoldal</a>-->
         <!--<a class="menuitem" href="index.html#download">Hozzáférés</a>-->
         <a class="menuitem" href="index.html#images">Képek</a>
@@ -43,7 +52,7 @@
         interneten a játékra. Az <a target=blank href="http://www.isc.ro">ISC</a> (Internet Scrabble Club) oldalán
         kötöttem ki , letöltöttem a kliensprogramot, elkezdtem játszani és néhány évre ott is ragadtam.
         Felküzdöttem magam az átlagos játékosok szintjére. Egy időre átnyergeltem a <a target=balank
-        href="http://www.lexulous.com">Lexulousra</a> is, majd magyar nyelvű játék után néztem. Szórablót játszottam
+            href="http://www.lexulous.com">Lexulousra</a> is, majd magyar nyelvű játék után néztem. Szórablót játszottam
         időnként az akkor még létező jatek.hu oldalon. Bevallom, nem tetszett igazán, de nem találtam más lehetőséget.
         Az ottani versenyzős variánssal szemben, én a stratégiai elemeket is mutató hagyományos társasjáték módot
         preferálom. 2013-ban aztán a jatek.hu megszűnt, és legfeljebb a JÓJÁTÉK.hu oldalon játszható Szóváltás maradt
@@ -57,16 +66,17 @@
         kezdetleges verziót, miután megbizonyosodtam róla, hogy nincs olyan szógyűjtemény, ami legalább egy nem
         hivatalos scrabble-szótárnak megfelelne. Ismét december lett, volt egy szótárkezdeményem, és kedvet kaptam
         hobbi szinten kicsit programozást tanulni. A
-        <a target=blank href="https://hu.wikipedia.org/wiki/Python_(programozási_nyelv)">Python nyelvre</a>  
+        <a target=blank href="https://hu.wikipedia.org/wiki/Python_(programozási_nyelv)">Python nyelvre</a>
         esett a választásom, mert multiplatform, divatos, könnyen tanulhatónak mondják, és bár 20 évvel korábban
-        valamelyest próbálkoztam Basic-kel és C-vel, de ez nem sok nyomot hagyott bennem akkorra. </p>
+        valamelyest próbálkoztam Basic-kel és C-vel, de ez nem sok nyomot hagyott bennem akkorra.
+    </p>
     <p><a target=blank href="http://mek.oszk.hu/08400/08435/"><img style="float:right" hspace="30" width="150"
                 src="https://mek.oszk.hu/08400/08435/borito.jpg" alt="Python könyv"></a>Gérard Swinnen Tanuljunk ​meg
         programozni Python nyelven című könyvéből kezdtem el ismerkedni a nyelvvel, aztán az ebben lévő
         példaprogramok jelentették a program alapját. Arra gondoltam, hogy a szintén a jatek.hu-n
         korábban játszható Játék a betűkkelt próbálom megvalósítani, de közben folyamatosan ott motoszkált a fejemben,
         hogy valahogy a különböző betűjátékokból megismert alapelemekből mit lehetne kihozni. Aztán elkészült a tábla,
-        lehetett a tartóról betűket húzogatni rá, a program ellenőrizte szótár alapján a szavak érvényességét. 
+        lehetett a tartóról betűket húzogatni rá, a program ellenőrizte szótár alapján a szavak érvényességét.
         Kiegészítettem ezt úgy, hogy minden lépés után mutassa meg az összes lehetséges szót. Innen már csak egy
         nagyobbacska átalakítás kellett, hogy a gép is játsszon. Készült egy szerver program és egy kliens a
         játékosnak, egy pedig a gépnek. Frissült a szótár, a gépi ellenfeleket pedig már többféleképpen is lehet
@@ -106,7 +116,7 @@
         csak a táblára kerültek pótlódnak a kihúzható készletben, vagy a teljes tartó tartalma. (Az utolsó esetben,
         a tartón levő betűk készlete minden fordulóban teljesen kicserélődik.) Egy külön tartón az összes játékosnak
         rendelkezésére álló, közös betűk adhatók meg. Így például, lehet mindenkinek ugyanannyi dzsókere. (Egy betű
-        csak vagy az egyik, vagy a másik tartóra legyen beállítva, egyébként összezavarodhat a program.) Az is 
+        csak vagy az egyik, vagy a másik tartóra legyen beállítva, egyébként összezavarodhat a program.) Az is
         beállítható, hogy ezek a betűk minden körben változatlan számban rendelkezésre álljanak. A felhasznált betűk
         pontértéke lehet állandó, vagy véletlenszerű. Állandó pontértékeknél egy véletlenszerű szorzó sorsolása is
         beállítható. A kirakott szavak érvényességének ellenőrzése történhet a mellékelt szótár alapján, vagy
@@ -166,10 +176,10 @@
                                                         createOptions(0, 3, 1);
                                                     </script>
                                                 </select>
-                                                <span class="tooltiptext">Itt állítható be az ellenfelek száma. 
-                                                    0 beállítása esetén egyszemélyes játékot indít a szerver. 
+                                                <span class="tooltiptext">Itt állítható be az ellenfelek száma.
+                                                    0 beállítása esetén egyszemélyes játékot indít a szerver.
                                                     Ez nem azonos az Egyedül játszom beállítással, ahol nincs
-                                                    szerver. A játékban az ellenfelek részletes beállítására  
+                                                    szerver. A játékban az ellenfelek részletes beállítására
                                                     a Gépi ellenfelek lapon kerülhet sor.</span>
                                             </div>
                                         </td>
@@ -179,7 +189,7 @@
                                                 <input type="checkbox" name=sim id=sim value=sim>
                                                 <label for="sim">szimultán,</label>
                                                 <span class="tooltiptext">Bejelölve, a játékosok nem egymásután, hanem
-                                                    egyidejűleg alkotnak szót azonos betűkből, és a legmagasabb 
+                                                    egyidejűleg alkotnak szót azonos betűkből, és a legmagasabb
                                                     pontértékű szó kerül a táblára.</span>
                                             </div>
                                             <div class="tooltip">
@@ -197,7 +207,7 @@
                                                 <input type="radio" name="game" id="network" value="network">
                                                 <label for="single">Hálózaton játszom</label>
                                                 <span class="tooltiptext">Egy számítógépen belül több játékos
-                                                    csatlakozására ad lehetőséget (gép és ember vegyesen). 
+                                                    csatlakozására ad lehetőséget (gép és ember vegyesen).
                                                     Távoli játékban való kipróbálása nem történt, valószínűleg
                                                     nem is működik. Használata nem ajánlott.</span>
                                             </div>
@@ -291,7 +301,7 @@
                             <input type="checkbox" name="change-num" id="change-num" value="change-num">
                             <label for="change-num">A cserék száma számítson bele a passzok számába</label>
                             <span class="tooltiptext">A játék véget ér, ha minden játékos két egymást követő fordulóban
-                                passzol. Ha ez a lehetőség be van jelölve, akkor a cserék is passzolásnak számítanak a 
+                                passzol. Ha ez a lehetőség be van jelölve, akkor a cserék is passzolásnak számítanak a
                                 játék befejezése szempontjából.
                             </span>
                         </div>
@@ -351,7 +361,7 @@
                                     <label for="shared">Közös betűk</label>
                                     <span class="tooltiptext">Ha be van jelölve, akkor egy külön tartón az összes
                                         játékos számára rendelkezésre álló betűk adhatók meg. Ha egy betű mindkét
-                                        tartón szerepelhet, az a táblára kerülő szavak széteséséhez vezethez, 
+                                        tartón szerepelhet, az a táblára kerülő szavak széteséséhez vezethez,
                                         ezért ezt érdemes elkerülni. Szimultán játékban nem állítható be.</span>
                                 </div>
                                 <div class="to-the-right">
@@ -613,9 +623,9 @@
         <a target=blank href="img/jatek6.png"><img class="imagcollections" height="150" src="img/jatek6.png"
                 alt="játék 6"></a>
         <a target=blank href="img/jatek8.png"><img class="imagcollections" height="150" src="img/jatek8.png"
-                alt="játék 8"></a>   
+                alt="játék 8"></a>
         <a target=blank href="img/jatek10.png"><img class="imagcollections" height="150" src="img/jatek10.png"
-                alt="játék 10"></a>            
+                alt="játék 10"></a>
     </p>
     <h3 id="videos">Videók</h3>
     <p>
