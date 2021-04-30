@@ -740,6 +740,10 @@ function lockOffUI() {
     }
 }
 
+
+//displayMessage("Figyelem!", "Biztos, hogy passzolsz ebben a fordulóban?", pass1, cancel);
+
+
 function validateNewWords() {
     tryToRemoveArrow();
     arrowposition = [];
@@ -1177,7 +1181,6 @@ function createPopup(tfield) {
     popup1.appendChild(form1);
     let table1 = document.createElement("table");
     form1.appendChild(table1);
-    //const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     let k = 1;
     for (i = 0; i < letters.length / 7 + 1; i++) {
         let row1 = document.createElement("tr");
