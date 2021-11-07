@@ -12,17 +12,21 @@
 <body>
     <div id="game-rules">
         <div id="rulesdiv">
+            <br>
             <h1>Ne hagyd üresen! - játékszabály</h1>
             <p>A Ne hagyd üresen! egy keresztrejtvény-készítő betűjáték, ahol a keresztrejtvényfejtéssel ellentétben,
-                nincsenek meghatározások, a négyzetháló teljes kitöltésében csak a kihúzott betűk, az időkorlát, a saját előrelátásunk, 
+                nincsenek meghatározások, a négyzetháló teljes kitöltésében csak a kisorsolt betűk, az időkorlát, a saját előrelátásunk, 
                 szókincsünk, és végül, a beépített szótár korlátoz bennünket. (Szóval elég sok dolog. :) ) A játék célja a négyzetháló 
                 minél kevesebb fordulón belüli teljes kitöltése, és a lehető legmagasabb pontszám elérése. Fordulónként 100 másodperc 
                 áll a játékos rendelkezésére a szóalkotásra. A lerakott új betűknek egy vonalba kell esniük, és minden forduló végén
                 csak a beépített szótárban található szavak maradhatnak a táblán. Összesen - tehát nem szükségszerűen egymást követően - 
                 három olyan fordulót követően, amelyben nem kerül új betű a táblára, a játék automatikusan véget ér. 
             </p>
+            <p>Facebook csoport: <a target=blank href="https://www.facebook.com/groups/660172677931969" style="color: lightskyblue; 
+                background-color: white; font-size: 20px"><span style="letter-spacing: 5px"><b> f </b></span></a></p>
+            <p>Bemutató videó: </p>
             <h3>Kezelés</h3>
-            <p>A játék számítógépen és mobil eszközökön egyaránt használható. Ajánlott böngésző a Google Chrome.
+            <p>A játék számítógépen és mobil eszközökön egyaránt használható.
                 Számítógépen két lehetőség áll rendelkezésre a betűk táblára való helyezésére. A tartóról az egér bal oldali gombjának
                 lenyomva tartása mellett húzhatjuk őket a tábla kívánt mezőjére, vagy kattinthatunk a táblának arra a mezőjére, ahová a
                 lerakni kívánt szó első betűjét szánjuk, ekkor abban megjelenik egy nyíl, ami a lerakás irányát jelzi - ha újra rákattintunk,
@@ -31,16 +35,25 @@
                 majd sorban a tartón levő betűkre, ahogyan a szóban követik egymást.   
             </p>
             <h3>A játék menete</h3>
+            <p>A játék indításakor magyar és angol nyelv közül választhatunk. Pillanatnyilag 7 egyre nehezedő tábla áll rendelkezésünkre a 
+                játékhoz. Minden forduló után a pillanatnyi állás automatikus mentése megtörténik a saját számítógépünkre. Ha a játék indításakor
+                a program mentett játékot (félbeszakadt játékot) észlel, akkor annak folytatását felajánlja.
+            </p>
             <p>Az Új játék gombra kattintással kezdeményezhetünk újabb játékot. Ha megkezdett játék során tesszük ezt, figyelmeztető üzenetet
                 kapunk arról, hogy ha továbblépünk, akkor a korábbi játékot már nem tudjuk folytatni. A Mégse gomb használatával visszatérhetünk
                 folyamatban levő játékunk folytatásához.  
             </p>
-            <p>A játék megkezdése után minden fordulóban 10 új betű áll a rendelkezésünkre, melyből 100 másodperc (1 perc 40 másodperc)
+            <p>A játék folyamán minden fordulóban 10 új betű áll a rendelkezésünkre, melyből 100 másodperc (1 perc 40 másodperc)
                 alatt kell legalább egyet elhelyeznünk a táblán. A hátralevő idő pillanatnyi állását mind számjegyekkel, mind grafikusan, egy
                 folyamatjelző sáv segítségével kijelzi a program.    
             </p>
             <p>Ha a fordulóban nem kerül új betű a táblára, azt tétlenségként értékeli a játék. Az aktuális forduló számát, és a tétlen körök számát
                 egy közös kijelzőben "/" jellel elválasztva láthatjuk. Ha a tétlen körök száma eléri a hármat, a játék véget ér. 
+            </p>
+            <p>
+               A Keresés gomb használatával győződhetünk meg arról, hogy a szótárban megtalálható-e a szó, amit ki szeretnénk rakni. Ez hasznos lehet
+               akkor, amikor az adott fordulóban csak egy rövidebb, tartalmazott szót rakunk ki, de szeretnénk meggyőződni arról, hogy a tartalmazó, 
+               hosszabb szó is érvényes. Vörös szín jelzi, ha a szó nem érvényes, a szöveg narancsszínűre vált, ha érvényes.   
             </p>
             <p>A Szünet gomb használatával a játék megállítható, majd folytatható. A szünet ideje alatt a tábla pillanatnyi állása és a
                 tartón levő betűk nem láthatóak.
@@ -51,16 +64,27 @@
             <p>A táblára került, de még nem véglegesített betűk a Vissza gombbal helyezhetők vissza a tartóra. A tartón levő betűk sorrendje
                 a Keverés gombbal változtatható meg.
             </p>
+            <p>Minden egyes betű táblára kerülésekor a program ellenőrzi, hogy a táblán lévő betűk a szótárban megtalálható, érvényes szavakat alkotnak-e.
+                Ha igen, akkor a frissen táblára került betűk színe sárgára változik. Szintén kijelzi, hogy a lerakott betűk irányában, és az arra
+                merőleges lehetséges helyeken, milyen lehetőségeket kínál a szótár a további fordulókra:
+                <ul>
+                    <li><img class="circle" src="img/red0.png"> - piros körben 0 jelzi, ha a jelenleg kirakott betűk véglegesítésével az adott irányban a szó már nem bővíthető, és így a tábla
+                        teljes kitöltése már nem lesz lehetséges</li>
+                    <li><img class="circle" src="img/yellow1.png"> - sárga körben 1 jelzi, ha egyetlen lehetőség marad az adott irányban a szó megtoldására</li>
+                    <li><img class="circle" src="img/green3.png"> - zöld körben 1-9 számjegy jelzi, hogy az adott irányban pontosan hány lehetőségünk marad a szó bővítésére</li>
+                    <li><img class="circle" src="img/green9plus.png"> - zöld körben 9+ jelzi, hogy 10 vagy annál több, azaz sok lehetőségünk marad a szó további alakítására</li>
+                </ul>        
+            </p>
             <p>A táblára rakott betűk véglegesítése a Kész gombbal történik, ekkor az összes újonnan keletkezett szó érvényességének ellenőrzése
                  megtörténik a beépített szótár alapján. Ha valamelyik szó nem szerepel a szótárban, akkor egy felugró üzenet figyelmeztet erre.
                  A Rendben gomb megnyomása után újra próbálkozhatunk a szóalkotással.  
             </p>
             <h3>Stratégia</h3>
-            <p>Az elsődleges cél, a tábla teljes kitöltése (erre utal a játék címe is), ezért nem biztos, hogy a leghosszabb kirakható szó táblára
+            <p>Az elsődleges cél, a tábla teljes kitöltése (erre utal a játék neve is), ezért nem biztos, hogy a leghosszabb kirakható szó táblára
                 helyezése a legoptimálisabb ennek az eléréséhez, miközben a másodlagos cél, a minél kevesebb fordulón belüli teljesítés, és
-                a harmadlagos cél, a pontmaximalizálás szempontja esetleg ezt kívánná meg. Érdemes a hosszabb szavakat kitölteni hamarabb, bár nem
+                a harmadlagos cél, a pontmaximalizálás szempontja esetleg ezt kívánná meg. Érdemes a hosszabb tereket kitölteni hamarabb, bár nem
                 feltétlenül 1-2 fordulón belül. Folyamatosan érdemes figyelni arra, hogy a keresztező szavak későbbi illeszkedésére is hagyjunk
-                lehetőleg minél több lehetőséget.      
+                minél több lehetőséget.      
             </p> 
             <h3>Pontozás</h3>  
             <p>Az egy fordulóban táblára került betűk darabonként egy pontot érnek, de ha négy vagy több betű kerül 
@@ -73,6 +97,7 @@
                 <li>6 betű - 8 pont</li>
                 <li>7 betű - 16 pont</li>
                 <li>8 betű - 32 pont</li>
+                <li>9 betű - 64 pont</li>
             </ul>
             <p>Az eredmények rangsorolása szempontjából elsődleges a kitöltöttség százalékos aránya. Azonos
                 arány esetén a fordulók száma, továbbra is azonos eredmény esetén az elért pontszám dönt. Végső esetben azé

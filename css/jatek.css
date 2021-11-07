@@ -2,7 +2,19 @@
 body{
     margin: 2px;
     font-family:  "Sans serif", "Times New Roman", Times;
-    background-color:rgb(235, 235, 235);   
+    background-color:rgb(235, 235, 235); 
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
+}
+
+img{ 
+   user-select: none;
+   -moz-user-select: none;
+   -webkit-user-drag: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
 }
 
 #game-div{
@@ -13,6 +25,10 @@ body{
 #board-rack{
     display: inline-block;
     text-align: center;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
 }
 
 #board-form, #rack-form{
@@ -22,7 +38,6 @@ body{
 #rack-form{
     padding-top: 30px;
 }
-
 
 .normal-field, .rack-field{
     text-align: center;
@@ -36,7 +51,7 @@ body{
 
 .wall-field{
     background-color: black;
-    border: none;
+    border: none; 
     text-decoration: none;
     margin: 0px;
     padding: 0px;
@@ -47,7 +62,7 @@ body{
     width: 100%;
     height: 100%;
     background-color:green;
-    border: none;
+    border: none;  
     text-decoration: none;
     margin: 0px;
     padding: 0px;
@@ -60,9 +75,6 @@ body{
     font-family: inherit;
     height: 100%;
     width: 100%;
-    border-style: solid;
-    border-width: 1px;
-    border-color:  rgb(21, 202, 202);
     background-color: rgb(21, 202, 202);
     color: black;
     text-align: center;
@@ -81,14 +93,12 @@ body{
 }
 
 .letter-on-rack{
-    border-style: solid;
-    border-width: 1px;
-    border-color: red;
+    color: black;
     z-index:1;
 }
 
 .letter-on-board{
-    border: none;
+    color: black;
 }
 
 .joker{
@@ -105,6 +115,10 @@ body{
     border-color:white;
     margin: 0.5%;
     padding: 0.5%;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
 }
 
 #top-form #bottom-form{
@@ -137,18 +151,35 @@ body{
 }
 
 .UI-button#start,  .UI-button#start-top{
-    background-color: purple; }
+    background-color: purple;
+}
+
+.UI-button#start:hover,  .UI-button#start-top:hover{
+    background-color: rgb(160, 88, 160); 
+}
 
 .UI-button#back, .UI-button#back-bottom{
     background-color: orange; 
+}
+
+.UI-button#back:hover, .UI-button#back-bottom:hover{
+    background-color: rgb(240, 189, 94); 
 }
 
 .UI-button#shuffle, .UI-button#shuffle-bottom{
     background-color: blue; 
 }
 
+.UI-button#shuffle:hover, .UI-button#shuffle-bottom:hover{
+    background-color: rgb(87, 87, 172); 
+}
+
 .UI-button#done, .UI-button#done-bottom{
     background-color: crimson; 
+}
+
+.UI-button#done:hover, .UI-button#done-bottom:hover{
+    background-color: rgb(192, 94, 114); 
 }
 
 .UI-button:disabled{
@@ -158,11 +189,16 @@ body{
 }
 
 .UI-button:focus{
-    outline: none;
+    border: 1px;
+    border-color: darkblue;
 }
 
 .UI-button::-moz-focus-inner{
-    border: 0;
+    border: 0px;
+}
+
+.UI-button:hover{
+    background-color: #7cc27f;
 }
 
 input{
@@ -177,6 +213,10 @@ input{
     border-radius: 5px;  
     width: 100%;
     height: 100%;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
 }
 
 input:focus{
@@ -186,6 +226,16 @@ input:focus{
 input[type=text]{
     text-align: center;
     caret-color: rgb(21, 202, 202);
+}
+
+.textinput{
+
+    text-align: left;
+    color: black;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
 }
 
 #progressbar-container{
@@ -204,13 +254,12 @@ b{
     color: red;
     background-color: lightgrey; 
     font-weight: 900;
-    -webkit-touch-callout: none;    /* iOS Safari */
-    -webkit-user-select: none;      /* Safari */
-    -khtml-user-select: none;       /* Konqueror HTML */
-    -moz-user-select: none;         /* Old versions of Firefox */
-    -ms-user-select: none;          /* Internet Explorer/Edge */
-    user-select: none;              /* Non-prefixed version, currently
-                                       supported by Chrome, Edge, Opera and Firefox */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 p{
@@ -237,7 +286,6 @@ ul{
     font-family: inherit;
     position: fixed;
     display: inline-block;
-    /*text-align: center;*/
     cursor: pointer;
     z-index: 3;
 }
@@ -245,8 +293,8 @@ ul{
 .popup .popupcontent {
     font-family: inherit;
     visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 0.3s;
+    animation: fadeIn 0.3s;
     background-color: #555;
     color: #fff;
     text-align: center;
@@ -270,7 +318,6 @@ ul{
 #game-results{
     font-family: inherit;
     display: inline-block;  
- /*   width: 40%; */
     vertical-align: top;
 }
 
@@ -280,7 +327,6 @@ ul{
     padding: 8px;
     background-color: #555;
     color: #fff;    
-   /* display: inline-block; */
 }
 
 .words-table{
@@ -289,3 +335,50 @@ ul{
     padding: 5px;
 }
 
+.numberofwords{
+    color: black;
+    border-radius: 50%;
+    display: inline-block;
+    z-index:2;
+    position: absolute;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
+}
+
+.red{
+    background-color: red;
+}
+
+.yellow{
+    background-color: yellow;
+}
+
+.green{
+    background-color: #4CAF50;
+}
+
+#start-screen{
+    color: white;
+    background-color: black;
+    text-align: center;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
+}
+
+#yes-mark{
+    z-index:10;
+    position: absolute; 
+}
+
+#start-button{
+    border-color: lightblue; background-color: rgb(10, 10, 78);
+    color: white;
+}
+
+#start-button:hover{
+    background-color: rgb(59, 59, 161);
+}
