@@ -343,8 +343,6 @@ const textshun = {
     "14": "", "15": "", "16": "", "17": "", "18": ""
 };
 
-
-
 const boards = [
     [board_1, "/img/board1.png"],
     [board_2, "/img/board2.png"],
@@ -378,8 +376,8 @@ let rackfields = [];
 let fieldsize = 29;
 let height;
 let width;
-let fontsizeletter;
-let fontsizebutton;
+let fontsizeletter = "20px";
+let fontsizebutton = "20px";
 let fontsizelabel;
 let numberlabelsize;
 let numberfontsize;
@@ -1647,7 +1645,9 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     button1.className = "UI-button";
     button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
     button1.style.fontSize = fontsizebutton;
+    button1.style.marginRight = "20px"
     td2.appendChild(button1);
+    td2.style.marginRight = "20px"
     if (command2) {
         let button2 = document.createElement("button");
         button2.innerHTML = "Mégsem";
@@ -1665,8 +1665,13 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     let boardandrack = document.querySelector(elementunder);
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
-    popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    if (touchdevice){
+        popup1.style.left = "0px";
+        popup1.style.top = "0px";
+    } else{
+        popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
+        popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    }
 }
 
 function destroyPopup() {
@@ -1710,16 +1715,17 @@ function createPopup(tfield) {
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
-    popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    if (touchdevice){
+        popup1.style.left = "0px";
+        popup1.style.top = "0px";
+    } else {
+        popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
+        popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    }
     console.log("rectb.left, rectb.width, rectp.width", rectb.left, rectb.width, rectp.width);
-   /* popup1.style.left = "0px";
-    popup1.style.top = "0px"; */
 }
 
 function changeJoker(tfield, ev) {
-    /*let tfield = popup1.parentElement;*/
-
     tfield.children[0].setAttribute("value", ev.target.value);
     popup1.remove();
     lockOffUI();
@@ -1817,8 +1823,13 @@ function displayWordSearch() {
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
-    popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    if (touchdevice){
+        popup1.style.left = "0px";
+        popup1.style.top = "0px";
+    } else {
+        popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
+        popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    }
 }
 
 function wordSearch(ev) {
@@ -1855,7 +1866,7 @@ function displayTime() {
         try {
             destroyPopup();
         } catch (err) { }
-        if (validateNewWords()) {      /*ez lehet, hogy nem jó ötlet*/
+        if (validateNewWords()) {
             pass1();
         }
         if (ingame) {
@@ -2050,7 +2061,9 @@ function initGame() {
 function checkSavedGame() {
     let savedgames = localStorage.getItem('SavedGame');
     savedgame = JSON.parse(savedgames);
-    if (savedgame) {
+    if (savedgame) {   
+
+
         displayMessage("Figyelem!", "Az előző játék félbeszakadt.<br> Szeretnéd folytatni?", initGame, setupNewGame, "setup-new-game", "#setup-new-game");
     } else {
         setupNewGame();
