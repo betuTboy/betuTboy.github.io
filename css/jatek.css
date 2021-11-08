@@ -284,7 +284,7 @@ ul{
 
 .popup {
     font-family: inherit;
-    position: fixed;
+    position: absolute;
     display: inline-block;
     cursor: pointer;
     z-index: 3;
@@ -301,7 +301,7 @@ ul{
     border-radius: 6px;
     padding: 8px;
     margin: 0px; 
-    position: fixed;
+   /* position: fixed;*/
     z-index: 3;
 }
 
@@ -360,6 +360,8 @@ ul{
 }
 
 #start-screen{
+    padding-left:3%;
+    padding-right:3%;
     color: white;
     background-color: black;
     text-align: center;

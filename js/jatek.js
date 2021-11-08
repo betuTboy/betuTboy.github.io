@@ -846,6 +846,7 @@ function loadGame() {
     let rackl = localStorage.getItem('Rack');
     rackl1 = JSON.parse(rackl);
     drawRack(rackl1);
+    adaptToChangedSize();   //   Talán ez hiányzik mobilon
     let rackfields = document.querySelectorAll(".rack-field");
     for (let lettercount = 0; lettercount < rackl1.length; lettercount++) {
         let value = rackl1[lettercount][0];
@@ -1678,7 +1679,8 @@ function createPopup(tfield) {
     popup1 = document.createElement("div");
     popup1.setAttribute("class", "popup");
     popup1.style.fontSize = fontsizeletter;
-    tfield.appendChild(popup1);
+    parente = document.querySelector("#board-rack");
+    parente.appendChild(popup1);
     let form1 = document.createElement("form");
     form1.setAttribute("class", "popupcontent");
     popup1.appendChild(form1);
@@ -1700,7 +1702,7 @@ function createPopup(tfield) {
             input1.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
             input1.draggable = false;
             input1.readonly = true;
-            input1.addEventListener("click", changeJoker);
+            input1.addEventListener("click", (ev) => changeJoker(tfield, ev));
             input1.setAttribute("value", letters[k][0]);
             k++;
         }
@@ -1710,10 +1712,14 @@ function createPopup(tfield) {
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
     popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    console.log("rectb.left, rectb.width, rectp.width", rectb.left, rectb.width, rectp.width);
+   /* popup1.style.left = "0px";
+    popup1.style.top = "0px"; */
 }
 
-function changeJoker(ev) {
-    let tfield = popup1.parentElement;
+function changeJoker(tfield, ev) {
+    /*let tfield = popup1.parentElement;*/
+
     tfield.children[0].setAttribute("value", ev.target.value);
     popup1.remove();
     lockOffUI();
@@ -1773,11 +1779,12 @@ function displayWordSearch() {
         destroyPopup();
     } catch (err) { }
     lockOnUI();
-    let gamediv = document.getElementById("game-div");
+    /*let gamediv = document.getElementById("game-div");*/
+    let parente = document.getElementById("board-rack");
     popup1 = document.createElement("div");
     popup1.setAttribute("class", "popup");
     popup1.style.fontSize = fontsizebutton;
-    gamediv.appendChild(popup1);
+    parente.appendChild(popup1);
     let form1 = document.createElement("form");
     form1.setAttribute("class", "popupcontent");
     popup1.appendChild(form1);
@@ -1813,9 +1820,6 @@ function displayWordSearch() {
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
     popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
-
-
-
 
 function wordSearch(ev) {
     ev.preventDefault();
@@ -2014,7 +2018,6 @@ function initGame() {
         console.log("Drag and Drop API is supported!");
     document.querySelector("#start-screen").style.display = "none";
     document.querySelector("h2").style.display = "inline-block";
-    touchdevice = ('ontouchstart' in document.documentElement);
     //touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
@@ -2063,5 +2066,13 @@ function setupNewGame() {
     placeYesMarks();
 }
 
-checkSavedGame();
+function initStartScreen(){
+    touchdevice = ('ontouchstart' in document.documentElement);
+    if (touchdevice){
+        document.querySelector("#start-screen").style.width = "100%";
+    }
+    checkSavedGame();
+}
+
+initStartScreen();
 
