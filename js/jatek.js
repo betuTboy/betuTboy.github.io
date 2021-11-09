@@ -1732,7 +1732,6 @@ function changeJoker(tfield, ev) {
     testNewWords();
 }
 
-
 function placeYesMarks() {
     let hunbutton = document.querySelector("#hun-lang");
     let rectph = getElementPosition(hunbutton);
@@ -2014,10 +2013,12 @@ function selectBoard(pushedbutton) {
         selectedboardnum++;
     }
     selectedboard = boards[selectedboardnum][0];
-    //selectedboardtd.innerHTML = '';
     alt1 = `${selectedboardnum + 1}` + ". tábla";
     numofselected.innerHTML = `<span>${(selectedboardnum + 1).toString() + "."}</span>`;
-    selectedboardtd.innerHTML = `<img style="height: 120px"; src=${boards[selectedboardnum][1]} alt=${alt1}/>`;
+    if (touchdevice){
+        boardimgsize = Math.floor(width / 3).toString();
+    } 
+    selectedboardtd.innerHTML = `<img src=${boards[selectedboardnum][1]} width=${boardimgsize} height=${boardimgsize} alt=${alt1}/>`;
 }
 
 function getElementPosition(element) {
@@ -2085,15 +2086,18 @@ function initStartScreen(){
     touchdevice = ('ontouchstart' in document.documentElement);
     if (touchdevice){
         decideOrientation();
+        document.querySelector("#start-screen").style.fontSize = "35px"
         document.querySelector("#start-screen").style.width = "100%";
-        document.querySelector("#start-screen").style.height = "100%";
-        document.querySelector("#title").style.fontSize = "35px";
-        document.querySelector("#small1").style.fontSize = "20px";
-        flagimages = document.querySelectorAll(".lang-button");
-        for (flag of flagimages){
-            flag.style.width = Math.floor(width / 3).toString()+"px";
-        }
+        document.querySelector("#start-screen").style.height = height.toString()+"px";
+        document.querySelector("#title").style.fontSize = "45px";
+        document.querySelector("#small1").style.fontSize = "35px";
+        let flagimages = document.querySelectorAll(".flag-img");
+        for (flag of flagimages){ 
+            flag.width = Math.floor(width / 3).toString();
 
+        }
+        document.querySelector("#board-img").width = Math.floor(width / 3).toString();
+        document.querySelector("#board-img").height = Math.floor(width / 3).toString();
     }
     checkSavedGame();
 }
