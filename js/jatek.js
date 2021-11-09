@@ -2006,6 +2006,7 @@ function adaptToTouchDevice() {
 
 function selectBoard(pushedbutton) {
     selectedboardtd = document.querySelector("#selected-board");
+    numofselected = document.querySelector("#number-of-selected");
     if (pushedbutton == "left" && selectedboardnum > 0) {
         selectedboardnum--;
     }
@@ -2013,9 +2014,10 @@ function selectBoard(pushedbutton) {
         selectedboardnum++;
     }
     selectedboard = boards[selectedboardnum][0];
-    selectedboardtd.innerHTML = '';
+    //selectedboardtd.innerHTML = '';
     alt1 = `${selectedboardnum + 1}` + ". tábla";
-    selectedboardtd.innerHTML = `<span>${(selectedboardnum + 1).toString() + "."}</span><img style="height: 120px"; src=${boards[selectedboardnum][1]} alt=${alt1}/>`;
+    numofselected.innerHTML = `<span>${(selectedboardnum + 1).toString() + "."}</span>`;
+    selectedboardtd.innerHTML = `<img style="height: 120px"; src=${boards[selectedboardnum][1]} alt=${alt1}/>`;
 }
 
 function getElementPosition(element) {
@@ -2083,6 +2085,7 @@ function initStartScreen(){
     touchdevice = ('ontouchstart' in document.documentElement);
     if (touchdevice){
         document.querySelector("#start-screen").style.width = "100%";
+        document.querySelector("#start-screen").style.height = "100%";
     }
     checkSavedGame();
 }

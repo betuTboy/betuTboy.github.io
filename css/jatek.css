@@ -384,3 +384,8 @@ ul{
 #start-button:hover{
     background-color: rgb(59, 59, 161);
 }
+
+.arrow-button{
+    background-color:rgb(21, 202, 202);
+    border-radius: 50%;
+}

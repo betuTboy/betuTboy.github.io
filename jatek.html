@@ -21,81 +21,87 @@
 </head>
 
 <body>
-    <div id="start-screen" style="display:inline-block; padding-left: 3%;
-        padding-right: 3%; background-image: url('img/rotatedboard1.png'); background-repeat: no-repeat; background-size: 100%; background-position: top center;">
-        <br>
-        <h1 style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Ne hagyd üresen!</h1>
-        <small id="small1"
-            style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">keresztrejtvény-készítő
-            betűjáték</small>
-        <div id="setup-new-game" style="visibility: hidden" >
+    <div id="start-screen" style=" text-align: center">
+        <div
+            style="display:inline-block; padding-left: 3%; padding-right: 3%; background-image: url('img/rotatedboard1.png'); background-repeat: no-repeat; background-size: 100%; background-position: top center; ">
             <br>
-            <br>
-            <br>
-            <br>
-            <p>Nyelv:</p>
-            <div id="select-language" style="display:inline-block; padding:30px; border-style: solid; border-width: 5px; border-radius: 20px; 
-            border-color: lightblue; background-color: black; opacity: 90%">
-                <button id="hun-lang" class="lang-button" type="button" style="border: none; background-color: black; position: relative"
-                    onclick="selectLanguage('hun')">
-                    <img src="img/hungarianflag1.png" alt="magyar zászló" style="width: 150px" />
-                    <img id="yes-mark-h" class="yes-mark" style="display:none" src="img/yes.png" alt="kijelölve" />
-                </button>
-                <button id="eng-lang" class="lang-button" type="button" style="border: none; background-color: black; position: relative"
-                    onclick="selectLanguage('eng')"> 
-                    <img src="img/englishflag1.png" alt="angol zászló" style="width: 150px"/>
-                    <img id="yes-mark-e" class="yes-mark" style="display:none" src="img/yes.png" alt="kijelölve" />
-                </button>
+            <h1 style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Ne hagyd üresen!</h1>
+            <small id="small1"
+                style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">keresztrejtvény-készítő
+                betűjáték</small>
+            <div id="setup-new-game" style="visibility: hidden">
+                <br>
+                <br>
+                <br>
+                <br>
+                <p>Nyelv:</p>
+                <div id="select-language" style="display:inline-block; padding:30px; border-style: solid; border-width: 5px; border-radius: 20px; 
+            border-color: lightblue; background-color: black; opacity: 80%">
+                    <button id="hun-lang" class="lang-button" type="button"
+                        style="border: none; background-color: black; position: relative"
+                        onclick="selectLanguage('hun')">
+                        <img src="img/hungarianflag1.png" alt="magyar zászló" style="width: 150px" />
+                        <img id="yes-mark-h" class="yes-mark" style="display:none" src="img/yes.png" alt="kijelölve" />
+                    </button>
+                    <button id="eng-lang" class="lang-button" type="button"
+                        style="border: none; background-color: black; position: relative"
+                        onclick="selectLanguage('eng')">
+                        <img src="img/englishflag1.png" alt="angol zászló" style="width: 150px" />
+                        <img id="yes-mark-e" class="yes-mark" style="display:none" src="img/yes.png" alt="kijelölve" />
+                    </button>
+                </div>
+                <br>
+                <br>
+                <br>
+                <p>Tábla:</p>
+                <div id="select-board"
+                    style="padding-top:30px; padding-bottom:30px; border-style: solid; border-width: 5px; border-radius: 20px; border-color: lightblue">
+                    <table style="display:inline-block">
+                        <tbody>
+                            <tr>
+                                <td id="number-of-selected" colspan="3">
+                                    <span>1.</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button id="button-left" class="arrow-button" type="button"
+                                        style="width: 60px; height: 60 px" onclick="selectBoard('left')"><b
+                                            id="left-arrow"
+                                            style="font-size: 30px; color: white; background-color:rgb(21, 202, 202)">&lt;</b></button>
+                                </td>
+                                <td id="selected-board" style="width: 122px">
+                                    <img style="height: 120px" src="img/board1.png" alt="1. tábla" />
+                                </td>
+                                <td>
+                                    <button id="button-right" class="arrow-button" type="button"
+                                        style="width: 60px; height: 60 px" onclick="selectBoard('right')"><b
+                                            id="right-arrow"
+                                            style="font-size: 30px; color: white; background-color:rgb(21, 202, 202)">&gt;</b></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <button id="start-button" type="button" style="display:inline-block; padding:30px; border-style: solid; 
+            border-width: 5px; border-radius: 20px; width: 100%; font-size: 35px" onclick="initGame()">Start</button>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
             </div>
-            <br>
-            <br>
-            <br>
-            <p>Tábla:</p>
-            <div id="select-board"
-                style="padding-top:30px; padding-bottom:30px; border-style: solid; border-width: 5px; border-radius: 20px; border-color: lightblue">
-                <table style="display:inline-block">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <button id="button-left" class="arrow-button" type="button"
-                                    style="border: none; background-color: black" onclick="selectBoard('left')"><b
-                                        id="right-arrow"
-                                        style="background-color: black; font-size: 35px">&#8592</b></button>
-                            </td>
-                            <td id="selected-board">
-                                <span>1.</span>
-                                <img style="height: 120px" src="img/board1.png" alt="1. tábla" />
-                            </td>
-                            <td>
-                                <button id="button-right" class="arrow-button" type="button"
-                                    style="border: none; background-color: black" onclick="selectBoard('right')"><b
-                                        id="right-arrow"
-                                        style="background-color: black; font-size: 35px">&#8594</b></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <button id="start-button" type="button"
-                style="display:inline-block; padding:30px; border-style: solid; 
-            border-width: 5px; border-radius: 20px; width: 100%; font-size: 35px"
-                onclick="initGame()">Start</button>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
         </div>
     </div>
     <h2 style="display:none">Ne hagyd üresen! <small id="small1">- keresztrejtvény-készítő betűjáték</small></h1>
