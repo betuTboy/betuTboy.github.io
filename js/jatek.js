@@ -2084,8 +2084,16 @@ function setupNewGame() {
 function initStartScreen(){
     touchdevice = ('ontouchstart' in document.documentElement);
     if (touchdevice){
+        decideOrientation();
         document.querySelector("#start-screen").style.width = "100%";
         document.querySelector("#start-screen").style.height = "100%";
+        document.querySelector("#title").style.fontSize = "35px";
+        document.querySelector("#small1").style.fontSize = "20px";
+        flagimages = document.querySelectorAll(".lang-button");
+        for (flag of flagimages){
+            flag.style.width = Math.floor(width / 3).toString()+"px";
+        }
+
     }
     checkSavedGame();
 }
