@@ -1658,8 +1658,8 @@ function displayMessage(legend, message, command1, command2, parente, elementund
         button2.style.fontSize = fontsizebutton;
         button1.style.width = "40%";
         button2.style.width = "40%";
-        button1.style.marginLeft = "1%";
-        button1.style.marginRight = "1%";
+        button1.style.marginLeft = "5%";
+        button1.style.marginRight = "5%";
         td2.appendChild(button2);
     }
     let boardandrack = document.querySelector(elementunder);
@@ -1667,7 +1667,7 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     let rectp = getElementPosition(form1);
     if (touchdevice){
         popup1.style.left = "0px";
-        popup1.style.top = "0px";
+        popup1.style.top = rectb.top.toString() + "px";;
     } else{
         popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
         popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
@@ -1717,12 +1717,12 @@ function createPopup(tfield) {
     let rectp = getElementPosition(form1);
     if (touchdevice){
         popup1.style.left = "0px";
-        popup1.style.top = "0px";
+        popup1.style.top = rectb.top.toString() + "px";
     } else {
         popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
         popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
     }
-    console.log("rectb.left, rectb.width, rectp.width", rectb.left, rectb.width, rectp.width);
+    console.log("rectb.left, rectb.width, rectp.width", rectb.top, rectb.left, rectb.width, rectp.width);
 }
 
 function changeJoker(tfield, ev) {
@@ -1784,7 +1784,6 @@ function displayWordSearch() {
         destroyPopup();
     } catch (err) { }
     lockOnUI();
-    /*let gamediv = document.getElementById("game-div");*/
     let parente = document.getElementById("board-rack");
     popup1 = document.createElement("div");
     popup1.setAttribute("class", "popup");
@@ -1805,9 +1804,9 @@ function displayWordSearch() {
     input1.setAttribute("autocomplete", "off");
     input1.setAttribute("onkeypress", "return event.keyCode != 13");
     input1.style.fontSize = fontsizebutton;
-    input1.style.background = "white";  //"rgb(21, 202, 202)"
+    input1.style.background = "white";
     input1.style.color = "darkred";
-    input1.style.marginBottom = "10px"
+    input1.style.marginBottom = fieldsize.toString() + "px"
     fieldset1.appendChild(input1);
     input1.addEventListener("keyup", wordSearch);
     let button1 = document.createElement("button");
@@ -1817,6 +1816,7 @@ function displayWordSearch() {
     button1.className = "UI-button";
     button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
     button1.style.fontSize = fontsizebutton;
+    button1.style.width = "40%";
     fieldset1.appendChild(button1);
     input1.focus();
     let boardandrack = document.querySelector("#board-rack");
@@ -1824,7 +1824,7 @@ function displayWordSearch() {
     let rectp = getElementPosition(form1);
     if (touchdevice){
         popup1.style.left = "0px";
-        popup1.style.top = "0px";
+        popup1.style.top = rectb.top.toString() + "px";
     } else {
         popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
         popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
@@ -1988,6 +1988,7 @@ function adaptToTouchDevice() {
         document.querySelector("#dashboard").style.display = "none";
         document.querySelector("#dashboard-top").style.display = "block";
         document.querySelector("#dashboard-bottom").style.display = "block";
+        document.querySelector("#title1").style.display = "none";
         let gameres = document.querySelector("#game-results");
         gameres.style.display = "block";
         gameres.style.width = "100%";
@@ -2032,7 +2033,7 @@ function initGame() {
         console.log("Drag and Drop API is supported!");
     document.querySelector("#start-screen").style.display = "none";
     document.querySelector("h2").style.display = "inline-block";
-    //touchdevice = true
+    touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
@@ -2084,11 +2085,13 @@ function setupNewGame() {
 
 function initStartScreen(){
     touchdevice = ('ontouchstart' in document.documentElement);
+    touchdevice = true;
     if (touchdevice){
         decideOrientation();
         document.querySelector("#start-screen").style.fontSize = "35px"
-        document.querySelector("#start-screen").style.width = "100%";
-        document.querySelector("#start-screen").style.height = height.toString()+"px";
+        //document.querySelector("#start-screen").style.width = "100%";
+        //document.querySelector("#start-screen").style.height = height.toString()+"px";
+
         document.querySelector("#title").style.fontSize = "45px";
         document.querySelector("#small1").style.fontSize = "35px";
         let flagimages = document.querySelectorAll(".flag-img");

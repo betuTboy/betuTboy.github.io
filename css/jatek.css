@@ -139,6 +139,7 @@ img{
 }
 
 .UI-button{
+    box-sizing: border-box;
     font-family: inherit;
     background-color: #4CAF50; 
     border: none;
@@ -202,6 +203,7 @@ img{
 }
 
 input{
+    box-sizing: border-box;
     font-family: inherit;
     color: #4CAF50; 
     border: none;
@@ -360,8 +362,6 @@ ul{
 }
 
 #start-screen{
-    padding-left:3%;
-    padding-right:3%;
     color: white;
     background-color: black;
     text-align: center;
