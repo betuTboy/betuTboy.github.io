@@ -242,8 +242,8 @@ const board_5 = [['.', '.', '.', '.', '.', '.', '.', '!', '.', '!', '.', '.', '.
 
 const board_6 = [['.', '.', '.', '.', '.', '.', '.', '!', '.', '!', '.', '.', '.', '.', '.', '.', '.'],
 ['.', '.', '!', '.', '!', '!', '.', '!', '.', '.', '.', '!', '.', '!', '!', '.', '.'],
-['.', '!', '.', '.', '!', '.', '.', '.', '.', '!', '.', '.', '.', '!', '.', '!', '.'],
-['.', '!', '!', '.', '.', '!', '.', '!', '.', '!', '.', '!', '!', '.', '.', '.', '.'],
+['.', '!', '!', '.', '!', '.', '.', '.', '.', '!', '.', '.', '.', '.', '!', '!', '.'],
+['.', '!', '.', '.', '.', '!', '.', '!', '.', '!', '.', '!', '!', '.', '.', '.', '.'],
 ['.', '.', '.', '!', '.', '!', '!', '.', '.', '.', '.', '.', '.', '.', '!', '!', '.'],
 ['.', '!', '.', '!', '.', '.', '.', '!', '.', '!', '!', '.', '!', '!', '.', '!', '.'],
 ['.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.'],
@@ -253,8 +253,8 @@ const board_6 = [['.', '.', '.', '.', '.', '.', '.', '!', '.', '!', '.', '.', '.
 ['.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.'],
 ['.', '!', '.', '!', '!', '.', '!', '!', '.', '!', '.', '.', '.', '!', '.', '!', '.'],
 ['.', '!', '!', '.', '.', '.', '.', '.', '.', '.', '!', '!', '.', '!', '.', '.', '.'],
-['.', '.', '.', '.', '!', '!', '.', '!', '.', '!', '.', '!', '.', '.', '!', '!', '.'],
-['.', '!', '.', '!', '.', '.', '.', '!', '.', '.', '.', '.', '!', '.', '.', '!', '.'],
+['.', '.', '.', '.', '!', '!', '.', '!', '.', '!', '.', '!', '.', '.', '.', '!', '.'],
+['.', '!', '!', '.', '.', '.', '.', '!', '.', '.', '.', '.', '!', '.', '!', '!', '.'],
 ['.', '.', '!', '!', '.', '!', '.', '.', '.', '!', '.', '!', '!', '.', '!', '.', '.'],
 ['.', '.', '.', '.', '.', '.', '.', '!', '.', '!', '.', '.', '.', '.', '.', '.', '.']];
 
@@ -374,6 +374,7 @@ let progressbar;
 let fields = [];
 let rackfields = [];
 let fieldsize = 29;
+let rackfieldsize = 29;
 let height;
 let width;
 let fontsizeletter = "20px";
@@ -844,13 +845,13 @@ function loadGame() {
     let rackl = localStorage.getItem('Rack');
     rackl1 = JSON.parse(rackl);
     drawRack(rackl1);
-    adaptToChangedSize();   //   Talán ez hiányzik mobilon
     let rackfields = document.querySelectorAll(".rack-field");
     for (let lettercount = 0; lettercount < rackl1.length; lettercount++) {
         let value = rackl1[lettercount][0];
         letteri = restoreLetter(lettercount, value, "ontherack");
         rackfields[lettercount].appendChild(letteri);
         rackfields[lettercount].setAttribute("ondragover", "");
+        rackfields[lettercount].setAttribute("class", "rack-field occupied");                                      // !!!!!
     }
     let wordsingames = localStorage.getItem('WordsInGame');
     wordsingame = JSON.parse(wordsingames);
@@ -1168,9 +1169,9 @@ function patternSearch(searchpatterns) {
         }
         let numberofwords = document.createElement("div");
         searchpatterns[i][1].parentElement.appendChild(numberofwords);
-        numberofwords.style.width = numberlabelsize.toString() + "px";;
-        numberofwords.style.height = numberlabelsize.toString() + "px";;
-        numberofwords.style.fontSize = numberfontsize.toString() + "px";;
+        numberofwords.style.width = numberlabelsize.toString() + "px";
+        numberofwords.style.height = numberlabelsize.toString() + "px";
+        numberofwords.style.fontSize = numberfontsize.toString() + "px";
         if (wordsfound == 0) {
             numberofwords.setAttribute("class", "numberofwords red");
             numberofwords.innerHTML = "0";
@@ -1333,6 +1334,10 @@ function endOfGame() {
         destroyPopup();
     } catch (err) { }
     lockOnUI();
+    let lettersonrack = document.querySelectorAll(".letter-on-rack");
+    for (let j = 0; j < lettersonrack.length; j++) {
+        lettersonrack[j].draggable = true;
+    }
     clearInterval(timeout);
     displayResult();
     localStorage.setItem('SavedGame', JSON.stringify(false));
@@ -1343,6 +1348,7 @@ function displayResult() {
     popup1 = document.createElement("div");
     popup1.setAttribute("class", "popupresult");
     popup1.style.fontSize = fontsizebutton;
+    popup1.style.paddingTop = fontsizebutton;
     resultsdiv.appendChild(popup1);
     let form1 = document.createElement("form");
     form1.setAttribute("class", "popupresultcontent");
@@ -1373,6 +1379,7 @@ function displayResult() {
     button1.addEventListener("click", destroyPopupResult);
     button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
     button1.style.fontSize = fontsizebutton;
+    button1.style.marginBottom = fontsizebutton;
     td2.appendChild(button1);
     let tr3 = document.createElement("tr");
     table1.appendChild(tr3);
@@ -1386,7 +1393,7 @@ function displayResult() {
     button2.addEventListener("click", displayDetails);
     button2.style.height = Math.floor(fieldsize * 1).toString() + "px";
     button2.style.fontSize = fontsizebutton;
-    button2.style.marginTop = "2px";
+    button2.style.marginBottom = fontsizebutton;
     td3.appendChild(button2);
     table1.style.display = "block"
 }
@@ -1411,6 +1418,7 @@ function lockOffMain_Rules_Start() {
 function displayDetails() {
     fset = document.querySelector("fieldset");
     let table1 = document.createElement("table");
+    table1.id = "w-table";
     fset.appendChild(table1);
     for (let words of wordsingame) {
         let tr1 = document.createElement("tr");
@@ -1434,7 +1442,7 @@ function resultText() {
     else {
         turn1 = document.getElementById("turn").value.split('/')[0];
     }
-    let rtext = `<div>${selectedboardnum + 1}. tábla</div><br><div>A keresztrejtvény kitöltöttsége: ${fillrate}%</div><br><div>A fordulók száma: ${turn1}</div><br><div>A tétlen fordulók száma: ${idleturns}</div><br><div>Az elért pontszám: ${score}</div><br><div>Az játékban töltött idő: ${totaltime} másodperc</div> `
+    let rtext = `<br><div>${selectedboardnum + 1}. tábla</div><br><div>A keresztrejtvény kitöltöttsége: ${fillrate}%</div><div>A fordulók száma: ${turn1}</div><div>A tétlen fordulók száma: ${idleturns}</div><div>Az elért pontszám: ${score}</div><div>Az játékban töltött idő: ${totaltime} másodperc</div><br> `
     return rtext;
 }
 
@@ -1844,7 +1852,7 @@ function wordSearch(ev) {
     if (notfound.length) {
         input1.style.color = "darkred";
     } else {
-        input1.style.color = "orange";
+        input1.style.color = "green";
     }
 }
 
@@ -1938,14 +1946,18 @@ function adaptToChangedSize() {
     let letters = document.querySelectorAll(".letter");
     for (let letter of letters) {
         letter.style.fontSize = fontsizeletter;
-        letter.style.width = fieldsize.toString() + "px";
-        letter.style.height = fieldsize.toString() + "px";
+        //letter.style.width = fieldsize.toString() + "px";
+        //letter.style.height = fieldsize.toString() + "px";
+        letter.style.width = "100%";
+        letter.style.height = "100%";
     }
     let lettersonrack = document.querySelectorAll(".letter-on-rack");
     for (let letter of lettersonrack) {
         letter.style.fontSize = fontsizeletter;
-        letter.style.width = rackfieldsize.toString() + "px";
-        letter.style.height = rackfieldsize.toString() + "px";
+        //letter.style.width = rackfieldsize.toString() + "px";
+        //letter.style.height = rackfieldsize.toString() + "px";
+        letter.style.width = "100%";
+        letter.style.height = "100%";
     }
     let dashboardtrs = document.querySelectorAll(".dashboard-tr");
     for (let tr of dashboardtrs) {
@@ -2018,8 +2030,10 @@ function selectBoard(pushedbutton) {
     numofselected.innerHTML = `<span>${(selectedboardnum + 1).toString() + "."}</span>`;
     if (touchdevice){
         boardimgsize = Math.floor(width / 3).toString();
-    } 
-    selectedboardtd.innerHTML = `<img src=${boards[selectedboardnum][1]} width=${boardimgsize} height=${boardimgsize} alt=${alt1}/>`;
+        selectedboardtd.innerHTML = `<img src=${boards[selectedboardnum][1]} width=${boardimgsize} height=${boardimgsize} alt=${alt1}/>`;
+    } else { 
+        selectedboardtd.innerHTML = `<img src=${boards[selectedboardnum][1]} alt=${alt1}/>`;
+    }
 }
 
 function getElementPosition(element) {
@@ -2033,7 +2047,7 @@ function initGame() {
         console.log("Drag and Drop API is supported!");
     document.querySelector("#start-screen").style.display = "none";
     document.querySelector("h2").style.display = "inline-block";
-    touchdevice = true
+    //touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
@@ -2066,8 +2080,6 @@ function checkSavedGame() {
     let savedgames = localStorage.getItem('SavedGame');
     savedgame = JSON.parse(savedgames);
     if (savedgame) {   
-
-
         displayMessage("Figyelem!", "Az előző játék félbeszakadt.<br> Szeretnéd folytatni?", initGame, setupNewGame, "setup-new-game", "#setup-new-game");
     } else {
         setupNewGame();
@@ -2085,22 +2097,34 @@ function setupNewGame() {
 
 function initStartScreen(){
     touchdevice = ('ontouchstart' in document.documentElement);
-    touchdevice = true;
+    //touchdevice = true;
     if (touchdevice){
         decideOrientation();
-        document.querySelector("#start-screen").style.fontSize = "35px"
-        //document.querySelector("#start-screen").style.width = "100%";
-        //document.querySelector("#start-screen").style.height = height.toString()+"px";
-
+        startscreen = document.querySelector("#start-screen");
+        startscreen.style.fontSize = "35px";
+        startscreen.style.backgroundImage = "url('img/rotatedboard1.png')";
+        startscreen.style.backgroundRepeat = "no-repeat"; 
+        startscreen.style.backgroundSize = "100%";
+        startscreen.style.backgroundPosition = "top center";
         document.querySelector("#title").style.fontSize = "45px";
         document.querySelector("#small1").style.fontSize = "35px";
         let flagimages = document.querySelectorAll(".flag-img");
         for (flag of flagimages){ 
             flag.width = Math.floor(width / 3).toString();
-
         }
         document.querySelector("#board-img").width = Math.floor(width / 3).toString();
-        document.querySelector("#board-img").height = Math.floor(width / 3).toString();
+        document.querySelector("#board-img").height = Math.floor(width / 3).toString(); 
+        arrowbuttons = document.querySelectorAll(".arrow-button");
+        for (arrowbutton of arrowbuttons){
+            arrowbutton.style.width = "100px";
+            arrowbutton.style.height = "100px";
+        } 
+    } else {
+        startscreeninnerdiv = document.querySelector("#start-screen-inner-div");
+        startscreeninnerdiv.style.backgroundImage = "url('img/rotatedboard1.png')";
+        startscreeninnerdiv.style.backgroundRepeat = "no-repeat"; 
+        startscreeninnerdiv.style.backgroundSize = "100%";
+        startscreeninnerdiv.style.backgroundPosition = "top center";
     }
     checkSavedGame();
 }

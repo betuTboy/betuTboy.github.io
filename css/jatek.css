@@ -321,6 +321,7 @@ ul{
     font-family: inherit;
     display: inline-block;  
     vertical-align: top;
+    text-align: left;
 }
 
 .popupresult{
@@ -329,6 +330,10 @@ ul{
     padding: 8px;
     background-color: #555;
     color: #fff;    
+}
+
+#w-table:nth-child(even) {
+    background-color:rgb(199, 198, 198);
 }
 
 .words-table{
