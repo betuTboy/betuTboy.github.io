@@ -332,10 +332,6 @@ ul{
     color: #fff;    
 }
 
-#w-table:nth-child(even) {
-    background-color:rgb(199, 198, 198);
-}
-
 .words-table{
     font-family: inherit;
     margin-right: 5px;

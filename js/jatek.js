@@ -936,6 +936,7 @@ function hideBoard() {
             let e = document.createElement("div");
             e.className = "blind"
             e.innerHTML = '?';
+            e.style.fontSize = fontsizeletter;
             fields[i][j].appendChild(e);
         }
     }
@@ -947,6 +948,7 @@ function hideBoard() {
         let e = document.createElement("div");
         e.className = "blind"
         e.innerHTML = '?';
+        e.style.fontSize = fontsizeletter;
         rackfields[i].appendChild(e);
     }
 }
@@ -1419,15 +1421,28 @@ function displayDetails() {
     fset = document.querySelector("fieldset");
     let table1 = document.createElement("table");
     table1.id = "w-table";
+    table1.style.width = "100%"
+    table1.style.fontSize = fontsizebutton;
     fset.appendChild(table1);
+    let rowcount = 1;
     for (let words of wordsingame) {
         let tr1 = document.createElement("tr");
         table1.appendChild(tr1);
+        if(rowcount%2){
+            wordbgcolor = "#555";
+        } else {
+            wordbgcolor = "#444";
+        }
+        tr1.style.backgroundColor = wordbgcolor;
+        tr1.style.width = "100%"
         for (let field = 0; field < words.length; field++) {
             let td1 = document.createElement("td");
             tr1.appendChild(td1);
-            td1.innerHTML = `<div class="words-table">${words[field].join(', ')}</div>`;
+            console.log("wordbgcolor", wordbgcolor);
+            td1.style.backgroundColor = wordbgcolor;
+            td1.innerHTML = `<div class="words-table" style="background-color: ${wordbgcolor}">${words[field].join(', ')}</div>`;      
         }
+        rowcount++;
     }
     document.getElementById("reszletek").disabled = true;
     table1.style.overflowY = "scroll";
@@ -1730,7 +1745,6 @@ function createPopup(tfield) {
         popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
         popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
     }
-    console.log("rectb.left, rectb.width, rectp.width", rectb.top, rectb.left, rectb.width, rectp.width);
 }
 
 function changeJoker(tfield, ev) {
@@ -2126,6 +2140,7 @@ function initStartScreen(){
         startscreeninnerdiv.style.backgroundSize = "100%";
         startscreeninnerdiv.style.backgroundPosition = "top center";
     }
+    adaptToChangedSize();
     checkSavedGame();
 }
 
