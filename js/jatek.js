@@ -377,8 +377,8 @@ let fieldsize = 29;
 let rackfieldsize = 29;
 let height;
 let width;
-let fontsizeletter = "20px";
-let fontsizebutton = "20px";
+let fontsizeletter; 
+let fontsizebutton;
 let fontsizelabel;
 let numberlabelsize;
 let numberfontsize;
@@ -1375,7 +1375,7 @@ function displayResult() {
     let td2 = document.createElement("td");
     tr2.appendChild(td2);
     let button1 = document.createElement("button");
-    button1.innerHTML = "Rendben";
+    button1.innerText = "Rendben";
     button1.type = "button";
     button1.className = "UI-button";
     button1.addEventListener("click", destroyPopupResult);
@@ -1388,7 +1388,7 @@ function displayResult() {
     let td3 = document.createElement("td");
     tr3.appendChild(td3);
     let button2 = document.createElement("button");
-    button2.innerHTML = "Részletek";
+    button2.innerText = "Részletek";
     button2.id = "reszletek";
     button2.type = "button";
     button2.className = "UI-button";
@@ -1656,13 +1656,14 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     let p1 = document.createElement("p");
     p1.innerHTML = message;
     p1.id = "message-text";
+    p1.style.fontSize = "fontsizebutton";
     td1.appendChild(p1);
     let tr2 = document.createElement("tr");
     table1.appendChild(tr2);
     let td2 = document.createElement("td");
     tr2.appendChild(td2);
     let button1 = document.createElement("button");
-    button1.innerHTML = "Rendben";
+    button1.innerText = "Rendben";
     button1.addEventListener("click", command1);
     button1.type = "button";
     button1.className = "UI-button";
@@ -1673,7 +1674,7 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     td2.style.marginRight = "20px"
     if (command2) {
         let button2 = document.createElement("button");
-        button2.innerHTML = "Mégsem";
+        button2.innerText = "Mégsem";
         button2.addEventListener("click", command2);
         button2.type = "button";
         button2.className = "UI-button";
@@ -1832,7 +1833,7 @@ function displayWordSearch() {
     fieldset1.appendChild(input1);
     input1.addEventListener("keyup", wordSearch);
     let button1 = document.createElement("button");
-    button1.innerHTML = "Rendben";
+    button1.innerText = "Rendben";
     button1.addEventListener("click",  destroyPopup);
     button1.type = "button";
     button1.className = "UI-button";
@@ -2061,7 +2062,7 @@ function initGame() {
         console.log("Drag and Drop API is supported!");
     document.querySelector("#start-screen").style.display = "none";
     document.querySelector("h2").style.display = "inline-block";
-    //touchdevice = true
+    touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
@@ -2111,9 +2112,12 @@ function setupNewGame() {
 
 function initStartScreen(){
     touchdevice = ('ontouchstart' in document.documentElement);
-    //touchdevice = true;
+    touchdevice = true;
     if (touchdevice){
         decideOrientation();
+        fieldsize = 50;
+        fontsizeletter = 30; 
+        fontsizebutton = 30;
         startscreen = document.querySelector("#start-screen");
         startscreen.style.fontSize = "35px";
         startscreen.style.backgroundImage = "url('img/rotatedboard1.png')";
@@ -2126,21 +2130,28 @@ function initStartScreen(){
         for (flag of flagimages){ 
             flag.width = Math.floor(width / 3).toString();
         }
-        document.querySelector("#board-img").width = Math.floor(width / 3).toString();
-        document.querySelector("#board-img").height = Math.floor(width / 3).toString(); 
+        flagheight =  document.querySelector("#hun-flag").height;
+        console.log("flagheight", flagheight);
+        let yesmarks = document.querySelectorAll(".yes-mark");
+        for (yesmark of yesmarks){
+            yesmark.style.height = flagheight.toString()+"px"; 
+        }
+        document.querySelector("#board-img").height = Math.floor(width / 3).toString();
         arrowbuttons = document.querySelectorAll(".arrow-button");
         for (arrowbutton of arrowbuttons){
             arrowbutton.style.width = "100px";
             arrowbutton.style.height = "100px";
         } 
     } else {
+        fieldsize = 40;
+        fontsizeletter = 20; 
+        fontsizebutton = 20;
         startscreeninnerdiv = document.querySelector("#start-screen-inner-div");
         startscreeninnerdiv.style.backgroundImage = "url('img/rotatedboard1.png')";
         startscreeninnerdiv.style.backgroundRepeat = "no-repeat"; 
         startscreeninnerdiv.style.backgroundSize = "100%";
         startscreeninnerdiv.style.backgroundPosition = "top center";
     }
-    adaptToChangedSize();
     checkSavedGame();
 }
 

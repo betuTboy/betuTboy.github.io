@@ -372,8 +372,8 @@ ul{
     -moz-user-select: none;
 }
 
-#yes-mark{
-    z-index:10;
+.yes-mark{
+    /*z-index:10;*/
     position: absolute; 
 }
 
