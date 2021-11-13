@@ -1440,7 +1440,10 @@ function displayDetails() {
             tr1.appendChild(td1);
             console.log("wordbgcolor", wordbgcolor);
             td1.style.backgroundColor = wordbgcolor;
-            td1.innerHTML = `<div class="words-table" style="background-color: ${wordbgcolor}">${words[field].join(', ')}</div>`;      
+            td1.innerHTML = `<div class="words-table" style="background-color: ${wordbgcolor}">${words[field].join(', ')}</div>`;
+            if (field == 2){
+                td1.style.textAlign = "right"; 
+            }      
         }
         rowcount++;
     }
@@ -1457,7 +1460,8 @@ function resultText() {
     else {
         turn1 = document.getElementById("turn").value.split('/')[0];
     }
-    let rtext = `<br><div>${selectedboardnum + 1}. tábla</div><br><div>A keresztrejtvény kitöltöttsége: ${fillrate}%</div><div>A fordulók száma: ${turn1}</div><div>A tétlen fordulók száma: ${idleturns}</div><div>Az elért pontszám: ${score}</div><div>Az játékban töltött idő: ${totaltime} másodperc</div><br> `
+
+    let rtext = `<br><div>${selectedboardnum + 1}. tábla</div><br><div style="white-space: pre">A keresztrejtvény kitöltöttsége: <span style="float: right">${fillrate}%</span></div><div>A fordulók száma: <span style="float: right">${turn1}</span></div><div>A tétlen fordulók száma: <span style="float: right">${idleturns}</span></div><div>Az elért pontszám: <span style="float: right">${score}</span></div><div>Az játékban töltött idő: <span style="float: right"> ${totaltime} mp</span></div><br> `
     return rtext;
 }
 
