@@ -661,10 +661,10 @@ function createLetter(lettercount, value) {
     letteri.setAttribute("id", id);
     if (navigator.userAgent.indexOf("Firefox") != -1) {
         letteri.setAttribute("type", "text");
-        letteri.setAttribute("inputmode", "none");
     } else {
         letteri.setAttribute("type", "button");
     }
+    letteri.setAttribute("inputmode", "none");
     if (value == '*') {
         letteri.setAttribute("class", "letter letter-on-rack joker")
     } else letteri.setAttribute("class", "letter letter-on-rack");
@@ -888,7 +888,8 @@ function restoreLetter(lettercount, value, where) {
         letteri.setAttribute("type", "text");
     } else {
         letteri.setAttribute("type", "button");
-    } letteri
+    } 
+    letteri.setAttribute("inputmode", "none");
     if (value == '*') {
         letteri.setAttribute("class", "letter letter-on-rack joker");
     } else {
@@ -1771,6 +1772,7 @@ function createPopup(tfield) {
 
 function changeJoker(tfield, ev) {
     tfield.children[0].setAttribute("value", ev.target.value);
+    tfield.children[0].setAttribute("inputmode", "none");
     popup1.remove();
     lockOffUI();
     testNewWords();
