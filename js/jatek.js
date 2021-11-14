@@ -484,7 +484,7 @@ function changeDirection() {
         document.querySelector("#arrow").style.fontSize = fontsizeletter
     } else {
         arrowposition[1] = "down";
-        arrowposition[0].innerHTML = `<b id="arrow">&#8595</b>`;
+        arrowposition[0].innerHTML = `<b id="arrow"">&#8595</b>`;
         document.querySelector("#arrow").style.fontSize = fontsizeletter
     }
 }
@@ -661,6 +661,7 @@ function createLetter(lettercount, value) {
     letteri.setAttribute("id", id);
     if (navigator.userAgent.indexOf("Firefox") != -1) {
         letteri.setAttribute("type", "text");
+        letteri.setAttribute("inputmode", "none");
     } else {
         letteri.setAttribute("type", "button");
     }

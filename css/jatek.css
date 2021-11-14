@@ -252,8 +252,12 @@ progress[value]{
 } 
 
 b{
+    padding: none;
+    border: none;
+    margin: none;
     font-family: inherit;
     color: red;
+    text-align: center;
     background-color: lightgrey; 
     font-weight: 900;
     -webkit-touch-callout: none;
@@ -262,6 +266,10 @@ b{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+#arrow{
+    box-sizing: border-box;
 }
 
 p{
