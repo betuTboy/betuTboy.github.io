@@ -1,10 +1,12 @@
 
 body{
     font-family:  "Arial", "Verdana", "Sans serif", "Times New Roman", "Times";
+    padding-left: 20%;
+    padding-right: 20%
 }
 
 #game-rules{
-    background-color:rgb(235, 235, 235);
+    background-color:white;
 }
 
 h1, h3{
@@ -22,3 +24,10 @@ ul{
     font-family: inherit;
     list-style-type: none;
 }
+
+@media only screen and (max-width: 600px) {
+    body {
+      padding-left: 1%;
+      padding-right: 1%;
+    }
+  }

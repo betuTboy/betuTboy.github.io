@@ -2046,11 +2046,12 @@ function adaptToTouchDevice() {
         document.querySelector("#top-form").style.textAlign = "center";
         document.querySelector("#game-div").style.textAlign = "center";
         document.querySelector("#bottom-form").style.textAlign = "center";
-    }
-    else {
+    } else {
         document.querySelector("#dashboard").style.display = "inline-block";
         document.querySelector("#dashboard-top").style.display = "none";
         document.querySelector("#dashboard-bottom").style.display = "none";
+        document.querySelector("#title1").style.marginLeft = "2%";
+        document.querySelector("#game-container").style.marginLeft = "2%";
     }
 }
 
@@ -2085,7 +2086,7 @@ function initGame() {
         console.log("Drag and Drop API is supported!");
     document.querySelector("#start-screen").style.display = "none";
     document.querySelector("h2").style.display = "inline-block";
-    //touchdevice = true
+    touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
@@ -2135,7 +2136,7 @@ function setupNewGame() {
 
 function initStartScreen() {
     touchdevice = ('ontouchstart' in document.documentElement);
-    //touchdevice = true;
+    touchdevice = true;
     if (touchdevice) {
         decideOrientation();
         fieldsize = 50;
