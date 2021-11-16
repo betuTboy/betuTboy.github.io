@@ -2086,7 +2086,7 @@ function initGame() {
         console.log("Drag and Drop API is supported!");
     document.querySelector("#start-screen").style.display = "none";
     document.querySelector("h2").style.display = "inline-block";
-    touchdevice = true
+    //touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
@@ -2136,7 +2136,7 @@ function setupNewGame() {
 
 function initStartScreen() {
     touchdevice = ('ontouchstart' in document.documentElement);
-    touchdevice = true;
+    //touchdevice = true;
     if (touchdevice) {
         decideOrientation();
         fieldsize = 50;
