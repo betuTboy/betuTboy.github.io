@@ -1343,7 +1343,7 @@ function endOfGame() {
     lockOnUI();
     let lettersonrack = document.querySelectorAll(".letter-on-rack");
     for (let j = 0; j < lettersonrack.length; j++) {
-        lettersonrack[j].draggable = true;
+        lettersonrack[j].draggable = false;
     }
     clearInterval(timeout);
     displayResult();
@@ -2140,8 +2140,8 @@ function initStartScreen() {
     if (touchdevice) {
         decideOrientation();
         fieldsize = 50;
-        fontsizeletter = 30;
-        fontsizebutton = 30;
+        fontsizeletter = 30 + "px";
+        fontsizebutton = 30 + "px";
         startscreen = document.querySelector("#start-screen");
         startscreen.style.fontSize = "35px";
         startscreen.style.backgroundImage = "url('img/rotatedboard1.png')";
@@ -2169,8 +2169,8 @@ function initStartScreen() {
         document.querySelector("#start-button").style.fontSize = "45px";
     } else {
         fieldsize = 40;
-        fontsizeletter = 20;
-        fontsizebutton = 20;
+        fontsizeletter = 20 + "px";
+        fontsizebutton = 20 + "px";
         startscreeninnerdiv = document.querySelector("#start-screen-inner-div");
         startscreeninnerdiv.style.backgroundImage = "url('img/rotatedboard1.png')";
         startscreeninnerdiv.style.backgroundRepeat = "no-repeat";
