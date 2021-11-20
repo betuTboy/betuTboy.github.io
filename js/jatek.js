@@ -481,11 +481,11 @@ function changeDirection() {
     if (!ingame) return;
     if (arrowposition[0].innerHTML == '' || arrowposition[1] == "down") {
         arrowposition[1] = "right";
-        arrowposition[0].innerHTML = `<b id="arrow" style="max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8594</b>`;
+        arrowposition[0].innerHTML = `<b id="arrow" style="box-sizing: border-box; max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8594</b>`;
         document.querySelector("#arrow").style.fontSize = fontsizeletter
     } else {
         arrowposition[1] = "down";
-        arrowposition[0].innerHTML = `<b id="arrow" style="max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8595</b>`;
+        arrowposition[0].innerHTML = `<b id="arrow" style="box-sizing: border-box; max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8595</b>`;
         document.querySelector("#arrow").style.fontSize = fontsizeletter
     }
 }
@@ -535,7 +535,7 @@ function stepField() {
         while (cindex + k < fields[0].length) {
             if (fields[rindex][cindex + k].className == "normal-field empty" && !fields[rindex][cindex + k].hasChildNodes()) {
                 arrowposition[0] = fields[rindex][cindex + k];
-                arrowposition[0].innerHTML = `<b id="arrow" style="max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8594</b>`;
+                arrowposition[0].innerHTML = `<b id="arrow" style="box-sizing: border-box; max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8594</b>`;
                 document.querySelector("#arrow").style.fontSize = fontsizeletter
                 break;
             } else {
@@ -557,7 +557,7 @@ function stepField() {
         while (rindex + k < fields.length) {
             if (fields[rindex + k][cindex].className == "normal-field empty" && !fields[rindex + k][cindex].hasChildNodes()) {
                 arrowposition[0] = fields[rindex + k][cindex];
-                arrowposition[0].innerHTML = `<b id="arrow" style="max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8595</b>`;
+                arrowposition[0].innerHTML = `<b id="arrow" style="box-sizing: border-box; max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8595</b>`;
                 document.querySelector("#arrow").style.fontSize = fontsizeletter
                 break;
             } else {
@@ -1459,7 +1459,6 @@ function displayDetails() {
         rowcount++;
     }
     document.getElementById("reszletek").disabled = true;
-    table1.style.overflowY = "scroll";
 }
 
 function resultText() {
@@ -1754,6 +1753,7 @@ function createPopup(tfield) {
             input1.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
             input1.draggable = false;
             input1.readonly = true;
+            input1.setAttribute("inputmode", "none");
             input1.addEventListener("click", (ev) => changeJoker(tfield, ev));
             input1.setAttribute("value", letters[k][0]);
             k++;
