@@ -417,6 +417,7 @@ function createTd(fieldtype, parent, id) {
             td.setAttribute("ondrop", "drop(event)");
             td.setAttribute("ondragover", "allowDrop(event)");
             td.setAttribute("onclick", "changeMode(event)");
+
             break;
         case '-':
             td.setAttribute("class", "rack-field empty");
@@ -1980,6 +1981,10 @@ function adaptToChangedSize() {
         for (let cindex = 0; cindex < fields[0].length; cindex++) {
             fields[rindex][cindex].style.width = fieldsize.toString() + "px";
             fields[rindex][cindex].style.height = fieldsize.toString() + "px";
+            fields[rindex][cindex].style.maxWidth = fieldsize.toString() + "px";
+            fields[rindex][cindex].style.maxHeight = fieldsize.toString() + "px";
+            fields[rindex][cindex].style.minWidth = fieldsize.toString() + "px";
+            fields[rindex][cindex].style.minHeight = fieldsize.toString() + "px";
             /*fields[rindex][cindex].setAttribute('style', `width: ${fieldsize.toString()}px !important`);
             fields[rindex][cindex].setAttribute('style', `height: ${fieldsize.toString()}px !important`);*/
         }
@@ -2089,7 +2094,7 @@ function initGame() {
         console.log("Drag and Drop API is supported!");
     document.querySelector("#start-screen").style.display = "none";
     document.querySelector("h2").style.display = "inline-block";
-    //touchdevice = true
+    touchdevice = true
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
@@ -2139,7 +2144,7 @@ function setupNewGame() {
 
 function initStartScreen() {
     touchdevice = ('ontouchstart' in document.documentElement);
-    //touchdevice = true;
+    touchdevice = true;
     if (touchdevice) {
         decideOrientation();
         fieldsize = 50;
