@@ -481,11 +481,11 @@ function changeDirection() {
     if (!ingame) return;
     if (arrowposition[0].innerHTML == '' || arrowposition[1] == "down") {
         arrowposition[1] = "right";
-        arrowposition[0].innerHTML = `<b id="arrow" style="box-sizing: border-box; max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8594</b>`;
+        arrowposition[0].innerHTML = `<b id="arrow">&#8594</b>`;
         document.querySelector("#arrow").style.fontSize = fontsizeletter
     } else {
         arrowposition[1] = "down";
-        arrowposition[0].innerHTML = `<b id="arrow" style="box-sizing: border-box; max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8595</b>`;
+        arrowposition[0].innerHTML = `<b id="arrow">&#8595</b>`;
         document.querySelector("#arrow").style.fontSize = fontsizeletter
     }
 }
@@ -535,7 +535,7 @@ function stepField() {
         while (cindex + k < fields[0].length) {
             if (fields[rindex][cindex + k].className == "normal-field empty" && !fields[rindex][cindex + k].hasChildNodes()) {
                 arrowposition[0] = fields[rindex][cindex + k];
-                arrowposition[0].innerHTML = `<b id="arrow" style="box-sizing: border-box; max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8594</b>`;
+                arrowposition[0].innerHTML = `<b id="arrow">&#8594</b>`;
                 document.querySelector("#arrow").style.fontSize = fontsizeletter
                 break;
             } else {
@@ -557,7 +557,7 @@ function stepField() {
         while (rindex + k < fields.length) {
             if (fields[rindex + k][cindex].className == "normal-field empty" && !fields[rindex + k][cindex].hasChildNodes()) {
                 arrowposition[0] = fields[rindex + k][cindex];
-                arrowposition[0].innerHTML = `<b id="arrow" style="box-sizing: border-box; max-width: ${(fieldsize-2).toString()}px; max-height: ${(fieldsize-2).toString()}px">&#8595</b>`;
+                arrowposition[0].innerHTML = `<b id="arrow">&#8595</b>`;
                 document.querySelector("#arrow").style.fontSize = fontsizeletter
                 break;
             } else {
@@ -674,7 +674,7 @@ function createLetter(lettercount, value) {
     letteri.setAttribute("ondragstart", "drag(event)");
     letteri.setAttribute("onclick", "placeLetter(event)");
     letteri.setAttribute("onkeydown", "return false");
-    letteri.readonly = true;
+    letteri.readonly = true;    
     letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
     letteri.setAttribute("border-radius", "20%");
     return letteri;
@@ -1980,6 +1980,8 @@ function adaptToChangedSize() {
         for (let cindex = 0; cindex < fields[0].length; cindex++) {
             fields[rindex][cindex].style.width = fieldsize.toString() + "px";
             fields[rindex][cindex].style.height = fieldsize.toString() + "px";
+            /*fields[rindex][cindex].setAttribute('style', `width: ${fieldsize.toString()}px !important`);
+            fields[rindex][cindex].setAttribute('style', `height: ${fieldsize.toString()}px !important`);*/
         }
     }
     for (let cindex = 0; cindex < rackfields.length; cindex++) {

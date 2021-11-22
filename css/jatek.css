@@ -9,6 +9,10 @@ body{
     -moz-user-select: none;
 }
 
+:focus{  
+    outline: none;  
+}  
+
 img{ 
    user-select: none;
    -moz-user-select: none;
