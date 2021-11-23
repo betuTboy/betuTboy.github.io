@@ -417,16 +417,19 @@ function createTd(fieldtype, parent, id) {
             td.setAttribute("ondrop", "drop(event)");
             td.setAttribute("ondragover", "allowDrop(event)");
             td.setAttribute("onclick", "changeMode(event)");
-
+            td.addEventListener('dragenter', onDragEnter);
+            td.addEventListener('dragleave', onDragLeave);
             break;
         case '-':
             td.setAttribute("class", "rack-field empty");
             td.setAttribute("ondrop", "drop(event)");
             td.setAttribute("ondragover", "allowDrop(event)");
+            td.addEventListener('dragenter', onDragEnter);
+            td.addEventListener('dragleave', onDragLeave);
             break;
         case '!':
             td.setAttribute("class", "wall-field");
-            break
+            break;
     }
     parent.appendChild(td);
     return td;
@@ -434,7 +437,8 @@ function createTd(fieldtype, parent, id) {
 
 function drawBoard(board1) {
     let fieldtable = document.querySelector("#board");
-    fieldtable.innerHTML = '';
+    fieldtable.innerHTML = "";
+    //fieldtable.innerHTML = `<col style="width: ${fieldsize.toString()}px">`;
     let fieldtype;
     for (let i = 0; i < board1.length; i++) {
         fields[i] = [];
@@ -483,11 +487,11 @@ function changeDirection() {
     if (arrowposition[0].innerHTML == '' || arrowposition[1] == "down") {
         arrowposition[1] = "right";
         arrowposition[0].innerHTML = `<b id="arrow">&#8594</b>`;
-        document.querySelector("#arrow").style.fontSize = fontsizeletter
+        document.querySelector("#arrow").style.fontSize = fontsizeletter;
     } else {
         arrowposition[1] = "down";
         arrowposition[0].innerHTML = `<b id="arrow">&#8595</b>`;
-        document.querySelector("#arrow").style.fontSize = fontsizeletter
+        document.querySelector("#arrow").style.fontSize = fontsizeletter;
     }
 }
 
@@ -537,14 +541,14 @@ function stepField() {
             if (fields[rindex][cindex + k].className == "normal-field empty" && !fields[rindex][cindex + k].hasChildNodes()) {
                 arrowposition[0] = fields[rindex][cindex + k];
                 arrowposition[0].innerHTML = `<b id="arrow">&#8594</b>`;
-                document.querySelector("#arrow").style.fontSize = fontsizeletter
+                document.querySelector("#arrow").style.fontSize = fontsizeletter;
                 break;
             } else {
                 if (fields[rindex][cindex + k].className == "wall-field") {
                     arrowposition = [];
                     break;
                 } else {
-                    k++
+                    k++;
                 }
             }
         }
@@ -559,14 +563,14 @@ function stepField() {
             if (fields[rindex + k][cindex].className == "normal-field empty" && !fields[rindex + k][cindex].hasChildNodes()) {
                 arrowposition[0] = fields[rindex + k][cindex];
                 arrowposition[0].innerHTML = `<b id="arrow">&#8595</b>`;
-                document.querySelector("#arrow").style.fontSize = fontsizeletter
+                document.querySelector("#arrow").style.fontSize = fontsizeletter;
                 break;
             } else {
                 if (fields[rindex + k][cindex].className == "wall-field") {
                     arrowposition = [];
                     break;
                 } else {
-                    k++
+                    k++;
                 }
             }
         }
@@ -584,6 +588,19 @@ function tryToRemoveArrow() {
 
 function allowDrop(ev) {
     ev.preventDefault();
+}
+
+function onDragLeave(ev) {
+    ev.target.style.background = '';
+}
+
+function onDragEnter(ev) {
+    const target = ev.target;
+    if (target) {
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move";
+        target.style.background = "gray";
+    }
 }
 
 function drag(ev) {
@@ -620,6 +637,8 @@ function drop(ev) {
             parentofdraggedletter.setAttribute("class", "rack-field empty");
         }
     }
+    parentofdraggedletter.style.background = "";
+    ev.target.style.background = "";
     if (appendedletter.className == "letter letter-on-rack joker") {
         if (ev.target.className == "normal-field occupied") {
             createPopup(ev.target);
@@ -668,7 +687,7 @@ function createLetter(lettercount, value) {
     }
     letteri.setAttribute("inputmode", "none");
     if (value == '*') {
-        letteri.setAttribute("class", "letter letter-on-rack joker")
+        letteri.setAttribute("class", "letter letter-on-rack joker");
     } else letteri.setAttribute("class", "letter letter-on-rack");
     letteri.setAttribute("value", value);
     letteri.draggable = true;
@@ -759,7 +778,8 @@ function startGame() {
         destroyPopup();
     } catch (err) { }
     if (ingame) {
-        displayMessage("Figyelem!", "Valóban új játékot akarsz kezdeni?<br> Ebben az esetben a megkezdett<br> játékban eddig elért eredményed<br> elvész.", newGame, cancel, "game-div", "#board-rack");
+        displayMessage("Figyelem!", "Valóban új játékot akarsz kezdeni?<br> Ebben az esetben a megkezdett<br> játékban eddig elért eredményed<br> elvész.",
+            newGame, cancel, "game-div", "#board-rack");
     } else {
         newGame();
     }
@@ -804,7 +824,7 @@ function saveGame() {
                 rowtosave.push(fields[i][j].firstChild.value);
             }
         }
-        fieldstosave.push(rowtosave)
+        fieldstosave.push(rowtosave);
     }
     localStorage.setItem('Board', JSON.stringify(fieldstosave));
     lettersonrack = document.querySelectorAll(".rack-field");
@@ -929,7 +949,7 @@ function pause() {
 }
 
 function continueGame() {
-    destroyPopup()
+    destroyPopup();
     showBoard();
     resetTimer(currenttime);
 }
@@ -941,7 +961,7 @@ function hideBoard() {
                 fields[i][j].firstChild.style.display = "none";
             }
             let e = document.createElement("div");
-            e.className = "blind"
+            e.className = "blind";
             e.innerHTML = '?';
             e.style.fontSize = fontsizeletter;
             fields[i][j].appendChild(e);
@@ -953,7 +973,7 @@ function hideBoard() {
             rackfields[i].firstChild.style.display = "none";
         }
         let e = document.createElement("div");
-        e.className = "blind"
+        e.className = "blind";
         e.innerHTML = '?';
         e.style.fontSize = fontsizeletter;
         rackfields[i].appendChild(e);
@@ -1017,7 +1037,7 @@ function shuffle() {
         let rand = getRndInteger(0, lettersonrack.length);
         rackfields[i].appendChild(lettersonrack[rand]);
         lettersonrack.splice(rand, 1);
-        i++
+        i++;
     }
 }
 
@@ -1051,13 +1071,13 @@ function testNewWords() {
         for (let letter of lettersontheboard) {
             letter[0].style.color = "darkred";
         }
-        return
+        return;
     }
     if (!continuous(lettersontheboard, direction) || direction == "nem folyamatos") {
         for (let letter of lettersontheboard) {
             letter[0].style.color = "darkred";
         }
-        return
+        return;
     }
     let words = getAllString(lettersontheboard, direction);
     if (words.length == 0) return;
@@ -1066,7 +1086,7 @@ function testNewWords() {
         for (let letter of lettersontheboard) {
             letter[0].style.color = "darkred";
         }
-        return
+        return;
     }
     for (let letter of lettersontheboard) {
         letter[0].style.color = "yellow";
@@ -1170,7 +1190,6 @@ function patternSearch(searchpatterns) {
         if (!searchpatterns[i][0].includes('.')) continue;
         let wordsfound = 0;
         for (word of partsofdictionary[searchpatterns[i][0].length]) {
-
             matches = word.match(searchpatterns[i][0]);
             if (matches) {
                 wordsfound++;
@@ -1298,9 +1317,9 @@ function isFilledOut() {
     for (let i = 0; i < fields.length; i++) {
         for (let j = 0; j < fields[0].length; j++) {
             if (fields[i][j].className == "normal-field empty") {
-                emptyfields++
+                emptyfields++;
             } else if (fields[i][j].className == "normal-field occupied") {
-                occupiedfields++
+                occupiedfields++;
             }
         }
     }
@@ -1366,7 +1385,7 @@ function displayResult() {
     form1.appendChild(fieldset1);
     let legend1 = document.createElement("legend");
     legend1.innerHTML = "Eredmény";
-    fieldset1.appendChild(legend1)
+    fieldset1.appendChild(legend1);
     let table1 = document.createElement("table");
     fieldset1.appendChild(table1);
     let tr1 = document.createElement("tr");
@@ -1409,7 +1428,7 @@ function displayResult() {
         button2.style.height = Math.floor(fieldsize * 1).toString() + "px";
     }
     td3.appendChild(button2);
-    table1.style.display = "block"
+    table1.style.display = "block";
 }
 
 function destroyPopupResult() {
@@ -1532,7 +1551,7 @@ function ifOneNewLetter(lettersontheboard) {
         }
     } catch (err) { }
     if (direction == "") {
-        direction = "nem folyamatos"
+        direction = "nem folyamatos";
     }
     return direction;
 }
@@ -1688,9 +1707,9 @@ function displayMessage(legend, message, command1, command2, parente, elementund
         button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
     }
     button1.style.fontSize = fontsizebutton;
-    button1.style.marginRight = "20px"
+    button1.style.marginRight = "20px";
     td2.appendChild(button1);
-    td2.style.marginRight = "20px"
+    td2.style.marginRight = "20px";
     if (command2) {
         let button2 = document.createElement("button");
         button2.innerText = "Mégsem";
@@ -1814,13 +1833,13 @@ function selectLanguage(lang) {
         document.querySelector("#yes-mark-e").style.display = "inline-block";
         document.querySelector("#yes-mark-e").style.position = "absolute";
     }
-    createPartsOfDictionary()
+    createPartsOfDictionary();
     createSack();
 }
 
 function createPartsOfDictionary() {
     for (let i = 0; i < 30; i++) {
-        partsofdictionary[i] = []
+        partsofdictionary[i] = [];
     }
     for (let word of dictionary) {
         partsofdictionary[word.length].push(word);
@@ -1854,7 +1873,7 @@ function displayWordSearch() {
     input1.style.fontSize = fontsizebutton;
     input1.style.background = "white";
     input1.style.color = "darkred";
-    input1.style.marginBottom = fieldsize.toString() + "px"
+    input1.style.marginBottom = fieldsize.toString() + "px";
     fieldset1.appendChild(input1);
     input1.addEventListener("keyup", wordSearch);
     let button1 = document.createElement("button");
@@ -1932,7 +1951,7 @@ function displayTime() {
 }
 
 function resetTimer(ctime) {
-    let tofturn = (timelimit - currenttime)
+    let tofturn = (timelimit - currenttime);
     totaltime += tofturn;
     let t = document.querySelector("#time");
     currenttime = ctime;
@@ -1961,7 +1980,7 @@ function decideOrientation() {
     console.log("window.innerHeight", window.innerHeight);
     console.log("document.documentElement.clientHeight", document.documentElement.clientHeight);
     console.log("document.body.clientHeight", document.body.clientHeight);*/
-    width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+    width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     height > width ? orientation1 = "portrait" : orientation1 = "landscape";
 }
@@ -2074,12 +2093,12 @@ function selectBoard(pushedbutton) {
     }
     selectedboard = boards[selectedboardnum][0];
     alt1 = `${selectedboardnum + 1}` + ". tábla";
-    numofselected.innerHTML = `<span>${(selectedboardnum + 1).toString() + "."}</span>`;
+    numofselected.innerHTML = `${(selectedboardnum + 1).toString() + "."}`;
     if (touchdevice) {
         boardimgsize = Math.floor(width / 3).toString();
-        selectedboardtd.innerHTML = `<img src=${boards[selectedboardnum][1]} width=${boardimgsize} height=${boardimgsize} alt=${alt1}/>`;
+        selectedboardtd.innerHTML = `<img id="board-img" style="vertical-align: middle" src=${boards[selectedboardnum][1]} width=${boardimgsize} height=${boardimgsize} alt=${alt1}/>`;
     } else {
-        selectedboardtd.innerHTML = `<img src=${boards[selectedboardnum][1]} alt=${alt1}/>`;
+        selectedboardtd.innerHTML = `<img id="board-img" style="vertical-align: middle" src=${boards[selectedboardnum][1]} alt=${alt1}/>`;
     }
 }
 
@@ -2094,7 +2113,7 @@ function initGame() {
         console.log("Drag and Drop API is supported!");
     document.querySelector("#start-screen").style.display = "none";
     document.querySelector("h2").style.display = "inline-block";
-    touchdevice = true
+    //touchdevice = true;
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
@@ -2144,13 +2163,13 @@ function setupNewGame() {
 
 function initStartScreen() {
     touchdevice = ('ontouchstart' in document.documentElement);
-    touchdevice = true;
+    //touchdevice = true;
+    decideOrientation();
+    startscreen = document.querySelector("#start-screen");
     if (touchdevice) {
-        decideOrientation();
         fieldsize = 50;
         fontsizeletter = 30 + "px";
         fontsizebutton = 30 + "px";
-        startscreen = document.querySelector("#start-screen");
         startscreen.style.fontSize = "35px";
         startscreen.style.backgroundImage = "url('img/rotatedboard1.png')";
         startscreen.style.backgroundRepeat = "no-repeat";
@@ -2185,6 +2204,7 @@ function initStartScreen() {
         startscreeninnerdiv.style.backgroundSize = "100%";
         startscreeninnerdiv.style.backgroundPosition = "top center";
     }
+    startscreen.style.minHeight = height.toString()+"px";
     checkSavedGame();
 }
 

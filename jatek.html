@@ -24,7 +24,8 @@
     <div id="start-screen">
         <div id="start-screen-inner-div" style="display:inline-block; padding-left: 3%; padding-right: 3%">
             <br>
-            <h1 id="title" style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Ne hagyd üresen!</h1>
+            <h1 id="title" style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Ne hagyd üresen!
+            </h1>
             <small id="small1"
                 style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">keresztrejtvény-készítő
                 betűjáték</small>
@@ -37,45 +38,53 @@
                     <button id="hun-lang" class="lang-button" type="button"
                         style="border: none; background-color: black; position: relative"
                         onclick="selectLanguage('hun')">
-                        <img  id="hun-flag" class="flag-img" src="img/hungarianflag1.png" alt="magyar zászló" width="150px" />
+                        <img id="hun-flag" class="flag-img" src="img/hungarianflag1.png" alt="magyar zászló"
+                            width="150px" />
                         <img id="yes-mark-h" class="yes-mark" style="display:none" src="img/yes.png" alt="kijelölve" />
                     </button>
                     <button id="eng-lang" class="lang-button" type="button"
                         style="border: none; background-color: black; position: relative"
                         onclick="selectLanguage('eng')">
-                        <img id="eng-flag" class="flag-img" src="img/englishflag1.png" alt="angol zászló" width="150px" />
+                        <img id="eng-flag" class="flag-img" src="img/englishflag1.png" alt="angol zászló"
+                            width="150px" />
                         <img id="yes-mark-e" class="yes-mark" style="display:none" src="img/yes.png" alt="kijelölve" />
                     </button>
                 </div>
                 <br>
                 <br>
                 <p>Tábla:</p>
-                <div id="select-board"
-                    style="display:inline-block; width:100%; box-sizing: border-box; padding-top:30px; padding-bottom:30px; border-style: solid; border-width: 5px; border-radius: 20px; border-color: lightblue">
-                    <table style="display:inline-block; text-align: center">
-                        <tbody style="text-align: center">
-                            <tr style="text-align: center">
-                                <td id="number-of-selected" colspan="3" style="text-align: center">
-                                    <span>1.</span>
-                                </td>
-                            </tr>
-                            <tr style="text-align: center">
-                                <td>
-                                    <button id="button-left" class="arrow-button" type="button" style="width: 80px; height: 80px" 
-                                        onclick="selectBoard('left')"><b id="left-arrow"
-                                        style="font-size: 30px; color: white; background-color:rgb(21, 202, 202)">&lt;</b></button>
-                                </td>
-                                <td id="selected-board" style="width: 172px; height:176px">
-                                    <img  id="board-img" src="img/board1.png" alt="1. tábla" />
-                                </td>
-                                <td>
-                                    <button id="button-right" class="arrow-button" type="button" style="width: 80px; height: 80px"
-                                        onclick="selectBoard('right')"><b id="right-arrow"
-                                        style="font-size: 30px; color: white; background-color:rgb(21, 202, 202)">&gt;</b></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div id="select-board" style="display:inline-block; width:100%; box-sizing: border-box; padding-top:30px; padding-bottom:30px; background-color: black; opacity:80%; border-style: solid; 
+                    border-width: 5px; border-radius: 20px; border-color: lightblue">
+                    <p id="number-of-selected" style="text-align: center">1.</p>
+                    <div>
+                        <div style="display: inline-block; height:176px; padding-left: 20px; padding-right: 10px">
+                            <button id="button-left" class="arrow-button" type="button"
+                                style="vertical-align: middle; width: 100px; height: 100px"
+                                onclick="selectBoard('left')"><b id="left-arrow"
+                                    style="font-size: 30px; color: white; background-color:rgb(21, 202, 202)">&lt;</b></button>
+                        </div>
+                        <div id="selected-board" style="display: inline-block; width: 172px; height:176px">
+                            <img id="board-img" style="vertical-align: middle" src="img/board1.png" alt="1. tábla" />
+                            <img id="board-img" style="display: none; vertical-align: middle" src="img/board2.png"
+                                alt="2. tábla" />
+                            <img id="board-img" style="display: none; vertical-align: middle" src="img/board3.png"
+                                alt="3. tábla" />
+                            <img id="board-img" style="display: none; vertical-align: middle" src="img/board4.png"
+                                alt="4. tábla" />
+                            <img id="board-img" style="display: none; vertical-align: middle" src="img/board5.png"
+                                alt="5. tábla" />
+                            <img id="board-img" style="display: none; vertical-align: middle" src="img/board6.png"
+                                alt="6. tábla" />
+                            <img id="board-img" style="display: none; vertical-align: middle" src="img/board7.png"
+                                alt="7. tábla" />
+                        </div>
+                        <div style="display: inline-block; height:176px; padding-left: 10px; padding-right: 20px">
+                            <button id="button-right" class="arrow-button" type="button"
+                                style="vertical-align: middle; width: 100px; height: 100px"
+                                onclick="selectBoard('right')"><b id="right-arrow"
+                                    style="font-size: 30px; color: white; background-color:rgb(21, 202, 202)">&gt;</b></button>
+                        </div>
+                    </div>
                 </div>
                 <br>
                 <br>
@@ -91,7 +100,9 @@
             </div>
         </div>
     </div>
-    <h2 id="title1" style="display:none">Ne hagyd üresen! <small id="small1">- keresztrejtvény-készítő betűjáték</small></h1>
+    <h2 id="title1" style="display:none">Ne hagyd üresen! <small id="small1">- keresztrejtvény-készítő
+            betűjáték</small>
+        </h1>
         <div id="game-container">
             <div id="dashboard-top" style="display:none">
                 <form id="top-form">
@@ -229,14 +240,16 @@
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
-                                    <td> <button id="back" class="UI-button" type="button" disabled>Vissza</button></td>
+                                    <td> <button id="back" class="UI-button" type="button" disabled>Vissza</button>
+                                    </td>
                                 </tr>
                                 <tr class="dashboard-tr">
                                     <td> <button id="shuffle" class="UI-button" type="button" disabled>Keverés</button>
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
-                                    <td><button id="done" class="UI-button" type="button" disabled>Kész</button></td>
+                                    <td><button id="done" class="UI-button" type="button" disabled>Kész</button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
