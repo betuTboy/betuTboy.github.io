@@ -2088,9 +2088,10 @@ function selectBoard(pushedbutton) {
     if (pushedbutton == "left" && selectedboardnum > 0) {
         selectedboardnum--;
     }
-    if (pushedbutton == "right" && selectedboardnum < boards.length) {
+    if (pushedbutton == "right" && selectedboardnum < boards.length-1) {
         selectedboardnum++;
     }
+    console.log(selectedboardnum);
     selectedboard = boards[selectedboardnum][0];
     alt1 = `${selectedboardnum + 1}` + ". tábla";
     numofselected.innerHTML = `${(selectedboardnum + 1).toString() + "."}`;
@@ -2203,6 +2204,9 @@ function initStartScreen() {
         startscreeninnerdiv.style.backgroundRepeat = "no-repeat";
         startscreeninnerdiv.style.backgroundSize = "100%";
         startscreeninnerdiv.style.backgroundPosition = "top center";
+        document.querySelector("#board-img").style.width = "170px";
+        document.querySelector("#board-img").style.height = "170px";
+
     }
     startscreen.style.minHeight = height.toString()+"px";
     checkSavedGame();

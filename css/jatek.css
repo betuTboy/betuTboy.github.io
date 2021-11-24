@@ -409,3 +409,11 @@ ul{
     background-color:rgb(21, 202, 202);
     border-radius: 50%;
 }
+
+.arrow-button:hover{
+    background-color:rgb(90, 226, 226);  
+}
+
+.arrow-button:active{
+    background-color:rgb(21, 202, 202);
+}
