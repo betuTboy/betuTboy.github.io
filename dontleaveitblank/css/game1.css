@@ -1,0 +1,419 @@
+
+body{
+    margin: 2px;
+    font-family:  "Arial", "Verdana", "Sans serif", "Times New Roman", "Times";
+    background-color:rgb(235, 235, 235); 
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
+}
+
+:focus{  
+    outline: none;  
+}  
+
+img{ 
+   user-select: none;
+   -moz-user-select: none;
+   -webkit-user-drag: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+}
+
+#game-div{
+    background-color:rgb(235, 235, 235);
+    min-width: 500px; 
+}
+
+#board-rack{
+    display: inline-block;
+    text-align: center;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
+}
+
+#board-form, #rack-form{
+    display: inline-block;
+}
+
+#rack-form{
+    padding-top: 30px;
+}
+
+.normal-field, .rack-field{
+    text-align: center;
+    background-color: lightgrey;
+    border: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.wall-field{
+    background-color: black;
+    border: none; 
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.blind{
+    width: 100%;
+    height: 100%;
+    background-color:green;
+    border: none;  
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-align:center;
+    color: white;
+    z-index: 2;
+}
+
+.letter{
+    font-family: inherit;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgb(21, 202, 202);
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    z-index:1;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
+}
+
+.letter::selection{
+    background-color: rgb(21, 202, 202); 
+}
+
+.letter-on-rack{
+    color: black;
+    margin: 0;
+    padding: 0;
+    z-index:1;
+}
+
+.letter-on-board{
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+.joker{
+    background-color:rgb(214, 142, 214);
+}
+
+#dashboard{
+    font-family: inherit;
+    display: inline-block;
+    vertical-align: top;
+    background-color:rgb(235, 235, 235);
+    border-style: solid;
+    border-width: 1px;
+    border-color:white;
+    margin: 0.5%;
+    padding: 0.5%;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
+}
+
+#top-form #bottom-form{
+    font-family: inherit;
+    display: inline-block;
+}
+
+#dashboard-top{
+    font-family: inherit;
+    background-color:rgb(235, 235, 235);
+}    
+
+#dashboard-bottom{
+    font-family: inherit;
+    margin-top: 20px;
+    color:rgb(235, 235, 235);
+    background-color:rgb(235, 235, 235);
+}
+
+.UI-button{
+    box-sizing: border-box;
+    font-family: inherit;
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.UI-button#start,  .UI-button#start-top{
+    background-color: purple;
+}
+
+.UI-button#start:hover,  .UI-button#start-top:hover{
+    background-color: rgb(160, 88, 160); 
+}
+
+.UI-button#back, .UI-button#back-bottom{
+    background-color: orange; 
+}
+
+.UI-button#back:hover, .UI-button#back-bottom:hover{
+    background-color: rgb(240, 189, 94); 
+}
+
+.UI-button#shuffle, .UI-button#shuffle-bottom{
+    background-color: blue; 
+}
+
+.UI-button#shuffle:hover, .UI-button#shuffle-bottom:hover{
+    background-color: rgb(87, 87, 172); 
+}
+
+.UI-button#done, .UI-button#done-bottom{
+    background-color: crimson; 
+}
+
+.UI-button#done:hover, .UI-button#done-bottom:hover{
+    background-color: rgb(192, 94, 114); 
+}
+
+.UI-button:disabled{
+    color:rgb(194, 202, 194); 
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.UI-button:focus{
+    border: 1px;
+    border-color: darkblue;
+}
+
+.UI-button::-moz-focus-inner{
+    border: 0px;
+}
+
+.UI-button:hover{
+    background-color: #7cc27f;
+}
+
+input{
+    box-sizing: border-box;
+    font-family: inherit;
+    color: #4CAF50; 
+    border: none;
+    background-color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;  
+    width: 100%;
+    height: 100%;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
+}
+
+input:focus{
+    outline: none;
+}
+
+input[type=text]{
+    text-align: center;
+    caret-color: rgb(21, 202, 202);
+}
+
+.textinput{
+
+    text-align: left;
+    color: black;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
+}
+
+#progressbar-container{
+    height:5px;
+}
+
+progress[value]{
+    color:green;
+    width: 100%;
+    height: 5px;
+    vertical-align:top;
+} 
+
+b{
+    padding: none;
+    border: none;
+    margin: none;
+    font-family: inherit;
+    color: red;
+    text-align: center;
+    background-color: lightgrey; 
+    font-weight: 900;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#arrow{
+    box-sizing: border-box;
+}
+
+p{
+    font-family: inherit;
+    text-align: justify;
+    display: block;
+}
+
+h1{
+    font-family: inherit;
+}
+
+ul{
+    font-family: inherit;
+    list-style-type: none;
+}
+
+#message-text{
+    font-family: inherit;
+    text-align: center;
+}
+
+.popup {
+    font-family: inherit;
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 3;
+}
+  
+.popup .popupcontent {
+    font-family: inherit;
+    visibility: visible;
+    -webkit-animation: fadeIn 0.3s;
+    animation: fadeIn 0.3s;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    margin: 0; 
+    z-index: 3;
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+}
+  
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+#game-results{
+    font-family: inherit;
+    display: inline-block;  
+    vertical-align: top;
+    text-align: left;
+}
+
+.popupresult{
+    font-family: inherit;
+    border-radius: 6px;
+    padding: 8px;
+    background-color: #555;
+    color: #fff;    
+}
+
+.words-table{
+    font-family: inherit;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.numberofwords{
+    color: black;
+    border-radius: 50%;
+    display: inline-block;
+    z-index:2;
+    position: absolute;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
+}
+
+.red{
+    background-color: red;
+}
+
+.yellow{
+    background-color: yellow;
+}
+
+.green{
+    background-color: #4CAF50;
+}
+
+#start-screen{
+    color: white;
+    background-color: black;
+    text-align: center;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+    -moz-user-select: none;
+}
+
+.yes-mark{
+    position: absolute; 
+}
+
+#start-button{
+    border-color: lightblue; background-color: rgb(10, 10, 78);
+    color: white;
+}
+
+#start-button:hover{
+    background-color: rgb(59, 59, 161);
+}
+
+.arrow-button{
+    background-color:rgb(21, 202, 202);
+    border-radius: 50%;
+}
+
+.arrow-button:hover{
+    background-color:rgb(90, 226, 226);  
+}
+
+.arrow-button:active{
+    background-color:rgb(21, 202, 202);
+}

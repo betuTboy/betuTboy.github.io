@@ -7,41 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Keresztrejtvény-készítő betűjáték. Minden fordulóban 10 új betű, kötött szótár alapján ellenőrzött szavak, magyar és angol nyelv.
         Töltsd ki a táblát az utolsó négyzetig!">
-    <link rel="stylesheet" href="css/jatek.css">
-    <title>Ne hagyd üresen! - keresztrejtvény-készítő betűjáték</title>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3H73626BS"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-Q3H73626BS');
-    </script>
+    <link rel="stylesheet" href="css/game1.css">
+    <title>Don't leave it blank! - crossword puzzle maker game</title>
 </head>
 
 <body>
     <div id="start-screen">
         <div id="start-screen-inner-div" style="display:inline-block; padding-left: 3%; padding-right: 3%">
             <br>
-            <h1 id="title" style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Ne hagyd üresen!
+            <h1 id="title" style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Don't leave it blank!
             </h1>
             <small id="small1"
-                style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">keresztrejtvény-készítő
-                betűjáték</small>
+                style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">crossword puzzle maker game</small>
             <div id="setup-new-game" style="visibility: hidden">
                 <br>
                 <br>
-                <p>Nyelv:</p>
+                <p>Language:</p>
                 <div id="select-language" style="display:inline-block; width:100%; box-sizing: border-box; padding:30px; border-style: solid; border-width: 5px; border-radius: 20px; 
                     border-color: lightblue; background-color: black; opacity:80%">
-                    <button id="hun-lang" class="lang-button" type="button"
-                        style="border: none; background-color: black; position: relative"
-                        onclick="selectLanguage('hun')">
-                        <img id="hun-flag" class="flag-img" src="img/hungarianflag1.png" alt="magyar zászló"
-                            width="150px" />
-                        <img id="yes-mark-h" class="yes-mark" style="display:none" src="img/yes.png" alt="kijelölve" />
-                    </button>
                     <button id="eng-lang" class="lang-button" type="button"
                         style="border: none; background-color: black; position: relative"
                         onclick="selectLanguage('eng')">
@@ -49,10 +32,17 @@
                             width="150px" />
                         <img id="yes-mark-e" class="yes-mark" style="display:none" src="img/yes.png" alt="kijelölve" />
                     </button>
+                    <button id="hun-lang" class="lang-button" type="button"
+                        style="border: none; background-color: black; position: relative"
+                        onclick="selectLanguage('hun')">
+                        <img id="hun-flag" class="flag-img" src="img/hungarianflag1.png" alt="magyar zászló"
+                            width="150px" />
+                        <img id="yes-mark-h" class="yes-mark" style="display:none" src="img/yes.png" alt="kijelölve" />
+                    </button>
                 </div>
                 <br>
                 <br>
-                <p>Tábla:</p>
+                <p>Board:</p>
                 <div id="select-board" style="display:inline-block; width:100%; box-sizing: border-box; padding-top:30px; padding-bottom:30px; background-color: black; opacity:80%; border-style: solid; 
                     border-width: 5px; border-radius: 20px; border-color: lightblue">
                     <p id="number-of-selected" style="text-align: center">1.</p>
@@ -98,8 +88,7 @@
             </div>
         </div>
     </div>
-    <h2 id="title1" style="display:none">Ne hagyd üresen! <small id="small1">- keresztrejtvény-készítő
-            betűjáték</small>
+    <h2 id="title1" style="display:none">Don't leave it blank! <small id="small1">- crossword puzzle maker game</small>
         </h1>
         <div id="game-container">
             <div id="dashboard-top" style="display:none">
@@ -108,38 +97,38 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <button id="search-top" class="UI-button" type="button">Keresés</button>
+                                    <button id="search-top" class="UI-button" type="button">Search</button>
                                 </td>
                                 <td>
-                                    <button id="rules-top" class="UI-button" formaction="nehagyduresenjatekszabaly.html"
-                                        formtarget="blank">Játékszabály</button>
+                                    <button id="rules-top" class="UI-button" formaction="game1rules.html"
+                                        formtarget="blank">Rule</button>
                                 </td>
                                 <td>
-                                    <button id="start-top" class="UI-button" type="button">Új játék</button>
+                                    <button id="start-top" class="UI-button" type="button">New game</button>
                                 </td>
                                 <td>
-                                    <button id="pause-top" class="UI-button" type="button" disabled>Szünet</button>
+                                    <button id="pause-top" class="UI-button" type="button" disabled>Pause</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label class="input-label" for="turn-top">Forduló/Tétlen:</label>
+                                    <label class="input-label" for="turn-top">Turn/Idle:</label>
                                     <input name="turn-top" id="turn-top" class="UI-input" type="text" value="0 / 0"
                                         size="1" maxlength="5" style="text-align: right" disabled>
                                 </td>
                                 <td>
-                                    <label class="input-label" for="time-top">Idő:</label>
+                                    <label class="input-label" for="time-top">Time:</label>
                                     <input name="time-top" id="time-top" class="UI-input" type="text" value="0" size="1"
                                         maxlength="5" style="text-align: right" disabled>
 
                                 </td>
                                 <td>
-                                    <label class="input-label" for="lscore-top">Utolsó szó:</label>
+                                    <label class="input-label" for="lscore-top">Last word:</label>
                                     <input name="lscore-top" id="lscore-top" class="UI-input" type="text" value="0"
                                         size="1" maxlength="5" style="text-align: right" disabled>
                                 </td>
                                 <td>
-                                    <label class="input-label" for="score-top">Összpontszám:</label>
+                                    <label class="input-label" for="score-top">Total score:</label>
                                     <input name="score-top" id="score-top" class="UI-input" type="text" value="0"
                                         size="1" maxlength="5" style="text-align: right" disabled>
                                 </td>
@@ -171,28 +160,28 @@
                             <tbody>
                                 <tr class="dashboard-tr">
                                     <td>
-                                        <button id="search" class="UI-button" type="button">Keresés</button>
+                                        <button id="search" class="UI-button" type="button">Search</button>
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
                                     <td>
-                                        <button id="rules" class="UI-button" formaction="nehagyduresenjatekszabaly.html"
-                                            formtarget="blank">Játékszabály</button>
+                                        <button id="rules" class="UI-button" formaction="game1rules.html"
+                                            formtarget="blank">Game rules</button>
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
                                     <td>
-                                        <button id="start" class="UI-button" type="button">Új játék</button>
+                                        <button id="start" class="UI-button" type="button">New game</button>
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
                                     <td>
-                                        <button id="pause" class="UI-button" type="button" disabled>Szünet</button>
+                                        <button id="pause" class="UI-button" type="button" disabled>Pause</button>
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
                                     <td>
-                                        <label for="turn">Forduló/Tétlen:</label>
+                                        <label for="turn">Turn/Idle:</label>
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
@@ -203,7 +192,7 @@
                                 </tr>
                                 <tr class="dashboard-tr">
                                     <td>
-                                        <label for="time">Idő:</label>
+                                        <label for="time">Time:</label>
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
@@ -217,7 +206,7 @@
                                 </tr>
                                 <tr class="dashboard-tr">
                                     <td>
-                                        <label for="lscore">Utolsó szó:</label>
+                                        <label for="lscore">Last word:</label>
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
@@ -228,7 +217,7 @@
                                 </tr>
                                 <tr class="dashboard-tr">
                                     <td>
-                                        <label for="score">Összpontszám:</label>
+                                        <label for="score">Total score:</label>
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
@@ -238,15 +227,15 @@
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
-                                    <td> <button id="back" class="UI-button" type="button" disabled>Vissza</button>
+                                    <td> <button id="back" class="UI-button" type="button" disabled>Back</button>
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
-                                    <td> <button id="shuffle" class="UI-button" type="button" disabled>Keverés</button>
+                                    <td> <button id="shuffle" class="UI-button" type="button" disabled>Shuffle</button>
                                     </td>
                                 </tr>
                                 <tr class="dashboard-tr">
-                                    <td><button id="done" class="UI-button" type="button" disabled>Kész</button>
+                                    <td><button id="done" class="UI-button" type="button" disabled>Done</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -262,15 +251,15 @@
                             <tr>
                                 <td>
                                     <button id="back-bottom" class="UI-button" type="button" disabled
-                                        style="margin: 2px">Vissza</button>
+                                        style="margin: 2px">Back</button>
                                 </td>
                                 <td>
                                     <button id="shuffle-bottom" class="UI-button" type="button" disabled
-                                        style="margin: 2px">Keverés</button>
+                                        style="margin: 2px">Shuffle</button>
                                 </td>
                                 <td>
                                     <button id="done-bottom" class="UI-button" type="button" disabled
-                                        style="margin: 2px">Kész</button>
+                                        style="margin: 2px">Done</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -278,7 +267,7 @@
                 </form>
             </div>
         </div>
-        <script src="js/jatek.js"></script>
+        <script src="js/game1.js"></script>
 </body>
 
 </html>

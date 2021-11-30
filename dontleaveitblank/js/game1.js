@@ -351,7 +351,7 @@ const boards = [
 let selectedboardnum = 0;
 let selectedboard = board_1;
 let letters;
-let language = 'hun';
+let language = 'eng';
 let dictionary;
 let partsofdictionary = [];
 const bonuses = { "0": 0, "1": 0, "2": 0, "3": 0, "4": 2, "5": 4, "6": 8, "7": 16, "8": 32, "9": 64, "10": 128 };
@@ -773,7 +773,7 @@ function startGame() {
         destroyPopup();
     } catch (err) { }
     if (ingame) {
-        displayMessage("Figyelem!", "Valóban új játékot akarsz kezdeni?<br> Ebben az esetben a megkezdett<br> játékban eddig elért eredményed<br> elvész.",
+        displayMessage("Warning", "Do you really want to start a new game?<br> In this case, the result you have achieved<br>so far will be lost.",
             newGame, cancel, "game-div", "#board-rack");
     } else {
         newGame();
@@ -940,7 +940,7 @@ function cancel() {
 function pause() {
     hideBoard();
     clearInterval(timeout);
-    displayMessage("Szünet", "Kattints a gombra a folytatáshoz!", continueGame, "", "game-div", "#board-rack");
+    displayMessage("Pause", "Click the button to continue!", continueGame, "", "game-div", "#board-rack");
 }
 
 function continueGame() {
@@ -1254,7 +1254,7 @@ function removeElements(classofelement) {
 function passOrValidate() {
     let lettersontheboard = collectNewLettersOnBoard();
     if (lettersontheboard.length == 0) {
-        displayMessage("Figyelem!", "Biztos, hogy passzolsz ebben a fordulóban?", validateNewWords, cancel, "game-div", "#board-rack");
+        displayMessage("Warning", "Are you sure you want to pass this turn?", validateNewWords, cancel, "game-div", "#board-rack");
     }
     else {
         validateNewWords();
@@ -1271,18 +1271,18 @@ function validateNewWords() {
     } else {
         let direction = decideDirection(lettersontheboard);
         if (direction == "nem esnek egy vonalba") {
-            displayMessage("Szabálytalan!", "A lerakott betűk nem esnek egy vonalba.", destroyPopup, "", "game-div", "#board-rack");
+            displayMessage("Error", "The placed letters do not fall in line.", destroyPopup, "", "game-div", "#board-rack");
             return 1;
         }
         if (!continuous(lettersontheboard, direction) || direction == "nem folyamatos") {
-            displayMessage("Szabálytalan!", "A betűk nem folyamatosan vannak lerakva.", destroyPopup, "", "game-div", "#board-rack");
+            displayMessage("Error", "The letters are not placed continuously.", destroyPopup, "", "game-div", "#board-rack");
             return 1;
         }
         let words = getAllString(lettersontheboard, direction);
         let notfound = checkDictionary(words);
         if (notfound.length > 0) {
             let nfjoined = notfound.join(', ');
-            displayMessage("Szabálytalan!", `${nfjoined} nem található a szótárban`, destroyPopup, "", "game-div", "#board-rack");
+            displayMessage("Error", `${nfjoined} not found in the dictionary`, destroyPopup, "", "game-div", "#board-rack");
             return 1;
         }
         let sc = displayScore(lettersontheboard.length);
@@ -1347,7 +1347,7 @@ function pass1() {
         endOfGame();
     } else {
         displayScore(0);
-        displayMessage("Figyelem!", "További " + (limitofidleturns - idleturns).toString() + " passz és a játék véget ér.", destroyPopup, "", "game-div", "#board-rack");
+        displayMessage("Warning", (limitofidleturns - idleturns).toString() + " more pass and the game is over.", destroyPopup, "", "game-div", "#board-rack");
     }
 }
 
@@ -1379,7 +1379,7 @@ function displayResult() {
     let fieldset1 = document.createElement("fieldset");
     form1.appendChild(fieldset1);
     let legend1 = document.createElement("legend");
-    legend1.innerHTML = "Eredmény";
+    legend1.innerHTML = "Result";
     fieldset1.appendChild(legend1);
     let table1 = document.createElement("table");
     fieldset1.appendChild(table1);
@@ -1396,7 +1396,7 @@ function displayResult() {
     let td2 = document.createElement("td");
     tr2.appendChild(td2);
     let button1 = document.createElement("button");
-    button1.innerText = "Rendben";
+    button1.innerText = "OK";
     button1.type = "button";
     button1.className = "UI-button";
     button1.addEventListener("click", destroyPopupResult);
@@ -1408,7 +1408,7 @@ function displayResult() {
     let td3 = document.createElement("td");
     tr3.appendChild(td3);
     let button2 = document.createElement("button");
-    button2.innerText = "Részletek";
+    button2.innerText = "Details";
     button2.id = "reszletek";
     button2.type = "button";
     button2.className = "UI-button";
@@ -1486,11 +1486,9 @@ function resultText() {
         turn1 = document.getElementById("turn").value.split('/')[0];
     }
 
-    let rtext = `<br><div>${selectedboardnum + 1}. tábla</div><br><div style="white-space: pre">A keresztrejtvény kitöltöttsége: <span style="float: right">${fillrate}%</span></div>
-    <div>A fordulók száma: <span style="float: right">${turn1}</span></div>
-    <div>A tétlen fordulók száma: <span style="float: right">${idleturns}</span></div>
-    <div>Az elért pontszám: <span style="float: right">${score}</span></div>
-    <div>A játékban töltött idő: <span style="float: right"> ${totaltime} mp</span></div><br> `
+    let rtext = `<br><div>Board ${selectedboardnum + 1}.</div><br><div style="white-space: pre">Completion of the crossword puzzle: <span style="float: right">${fillrate}%</span></div>
+    <div>Number of turns: <span style="float: right">${turn1}</span></div><div>Number of idle turns: <span style="float: right">${idleturns}</span></div>
+    <div>The score achieved: <span style="float: right">${score}</span></div><div>Time spent in the game: <span style="float: right"> ${totaltime} sec</span></div><br> `
     return rtext;
 }
 
@@ -1696,7 +1694,7 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     let td2 = document.createElement("td");
     tr2.appendChild(td2);
     let button1 = document.createElement("button");
-    button1.innerText = "Rendben";
+    button1.innerText = "OK";
     button1.addEventListener("click", command1);
     button1.type = "button";
     button1.className = "UI-button";
@@ -1711,7 +1709,7 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     td2.style.marginRight = "20px";
     if (command2) {
         let button2 = document.createElement("button");
-        button2.innerText = "Mégsem";
+        button2.innerText = "Cancel";
         button2.addEventListener("click", command2);
         button2.type = "button";
         button2.className = "UI-button";
@@ -1811,7 +1809,7 @@ function placeYesMarks() {
     yesmarke.style.left = Math.floor(rectpe.width / 2).toString() + "px";
     yesmarke.style.bottom = Math.floor(0).toString() + "px";
 
-    selectLanguage("hun")
+    selectLanguage("eng")
 }
 
 function selectLanguage(lang) {
@@ -1859,7 +1857,7 @@ function displayWordSearch() {
     let fieldset1 = document.createElement("fieldset");
     form1.appendChild(fieldset1);
     let legend1 = document.createElement("legend");
-    legend1.innerHTML = "Írd be a keresett szót";
+    legend1.innerHTML = "Type the word you are looking for";
     fieldset1.appendChild(legend1);
     input1 = document.createElement("input");
     input1.setAttribute("name", "word");
@@ -1874,7 +1872,7 @@ function displayWordSearch() {
     fieldset1.appendChild(input1);
     input1.addEventListener("keyup", wordSearch);
     let button1 = document.createElement("button");
-    button1.innerText = "Rendben";
+    button1.innerText = "OK";
     button1.addEventListener("click", destroyPopup);
     button1.type = "button";
     button1.className = "UI-button";
@@ -2090,7 +2088,7 @@ function selectBoard(pushedbutton) {
     }
     console.log(selectedboardnum);
     selectedboard = boards[selectedboardnum][0];
-    alt1 = `${selectedboardnum + 1}` + ". tábla";
+    alt1 = `${selectedboardnum + 1}` + ". board";
     numofselected.innerHTML = `${(selectedboardnum + 1).toString() + "."}`;
     if (touchdevice) {
         boardimgsize = Math.floor(width / 3).toString();
@@ -2144,7 +2142,7 @@ function checkSavedGame() {
     let savedgames = localStorage.getItem('SavedGame');
     savedgame = JSON.parse(savedgames);
     if (savedgame) {
-        displayMessage("Figyelem!", "Az előző játék félbeszakadt.<br> Szeretnéd folytatni?", initGame, setupNewGame, "setup-new-game", "#setup-new-game");
+        displayMessage("Warning", "The previous game was interrupted.<br> Want to continue?", initGame, setupNewGame, "setup-new-game", "#setup-new-game");
     } else {
         setupNewGame();
     }
@@ -2169,7 +2167,7 @@ function initStartScreen() {
         fontsizeletter = 30 + "px";
         fontsizebutton = 30 + "px";
         startscreen.style.fontSize = "35px";
-        startscreen.style.backgroundImage = "url('img/rotatedboard1.png')";
+        startscreen.style.backgroundImage = "url('img/dontleaveitblank1.png')";
         startscreen.style.backgroundRepeat = "no-repeat";
         startscreen.style.backgroundSize = "100%";
         startscreen.style.backgroundPosition = "top center";
@@ -2197,7 +2195,7 @@ function initStartScreen() {
         fontsizeletter = 20 + "px";
         fontsizebutton = 20 + "px";
         startscreeninnerdiv = document.querySelector("#start-screen-inner-div");
-        startscreeninnerdiv.style.backgroundImage = "url('img/rotatedboard1.png')";
+        startscreeninnerdiv.style.backgroundImage = "url('img/dontleaveitblank1.png')";
         startscreeninnerdiv.style.backgroundRepeat = "no-repeat";
         startscreeninnerdiv.style.backgroundSize = "100%";
         startscreeninnerdiv.style.backgroundPosition = "top center";
