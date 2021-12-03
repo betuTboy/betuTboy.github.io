@@ -1347,7 +1347,7 @@ function pass1() {
         endOfGame();
     } else {
         displayScore(0);
-        displayMessage("Warning", (limitofidleturns - idleturns).toString() + " more pass and the game is over.", destroyPopup, "", "game-div", "#board-rack");
+        displayMessage("Warning", (limitofidleturns - idleturns).toString() + " more pass(es) and the game is over.", destroyPopup, "", "game-div", "#board-rack");
     }
 }
 
