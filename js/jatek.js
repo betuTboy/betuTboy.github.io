@@ -715,7 +715,7 @@ function drawLetters() {
 
 function displayTurn() {
     let t;
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         t = document.querySelector("#turn-top");
     } else {
         t = document.querySelector("#turn");
@@ -738,7 +738,7 @@ function getRndInteger(min, max) {
 }
 
 function bindButtons() {
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         let searchbutton = document.querySelector("#search-top");
         searchbutton.addEventListener("click", displayWordSearch);
         let startbutton = document.querySelector("#start-top");
@@ -1415,7 +1415,7 @@ function displayResult() {
     button2.addEventListener("click", displayDetails);
     button2.style.fontSize = fontsizebutton;
     button2.style.marginBottom = fontsizebutton;
-    if (touchdevice){
+    if (touchdevice && orientation1 == "portrait"){
         button1.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
         button2.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
     } else {
@@ -1432,7 +1432,7 @@ function destroyPopupResult() {
 }
 
 function lockOffMain_Rules_Start() {
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         document.getElementById("search-top").disabled = false;
         document.getElementById("rules-top").disabled = false;
         document.getElementById("start-top").disabled = false;
@@ -1479,7 +1479,7 @@ function displayDetails() {
 function resultText() {
     let fillrate = (isFilledOut() * 100).toFixed(2);
     let turn1;
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         turn1 = document.getElementById("turn-top").value.split('/')[0];
     }
     else {
@@ -1649,7 +1649,7 @@ function checkDictionary(words) {
 function displayScore(numberofletters) {
     let turnscore = numberofletters + bonuses[numberofletters.toString()];
     let ls, sc;
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         ls = document.querySelector("#lscore-top");
         sc = document.querySelector("#score-top");
     } else {
@@ -1700,7 +1700,7 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     button1.addEventListener("click", command1);
     button1.type = "button";
     button1.className = "UI-button";
-    if (touchdevice){
+    if (touchdevice && orientation1 == "portrait"){
         button1.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
     } else {
         button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
@@ -1715,7 +1715,7 @@ function displayMessage(legend, message, command1, command2, parente, elementund
         button2.addEventListener("click", command2);
         button2.type = "button";
         button2.className = "UI-button";
-        if (touchdevice){
+        if (touchdevice && orientation1 == "portrait"){
             button2.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
         } else {
             button2.style.height = Math.floor(fieldsize * 1).toString() + "px";
@@ -1730,7 +1730,7 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     let boardandrack = document.querySelector(elementunder);
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         popup1.style.left = "0px";
         popup1.style.top = rectb.top.toString() + "px";;
     } else {
@@ -1781,7 +1781,7 @@ function createPopup(tfield) {
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         popup1.style.left = "0px";
         popup1.style.top = rectb.top.toString() + "px";
     } else {
@@ -1878,7 +1878,7 @@ function displayWordSearch() {
     button1.addEventListener("click", destroyPopup);
     button1.type = "button";
     button1.className = "UI-button";
-    if (touchdevice){
+    if (touchdevice && orientation1 == "portrait"){
         button1.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
     } else {
         button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
@@ -1890,7 +1890,7 @@ function displayWordSearch() {
     let boardandrack = document.querySelector("#board-rack");
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         popup1.style.left = "0px";
         popup1.style.top = rectb.top.toString() + "px";
     } else {
@@ -1922,7 +1922,7 @@ function timer() {
 
 function displayTime() {
     let t
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         t = document.querySelector("#time-top");
     } else {
         t = document.querySelector("#time");
@@ -1983,7 +1983,7 @@ function decideOrientation() {
 }
 
 function adaptToChangedSize() {
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         fieldsize = Math.floor((width - fields[0].length) / (fields.length + 1));
         rackfieldsize = Math.floor((width - fields[0].length) / racksize);
     } else {
@@ -2027,7 +2027,7 @@ function adaptToChangedSize() {
     }
     let buttons = document.querySelectorAll(".UI-button");
     for (let button of buttons) {
-        if (touchdevice) {
+        if (touchdevice && orientation1 == "portrait") {
             button.style.fontSize = fontsizebutton;
             button.parentElement.style.width = Math.floor(width / 4.1).toString() + "px";
             button.style.width = Math.floor(width / 4.1).toString() + "px";
@@ -2042,7 +2042,7 @@ function adaptToChangedSize() {
     for (let input of inputs) {
         input.style.fontSize = fontsizebutton;
         input.style.height = Math.floor(fieldsize * 1).toString() + "px";
-        if (touchdevice) {
+        if (touchdevice && orientation1 == "portrait") {
             input.parentElement.style.width = Math.floor(width / 4.2).toString() + "px";
         }
     }
@@ -2058,7 +2058,7 @@ function adaptToChangedSize() {
 }
 
 function adaptToTouchDevice() {
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         document.querySelector("#dashboard").style.display = "none";
         document.querySelector("#dashboard-top").style.display = "block";
         document.querySelector("#dashboard-bottom").style.display = "block";
@@ -2092,7 +2092,7 @@ function selectBoard(pushedbutton) {
     selectedboard = boards[selectedboardnum][0];
     alt1 = `${selectedboardnum + 1}` + ". tábla";
     numofselected.innerHTML = `${(selectedboardnum + 1).toString() + "."}`;
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         boardimgsize = Math.floor(width / 3).toString();
         selectedboardtd.innerHTML = `<img id="board-img" style="vertical-align: middle" src=${boards[selectedboardnum][1]} width=${boardimgsize} height=${boardimgsize} alt=${alt1}/>`;
     } else {
@@ -2115,7 +2115,7 @@ function initGame() {
     decideOrientation();
     adaptToTouchDevice();
     //window.addEventListener("resize", adaptToChangedSize);
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "porteait") {
         progressbar = document.querySelector("#progress-top");
     } else {
         progressbar = document.querySelector("#progress");
@@ -2164,7 +2164,7 @@ function initStartScreen() {
     //touchdevice = true;
     decideOrientation();
     startscreen = document.querySelector("#start-screen");
-    if (touchdevice) {
+    if (touchdevice && orientation1 == "portrait") {
         fieldsize = 50;
         fontsizeletter = 30 + "px";
         fontsizebutton = 30 + "px";
