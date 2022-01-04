@@ -689,7 +689,11 @@ function createLetter(lettercount, value) {
     letteri.setAttribute("ondragstart", "drag(event)");
     letteri.setAttribute("onclick", "placeLetter(event)");
     letteri.setAttribute("onkeydown", "return false");
-    letteri.readonly = true;    
+    letteri.readonly = true;   
+    const isIOS = ['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod',].indexOf(navigator.platform) !== -1;
+    if (isIOS){
+        letteri.style.textAlign = "left";
+    }
     letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
     letteri.setAttribute("border-radius", "20%");
     return letteri;
@@ -926,6 +930,10 @@ function restoreLetter(lettercount, value, where) {
     }
     letteri.setAttribute("onkeydown", "return false");
     letteri.readonly = true;
+    const isIOS = ['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod',].indexOf(navigator.platform) !== -1;
+    if (isIOS){
+        letteri.style.textAlign = "left";
+    }
     letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
     letteri.setAttribute("border-radius", "20%");
     return letteri;
