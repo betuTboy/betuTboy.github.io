@@ -6,105 +6,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/jatekszabaly.css">
-    <title>Ne hagyd üresen! - játékszabály</title>
+    <title>Betűtéboly játékszabály</title>
 </head>
 
 <body>
     <div id="game-rules">
         <div id="rulesdiv">
             <br>
-            <h1>Ne hagyd üresen! - játékszabály</h1>
-            <p>A Ne hagyd üresen! egy keresztrejtvény-készítő betűjáték, ahol a keresztrejtvényfejtéssel ellentétben,
-                nincsenek meghatározások, a négyzetháló teljes kitöltésében csak a kisorsolt betűk, az időkorlát, a saját előrelátásunk, 
-                szókincsünk, és végül, a beépített szótár korlátoz bennünket. (Szóval elég sok dolog. :) ) A játék célja a négyzetháló 
-                minél kevesebb fordulón belüli teljes kitöltése, és a lehető legmagasabb pontszám elérése. Fordulónként 100 másodperc 
-                áll a játékos rendelkezésére a szóalkotásra. A lerakott új betűknek egy vonalba kell esniük, és minden forduló végén
-                csak a beépített szótárban található szavak maradhatnak a táblán. Összesen - tehát nem szükségszerűen egymást követően - 
-                három olyan fordulót követően, amelyben nem kerül új betű a táblára, a játék automatikusan véget ér. 
+            <h1>Betűtéboly játékszabály</h1>
+            <p>A Betűtéboly egy szókirakó játék, amelynek során minden fordulóban nyolc véletlenszerűen kisorsolt
+                betűből kell a lehető
+                legértékesebb szót kiraknunk a táblára. Cél, hogy a játék végére több pontot gyűjtsünk, mint a
+                számítógép.
             </p>
-            <p>Facebook-csoport: <a target=blank href="https://www.facebook.com/groups/660172677931969" style="color: lightskyblue; 
-                background-color: white; font-size: 20px"><span style="letter-spacing: 5px"><b> f </b></span></a></p>
-            <p>Bemutatóvideó: <a target="blank" href="https://youtu.be/jhF6YNBqpwU"><img height="150" src="img/preview.png" alt="bemutató">
-            </a></p>
+            <!--<p>Facebook-csoport: <a target=blank href="" style="color: lightskyblue; 
+                background-color: white; font-size: 20px"><span style="letter-spacing: 5px"><b> f </b></span></a></p>-->
+            <p>Bemutatóvideó: <a target="blank" href=""><img height="150" src="img/preview.png" alt="bemutató">
+                </a></p>
             <h3>Kezelés</h3>
-            <p>A játék számítógépen és mobil eszközökön egyaránt használható.
-                Számítógépen két lehetőség áll rendelkezésre a betűk táblára való helyezésére. A tartóról az egér bal oldali gombjának
-                lenyomva tartása mellett húzhatjuk őket a tábla kívánt mezőjére, vagy kattinthatunk a táblának arra a mezőjére, ahová a
-                lerakni kívánt szó első betűjét szánjuk, ekkor abban megjelenik egy nyíl, ami a lerakás irányát jelzi - ha újra rákattintunk,
-                akkor az irány vízszintesről függőlegesre változik, és viszont -, majd a tartón levő betűkre kattintunk, abban a sorrendben,
-                ahogyan a szóban követik egymást. Érintőkijelzős eszközökön csak a második lehetőség adott. Az első betű négyzetébe koppintunk,
-                majd sorban a tartón levő betűkre, ahogyan a szóban követik egymást.   
+            <p>Két lehetőség áll rendelkezésre a betűk táblára való helyezésére. A tartóról az egér bal oldali gombjának
+                lenyomva tartása mellett húzhatjuk őket a tábla kívánt mezőjére, vagy kattinthatunk a táblának arra a
+                mezőjére, ahová a
+                lerakni kívánt szó első betűjét szánjuk, ekkor abban megjelenik egy nyíl, ami a lerakás irányát jelzi -
+                ha újra rákattintunk,
+                akkor az irány vízszintesről függőlegesre változik, és viszont -, majd a tartón levő betűkre kattintunk,
+                abban a sorrendben,
+                ahogyan a szóban követik egymást. Érintőkijelzős eszközökön csak a második lehetőség adott. Az első betű
+                négyzetébe koppintunk,
+                majd sorban a tartón levő betűkre, ahogyan a szóban követik egymást.
             </p>
             <h3>A játék menete</h3>
-            <p>A játék indításakor magyar és angol nyelv közül választhatunk. Pillanatnyilag 7 egyre nehezedő tábla áll rendelkezésünkre a 
-                játékhoz. Minden forduló után a pillanatnyi állás automatikus mentése megtörténik a saját számítógépünkre. Ha a játék indításakor
-                a program mentett játékot (félbeszakadt játékot) észlel, akkor annak folytatását felajánlja.
+            <p>A játék indításakor magyar és angol nyelv közül választhatunk. Magyar nyelven a számítógép számára csak
+                az elfogadott szavak
+                egy kisebb része (szűk szókészlet beállításánál kb. 18000 szó, normál beállításnál kb. 55000 szó) áll
+                rendelkezésre a
+                szóalkotáshoz. Angol nyelv beállításakor nincs különbség, a számítógép a teljes szókészletet használja.
+                A szótár szándékosan nem
+                tartalmazza a durva szavakat. A szókészleten kívül (azzal egyidejűleg) a gépi ellenfél a felhasznált új
+                betűk számának
+                korlátázásával, illetve egy az erősséget százalékban megadó beállítással is gyengíthető. A játékos
+                gondolkodási ideje 60-180
+                másodperc között változtatható. Minden forduló után a pillanatnyi állás automatikus mentése megtörténik
+                a saját
+                számítógépünkre. Ha a játék indításakor a program mentett játékot (félbeszakadt játékot) észlel, akkor
+                annak
+                folytatását felajánlja.
             </p>
-            <p>Az Új játék gombra kattintással kezdeményezhetünk újabb játékot. Ha megkezdett játék során tesszük ezt, figyelmeztető üzenetet
-                kapunk arról, hogy ha továbblépünk, akkor a korábbi játékot már nem tudjuk folytatni. A Mégse gomb használatával visszatérhetünk
-                folyamatban levő játékunk folytatásához. Ha nem a korábbi táblán és/vagy nyelven szeretnénk játszani, akkor az oldal újratöltésével
-                juthatunk vissza a beállítások megváltoztatását lehetővé tevő képernyőre.  
+            <p>Az Új játék gombra kattintással kezdeményezhetünk újabb játékot. Ha megkezdett játék során tesszük ezt,
+                figyelmeztető üzenetet
+                kapunk arról, hogy ha továbblépünk, akkor a korábbi játékot már nem tudjuk folytatni. A Mégse gomb
+                használatával visszatérhetünk
+                folyamatban levő játékunk folytatásához. Ha nem a korábbi beállításokkal és/vagy nyelven szeretnénk
+                játszani, akkor az oldal
+                újratöltésével juthatunk vissza a beállítások megváltoztatását lehetővé tevő képernyőre.
             </p>
-            <p>A játék folyamán minden fordulóban 10 új betű áll a rendelkezésünkre, melyből 100 másodperc (1 perc 40 másodperc)
-                alatt kell legalább egyet elhelyeznünk a táblán. A hátralevő idő pillanatnyi állását mind számjegyekkel, mind grafikusan, egy
-                folyamatjelző sáv segítségével kijelzi a program.    
+            <p>Az első kirakott szónak fel kell használnia a tábla közepén lévő mezőt.</p>
+            <p>Az új szónak mindig csatlakoznia kell a már táblán lévőkhöz.</p>
+            <p>A számítógép és a játékos ugyanazokból a betűkből, egyidejűleg alkot szót.</p>
+            <p>Mindig a játékos szava marad a táblán, akkor is, ha a számítógépé magasabb pontszámot ér.</p>
+            <p>Amíg van elég betű hátra még a készletből, addig minden fordulóban 8 betű áll a rendelkezésünkre, melyből
+                a megadott gondolkodási
+                idő alatt kell legalább egyet elhelyeznünk a táblán. A hátralevő idő pillanatnyi állását mind
+                számjegyekkel, mind grafikusan, egy
+                folyamatjelző sáv segítségével kijelzi a program.
             </p>
-            <p>Ha a fordulóban nem kerül új betű a táblára, azt tétlenségként értékeli a játék. Az aktuális forduló számát, és a tétlen körök számát
-                egy közös kijelzőben "/" jellel elválasztva láthatjuk. Ha a tétlen körök száma eléri a hármat, a játék véget ér. 
+            <p>Ha a fordulóban nem kerül új betű a táblára, azt tétlenségként értékeli a játék. Az aktuális forduló
+                számát, és a tétlen körök számát
+                egy közös kijelzőben "/" jellel elválasztva láthatjuk. Ha a tétlen körök száma eléri a hármat, a játék
+                véget ér.
             </p>
             <p>
-               A Keresés gomb használatával győződhetünk meg arról, hogy a szótárban megtalálható-e a szó, amit ki szeretnénk rakni. Ez hasznos lehet
-               akkor, amikor az adott fordulóban csak egy rövidebb, tartalmazott szót rakunk ki, de szeretnénk meggyőződni arról, hogy a tartalmazó, 
-               hosszabb szó is érvényes. Vörös szín jelzi, ha a szó nem érvényes, a szöveg zöldre vált, ha érvényes.   
+                A Keresés gomb használatával győződhetünk meg arról, hogy a szótárban megtalálható-e a szó, amit ki
+                szeretnénk rakni. Vörös szín jelzi,
+                ha a szó nem érvényes, a szöveg zöldre vált, ha érvényes.
             </p>
-            <p>A Szünet gomb használatával a játék megállítható, majd folytatható. A szünet ideje alatt a tábla pillanatnyi állása és a
+            <p>A Szünet gomb használatával a játék megállítható, majd folytatható. A szünet ideje alatt a tábla
+                pillanatnyi állása és a
                 tartón levő betűk nem láthatóak.
             </p>
-            <p>A kihúzott betűk között - a játék megkönnyítésére - gyakran jelennek meg "*" (dzsóker) karakterek, melyek a táblára kerülésükkor,
-                egy az ábécé betűit felsoroló felugróból való választással, a kívánt betűre cserélhetőek.
+            <p>A kihúzott betűk között vannak "*" (dzsóker) karakterek, melyek a táblára kerülésükkor, egy az ábécé
+                betűit felsoroló felugróból
+                való választással, a kívánt betűre cserélhetőek. A dzsókerek annak a betűnek az értékét is felveszik,
+                amelyre cseréltük őket.
             </p>
-            <p>A táblára került, de még nem véglegesített betűk a Vissza gombbal helyezhetők vissza a tartóra. A tartón levő betűk sorrendje
+            <p>A táblára került, de még nem véglegesített betűk a Vissza gombbal helyezhetők vissza a tartóra. A tartón
+                levő betűk sorrendje
                 a Keverés gombbal változtatható meg.
             </p>
-            <p>Minden egyes betű táblára kerülésekor a program ellenőrzi, hogy a táblán lévő betűk a szótárban megtalálható, érvényes szavakat alkotnak-e.
-                Ha igen, akkor a frissen táblára került betűk színe sárgára változik. Szintén kijelzi, hogy a lerakott betűk irányában, és az arra
-                merőleges lehetséges helyeken, milyen lehetőségeket kínál a szótár a további fordulókra:
-                <ul>
-                    <li><img class="circle" src="img/red0.png"> - piros körben 0 jelzi, ha a jelenleg kirakott betűk véglegesítésével a jelzett irányban
-                        már nem tölthető ki teljesen a tér, és így a tábla teljes kitöltése sem lesz már lehetséges</li>
-                    <li><img class="circle" src="img/yellow1.png"> - sárga körben 1 jelzi, ha egyetlen lehetőség marad a jelzett irányban a tér teljes kitöltésére</li>
-                    <li><img class="circle" src="img/green3.png"> - zöld körben 1-9 számjegy jelzi, hogy a jelzett irányban pontosan hány lehetőségünk marad a tér 
-                        teljes kitöltésére</li>
-                    <li><img class="circle" src="img/green9plus.png"> - zöld körben 9+ jelzi, hogy 10 vagy annál több, azaz sok lehetőségünk marad a tér teljes kitöltésére</li>
-                </ul>        
+            <p>Minden egyes betű táblára kerülésekor a program ellenőrzi, hogy a táblán lévő betűk a szótárban
+                megtalálható, érvényes szavakat alkotnak-e.
+                Ha igen, akkor a frissen táblára került betűk színe sárgára változik. Ha a pillanatnyilag táblán lévő új
+                betűk érvényes szavakat alkotnak,
+                akkor egy kis sárga körben megjelenő számérték jelzi az elérhető pontszámot.
             </p>
-            <p>A táblára rakott betűk véglegesítése a Kész gombbal történik, ekkor az összes újonnan keletkezett szó érvényességének ellenőrzése
-                 megtörténik a beépített szótár alapján. Ha valamelyik szó nem szerepel a szótárban, akkor egy felugró üzenet figyelmeztet erre.
-                 A Rendben gomb megnyomása után újra próbálkozhatunk a szóalkotással.  
+            <p>A táblára rakott betűk véglegesítése a Kész gombbal történik, ekkor az összes újonnan keletkezett szó
+                érvényességének ellenőrzése
+                megtörténik a beépített szótár alapján. Ha valamelyik szó nem szerepel a szótárban, akkor egy felugró
+                üzenet figyelmeztet erre.
+                A Rendben gomb megnyomása után újra próbálkozhatunk a szóalkotással.
             </p>
-            <h3>Stratégia</h3>
-            <p>Az elsődleges cél, a tábla teljes kitöltése (erre utal a játék neve is), ezért nem biztos, hogy a leghosszabb kirakható szó táblára
-                helyezése a legoptimálisabb ennek az eléréséhez, miközben a másodlagos cél, a minél kevesebb fordulón belüli teljesítés, és
-                a harmadlagos cél, a pontmaximalizálás szempontja esetleg ezt kívánná meg. Érdemes a hosszabb tereket kitölteni hamarabb, bár nem
-                feltétlenül 1-2 fordulón belül. Folyamatosan érdemes figyelni arra, hogy a keresztező szavak későbbi illeszkedésére is hagyjunk
-                minél több lehetőséget.      
-            </p> 
-            <h3>Pontozás</h3>  
-            <p>Az egy fordulóban táblára került betűk darabonként egy pontot érnek, de ha négy vagy több betű kerül 
-                egyszerre a táblára, akkor azokért a következő jutalompontok
-                járnak:
-            </p>
+            <p>A játék végén a Részletek gombra kattintva megnézhetjük az egyes fordulók szavait.</p>
+            <h3>Készlet és pontozás</h3>
+            <p>A magyar és angol betűkészlet egyaránt 147 betűt (ebből 10 dzsóker) tartalmaz, melyek 1-4 pontot érnek.
+                Az egyes betűk annyi pontot érnek,
+                ahány sarkuk le van kerekítve.</p>    
+            <p>Ha 4 vagy annál több új betű kerül egyszerre a táblára, akkor a következő jutalompontszámok járnak: </p>
             <ul>
-                <li>4 betű - 2 pont</li>
-                <li>5 betű - 4 pont</li>
-                <li>6 betű - 8 pont</li>
-                <li>7 betű - 16 pont</li>
-                <li>8 betű - 32 pont</li>
-                <li>9 betű - 64 pont</li>
+                <li>4 betű - 5 pont</li>
+                <li>5 betű - 10 pont</li>
+                <li>6 betű - 20 pont</li>
+                <li>7 betű - 40 pont</li>
+                <li>8 betű - 80 pont</li>
             </ul>
-            <p>Az eredmények rangsorolása szempontjából elsődleges a kitöltöttség százalékos aránya. Azonos
-                arány esetén a fordulók száma, továbbra is azonos eredmény esetén az elért pontszám dönt. Végső esetben azé
-                a jobb eredmény, aki kevesebb időt töltött a játékban. Jó játékot!</p>
+            <br>
+            <h4>A tábla</h4>
+            <p>A tábla a lerakott betűk és a kirakott szavak értékét többszöröző mezőket is tartalmaz. Egyes mezők felhasználása
+                adott pontértékű jutalmat vagy levonást eredményez.</p>
+            <ul>
+                <li><img class="field" src="img/bonus-field-2l.svg" alt="jutalommező">  -  a betű értékét kétszerező mező
+                </li>
+                <li><img class="field" src="img/bonus-field-3l.svg" alt="jutalommező">  -  a betű értékét háromszorozó mező
+                </li>
+                <li><img class="field" src="img/bonus-field-2w.svg" alt="jutalommező">  -  a szó értékét kétszerező mező
+                </li>
+                <li><img class="field" src="img/bonus-field-3w.svg" alt="jutalommező">  -  a szó értékét háromszorozó mező
+                </li>
+                <li><img class="field" src="img/bonus20.svg" alt="jutalommező"> - 20 pontos jutalom</li>
+                <li><img class="field" src="img/penalty-20.svg" alt="jutalommező"> - 20 pontos levonás</li>
+            </ul>
+            <br>
+            <h4>Példa pontszámításra</h4>
+            <img class="field" src="img/scoringexample.png" style="margin:2%" alt="jutalommező">
+            <p>A képen látható játékrészlet alapján állapítsuk meg hány pontot eredményezne, ha a MOTEL szót véglegesítenénk.
+                Az egyes betűk értékét a lekerekített sarkaik száma adja. Ez alapján a MOTEL szó 5 pontot ér. Mivel a T betű a szó
+                értékét kétszerező mezőre esik ez 2*5=10 pont. Ehhez jön még az 5 új betű kirakásáért járó 10 pont. 
+                Keresztirányban is keletkezett két új szó, ezeket is pontozni kell, és hozzáadni az eddigi 20 ponthoz. Az EGY szó 5,
+                a LÉ pedig 3 pontot ér, így jön ki a sárga körben jelzett 28 pont. ( (1+1+1+1+1)*2+10+5+3=28 )</p>
+            <br>
+            <br>  
         </div>
     </div>
 </body>

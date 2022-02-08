@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <!--<meta name="viewport" content="width=device-width initial-scale=1.0 shrink-to-fit=yes user-scalable=no">-->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Keresztrejtvény-készítő betűjáték. Minden fordulóban 10 új betű, kötött szótár alapján ellenőrzött szavak, magyar és angol nyelv.
-        Töltsd ki a táblát az utolsó négyzetig!">
+    <meta name="description" content="">
     <link rel="stylesheet" href="css/jatek.css">
-    <title>Betűtéboly</title>
+    <title>Betűtéboly - gépi ellenféllel játszható szókirakó játék</title>
 </head>
 
 <body>
@@ -16,7 +15,7 @@
         <div id="start-screen-inner-div" style="display:inline-block; padding-left: 3%; padding-right: 3%">
             <br>
             <h1 id="title" style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Betűtéboly</h1>
-            <small id="small1" style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue"></small>
+            <small id="small1" style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">szókirakó játék</small>
             <div id="setup-new-game" style="visibility: hidden">
                 <br>
                 <br>
@@ -44,6 +43,11 @@
                     border-color: lightblue; background-color: black; opacity:80%">
                     <legend>Gép beállításai</legend>
                     <div class="slidecontainer" style="padding-left:5%; padding-right:5%; padding-top:0">
+                        <p>Szókészlet:<span id="number-of-words-value" style="float: right">normál</span></p>
+                        <input id="number-of-words" class="slider" type="range" min="1" max="2" value="2"
+                            onchange="numOfWordsChange()">
+                    </div>
+                    <div class="slidecontainer" style="padding-left:5%; padding-right:5%; padding-top:0">
                         <p>Felhasznált betűk száma:<span id="number-of-letters-value" style="float: right">8</span></p>
                         <input id="number-of-letters" class="slider" type="range" min="1" max="8" value="8"
                             onchange="numOfLettersChange()">
@@ -61,7 +65,7 @@
                     <legend>Játék beállításai</legend>
                     <div class="slidecontainer" style="padding-left:5%; padding-right:5%; padding-top:0">
                         <p>Gondolkodási idő:<span id="time-limit-value" style="float: right">100</span></p>
-                        <input id="time-limit" class="slider" type="range" min="0" max="180" value="100"
+                        <input id="time-limit" class="slider" type="range" min="60" max="180" value="100"
                             onchange="timeLimitChange()">
                     </div>
                 </fieldset>
@@ -107,7 +111,7 @@
                                 </tr>
                                 <tr class="dashboard-tr">
                                     <td>
-                                        <button id="rules" class="UI-button" formaction="nehagyduresenjatekszabaly.html"
+                                        <button id="rules" class="UI-button" formaction="betutebolyjatekszabaly.html"
                                             formtarget="blank">Játékszabály</button>
                                     </td>
                                 </tr>
@@ -187,7 +191,8 @@
                 <div id="game-results"></div>
             </div>
         </div>
-        <script src="js/jatek.js"></script>
+        <script src="js/dict.js"></script>
+        <script src="js/jatek.js"></script> 
 </body>
 
 </html>

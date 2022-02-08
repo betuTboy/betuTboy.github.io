@@ -40,7 +40,7 @@ img{
 }
 
 #rack-form{
-    position: fixed;
+    position: sticky;
     bottom: 0;
     left: 0;
     padding: 10px;
@@ -68,29 +68,35 @@ img{
 }
 
 .bonus-field-2L{
-    background-color: lightgreen;
+    /*background-color: lightgreen;*/
+    background-size: 100% 100%;
 }    
 
 .bonus-field-3L{
-    background-color: green;
+    /*background-color: green;*/
+    background-size: 100% 100%;
 }  
 
 .bonus-field-2W{
-    background-color: rgb(172, 62, 172);
+    /*background-color: rgb(204, 83, 204);*/
+    background-size: 100% 100%;
 }  
 
 .bonus-field-3W{
-    background-color: purple;
+    /*background-color: rgb(126, 3, 126);*/
+    background-size: 100% 100%;
 }  
 
 .bonus-field-20{
-    background-color: gold;
-    border-radius: 50%;
+    /*background-color: gold;
+    border-radius: 50%;*/
+    background-size: 100% 100%;
 }  
 
 .penalty-field-20{
-    background-color: rgb(90, 89, 89);
-    border-radius: 50%;
+    /*background-color: rgb(90, 89, 89);
+    border-radius: 50%;*/
+    background-size: 100% 100%;
 }  
 
 .wall-field{
@@ -157,7 +163,7 @@ img{
 }
 
 .joker{
-    background-color:rgb(214, 142, 214);
+    background-color:rgb(236, 160, 236);
 }
 
 /*.x2{
@@ -294,7 +300,6 @@ input[type=text]{
 }
 
 .textinput{
-
     text-align: left;
     color: black;
     -webkit-user-select: none;
@@ -314,7 +319,7 @@ progress[value]{
     vertical-align:top;
 } 
 
-b{
+/*b{
     padding: none;
     border: none;
     margin: none;
@@ -329,9 +334,23 @@ b{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
+}*/
 
 #arrow{
+    text-shadow: 1px 1px  white,  0 0 2px  white;
+    padding: none;
+    border: none;
+    margin: none;
+    font-family: inherit;
+    color: red;
+    text-align: center;
+    font-weight: 900;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     box-sizing: border-box;
 }
 
@@ -414,7 +433,7 @@ ul{
     background-color: yellow;
     border-radius: 50%;
     display: inline-block;
-    z-index:2;
+    z-index:4;
     position: fixed;
     -webkit-user-select: none;
     -ms-user-select: none; 
