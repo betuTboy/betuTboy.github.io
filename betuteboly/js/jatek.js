@@ -19,7 +19,7 @@ const board_1 = [['!', '!', '3W', '!', '!', '!', '2W', '3L', '!', '20', '!', '3L
 ['!', '2L', '.', '!', '3L', '.', '.', '.', '.', '.', '.', '.', '.', '.', '3L', '!', '.', '2L', '!'],
 ['!', '!', '3W', '!', '!', '!', '2W', '3L', '!', '20', '!', '3L', '2W', '!', '!', '!', '3W', '!', '!']];
 
-const fieldsobj = {".": 1, "2L": 1, "3L": 1, "2W": 1, "3W": 1, "20": 1, "-20":1, "!": 0};
+const fieldsobj = { ".": 1, "2L": 1, "3L": 1, "2W": 1, "3W": 1, "20": 1, "-20": 1, "!": 0 };
 
 const letters_hun = [['*', 10, 1],
 ['A', 8, 1],
@@ -155,6 +155,8 @@ let selectedaimove = [];
 let bestmove = [];
 
 let rect;
+
+let touchdevice;
 
 function createTd(fieldtype, parent, id) {
     let td = document.createElement("td");
@@ -486,15 +488,15 @@ function drop(ev) {
         ev.target.style.backgroundImage = "url('img/bonus20.svg')"
     } else if (ev.target.classList.contains("penalty-field-20")) {
         ev.target.style.backgroundImage = "url('img/penalty-20.svg')"
-    } else if ( ev.target.classList.contains("bonus-field-2L")) {
+    } else if (ev.target.classList.contains("bonus-field-2L")) {
         ev.target.style.backgroundImage = "url('img/bonus-field-2l.svg')"
-    } else if ( ev.target.classList.contains("bonus-field-3L")) {
+    } else if (ev.target.classList.contains("bonus-field-3L")) {
         ev.target.style.backgroundImage = "url('img/bonus-field-3l.svg')"
-    } else if ( ev.target.classList.contains("bonus-field-2W")) {
+    } else if (ev.target.classList.contains("bonus-field-2W")) {
         ev.target.style.backgroundImage = "url('img/bonus-field-2w.svg')"
-    } else if ( ev.target.classList.contains("bonus-field-3W")) {
+    } else if (ev.target.classList.contains("bonus-field-3W")) {
         ev.target.style.backgroundImage = "url('img/bonus-field-3w.svg')"
-    } else  ev.target.style.background = "";
+    } else ev.target.style.background = "";
     //ev.target.style.background = "";
     //if (appendedletter.className == "letter letter-on-rack joker") {
     if (appendedletter.classList.contains("joker")) {
@@ -1233,7 +1235,7 @@ function printBoard() {
     }
 }
 
-function createAIFields(){
+function createAIFields() {
     aifields = [];
     for (let i = 0; i < fields.length; i++) {
         let fieldsrow = [];
@@ -1243,9 +1245,9 @@ function createAIFields(){
             } else fieldsrow.push(board_1[i][j]);
         }
         aifields.push(fieldsrow);
-    }  
+    }
     console.log("aifields", aifields)
-}    
+}
 
 
 function collectNewLettersOnBoard() {
@@ -2585,12 +2587,19 @@ console.log("document.body.clientHeight", document.body.clientHeight);*/
 }*/
 
 function adaptToChangedSize() {
-    fieldsize = Math.floor((height - fields.length) / (fields.length + 4)) > 30 ? Math.floor((height - fields.length) / (fields.length + 4)) : 22;
-    console.log("fieldsize",fieldsize)
-    rackfieldsize = fieldsize;
+    fieldsize = Math.floor((height - fields.length) / (fields.length + 4)) > 25 ? Math.floor((height - fields.length) / (fields.length + 4)) : 25;
+    // console.log("fieldsize",fieldsize)
+    if (touchdevice) {
+        rackfieldsize = Math.floor(fieldsize * (fields[0].length-5) / racksize);
+        dashboard = document.querySelector("#dashboard");
+        dashboard.style.position = "sticky";
+        //dashboard.style.top = 0;
+    } else {
+        rackfieldsize = fieldsize;
+    }
     fontsizeletter = Math.floor(fieldsize * 0.7).toString() + "px";
     fontsizebutton = Math.floor(fieldsize * 0.7).toString() + "px";
-    fontsizelabel = Math.floor(fieldsize * 0.4).toString() + "px";
+    fontsizelabel = Math.floor(fieldsize * 0.3).toString() + "px";
     for (let rindex = 0; rindex < fields.length; rindex++) {
         for (let cindex = 0; cindex < fields[0].length; cindex++) {
             fields[rindex][cindex].style.width = fieldsize.toString() + "px";
@@ -2647,13 +2656,16 @@ function adaptToChangedSize() {
     let rackform = document.querySelector("#rack-form");
     let field05 = document.querySelector("#fieldtable-0-5");
     let rectfield = getElementPosition(field05);
-    /*console.log("rectfield.left,  5.5 * (fieldsize + 2)",rectfield.left,   5.5 * (fieldsize + 2))
-    rackfieldtable.style.left = (rectfield.left + 5.5 * (fieldsize + 2)).toString()+"px;"*/
-    rackform.style.left = (rectfield.left + fieldsize * 0.5 - 10).toString() + "px";
+    /*console.log("rectfield.left,  5.5 * (fieldsize + 2)",rectfield.left,   5.5 * (fieldsize + 2))*/
+    if (touchdevice){
+        rackform.style.left = (rectboard.left + (rectboard.width-racksize*(rackfieldsize+2))/2-10).toString() + "px";
+    }else{
+        rackform.style.left = (rectfield.left + fieldsize * 0.5 - 10).toString() + "px";
+    }
     //rackform.style.width = rectboard.width.toString()+"px";
     let boardandrack = document.querySelector("#board-rack");
     boardandrack.style.minHeight = height.toString() + "px";
-    console.log("rectboard.width", rectboard.width)
+    console.log("rectboard.width", rectboard.width,racksize*(rackfieldsize+2))
     lockOffMain_Rules_Start();
 }
 
@@ -2669,6 +2681,7 @@ function initGame() {
     document.querySelector("#start-screen").style.display = "none";
     document.querySelector("h2").style.display = "inline-block";
     document.querySelector("h2").style.fontsize = "150%";
+    touchdevice = true;
     /*decideOrientation();*/
     document.querySelector("#dashboard").style.display = "inline-block";
     document.querySelector("#title1").style.marginLeft = "2%";
@@ -2749,7 +2762,7 @@ function setupNewGame() {
 }
 
 function initStartScreen() {
-
+    touchdevice = ('ontouchstart' in document.documentElement);
     startscreen = document.querySelector("#start-screen");
     fieldsize = 40;
     fontsizeletter = 20 + "px";
