@@ -1162,13 +1162,13 @@ function validateNewWords() {
             displayMessage("Szabálytalan!", `${nfjoined} nem található a szótárban`, destroyPopup, "", "game-div", "#board-rack");
             return 1;
         }
-        displayMessage("Várakozás", "A számítógép is szót választ...", destroyPopup, "", "game-div", "#board-rack");
-        lockOnUI();
+        //displayMessage("Várakozás", "A számítógép is szót választ...", destroyPopup, "", "game-div", "#board-rack");
+        //lockOnUI();
         aiMove();
-        try {
+        /*try {
             destroyPopup();
-        } catch (err) { }
-        lockOffUI;
+        } catch (err) { }*/
+        //lockOffUI;
         let sc = displayScore(wordsl);
         let lobvalues = [];
         for (let letter of lettersontheboard) {
@@ -1244,7 +1244,7 @@ function createAIFields(){
         }
         aifields.push(fieldsrow);
     }  
-    //console.log("aifields", aifields)
+    console.log("aifields", aifields)
 }    
 
 
@@ -1707,10 +1707,10 @@ function scoring(wordsl) {
             wordscore += pointforletter;
             //console.log("wordscore", wordscore)
         }
-        console.log("wordmultiplier", wordmultiplier)
+        //console.log("wordmultiplier", wordmultiplier)
         wordscore *= wordmultiplier;
         turnscore += wordscore;
-        console.log("turnscore", turnscore)
+        //console.log("turnscore", turnscore)
         switch (numofusedletters) {
             case 4:
                 turnscore += 5;
@@ -2585,7 +2585,8 @@ console.log("document.body.clientHeight", document.body.clientHeight);*/
 }*/
 
 function adaptToChangedSize() {
-    fieldsize = Math.floor((height - fields.length) / (fields.length + 4));
+    fieldsize = Math.floor((height - fields.length) / (fields.length + 4)) > 30 ? Math.floor((height - fields.length) / (fields.length + 4)) : 30;
+    console.log("fieldsize",fieldsize)
     rackfieldsize = fieldsize;
     fontsizeletter = Math.floor(fieldsize * 0.7).toString() + "px";
     fontsizebutton = Math.floor(fieldsize * 0.7).toString() + "px";
