@@ -2587,7 +2587,7 @@ console.log("document.body.clientHeight", document.body.clientHeight);*/
 }*/
 
 function adaptToChangedSize() {
-    fieldsize = Math.floor((height - fields.length) / (fields.length + 4)) > 25 ? Math.floor((height - fields.length) / (fields.length + 4)) : 25;
+    fieldsize = Math.floor((height - fields.length) / (fields.length + 4)) > 23 ? Math.floor((height - fields.length) / (fields.length + 4)) : 23;
     // console.log("fieldsize",fieldsize)
     if (touchdevice) {
         rackfieldsize = Math.floor(fieldsize * (fields[0].length-5) / racksize);
