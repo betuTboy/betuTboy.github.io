@@ -2585,7 +2585,7 @@ console.log("document.body.clientHeight", document.body.clientHeight);*/
 }*/
 
 function adaptToChangedSize() {
-    fieldsize = Math.floor((height - fields.length) / (fields.length + 4)) > 30 ? Math.floor((height - fields.length) / (fields.length + 4)) : 30;
+    fieldsize = Math.floor((height - fields.length) / (fields.length + 4)) > 30 ? Math.floor((height - fields.length) / (fields.length + 4)) : 22;
     console.log("fieldsize",fieldsize)
     rackfieldsize = fieldsize;
     fontsizeletter = Math.floor(fieldsize * 0.7).toString() + "px";
