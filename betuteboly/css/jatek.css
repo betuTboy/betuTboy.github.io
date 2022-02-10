@@ -44,17 +44,11 @@ img{
     bottom: 0;
     left: 0;
     padding: 10px;
-   /* padding-top: 5px;
-    padding-bottom: 5px;*/
     background-color:rgb(235, 235, 235);
     text-align: center;
     opacity: 95%;
     z-index: 3;
 }
-/*#rack{
-    position: absolute;
-    top: -30px;
-}*/
 
 .normal-field, .rack-field{
     text-align: center;
@@ -68,34 +62,26 @@ img{
 }
 
 .bonus-field-2L{
-    /*background-color: lightgreen;*/
     background-size: 100% 100%;
 }    
 
 .bonus-field-3L{
-    /*background-color: green;*/
     background-size: 100% 100%;
 }  
 
 .bonus-field-2W{
-    /*background-color: rgb(204, 83, 204);*/
     background-size: 100% 100%;
 }  
 
 .bonus-field-3W{
-    /*background-color: rgb(126, 3, 126);*/
     background-size: 100% 100%;
 }  
 
 .bonus-field-20{
-    /*background-color: gold;
-    border-radius: 50%;*/
     background-size: 100% 100%;
 }  
 
 .penalty-field-20{
-    /*background-color: rgb(90, 89, 89);
-    border-radius: 50%;*/
     background-size: 100% 100%;
 }  
 
@@ -269,6 +255,46 @@ img{
 
 .UI-button:hover{
     background-color: #7cc27f;
+}
+
+.tray-button{
+    box-sizing: border-box;
+    font-family: inherit; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.tray-button#back-tray{
+    background-color: orange; 
+}
+
+.tray-button#back-tray:hover{
+    background-color: rgb(240, 189, 94)
+}
+
+.tray-button#shuffle-tray{
+    background-color: blue; 
+}
+
+.tray-button#shuffle-tray:hover{
+    background-color: rgb(87, 87, 172); 
+}
+
+.tray-button#done-tray{
+    background-color: crimson;  
+}
+
+.tray-button#done-tray:hover{
+    background-color: rgb(192, 94, 114);
 }
 
 input{

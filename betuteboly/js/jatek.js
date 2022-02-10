@@ -260,10 +260,46 @@ function drawRack() {
     let rackfieldtable = document.querySelector("#rack");
     rackfieldtable.innerHTML = '';
     let tr = document.createElement("tr");
+    let td;
+    if (touchdevice) {
+        td = document.createElement("td");
+        let button1 = document.createElement("button");
+        button1.innerText = "Vissza";
+        button1.addEventListener("click", back);
+        button1.type = "button";
+        button1.id = "back-tray";
+        button1.className = "tray-button";
+        td.appendChild(button1);
+        tr.appendChild(td);
+    }
     for (let i = 0; i < racksize; i++) {
         let id = "rackfieldtable-" + i.toString() + "-0";
         td = createTd('-', tr, id);
         rackfields.push(td);
+    }
+    if (touchdevice) {
+        td = document.createElement("td");
+        let button2 = document.createElement("button");
+        button2.innerText = "Keverés";
+        button2.addEventListener("click", shuffle);
+        button2.type = "button";
+        button2.className = "tray-button";
+        button2.id = "shuffle-tray";
+        td.appendChild(button2);
+        tr.appendChild(td);
+
+        td = document.createElement("td");
+        let button3 = document.createElement("button");
+        button3.innerText = "Kész";
+        button3.addEventListener("click", passOrValidate);
+        button3.type = "button";
+        button3.className = "tray-button";
+        button3.id = "done-tray";
+        td.appendChild(button3);
+        tr.appendChild(td);
+        document.querySelector("#back").style.display = "none";
+        document.querySelector("#shuffle").style.display = "none";
+        document.querySelector("#done").style.display = "none";
     }
     rackfieldtable.appendChild(tr);
 }
@@ -1041,11 +1077,6 @@ function lockOffUI() {
 
 function testNewWords() {
     removeElements(".available-score");
-    /* arrow = document.querySelector("#arrow");
-     if(arrow){
-         fieldofarrow = arrow.parentElement;
-         fieldofarrow.removeChild(arrow);
-     }*/
     let lettersontheboard = collectNewLettersOnBoard();
     let direction = decideDirection(lettersontheboard);
     if (direction == "not in line") {
@@ -1063,24 +1094,39 @@ function testNewWords() {
     let w = getAllString(lettersontheboard, direction);
     let words = w[0];
     let wordsl = w[1];
-    if (words.length == 0) return;
-    let notfound = checkDictionary(words);
-    if (notfound.length > 0) {
+    console.log('words, wordsl', words, wordsl)
+    if (words[0] == "not connected") {
         for (let letter of lettersontheboard) {
             letter[0].style.color = "darkred";
         }
         return;
     }
+    for (let wordl of wordsl) {
+        console.log("wordl", wordl)
+        let w1 = [];
+        for (letter of wordl) {
+            w1.push(letter.value);
+        }
+        console.log("w1", w1)
+        if (!dictionaryContains(w1)) {
+            for (let letter of lettersontheboard) {
+                letter[0].style.color = "darkred";
+            }
+            console.log("nincs", w1)
+            return;
+        }
+    }
     for (let letter of lettersontheboard) {
+        console.log("yellow")
         letter[0].style.color = "yellow";
     }
     turnscore = scoring(wordsl);
     let availablescore = document.createElement("div");
     console.log("wordsl", wordsl);
     let priword;
-    for (wordl of wordsl) {
+    for (let wordl of wordsl) {
         let newl = 0;
-        for (letter of wordl) {
+        for (let letter of wordl) {
             if (!letter.classList.contains("old")) {
                 newl++;
             }
@@ -1106,11 +1152,6 @@ function testNewWords() {
         availablescore.style.left = (rectfield.right + 2).toString() + "px";
         availablescore.style.top = (rectfield.bottom + 2).toString() + "px";
     }
-    /*if(arrow){
-      
-        fieldofarrow.appendChild(arrow);
-        console.log("fieldofarrow,arrow", fieldofarrow, arrow)
-    }*/
 }
 
 function removeElements(classofelement) {
@@ -1158,11 +1199,17 @@ function validateNewWords() {
             return 1;
         }
         console.log("words", words)
-        let notfound = checkDictionary(words);
-        if (notfound.length > 0) {
-            let nfjoined = notfound.join(', ');
-            displayMessage("Szabálytalan!", `${nfjoined} nem található a szótárban`, destroyPopup, "", "game-div", "#board-rack");
-            return 1;
+        for (wordl of wordsl) {
+            console.log("wordl", wordl)
+            w1 = [];
+            for (letter of wordl) {
+                w1.push(letter.value);
+            }
+            if (!dictionaryContains(w1)) {
+                let nfjoined = w1.join('');
+                displayMessage("Szabálytalan!", `${nfjoined} nem található a szótárban`, destroyPopup, "", "game-div", "#board-rack");
+                return 1;
+            }
         }
         //displayMessage("Várakozás", "A számítógép is szót választ...", destroyPopup, "", "game-div", "#board-rack");
         //lockOnUI();
@@ -1531,12 +1578,6 @@ function continuous(lettersontheboard, direction) {
             if (!fields[rindex][k].hasChildNodes()) {
                 return false;
             }
-            /* else {
-                if (fields[rindex][k].firstChild.classList.contains("arrow")) {
-                    console.log("fields[rindex][k].firstChild.classList") 
-                    return false;
-                }
-            }*/
         }
     }
     if (direction == "down") {
@@ -1545,12 +1586,6 @@ function continuous(lettersontheboard, direction) {
             if (!fields[k][cindex].hasChildNodes()) {
                 return false;
             }
-            /* else {
-                if (fields[k][cindex].firstChild.classList.contains("arrow")) {
-                    console.log("down arrow")
-                    return false;
-                }
-            }*/
         }
     }
     return true;
@@ -2590,7 +2625,7 @@ function adaptToChangedSize() {
     fieldsize = Math.floor((height - fields.length) / (fields.length + 4)) > 23 ? Math.floor((height - fields.length) / (fields.length + 4)) : 23;
     // console.log("fieldsize",fieldsize)
     if (touchdevice) {
-        rackfieldsize = Math.floor(fieldsize * (fields[0].length-5) / racksize);
+        rackfieldsize = Math.floor(fieldsize * (fields[0].length - 5) / racksize);
         dashboard = document.querySelector("#dashboard");
         dashboard.style.position = "sticky";
         //dashboard.style.top = 0;
@@ -2647,6 +2682,13 @@ function adaptToChangedSize() {
         label.style.fontSize = fontsizelabel;
         label.style.height = Math.floor(fieldsize * 0.8).toString() + "px";
     }
+    let traybuttons = document.querySelectorAll(".tray-button");
+    for (let traybutton of traybuttons) {
+        traybutton.style.width = rackfieldsize.toString() + "px";
+        traybutton.style.height = rackfieldsize.toString() + "px";
+    }
+
+
     document.querySelector("h1").style.fontSize = fontsizebutton;
     document.querySelector("#small1").style.fontSize = fontsizelabel;
     numberlabelsize = Math.floor(fieldsize * 0.5);
@@ -2657,15 +2699,15 @@ function adaptToChangedSize() {
     let field05 = document.querySelector("#fieldtable-0-5");
     let rectfield = getElementPosition(field05);
     /*console.log("rectfield.left,  5.5 * (fieldsize + 2)",rectfield.left,   5.5 * (fieldsize + 2))*/
-    if (touchdevice){
-        rackform.style.left = (rectboard.left + (rectboard.width-racksize*(rackfieldsize+2))/2-10).toString() + "px";
-    }else{
+    if (touchdevice) {
+        rackform.style.left = (rectboard.left + (rectboard.width - racksize * (rackfieldsize + 2)) / 2 - 10).toString() + "px";
+    } else {
         rackform.style.left = (rectfield.left + fieldsize * 0.5 - 10).toString() + "px";
     }
     //rackform.style.width = rectboard.width.toString()+"px";
     let boardandrack = document.querySelector("#board-rack");
     boardandrack.style.minHeight = height.toString() + "px";
-    console.log("rectboard.width", rectboard.width,racksize*(rackfieldsize+2))
+    console.log("rectboard.width", rectboard.width, racksize * (rackfieldsize + 2))
     lockOffMain_Rules_Start();
 }
 
@@ -2681,7 +2723,7 @@ function initGame() {
     document.querySelector("#start-screen").style.display = "none";
     document.querySelector("h2").style.display = "inline-block";
     document.querySelector("h2").style.fontsize = "150%";
-    touchdevice = true;
+    //touchdevice = true;
     /*decideOrientation();*/
     document.querySelector("#dashboard").style.display = "inline-block";
     document.querySelector("#title1").style.marginLeft = "2%";
@@ -2773,7 +2815,7 @@ function initStartScreen() {
     startscreeninnerdiv.style.backgroundSize = "100%";
     startscreeninnerdiv.style.backgroundPosition = "top center";
     height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    startscreen.style.minHeight = height.toString() + "px";
+    //startscreen.style.minHeight = height.toString() + "px";
     checkSavedGame();
 }
 
