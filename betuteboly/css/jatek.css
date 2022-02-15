@@ -112,7 +112,6 @@ img{
 .letter{
     font-family: inherit;
     letter-spacing: -2px;
-    /*background-size: 100% 100%;*/
     height: 100%;
     width: 100%;
     box-sizing: border-box;
@@ -151,14 +150,6 @@ img{
 .joker{
     background-color:rgb(236, 160, 236);
 }
-
-/*.x2{
-    background-color: orange;
-}
-
-.x3{
-    background-color:orangered;
-}*/
 
 #dashboard{
     font-family: inherit;
@@ -345,23 +336,6 @@ progress[value]{
     vertical-align:top;
 } 
 
-/*b{
-    padding: none;
-    border: none;
-    margin: none;
-    font-family: inherit;
-    color: red;
-    text-align: center;
-    background-color: lightgrey; 
-    font-weight: 900;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}*/
-
 #arrow{
     text-shadow: 1px 1px  white,  0 0 2px  white;
     padding: none;
@@ -467,18 +441,6 @@ ul{
     -moz-user-select: none;
 }
 
-/*.red{
-    background-color: red;
-}
-
-.yellow{
-    background-color: yellow;
-}
-
-.green{
-    background-color: #4CAF50;
-}*/
-
 #start-screen{
     color: white;
     background-color: black;
@@ -501,16 +463,3 @@ ul{
 #start-button:hover{
     background-color: rgb(59, 59, 161);
 }
-
-/*.arrow-button{
-    background-color:rgb(21, 202, 202);
-    border-radius: 50%;
-}
-
-.arrow-button:hover{
-    background-color:rgb(90, 226, 226);  
-}
-
-.arrow-button:active{
-    background-color:rgb(21, 202, 202);
-}*/

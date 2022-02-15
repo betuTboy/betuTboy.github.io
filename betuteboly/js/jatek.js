@@ -335,7 +335,6 @@ function changeDirection() {
 function placeLetter(ev) {
     let parentofclickedletter = ev.target.parentElement;
     if (mode == "mouseclick" && arrowposition != []) {
-        //if ((ev.target.className == "letter letter-on-rack" || ev.target.className == "letter letter-on-rack joker") && arrowposition != []) {
         if (ev.target.classList.contains("letter-on-rack") && arrowposition != []) {
             tryToRemoveArrow();
             arrowposition[0].appendChild(ev.target);
@@ -350,7 +349,6 @@ function placeLetter(ev) {
                 parentofclickedletter.classList.remove("occupied");
                 parentofclickedletter.classList.add("empty");
             }
-            //if (ev.target.className == "letter letter-on-rack joker") {
             if (ev.target.classList.contains("joker") && ev.target.classList.contains("letter-on-rack")) {
                 createPopup(ev.target.parentElement);
             }
@@ -468,28 +466,16 @@ function drag(ev) {
     ev.dataTransfer.setData("text/plain", ev.target.id);
     draggedletter = ev.target;
     parentofdraggedletter = draggedletter.parentElement;
-    /*if ( parentofdraggedletter.classList.contains("bonus-field-20")) {
-        parentofdraggedletter.style.backgroundImage = "url('img/bonus20.svg')"
-    } else if (parentofdraggedletter.classList.contains("penalty-field-20")) {
-        parentofdraggedletter.style.backgroundImage = "url('img/penalty-20.svg')"
-    }*/
 }
 
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("application/x-moz-node");
     var data = ev.dataTransfer.getData("text/plain");
-    //if (ev.target.className == "letter letter-on-rack" || ev.target.className == "letter letter-on-rack joker") return;
     if (ev.target.classList.contains("letter-on-rack")) return;
     if (ev.target.hasChildNodes()) return;
     appendedletter = ev.target.appendChild(document.getElementById(data));
     ev.target.setAttribute("ondragover", "");
-    /*if (ev.target.getAttribute("class") == "normal-field empty") {
-        ev.target.setAttribute("class", "normal-field occupied");
-    } else if (ev.target.getAttribute("class") == "rack-field empty") {
-        ev.target.setAttribute("class", "rack-field occupied");
-        appendedletter.style.color = "black";                          
-    }*/
     if (ev.target.classList.contains("empty")) {
         ev.target.classList.remove("empty");
         ev.target.classList.add("occupied");
@@ -497,11 +483,6 @@ function drop(ev) {
     }
     if (ev.target != parentofdraggedletter) {
         parentofdraggedletter.setAttribute("ondragover", "allowDrop(event)");
-        /*if (parentofdraggedletter.getAttribute("class") == "normal-field occupied") {
-            parentofdraggedletter.setAttribute("class", "normal-field empty");
-        } else if (parentofdraggedletter.getAttribute("class") == "rack-field occupied") {
-            parentofdraggedletter.setAttribute("class", "rack-field empty");
-        }*/
         if (parentofdraggedletter.classList.contains("occupied")) {
             parentofdraggedletter.classList.remove("occupied");
             parentofdraggedletter.classList.add("empty");
@@ -533,12 +514,9 @@ function drop(ev) {
     } else if (ev.target.classList.contains("bonus-field-3W")) {
         ev.target.style.backgroundImage = "url('img/bonus-field-3w.svg')"
     } else ev.target.style.background = "";
-    //ev.target.style.background = "";
-    //if (appendedletter.className == "letter letter-on-rack joker") {
     if (appendedletter.classList.contains("joker")) {
         if (ev.target.classList.contains("normal-field")) {
             createPopup(ev.target);
-            //} else if (ev.target.className == "rack-field occupied") {
         } else if (ev.target.classList.contains("rack-field") && ev.target.classList.contains("occupied")) {
             appendedletter.value = '*';
             setLetterRadius(appendedletter, 1);
@@ -564,13 +542,10 @@ function setStateOfLetters() {
 
 function loadRack() {
     lockOnUI();
-    //gamecontainer = document.querySelector("#game-container");
-    //gamecontainer.style.cursor  = 'wait';
     let randomletters = drawLetters();
     for (let lettercount = 0; lettercount < randomletters.length; lettercount++) {
         for (let rackfield of rackfields) {
             if (rackfield.classList.contains("empty")) {
-                //let value = randomletters[lettercount][0];
                 let letteri = createLetter(lettercount, randomletters[lettercount]);
                 rackfield.appendChild(letteri);
                 rackfield.setAttribute("ondragover", "");
@@ -584,17 +559,14 @@ function loadRack() {
     for (let letter of lettersonrack) {
         slettersonrackoriginal.push(letter.value);
     }
-    //aiMove();
     createAIFields();
     lockOffUI();
-    //gamecontainer.style.cursor  = 'auto';
 }
 
 function createLetter(lettercount, randomletter) {
     let letteri = document.createElement("input");
     let id = "letter" + turns.toString() + "-" + lettercount.toString();
     letteri.setAttribute("id", id);
-    /*letteri.style.backgroundImage = "url('img/letterbackground.svg')"*/
     if (navigator.userAgent.indexOf("Firefox") != -1) {
         letteri.setAttribute("type", "text");
     } else {
@@ -611,14 +583,7 @@ function createLetter(lettercount, randomletter) {
     letteri.setAttribute("onkeydown", "return false");
     letteri.readonly = true;
     letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.7).toString() + "px";
-    //letteri.setAttribute("border-radius", "20%");
     setLetterRadius(letteri, randomletter[1]);
-    //console.log("randomletter", randomletter)
-
-    /*let multiplier = randomMultiplier();
-    if (multiplier == 2){
-        letteri.classList.add("x2");
-    }else if (multiplier == 3) letteri.classList.add("x3");*/
     return letteri;
 }
 
@@ -651,26 +616,21 @@ function drawLetters() {
             lettersonrackobj[lettersonrack[i].value]++;
         } else lettersonrackobj[lettersonrack[i].value] = 1;
     }
-    while (j < racksize && lettersinsack > 0) {
-        //console.log("rackfield", rackfields[j].classList) 
+    while (j < racksize && lettersinsack > 0) { 
         if (rackfields[j].classList.contains("empty")) {
             while (1) {
                 rand = getRndInteger(0, sack.length);
                 if (sack[rand][1] == "used") {
                     continue;
                 } else {
-                    //console.log("lettersonrackobj", lettersonrackobj)
                     if (lettersonrackobj[sack[rand][0]] == 2) {
                         let lettersinsackobj = differentLettersInSack();
                         if (Object.keys(lettersinsackobj).length > 5) {
-                            //console.log("van már kettő belőle, és van még elég betű a zsákban", lettersinsackobj, Object.keys(lettersinsackobj).length)
                             continue;
                         } else {
-                            //console.log("van már kettő belőle, de nincs már elég betű a zsákban", lettersinsackobj, Object.keys(lettersinsackobj).length)
                             break;
                         }
                     }
-                    //console.log("nincs 2-nél több azonos betű")
                     if (sack[rand][0] in lettersonrackobj) {
                         lettersonrackobj[sack[rand][0]]++;
                     } else lettersonrackobj[sack[rand][0]] = 1;
@@ -680,7 +640,6 @@ function drawLetters() {
             randomletters.push(sack[rand]);
             sack[rand] = [sack[rand][0], "used"];
             lettersinsack--;
-            //console.log("lettersinsack", lettersinsack)
             if (lettersinsack == 0) {
                 console.log("elfogytak a betűk")
                 break;
@@ -688,7 +647,6 @@ function drawLetters() {
         }
         j++;
     }
-    //console.log("sack", sack)
     return randomletters;
 }
 
@@ -831,7 +789,6 @@ function loadGame() {
     timelimit = JSON.parse(timelimits);
     let firstmoves = localStorage.getItem('FirstMove');
     firstmove = JSON.parse(firstmoves);
-    //console.log("firstmove", firstmove)
     createPartsOfDictionary();
     let turnss = localStorage.getItem('Turns');
     turns = JSON.parse(turnss);
@@ -840,13 +797,11 @@ function loadGame() {
     displayTurn();
     let boardl = localStorage.getItem('Board');
     boardl1 = JSON.parse(boardl);
-    //console.log("boardl1", boardl1)
     drawBoard(board_1);
     let lettercount = 0;
     for (let i = 0; i < fields.length; i++) {
         for (let j = 0; j < fields[0].length; j++) {
             fieldtype = boardl1[i][j];
-            //console.log("fieldtype", fieldtype)
             let fieldtypes = [".", "!", "2L", "3L", "2W", "3W", "20", "-20"];
             if (!(fieldtypes.includes(fieldtype))) {
                 value = boardl1[i][j];
@@ -872,11 +827,9 @@ function loadGame() {
     }
     let sackls = localStorage.getItem('Sack');
     sack = JSON.parse(sackls);
-    console.log("mentettsack", sack)
     lettersinsack = 0;
     for (let letter of sack) {
         if (letter[1] != 'used') lettersinsack++;
-        console.log("lettersinsack", lettersinsack)
     }
     let wordsingames = localStorage.getItem('WordsInGame');
     wordsingame = JSON.parse(wordsingames);
@@ -891,7 +844,6 @@ function loadGame() {
     progressbar.max = timelimit;
     displayTime();
     createAIFields();
-    //aiMove();
     lockOffUI();
 }
 
@@ -931,7 +883,6 @@ function restoreLetter(lettercount, value, where) {
     letteri.setAttribute("onkeydown", "return false");
     letteri.readonly = true;
     letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.7).toString() + "px";
-    //letteri.setAttribute("border-radius", "20%");
     for (letter of letters) {
         if (letter[0] == letteri.value) {
             l1points = letter[2];
@@ -1012,7 +963,6 @@ function back() {
             lettersonrack[i].parentElement.classList.remove("occupied");
             lettersonrack[i].parentElement.classList.add("empty");
             lettersonrack[i].parentElement.setAttribute("ondragover", "allowDrop(event)");
-            //parentofdraggedletter = draggedletter.parentElement;
             if (lettersonrack[i].parentElement.classList.contains("bonus-field-20")) {
                 lettersonrack[i].parentElement.style.backgroundImage = "url('img/bonus20.svg')"
             } else if (lettersonrack[i].parentElement.classList.contains("penalty-field-20"));
@@ -1021,7 +971,6 @@ function back() {
         for (let j = 0; j < racksize; j++) {
             if (!rackfields[j].hasChildNodes()) {
                 rackfields[j].appendChild(lettersonrack[i]);
-                //if (lettersonrack[i].className == "letter letter-on-rack joker") {
                 if (lettersonrack[i].classList.contains("letter-on-rack") && lettersonrack[i].classList.contains("joker")) {
                     lettersonrack[i].value = '*';
                     setLetterRadius(lettersonrack[i], 1);
@@ -1094,7 +1043,6 @@ function testNewWords() {
     let w = getAllString(lettersontheboard, direction);
     let words = w[0];
     let wordsl = w[1];
-    console.log('words, wordsl', words, wordsl)
     if (words[0] == "not connected") {
         for (let letter of lettersontheboard) {
             letter[0].style.color = "darkred";
@@ -1102,27 +1050,22 @@ function testNewWords() {
         return;
     }
     for (let wordl of wordsl) {
-        console.log("wordl", wordl)
         let w1 = [];
         for (letter of wordl) {
             w1.push(letter.value);
         }
-        console.log("w1", w1)
-        if (!dictionaryContains(w1)) {
+        if (!dictionaryContains(w1, "full")) {
             for (let letter of lettersontheboard) {
                 letter[0].style.color = "darkred";
             }
-            console.log("nincs", w1)
             return;
         }
     }
     for (let letter of lettersontheboard) {
-        console.log("yellow")
         letter[0].style.color = "yellow";
     }
     turnscore = scoring(wordsl);
     let availablescore = document.createElement("div");
-    console.log("wordsl", wordsl);
     let priword;
     for (let wordl of wordsl) {
         let newl = 0;
@@ -1137,7 +1080,6 @@ function testNewWords() {
         }
     }
     if (!priword) priword = wordsl[0];
-    console.log("priword", priword)
     let rectfield = getElementPosition(priword[priword.length - 1]);
     priword[priword.length - 1].parentElement.appendChild(availablescore);
     availablescore.style.width = numberlabelsize.toString() + "px";
@@ -1193,37 +1135,30 @@ function validateNewWords() {
         let w = getAllString(lettersontheboard, direction);
         let words = w[0];
         let wordsl = w[1];
-        //console.log("words, wordsl", words, wordsl);
         if (words[0] == "not connected") {
             displayMessage("Szabálytalan!", "Nem kapcsolódik a korábban táblára került szavakhoz.", destroyPopup, "", "game-div", "#board-rack");
             return 1;
         }
-        console.log("words", words)
+        let nfsjoined = [];
         for (wordl of wordsl) {
-            console.log("wordl", wordl)
             w1 = [];
             for (letter of wordl) {
                 w1.push(letter.value);
             }
-            if (!dictionaryContains(w1)) {
-                let nfjoined = w1.join('');
-                displayMessage("Szabálytalan!", `${nfjoined} nem található a szótárban`, destroyPopup, "", "game-div", "#board-rack");
-                return 1;
+            if (!dictionaryContains(w1, "full")) {
+                nfsjoined.push(w1.join(''));  
             }
         }
-        //displayMessage("Várakozás", "A számítógép is szót választ...", destroyPopup, "", "game-div", "#board-rack");
-        //lockOnUI();
+        if (nfsjoined.length>0){
+            displayMessage("Szabálytalan!", `${nfsjoined.join(", ")} nem található a szótárban`, destroyPopup, "", "game-div", "#board-rack");
+            return 1;
+        }
         aiMove();
-        /*try {
-            destroyPopup();
-        } catch (err) { }*/
-        //lockOffUI;
         let sc = displayScore(wordsl);
         let lobvalues = [];
         for (let letter of lettersontheboard) {
             lobvalues.push(letter[0].value);
         }
-        //console.log("selectedaimove[0]", selectedaimove[0])
         let aiwords = [selectedaimove[0].join("")];
         for (secondaryword of selectedaimove[1]) {
             if (secondaryword[0]) aiwords.push(secondaryword[0].join(""));
@@ -1234,7 +1169,7 @@ function validateNewWords() {
         idleturns = 0;
     }
     removeElements(".available-score");
-    printBoard();
+    //printBoard();
     if (!lettersinsack) {
         let numoflettersonrack = 0;
         for (let rackfield of rackfields) {
@@ -1293,7 +1228,6 @@ function createAIFields() {
         }
         aifields.push(fieldsrow);
     }
-    console.log("aifields", aifields)
 }
 
 
@@ -1312,7 +1246,6 @@ function collectNewLettersOnBoard() {
             if (found) break;
         }
     }
-    //console.log("collectlettersontheboard", lettersontheboard)
     return lettersontheboard;
 }
 
@@ -1328,9 +1261,7 @@ function pass1() {
         for (i of sack) {
             sacktemp.push(i.slice());
         }
-        //console.log("sackelőtte", sacktemp)
         backToSack();
-        //console.log("sackutána", sack)
         selectedaimove = [];
         displayScore([]);
         loadRack();
@@ -1492,8 +1423,6 @@ function displayDetails() {
         for (let field = 0; field < words.length; field++) {
             let td1 = document.createElement("td");
             tr1.appendChild(td1);
-            //console.log("wordbgcolor", wordbgcolor);
-            //console.log("words[field]", words[field])
             td1.style.backgroundColor = wordbgcolor;
             td1.innerHTML = `<div class="words-table" style="background-color: ${wordbgcolor}">${words[field].join(', ')}</div>`;
             if (field == 3 || field == 6) {
@@ -1668,16 +1597,6 @@ function getAllString(lettersontheboard, direction) {
     } else return [words, wordsl];
 }
 
-function checkDictionary(words) {
-    let notfound = [];
-    for (let word of words) {
-        if (!dictionary.includes(word)) {
-            notfound.push(word);
-        }
-    }
-    return notfound;
-}
-
 function displayScore(wordsl) {
     let turnscore = scoring(wordsl);
     let aisc, psc;
@@ -1715,15 +1634,9 @@ function scoring(wordsl) {
                 if (letter.parentElement.classList.contains("bonus-field-2L")) {
                     pointforletter *= 2;
                 }
-                /*if (letter.classList.contains("x2")) {
-                    pointforletter *= 2;
-                }*/
                 if (letter.parentElement.classList.contains("bonus-field-3L")) {
                     pointforletter *= 3;
                 }
-                /*if (letter.classList.contains("x3")) {
-                    pointforletter *= 3;
-                }*/
                 if (letter.parentElement.classList.contains("bonus-field-2W")) {
                     wordmultiplier *= 2;
                 }
@@ -1740,14 +1653,10 @@ function scoring(wordsl) {
                 }
                 numofusedletters += 1;
             }
-            //console.log("pointforletter", pointforletter)
             wordscore += pointforletter;
-            //console.log("wordscore", wordscore)
         }
-        //console.log("wordmultiplier", wordmultiplier)
         wordscore *= wordmultiplier;
         turnscore += wordscore;
-        //console.log("turnscore", turnscore)
         switch (numofusedletters) {
             case 4:
                 turnscore += 5;
@@ -1771,8 +1680,6 @@ function scoring(wordsl) {
 }
 
 function aiMove() {
-    //let aifields = fields.slice();
-    //console.log("aifields",aifields)
     let slettersonrack = [];
     let allvalidword = [];
     let lettersonrack = document.querySelectorAll(".letter-on-rack");
@@ -1785,14 +1692,12 @@ function aiMove() {
     }
     for (let numofletters = 1; numofletters < aiusedletters + 1; numofletters++) {
         let validwords = aiFindPlace(numofletters, aifields, slettersonrack, notjokerletters);
-        //console.log("validwords", validwords)
         if (validwords.length > 0) {
             allvalidword = allvalidword.concat(validwords);
         }
     }
     if (allvalidword.length > 0) {
         let allvalidwordscores = aiScore(allvalidword);
-        console.log("allvalidwordscores", allvalidwordscores)
         selectMove(allvalidwordscores);
     } else noValidWord();
 }
@@ -1817,12 +1722,10 @@ function aiFindPlace(numofletters, aifields, slettersonrack, notjokerletters) {
     for (let direction of ["across", "down"]) {
         if (direction == "down") {
             aifields = aifieldstransposed;
-            //aifieldrc, aifieldcc = aifieldcc, aifieldrc;
             let s = aifieldrc;
             aifieldrc = aifieldcc;
             aifieldcc = s;
         }
-        //console.log(direction)
         for (let i = 0; i < aifieldrc; i++) {
             endofline = false;
             for (let j = 0; j < aifieldcc; j++) {
@@ -1896,7 +1799,6 @@ function aiFindPlace(numofletters, aifields, slettersonrack, notjokerletters) {
                     rec.push(words);
                     patternswithdata.push(rec);
                 }
-                //console.log("words", words)
                 let primarywordwithdata;
                 if (words.length > 0) {
                     for (primaryword of words) {
@@ -1910,13 +1812,11 @@ function aiFindPlace(numofletters, aifields, slettersonrack, notjokerletters) {
             }
         }
     }
-    //console.log("validwords", validwords);
     return validwords
 }
 
 function checkWords(pattern1, slettersonrack, notjokerletters) {
     let words = [];
-    //console.log("pattern1", pattern1)
     if (pattern1.length < 2) {
         return words;
     }
@@ -1934,7 +1834,6 @@ function checkWords(pattern1, slettersonrack, notjokerletters) {
             usedbletter.push(letter);
         } else continue;
         for (let word1 of partsofdictionary[letter + pattern1.length.toString()]) {
-            //console.log("word1", word1);
             suit = true;
             for (let k = 0; k < pattern1.length; k++) {
                 if (pattern1[k] != word1[k] && pattern1[k] != '.') {
@@ -1973,7 +1872,6 @@ function checkWords(pattern1, slettersonrack, notjokerletters) {
             words.push(word1);
         }
     }
-    //console.log("words", words);
     return words;
 }
 
@@ -1984,17 +1882,29 @@ function removeFirstEqual(array1, value1) {
     return array1;
 }
 
-function dictionaryContains(wordl) {
-    //console.log("wordl", wordl)
-    let partofdictionary = partsofdictionary[wordl[0] + wordl.length.toString()];
+function dictionaryContains(wordl, vocabulary) {
+    let partofdictionary;
+    if (vocabulary == "full") {
+        partofdictionary = dictionary;
+    } else {
+        partofdictionary = partsofdictionary[wordl[0] + wordl.length.toString()];
+    }
     for (let elem of partofdictionary) {
-        //console.log("elem, wordl", elem, wordl) 
-        if (wordl.toString() == elem.toString()) {
-            //console.log("van ilyen szó")
-            return true;
+        if (elem.length == wordl.length){
+            let found = true;
+            for (let i=0; i < elem.length; i++){
+                if (elem[i]!=wordl[i]){
+                    found = false;
+                    break;      
+                }
+            }
+            if (!found) {
+                continue;
+            } else{
+                return true;
+            }    
         }
     }
-    //console.log("nincs ilyen szó")
     return false;
 }
 
@@ -2014,7 +1924,6 @@ function createLOB(primaryword, pattern1) {
             if (!found) console.log("nincs ilyen betű a zsákban", primaryword[i]);
         } else lob1.push('.');
     }
-    //console.log("LOB1", lob1)
     primarywordwithdata.push(primaryword);
     primarywordwithdata.push(lob1);
     return primarywordwithdata;
@@ -2024,7 +1933,6 @@ function aiValidMove(aifields, primarywordwithdata, ii, jj, direction, aifieldrc
     let validword = [];
     let secondarywords = [];
     let lob = primarywordwithdata[1];
-    //console.log("primarywordwithdata", primarywordwithdata)
     for (let patternposition = 0; patternposition < lob.length; patternposition++) {
         if (lob[patternposition][0] != '.') {
             let inside = true;
@@ -2041,11 +1949,9 @@ function aiValidMove(aifields, primarywordwithdata, ii, jj, direction, aifieldrc
             inside = true;
             while (inside) {
                 if (i == ii) {
-                    //console.log("i", i)
                     wordl.push(primarywordwithdata[0][patternposition]);
                     lobs.push(lob[patternposition]);
                 } else {
-                    //console.log("i!=ii", i, ii)
                     wordl.push(aifields[i][jj + patternposition]);
                     lobs.push('.');
                 }
@@ -2056,13 +1962,9 @@ function aiValidMove(aifields, primarywordwithdata, ii, jj, direction, aifieldrc
                 } else inside = false;
             }
             if (wordl.length > 1) {
-                //console.log("wordl, lobs", wordl, lobs)
-                //console.log("partsofdictionary[wordl[0] + wordl.length.toString()]", partsofdictionary[wordl[0] + wordl.length.toString()])
-                if (!dictionaryContains(wordl)) {
-                    //console.log("nincs benne")
+                if (!dictionaryContains(wordl, "part")) {
                     return validword;
                 } else {
-                    //console.log("benne van")
                     rec = [];
                     rec.push(wordl);
                     if (direction == "across") {
@@ -2123,9 +2025,7 @@ function wordScore(word1, ii, jj, direction, lob1, category) {
                     }
                 }
             } else {
-                //console.log("lob1", lob1)
                 let sc = parseInt(lob1[position][2], 10);
-                //wordvaluemulti *= int(lob1[position][2])
                 if (aifields[ii][jj + position] == "2W") {
                     wordvaluemulti *= 2;
                 } else if (aifields[ii][jj + position] == "3W") {
@@ -2155,7 +2055,6 @@ function wordScore(word1, ii, jj, direction, lob1, category) {
                 }
             } else {
                 let sc = parseInt(lob1[position][2], 10);
-                //wordvaluemulti *= int(lob1[position][2])
                 if (aifields[ii + position][jj] == "2W") {
                     wordvaluemulti *= 2;
                 } else if (aifields[ii + position][jj] == "3W") {
@@ -2198,7 +2097,6 @@ function wordScore(word1, ii, jj, direction, lob1, category) {
 
 function selectMove(allvalidwordscores) {
     allvalidwordscores.sort(function (a, b) { return a[6] - b[6] });
-    //console.log("allvalidwordscores[-1]", allvalidwordscores[allvalidwordscores.length - 1])
     let maxpoint = allvalidwordscores[allvalidwordscores.length - 1][6] * aistrength / 100;
     for (let i = 0; i < allvalidwordscores.length; i++) {
         if (!(allvalidwordscores[i][6] > maxpoint)) selectedaimove = allvalidwordscores[i];
@@ -2355,14 +2253,12 @@ function placeYesMarks() {
 function selectLanguage(lang) {
     if (lang == "hun") {
         language = "hun";
-        createDictionary(dictionary_hun);
         letters = letters_hun;
         document.querySelector("#yes-mark-e").style.display = "none";
         document.querySelector("#yes-mark-h").style.display = "inline-block";
         document.querySelector("#yes-mark-h").style.position = "absolute";
     } else {
         language = "eng";
-        dictionary = dictionary_eng;
         letters = letters_eng;
         document.querySelector("#yes-mark-h").style.display = "none";
         document.querySelector("#yes-mark-e").style.display = "inline-block";
@@ -2370,14 +2266,9 @@ function selectLanguage(lang) {
     }
 }
 
-function createDictionary(dict) {
-    for (let wl of dict) {
-        dictionary.push(wl[0]);
-    }
-}
-
 function createPartsOfDictionary() {
     let abc;
+    dictionary = [];
     if (language == "hun") {
         abc = ['A', 'Á', 'B', 'C', 'CS', 'D', 'E', 'É', 'F', 'G', 'GY', 'H', 'I', 'Í', 'J', 'K', 'L', 'LY', 'M', 'N', 'NY',
             'O', 'Ó', 'Ö', 'Ő', 'P', 'Q', 'R', 'S', 'SZ', 'T', 'TY', 'U', 'Ú', 'Ü', 'Ű', 'V', 'W', 'X', 'Y', 'Z', 'ZS'];
@@ -2395,20 +2286,35 @@ function createPartsOfDictionary() {
     } else dict = dictionary_eng;
     for (let word of dict) {
         let wordsl;
-        //console.log("aivocabulary",aivocabulary)
+        let wordsldict;
         if (language == "hun") {
             if (aivocabulary == 2 && (word.length == 2 || word.length == 3)) {
                 wordsl = wordToListHUN(word[0]);
-                //console.log("normál", word[0], wordcount)
+                wordsldict = wordsl;
             } else if (aivocabulary == 1 && word.length == 3) {
                 wordsl = wordToListHUN(word[0]);
-                //console.log("szűk", word[0], wordcount)
-            } else continue;
+                wordsldict = wordsl;
+            } else {
+                wordsldict = wordToListHUN(word[0]);
+            }
         } else {
             wordsl = wordToListENG(word);
+            wordsldict = wordsl;
         }
-        //console.log("wordsl", wordsl)
-        for (let word1 of wordsl) {
+        if (wordsl) {
+            for (let word1 of wordsl) {
+                if (word1.includes('_')) {
+                    w1 = [];
+                    for (let letter of word1) {
+                        if (letter != '_') w1.push(letter);
+                    }
+                    word1 = w1;
+                }
+                key1 = [word1[0], word1.length.toString()].join("");
+                partsofdictionary[key1].push(word1);
+            }
+        }
+        for (let word1 of wordsldict) {
             if (word1.includes('_')) {
                 w1 = [];
                 for (let letter of word1) {
@@ -2416,8 +2322,7 @@ function createPartsOfDictionary() {
                 }
                 word1 = w1;
             }
-            key1 = [word1[0], word1.length.toString()].join("");
-            partsofdictionary[key1].push(word1);
+            dictionary.push(word1);
         }
     }
 }
@@ -2543,15 +2448,15 @@ function displayWordSearch() {
 
 function wordSearch(ev) {
     ev.preventDefault();
-    input1 = document.querySelector("#word");
-    let notfound = checkDictionary([input1.value.toUpperCase()]);
     if (ev.key == " " || ev.key == "Escape" || ev.key == "Enter") {
         try {
             destroyPopup();
         } catch (err) { }
         lockOffUI();
+        return;
     }
-    if (notfound.length) {
+    input1 = document.querySelector("#word");
+    if (!dictionaryContains(input1.value.toUpperCase().split(""), "full")) {
         input1.style.color = "darkred";
     } else {
         input1.style.color = "green";
@@ -2576,9 +2481,6 @@ function displayTime() {
         }
         if (ingame) {
             clearInterval(timeout);
-            //back();
-            //emptyRack();
-            //loadRack();
             resetTimer(timelimit);
         }
     }
@@ -2609,26 +2511,12 @@ function createSack() {
     }
 }
 
-//function decideOrientation() {
-/*console.log("window.innerWidth", window.innerWidth);
-console.log("document.documentElement.clientWidth", document.documentElement.clientWidth);
-console.log("document.body.clientWidth", document.body.clientWidth);
-console.log("window.innerHeight", window.innerHeight);
-console.log("document.documentElement.clientHeight", document.documentElement.clientHeight);
-console.log("document.body.clientHeight", document.body.clientHeight);*/
-/*  width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-  height > width ? orientation1 = "portrait" : orientation1 = "landscape";
-}*/
-
 function adaptToChangedSize() {
     fieldsize = Math.floor((height - fields.length) / (fields.length + 4)) > 23 ? Math.floor((height - fields.length) / (fields.length + 4)) : 23;
-    // console.log("fieldsize",fieldsize)
     if (touchdevice) {
         rackfieldsize = Math.floor(fieldsize * (fields[0].length - 5) / racksize);
         dashboard = document.querySelector("#dashboard");
         dashboard.style.position = "sticky";
-        //dashboard.style.top = 0;
     } else {
         rackfieldsize = fieldsize;
     }
@@ -2643,8 +2531,6 @@ function adaptToChangedSize() {
             fields[rindex][cindex].style.maxHeight = fieldsize.toString() + "px";
             fields[rindex][cindex].style.minWidth = fieldsize.toString() + "px";
             fields[rindex][cindex].style.minHeight = fieldsize.toString() + "px";
-            /*fields[rindex][cindex].setAttribute('style', `width: ${fieldsize.toString()}px !important`);
-            fields[rindex][cindex].setAttribute('style', `height: ${fieldsize.toString()}px !important`);*/
         }
     }
     for (let cindex = 0; cindex < rackfields.length; cindex++) {
@@ -2698,16 +2584,13 @@ function adaptToChangedSize() {
     let rackform = document.querySelector("#rack-form");
     let field05 = document.querySelector("#fieldtable-0-5");
     let rectfield = getElementPosition(field05);
-    /*console.log("rectfield.left,  5.5 * (fieldsize + 2)",rectfield.left,   5.5 * (fieldsize + 2))*/
     if (touchdevice) {
         rackform.style.left = (rectboard.left + (rectboard.width - racksize * (rackfieldsize + 2)) / 2 - 10).toString() + "px";
     } else {
         rackform.style.left = (rectfield.left + fieldsize * 0.5 - 10).toString() + "px";
     }
-    //rackform.style.width = rectboard.width.toString()+"px";
     let boardandrack = document.querySelector("#board-rack");
     boardandrack.style.minHeight = height.toString() + "px";
-    console.log("rectboard.width", rectboard.width, racksize * (rackfieldsize + 2))
     lockOffMain_Rules_Start();
 }
 
@@ -2724,11 +2607,9 @@ function initGame() {
     document.querySelector("h2").style.display = "inline-block";
     document.querySelector("h2").style.fontsize = "150%";
     //touchdevice = true;
-    /*decideOrientation();*/
     document.querySelector("#dashboard").style.display = "inline-block";
     document.querySelector("#title1").style.marginLeft = "2%";
     document.querySelector("#game-container").style.marginLeft = "2%";
-    //window.addEventListener("resize", adaptToChangedSize);
     progressbar = document.querySelector("#progress");
     bindButtons();
     let savedgames = localStorage.getItem('SavedGame_Betuteboly');
@@ -2745,7 +2626,6 @@ function initGame() {
         drawRack();
     }
     adaptToChangedSize();
-    console.log("savedgame,sack", savedgame, sack.length)
     if (!savedgame) {
         selectLanguage(language);
         aivocabulary = parseInt(document.querySelector("#number-of-words").value, 10);
@@ -2753,10 +2633,8 @@ function initGame() {
         aistrength = parseInt(document.querySelector("#ai-strength").value, 10);
         timelimit = parseInt(document.querySelector("#time-limit").value, 10);
         createPartsOfDictionary();
-        //createSack();
         progressbar.max = timelimit;
         progressbar.value = currenttime;
-        //lockOffUI();
         lockOffMain_Rules_Start();
     }
 }
@@ -2815,9 +2693,7 @@ function initStartScreen() {
     startscreeninnerdiv.style.backgroundSize = "100%";
     startscreeninnerdiv.style.backgroundPosition = "top center";
     height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    //startscreen.style.minHeight = height.toString() + "px";
     checkSavedGame();
 }
 
 initStartScreen();
-
