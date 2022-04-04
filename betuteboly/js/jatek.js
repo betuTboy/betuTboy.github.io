@@ -2115,6 +2115,9 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     popup1.setAttribute("class", "popup");
     popup1.style.fontSize = fontsizebutton;
     gamediv.appendChild(popup1);
+    if (touchdevice) {
+        popup1.style.position = "fixed";
+    }
     let form1 = document.createElement("form");
     form1.setAttribute("class", "popupcontent");
     popup1.appendChild(form1);
@@ -2185,6 +2188,9 @@ function createPopup(tfield) {
     popup1.style.fontSize = fontsizeletter;
     parente = document.querySelector("#board-rack");
     parente.appendChild(popup1);
+    if (touchdevice) {
+        popup1.style.position = "fixed";
+    }
     let form1 = document.createElement("form");
     form1.setAttribute("class", "popupcontent");
     popup1.appendChild(form1);
@@ -2408,6 +2414,9 @@ function displayWordSearch() {
     popup1.setAttribute("class", "popup");
     popup1.style.fontSize = fontsizebutton;
     parente.appendChild(popup1);
+    if (touchdevice) {
+        popup1.style.position = "fixed";
+    }
     let form1 = document.createElement("form");
     form1.setAttribute("class", "popupcontent");
     popup1.appendChild(form1);

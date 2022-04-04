@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2985"
+   sodipodi:docname="house.svg"
+   inkscape:export-filename="C:\Users\user\Documents\img\fotoVectors\house.png"
+   viewBox="0 0 50 50"
+   inkscape:export-xdpi="90"
+   version="1.1"
+   inkscape:export-ydpi="90"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   width="50"
+   height="50"
+   enable-background="new">
+  <defs
+     id="defs2987">
+    <filter
+       id="filter3001"
+       height="1.5"
+       width="1.5"
+       y="-0.25"
+       x="-0.25"
+       inkscape:label="Drop shadow">
+      <feGaussianBlur
+         id="feGaussianBlur3003"
+         result="blur"
+         stdDeviation="1"
+         in="SourceAlpha" />
+      <feColorMatrix
+         id="feColorMatrix3005"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.6 0 "
+         type="matrix"
+         result="bluralpha" />
+      <feOffset
+         id="feOffset3007"
+         result="offsetBlur"
+         dy="2"
+         dx="0"
+         in="bluralpha" />
+      <feMerge
+         id="feMerge3009">
+        <feMergeNode
+           id="feMergeNode3011"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode3013"
+           in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter
+       id="filter3015"
+       height="1.5"
+       width="1.5"
+       y="-0.25"
+       x="-0.25"
+       inkscape:label="Drop shadow">
+      <feGaussianBlur
+         id="feGaussianBlur3017"
+         result="blur"
+         stdDeviation="1"
+         in="SourceAlpha" />
+      <feColorMatrix
+         id="feColorMatrix3019"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.6 0 "
+         type="matrix"
+         result="bluralpha" />
+      <feOffset
+         id="feOffset3021"
+         result="offsetBlur"
+         dy="2"
+         dx="0"
+         in="bluralpha" />
+      <feMerge
+         id="feMerge3023">
+        <feMergeNode
+           id="feMergeNode3025"
+           in="offsetBlur" />
+        <feMergeNode
+           id="feMergeNode3027"
+           in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-y="0"
+     pagecolor="#ffffff"
+     inkscape:window-height="1053"
+     inkscape:grid-bbox="true"
+     inkscape:window-maximized="1"
+     inkscape:zoom="16.28"
+     inkscape:window-x="0"
+     inkscape:snap-bbox="true"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="layer1"
+     inkscape:cx="25"
+     inkscape:cy="21.416804"
+     inkscape:window-width="1920"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px">
+    <inkscape:grid
+       id="grid2993"
+       enabled="true"
+       visible="true"
+       snapvisiblegridlinesonly="true"
+       type="xygrid"
+       empspacing="4" />
+  </sodipodi:namedview>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     transform="translate(0,-14)"
+     style="opacity:1">
+    <rect
+       style="opacity:1;vector-effect:none;fill:#d3d3d3;fill-opacity:1;fill-rule:evenodd;stroke-width:0.99999994;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect12811"
+       width="50"
+       height="50"
+       x="-0.0835381"
+       y="14.02457" />
+    <rect
+       id="rect2995"
+       style="fill:#ffff00;fill-rule:evenodd;stroke:#808080;stroke-width:0.5"
+       ry="0.26087001"
+       height="28"
+       width="48"
+       y="32"
+       x="8"
+       transform="matrix(0.70963149,0,0,0.6504493,2.2919177,20.727342)" />
+    <rect
+       id="rect3029"
+       style="fill:#784421;fill-rule:evenodd;stroke:#502d16;stroke-width:0.35187417"
+       height="11.163084"
+       width="8.5184164"
+       y="48.415489"
+       x="20.740915" />
+    <rect
+       id="rect3036"
+       style="fill:#00ffff;fill-rule:evenodd;stroke:#502d16;stroke-width:0.35455459"
+       height="5.6686978"
+       width="5.677052"
+       y="48.416904"
+       x="10.807496" />
+    <rect
+       id="rect3038"
+       style="fill:#00ffff;fill-rule:evenodd;stroke:#502d16;stroke-width:0.35455459"
+       height="5.6686978"
+       width="5.677052"
+       y="48.416904"
+       x="33.515705" />
+    <path
+       id="path2997"
+       style="fill:#800000;fill-rule:evenodd;stroke:#800000;stroke-width:0.49955395;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 3.9090909,34.181818 H 60.090909 L 32.090909,8 Z"
+       inkscape:connector-curvature="0"
+       transform="matrix(0.70963149,0,0,0.70858726,2.2919177,17.239064)" />
+  </g>
+  <metadata
+     id="metadata8462">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title></dc:title>
+        <dc:date>2012-01-18T22:36:18</dc:date>
+        <dc:description>The Icon of a home or house</dc:description>
+        <dc:source>https://openclipart.org/detail/167230/home-icon-by-gadgetscode</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>gadgetscode</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>home</rdf:li>
+            <rdf:li>house icon</rdf:li>
+            <rdf:li>icon</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

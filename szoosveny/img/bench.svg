@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   sodipodi:docname="bench.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   viewBox="0 0 50.000001 50"
+   sodipodi:version="0.32"
+   version="1.0"
+   inkscape:label="Pozadí"
+   width="50"
+   height="50">
+  <defs
+     id="defs7735" />
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-y="0"
+     pagecolor="#ffffff"
+     inkscape:window-height="1053"
+     width="1052.3622px"
+     inkscape:zoom="16.28"
+     inkscape:window-x="0"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="g3791"
+     inkscape:cx="10.565111"
+     inkscape:cy="25"
+     inkscape:window-width="1920"
+     height="744.09448px"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     inkscape:snap-global="true"
+     inkscape:snap-bbox="true"
+     inkscape:window-maximized="1" />
+  <g
+     id="layer1"
+     inkscape:label="Vrstva 1"
+     inkscape:groupmode="layer"
+     transform="translate(-87.122,-354.98)">
+    <g
+       id="g3760"
+       inkscape:export-ydpi="600"
+       inkscape:export-xdpi="600"
+       inkscape:export-filename="/windows/E/Projekt_Kliparty/tom/ Klipy SVG/Dům a nábytek/lavicka.png"
+       transform="matrix(0.05360557,0,0,0.05518839,83.747883,365.52076)">
+      <g
+         id="g3791">
+        <rect
+           style="opacity:1;vector-effect:none;fill:#d3d3d3;fill-opacity:1;fill-rule:evenodd;stroke-width:18.38531876;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect8280"
+           width="932.73889"
+           height="905.98767"
+           x="61.797539"
+           y="-189.88297" />
+        <g
+           id="g8307"
+           transform="matrix(0.76267775,0,0,1.7742222,145.61438,-337.24868)"
+           style="fill:#483737">
+          <path
+             inkscape:connector-curvature="0"
+             d="m 118.81,263.53 786.46084,-2.22601 c 0.87,0 -46.95329,3.84202 0,0 L 932.06,315.25 c 0,0.87 -0.27587,2.22601 0,0 l -813.25,1.57 c -0.88,0 -30.643,-0.7 -30.643,-1.57 l 31.003,-50.14 c 0,-0.88 -1.24,-1.58 -0.36,-1.58 z"
+             style="opacity:0.9;fill:#483737;stroke:#0e0707;stroke-width:2.09100008;stroke-linecap:round"
+             sodipodi:nodetypes="ccccccccc"
+             id="rect3768" />
+          <path
+             inkscape:connector-curvature="0"
+             d="m 877.41,316.59 c -0.88,0 -1.59,0.73 -1.6,1.6 l -0.15,33.53 c -0.08,-0.01 -0.15,-0.03 -0.22,-0.03 H 159.81 c -0.3,0 -0.57,0.1 -0.81,0.25 v -33.69 c 0,-0.87 -0.72,-1.59 -1.59,-1.59 h -22.22 c -0.87,0 -1.6,0.72 -1.6,1.59 v 84.09 c 0,0.88 0.73,1.6 1.6,1.6 h 22.22 c 0.87,0 1.59,-0.72 1.59,-1.6 v -26.65 c 0.24,0.15 0.51,0.25 0.81,0.25 h 715.63 0.09 l -0.12,26.34 c -0.01,0.87 0.69,1.59 1.56,1.6 l 22.22,0.09 c 0.87,0 1.59,-0.69 1.59,-1.56 l 0.41,-84.1 c 0,-0.87 -0.69,-1.59 -1.57,-1.59 z"
+             style="opacity:0.9;fill:#483737;stroke:#0e0707;stroke-width:2.02329993;stroke-linecap:round"
+             id="rect3771" />
+        </g>
+      </g>
+    </g>
+  </g>
+  <metadata
+     id="metadata7732">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title></dc:title>
+        <dc:date>2006-12-31T04:18:37</dc:date>
+        <dc:description />
+        <dc:source>https://openclipart.org/detail/2630/seat-by-machovka</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Machovka</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>bench</rdf:li>
+            <rdf:li>brown</rdf:li>
+            <rdf:li>furniture</rdf:li>
+            <rdf:li>household</rdf:li>
+            <rdf:li>seat</rdf:li>
+            <rdf:li>wooden</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
