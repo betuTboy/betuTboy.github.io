@@ -807,7 +807,7 @@ function newGame() {
     loadRack();
     clearInterval(timeout);
     resetTimer(timelimit);
-    localStorage.setItem('SavedGame_Betuteboly', JSON.stringify(false));
+    localStorage.setItem('SavedGame_Szoosveny', JSON.stringify(false));
     lockOffUI();
 }
 
@@ -829,7 +829,7 @@ function removeFog(rindex, cindex) {
 }
 
 function saveGame() {
-    localStorage.setItem('SavedGame_Betuteboly', JSON.stringify(true));
+    localStorage.setItem('SavedGame_Szoosveny', JSON.stringify(true));
     localStorage.setItem('Language', JSON.stringify(language));
     localStorage.setItem('TimeLimit', JSON.stringify(timelimit));
     localStorage.setItem('FirstMove', JSON.stringify(firstmove));
@@ -1437,7 +1437,7 @@ function endOfGame() {
         destroyPopup();
     } catch (err) { }
     lockOnUI();
-    localStorage.setItem('SavedGame_Betuteboly', JSON.stringify(false));
+    localStorage.setItem('SavedGame_Szoosveny', JSON.stringify(false));
     let lettersonrack = document.querySelectorAll(".letter-on-rack");
     for (let j = 0; j < lettersonrack.length; j++) {
         lettersonrack[j].draggable = false;
@@ -1961,7 +1961,9 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    if (touchdevice){
+        popup1.style.top = "0px";
+    } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
 
 function destroyPopup() {
@@ -2013,7 +2015,9 @@ function createPopup(tfield) {
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    if (touchdevice){
+        popup1.style.top = "0px";
+    } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
 
 function changeJoker(tfield, ev) {
@@ -2236,7 +2240,9 @@ function displayWordSearch() {
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    if (touchdevice){
+        popup1.style.top = "0px";
+    } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
 
 function wordSearch(ev) {
@@ -2397,7 +2403,7 @@ function initGame() {
     document.querySelector("#game-container").style.marginLeft = "2%";
     progressbar = document.querySelector("#progress");
     bindButtons();
-    let savedgames = localStorage.getItem('SavedGame_Betuteboly');
+    let savedgames = localStorage.getItem('SavedGame_Szoosveny');
     savedgame = JSON.parse(savedgames);
     if (savedgame) {
         try {
@@ -2445,7 +2451,7 @@ function timeLimitChange() {
 }
 
 function checkSavedGame() {
-    let savedgames = localStorage.getItem('SavedGame_Betuteboly');
+    let savedgames = localStorage.getItem('SavedGame_Szoosveny');
     savedgame = JSON.parse(savedgames);
     if (savedgame) {
         displayMessage("Figyelem!", "Az előző játék félbeszakadt.<br> Szeretnéd folytatni?", initGame, setupNewGame, "setup-new-game", "#setup-new-game");
@@ -2458,7 +2464,7 @@ function setupNewGame() {
     try {
         popup1.remove();
     } catch (err) { }
-    localStorage.setItem('SavedGame_Betuteboly', JSON.stringify(false));
+    localStorage.setItem('SavedGame_Szoosveny', JSON.stringify(false));
     document.querySelector("#setup-new-game").style.visibility = "visible";
     placeYesMarks();
 }

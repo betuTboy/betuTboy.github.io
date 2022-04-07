@@ -804,12 +804,12 @@ function newGame() {
     loadRack();
     clearInterval(timeout);
     resetTimer(timelimit);
-    localStorage.setItem('SavedGame', JSON.stringify(false));
+    localStorage.setItem('SavedGame_Nehagyduresen', JSON.stringify(false));
     lockOffUI();
 }
 
 function saveGame() {
-    localStorage.setItem('SavedGame', JSON.stringify(true));
+    localStorage.setItem('SavedGame_Nehagyduresen', JSON.stringify(true));
     localStorage.setItem('BoardNumber', JSON.stringify(selectedboardnum));
     let fieldstosave = [];
     for (let i = 0; i < fields.length; i++) {
@@ -1371,7 +1371,7 @@ function endOfGame() {
     }
     clearInterval(timeout);
     displayResult();
-    localStorage.setItem('SavedGame', JSON.stringify(false));
+    localStorage.setItem('SavedGame_Nehagyduresen', JSON.stringify(false));
 }
 
 function displayResult() {
@@ -2129,7 +2129,7 @@ function initGame() {
         progressbar = document.querySelector("#progress");
     }
     bindButtons();
-    let savedgames = localStorage.getItem('SavedGame');
+    let savedgames = localStorage.getItem('SavedGame_Nehagyduresen');
     savedgame = JSON.parse(savedgames);
     if (savedgame) {
         try {
@@ -2149,7 +2149,7 @@ function initGame() {
 }
 
 function checkSavedGame() {
-    let savedgames = localStorage.getItem('SavedGame');
+    let savedgames = localStorage.getItem('SavedGame_Nehagyduresen');
     savedgame = JSON.parse(savedgames);
     if (savedgame) {
         displayMessage("Figyelem!", "Az előző játék félbeszakadt.<br> Szeretnéd folytatni?", initGame, setupNewGame, "setup-new-game", "#setup-new-game");
@@ -2162,7 +2162,7 @@ function setupNewGame() {
     try {
         popup1.remove();
     } catch (err) { }
-    localStorage.setItem('SavedGame', JSON.stringify(false));
+    localStorage.setItem('SavedGame_Nehagyduresen', JSON.stringify(false));
     document.querySelector("#setup-new-game").style.visibility = "visible";
     placeYesMarks();
 }

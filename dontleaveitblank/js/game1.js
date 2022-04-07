@@ -341,13 +341,13 @@ const letters_eng = [['*', 30, 1,],
 ['Z', 1, 1]];
 
 const boards = [
-    [board_1, "/img/board1.png"],
-    [board_2, "/img/board2.png"],
-    [board_3, "/img/board3.png"],
-    [board_4, "/img/board4.png"],
-    [board_5, "/img/board5.png"],
-    [board_6, "/img/board6.png"],
-    [board_7, "/img/board7.png"]];
+    [board_1, "img/board1.png"],
+    [board_2, "img/board2.png"],
+    [board_3, "img/board3.png"],
+    [board_4, "img/board4.png"],
+    [board_5, "img/board5.png"],
+    [board_6, "img/board6.png"],
+    [board_7, "img/board7.png"]];
 let selectedboardnum = 0;
 let selectedboard = board_1;
 let letters;
@@ -689,11 +689,7 @@ function createLetter(lettercount, value) {
     letteri.setAttribute("ondragstart", "drag(event)");
     letteri.setAttribute("onclick", "placeLetter(event)");
     letteri.setAttribute("onkeydown", "return false");
-    letteri.readonly = true;   
-    const isIOS = ['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod',].indexOf(navigator.platform) !== -1;
-    if (isIOS){
-        letteri.style.textAlign = "left";
-    }
+    letteri.readonly = true;    
     letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
     letteri.setAttribute("border-radius", "20%");
     return letteri;
@@ -804,12 +800,12 @@ function newGame() {
     loadRack();
     clearInterval(timeout);
     resetTimer(timelimit);
-    localStorage.setItem('SavedGame', JSON.stringify(false));
+    localStorage.setItem('SavedGame_Dontleaveitblank', JSON.stringify(false));
     lockOffUI();
 }
 
 function saveGame() {
-    localStorage.setItem('SavedGame', JSON.stringify(true));
+    localStorage.setItem('SavedGame_Dontleaveitblank', JSON.stringify(true));
     localStorage.setItem('BoardNumber', JSON.stringify(selectedboardnum));
     let fieldstosave = [];
     for (let i = 0; i < fields.length; i++) {
@@ -930,10 +926,6 @@ function restoreLetter(lettercount, value, where) {
     }
     letteri.setAttribute("onkeydown", "return false");
     letteri.readonly = true;
-    const isIOS = ['iPad Simulator', 'iPhone Simulator', 'iPod Simulator', 'iPad', 'iPhone', 'iPod',].indexOf(navigator.platform) !== -1;
-    if (isIOS){
-        letteri.style.textAlign = "left";
-    }
     letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.8).toString() + "px";
     letteri.setAttribute("border-radius", "20%");
     return letteri;
@@ -1371,7 +1363,7 @@ function endOfGame() {
     }
     clearInterval(timeout);
     displayResult();
-    localStorage.setItem('SavedGame', JSON.stringify(false));
+    localStorage.setItem('SavedGame_Dontleaveitblank', JSON.stringify(false));
 }
 
 function displayResult() {
@@ -2127,7 +2119,7 @@ function initGame() {
         progressbar = document.querySelector("#progress");
     }
     bindButtons();
-    let savedgames = localStorage.getItem('SavedGame');
+    let savedgames = localStorage.getItem('SavedGame_Dontleaveitblank');
     savedgame = JSON.parse(savedgames);
     if (savedgame) {
         try {
@@ -2147,7 +2139,7 @@ function initGame() {
 }
 
 function checkSavedGame() {
-    let savedgames = localStorage.getItem('SavedGame');
+    let savedgames = localStorage.getItem('SavedGame_Dontleaveitblank');
     savedgame = JSON.parse(savedgames);
     if (savedgame) {
         displayMessage("Warning", "The previous game was interrupted.<br> Want to continue?", initGame, setupNewGame, "setup-new-game", "#setup-new-game");
@@ -2160,7 +2152,7 @@ function setupNewGame() {
     try {
         popup1.remove();
     } catch (err) { }
-    localStorage.setItem('SavedGame', JSON.stringify(false));
+    localStorage.setItem('_Dontleaveitblank', JSON.stringify(false));
     document.querySelector("#setup-new-game").style.visibility = "visible";
     placeYesMarks();
 }

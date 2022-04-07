@@ -2170,7 +2170,9 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    if (touchdevice){
+        popup1.style.top = "0px";
+    } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
 
 function destroyPopup() {
@@ -2222,7 +2224,9 @@ function createPopup(tfield) {
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    if (touchdevice){
+        popup1.style.top = "0px";
+    } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
 
 function changeJoker(tfield, ev) {
@@ -2452,7 +2456,9 @@ function displayWordSearch() {
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
+    if (touchdevice){
+        popup1.style.top = "0px";
+    } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
 
 function wordSearch(ev) {
