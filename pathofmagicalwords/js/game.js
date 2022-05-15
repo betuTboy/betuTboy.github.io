@@ -1,113 +1,108 @@
 
-const board_1 = [['!', '!', '3W', '!', '!', '!', '2W', '3L', '!', '20', '!', '3L', '2W', '!', '!', '!', '3W', '!', '!'],
-['!', '2L', '.', '!', '3L', '.', '.', '.', '.', '.', '.', '.', '.', '.', '3L', '!', '.', '2L', '!'],
-['3W', '.', '2L', '.', '.', '.', '.', '.', '.', '3L', '.', '.', '.', '.', '.', '.', '2L', '.', '3W'],
-['!', '!', '.', '2W', '.', '.', '.', '2L', '.', '.', '.', '2L', '.', '.', '.', '2W', '.', '!', '!'],
-['!', '3L', '.', '.', '2L', '.', '.', '.', '2W', '-20', '2W', '.', '.', '.', '2L', '.', '.', '3L', '!'],
-['!', '.', '.', '.', '.', '.', '2W', '.', '.', '.', '.', '.', '2W', '.', '.', '.', '.', '.', '!'],
-['2W', '.', '.', '.', '.', '2W', '.', '.', '.', '.', '.', '.', '.', '2W', '.', '.', '.', '.', '2W'],
-['3L', '.', '.', '2L', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2L', '.', '.', '3L'],
-['!', '.', '.', '.', '2W', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2W', '.', '.', '.', '!'],
-['20', '.', '3L', '.', '-20', '.', '.', '.', '.', '.', '.', '.', '.', '.', '-20', '.', '3L', '.', '20'],
-['!', '.', '.', '.', '2W', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2W', '.', '.', '.', '!'],
-['3L', '.', '.', '2L', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2L', '.', '.', '3L'],
-['2W', '.', '.', '.', '.', '2W', '.', '.', '.', '.', '.', '.', '.', '2W', '.', '.', '.', '.', '2W'],
-['!', '.', '.', '.', '.', '.', '2W', '.', '.', '.', '.', '.', '2W', '.', '.', '.', '.', '.', '!'],
-['!', '3L', '.', '.', '2L', '.', '.', '.', '2W', '-20', '2W', '.', '.', '.', '2L', '.', '.', '3L', '!'],
-['!', '!', '.', '2W', '.', '.', '.', '2L', '.', '.', '.', '2L', '.', '.', '.', '2W', '.', '!', '!'],
-['3W', '.', '2L', '.', '.', '.', '.', '.', '.', '3L', '.', '.', '.', '.', '.', '.', '2L', '.', '3W'],
-['!', '2L', '.', '!', '3L', '.', '.', '.', '.', '.', '.', '.', '.', '.', '3L', '!', '.', '2L', '!'],
-['!', '!', '3W', '!', '!', '!', '2W', '3L', '!', '20', '!', '3L', '2W', '!', '!', '!', '3W', '!', '!']];
+const board_1 = [['.', '.', '!', '6', '.', '.', '.', '.', '.', '#11', '.', '.', '.', '5', '!', '9', '.', '#20', '#6', '.', '.', '2', '.', '.', '#8', '.', '5', '.', '.', '.', 'P', '.', '2', '.', '.', '.', '.', '.', '.', '9',],
+['.', '.', '1', '!', 'H', '.', '.', '.', '.', '.', '!', '.', '.', '.', '!', '!', '!', '!', '.', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+['.', '.', '.', '!', '!', '2', '.', '.', '.', '.', '!', '.', '.', '.', '3', '!', '4', '.', '.', '.', '.', '.', 'T', '5', '!', '.', '.', '.', '.', '.', '.', '.', '.', '7', '!', '.', '.', '3', '.', '.'],
+['.', '.', '.', '.', '.', '!', '!', '.', '.', '4', '!', '5', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '!', '4', '.', '.', '.', '2', '.', '.', '.', '.', '!', '#6', '.', '#9', '!', '.', '.'],
+['.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '4', '!', '.', '.', '.', '.', '#20', '.', '.', '.', '.', '.', '.', '!', '.', '.', '.', '!', '!', '.', '.', '.', '!', '.', '.', '.', '!', '!', '4', '.'],
+['.', '.', '.', '.', '.', '!', '!', '2', '.', '.', '.', '!', 'A', '.', '.', '.', '1', '!', '3', '.', '.', '.', '.', '.', '.', '.', '!', '7', 'I', '#12', '!', '#3', '.', '.', '.', '.', '.', '4', '!', 'P'],
+['.', '.', '.', '.', '.', '.', '.', '!', '.', '.', '.', '!', '.', '.', '.', '.', '.', '6', '!', '!', '!', '!', '.', '.', '.', '!', '4', '.', '.', '!', '!', '.', '.', '.', '.', '.', '.', '#18', '.', '.'],
+['.', '.', '.', '.', 'T', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '!', '!', '.', '.', '.', '9', '!', '.', '.', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '2', '!', '.', '.'],
+['1', '.', '.', '.', '.', '.', 'X', '.', '.', '.', '.', '.', '.', '.', '.', '!', '3', '.', '.', '!', '.', '.', '.', '!', '.', '.', '.', '.', '.', '4', '!', '!', '4', '.', '.', '.', '!', '.', '.', '.'],
+['#14', '!', '.', '.', 'L', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '!', '.', '.', '!', '5', '.', '.', '.'],
+['.', '9', '!', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '.', '.', '!', '6', '!', '!', '.', '.', '.', '.', '.', '.', '3', '!', 'U', '!', 'Q', '.', '.', '.', '.', '.', '.', 'S'],
+['.', '.', '!', '1', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '.', '!', 'N', '!', '.', '.', '.', '.', '!', '!', '!', '!'],
+['.', '.', '.', '!', '!', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '2', '!', '.', '.', '.', '.', '.', '!', 'J', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '7', '1', '9'],
+['.', '.', '.', '.', '3', '#2', '.', '.', '.', '.', '.', '.', '.', '.', 'E', '.', '.', '!', '3', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', 'S', '.', '.', '.', '.', '#16', '!', '2', '6', '4'],
+['3', '.', '.', '.', '.', '!', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '!', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '!', '!', '.', '.', '.', '.', '.', '5', '1', '8'],
+['.', '.', '.', '.', '.', 'G', '!', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '#12', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '!', '6', '.', '.', '.', '#2', '!', '3', '9', '3'],
+['.', '.', '.', '.', '.', '.', '3', '!', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '.', '.', 'W', '.', '!', '1', '.', '.', '.', '.', '.', '!', '!', '!', '!'],
+['B', '.', '!', '!', '.', '.', '!', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '6', '!', '4', '!', '.', '.', '.', '.', '.', '4', '!', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.'],
+['O', '!', '8', '!', '.', '!', 'B', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '!', '!', '#19', '2', '.', '.', '!', '7', '!', '3', '.', '.', '.', '.', '.', '!', '.', '!', '.'],
+['.', '.', '.', '.', '.', '.', '.', '.', '4', '!', '!', 'C', '3', '.', '.', '.', '.', '.', '.', '.', '.', '!', '5', '.', '!', '.', '.', '#14', '.', 'D', '!', '2', '.', '.', '.', '!', '#13', '.', '#9', '.'],
+['#4', '!', '.', '!', '!', '!', '!', '!', '!', '.', '6', '!', '!', '.', '!', '!', '!', '!', '#17', '.', '#1', '!', 'M', '.', '.', '!', '.', '.', '.', '.', '.', '!', '.', '.', '!', '5', '.', '.', '!', '.'],
+['6', '.', '.', '1', '!', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '2', '!', '.', '!', '.', '.', '.', '.', '5', '!', '.', '.', '.', '.', '.', '#7', '.', '.', '.', '.', '.', '.', '.'],
+['.', '.', '!', '.', '#3', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '9', '.', '.', '.', '.', '.', '.'],
+['.', '.', '9', '.', '!', '.', '.', '.', '!', '2', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '.'],
+['.', '.', '.', '.', '!', '.', '.', '1', '!', '.', '.', '.', '.', '.', '.', '.', 'V', '.', 'R', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '.', '!', '.', '.', '2', '.', 'Z', '.', '3'],
+['.', '.', '.', '.', '!', '4', '.', '.', '!', '.', '.', '.', '.', 'Y', '.', '.', '.', '.', '.', '.', '.', '.', '.', '!', 'K', '.', '.', '.', '.', '.', '!', '.', '.', '.', '!', '!', '!', '!', '.', '.'],
+['.', '.', '.', '.', '!', '.', '.', '.', '2', '#1', '.', '.', '.', '!', '.', '.', '.', '.', 'W', '.', '.', '.', '#6', '5', '.', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '9', '.', '.'],
+['F', '.', '.', '.', '7', '!', '.', '.', '.', '.', '!', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '.', '.', '!', '2', '.', '.', '.', '.', '.', '.', '.', 'S'],
+['!', '!', '!', '.', '.', '.', '.', '.', '.', '.', '.', '!', '.', '.', '8', '!', '.', '.', '.', '.', '!', '4', '.', '.', '.', '.', '.', '.', '.', '.', '!', '.', '.', '.', '.', '.', '.', '!', '!', '!'],
+['9', '#5', '.', '#19', '.', '.', '.', '.', '1', '.', '.', '#10', '9', '.', '.', '.', '.', '!', '9', '.', '.', '.', '.', '2', '.', 'O', '1', '.', '.', '.', '#13', '7', '.', '.', '.', '.', '.', '#14', '9', '#12']];
 
-const fieldsobj = { ".": 1, "2L": 1, "3L": 1, "2W": 1, "3W": 1, "20": 1, "-20": 1, "!": 0 };
-
-const letters_hun = [['*', 10, 1],
-['A', 8, 1],
-['Á', 6, 1],
-['B', 2, 2],
-['C', 2, 4],
-['CS', 1, 4],
-['D', 3, 3],
-['E', 11, 1],
-['É', 4, 2],
-['F', 2, 4],
-['G', 4, 2],
-['GY', 1, 4],
-['H', 2, 3],
-['I', 5, 1],
-['Í', 1, 4],
-['J', 1, 4],
-['K', 5, 1],
-['L', 9, 1],
-['LY', 1, 4],
-['M', 3, 1],
-['N', 5, 1],
-['NY', 1, 4],
-['O', 6, 1],
-['Ó', 2, 2],
-['Ö', 2, 3],
-['Ő', 2, 4],
-['P', 2, 3],
-['Q', 0, 4],
-['R', 7, 1],
-['S', 10, 1],
-['SZ', 1, 4],
-['T', 10, 1],
-['TY', 1, 4],
-['U', 2, 3],
-['Ú', 1, 4],
-['Ü', 1, 3],
-['Ű', 1, 4],
-['V', 2, 3],
-['W', 0, 4],
-['X', 0, 4],
-['Y', 2, 4],
-['Z', 7, 2],
-['ZS', 1, 4]];
-
-const letters_eng = [['*', 10, 1],
-['A', 11, 1],
-['B', 3, 2],
-['C', 3, 4],
-['D', 7, 2],
-['E', 15, 1],
-['F', 3, 4],
-['G', 7, 2],
-['H', 4, 3],
-['I', 6, 1],
-['J', 2, 4],
-['K', 3, 4],
-['L', 8, 1],
-['M', 5, 1],
-['N', 7, 1],
-['O', 8, 1],
-['P', 3, 3],
-['Q', 1, 4],
-['R', 10, 1],
-['S', 8, 1],
-['T', 6, 1],
-['U', 5, 3],
-['V', 3, 3],
-['W', 3, 3],
-['X', 2, 4],
-['Y', 3, 4],
-['Z', 1, 4]];
+const viewp = ["0000000111110000000",
+    "0000011111111100000",
+    "0001111111111111000",
+    "0011111111111111100",
+    "0011111111111111100",
+    "0111111111111111110",
+    "0111111111111111110",
+    "1111111111111111111",
+    "1111111111111111111",
+    "1111111111111111111",
+    "1111111111111111111",
+    "1111111111111111111",
+    "0111111111111111110",
+    "0111111111111111110",
+    "0011111111111111100",
+    "0011111111111111100",
+    "0001111111111111000",
+    "0000011111111100000",
+    "0000000111110000000"];
 
 
-const startfieldx = 9;
-const startfieldy = 9;
+const fieldsobj = {
+    ".": [1, "", ""], "!": [0, "", ""], "1": [1, "", "img/1.svg"], "2": [1, "", "img/2.svg"], "3": [1, "", "img/3.svg"], "4": [1, "", "img/4.svg"],
+    "5": [1, "", "img/5.svg"], "6": [1, "", "img/6.svg"], "7": [1, "", "img/7.svg"], "8": [1, "", "img/8.svg"], "9": [1, "", "img/9svg"],
+    "#1": [0, "LAKE", "img/lake.svg"], "#2": [0, "WALL", "img/wall.svg"], "#3": [0, "RIVER", "img/river1.svg"], "#4": [0, "FIRE", "img/fire2.svg"],
+    "#5": [0, "TREE", "img/tree1.svg"], "#6": [0, "HOUSE", "img/house.svg"], "#7": [0, "ROAD", "img/road.svg"], "#8": [0, "RYE", "img/rye.svg"],
+    "#9": [0, "OAT", "img/oat.svg"], "#10": [0, "FORT", "img/castle.svg"], "#11": [0, "RUIN", "img/ruin.svg"], "#12": [0, "ANT", "img/ant.svg"],
+    "#13": [0, "RAIN", "img/rain.svg"], "#14": [0, "RILL", "img/creek.svg"], "#15": [0, "STONE", "img/stone.svg"], "#16": [0, "FIR", "img/fir.svg"],
+    "#17": [0, "SNOW", "img/snow.svg"], "#18": [0, "BOG", "img/bog.svg"], "#19": [0, "CAR", "img/car.svg"], "#20": [0, "ORE", "img/ore.svg"]
+};
+
+const letters_eng = [['*', 3, 0],
+['A', 11, 0],
+['B', 3, 0],
+['C', 3, 0],
+['D', 7, 0],
+['E', 15, 0],
+['F', 3, 0],
+['G', 7, 0],
+['H', 4, 0],
+['I', 6, 0],
+['J', 2, 0],
+['K', 3, 0],
+['L', 8, 0],
+['M', 5, 0],
+['N', 7, 0],
+['O', 8, 0],
+['P', 3, 0],
+['Q', 1, 0],
+['R', 10, 0],
+['S', 8, 0],
+['T', 6, 0],
+['U', 5, 0],
+['V', 3, 0],
+['W', 3, 0],
+['X', 2, 0],
+['Y', 3, 0],
+['Z', 1, 0]];
+
+const startfieldx = 0;
+const startfieldy = 0;
 let firstmove = true;
 let letters;
-let language = 'hun';
+let language = 'eng';
 let dictionary = [];
 let partsofdictionary = {};
 
-const racksize = 8;
+const racksize = 9;
 
 let sack = [];
 let slettersonrackoriginal;
-let lettersinsack = 0;
 
+let turnlimit = 100;
 let turns;
 
 let timelimit = 120;
@@ -116,7 +111,6 @@ let timeout;
 let progressbar;
 
 let fields = [];
-let aifields = [];
 let rackfields = [];
 let fieldsize = 29;
 let rackfieldsize = 29;
@@ -138,7 +132,6 @@ let idleturns = 0;
 const limitofidleturns = 3;
 
 let score = 0;
-let aiscore = 0;
 
 let ingame = false;
 
@@ -148,15 +141,11 @@ let mode = "draganddrop";
 
 let arrowposition = [];
 
-let aivocabulary;
-let aiusedletters;
-let aistrength;
-let selectedaimove = [];
-let bestmove = [];
-
 let rect;
 
 let touchdevice;
+
+let counter = 0;
 
 function createTd(fieldtype, parent, id) {
     let td = document.createElement("td");
@@ -164,85 +153,161 @@ function createTd(fieldtype, parent, id) {
     switch (fieldtype) {
         case '.':
             td.setAttribute("class", "normal-field empty");
-            td.setAttribute("ondrop", "drop(event)");
-            td.setAttribute("ondragover", "allowDrop(event)");
-            td.setAttribute("onclick", "changeMode(event)");
-            td.addEventListener('dragenter', onDragEnter);
-            td.addEventListener('dragleave', onDragLeave);
+            setDragAndDRop(td)
             break;
         case '-':
             td.setAttribute("class", "rack-field empty");
-            td.setAttribute("ondrop", "drop(event)");
-            td.setAttribute("ondragover", "allowDrop(event)");
-            td.addEventListener('dragenter', onDragEnter);
-            td.addEventListener('dragleave', onDragLeave);
+            setDragAndDRop(td)
+            break;
+        case '1':
+            td.setAttribute("class", "normal-field bonus-field-1 empty");
+            td.style.backgroundImage = "url('img/1.svg')"
+            setDragAndDRop(td)
+            break;
+        case '2':
+            td.setAttribute("class", "normal-field bonus-field-2 empty");
+            td.style.backgroundImage = "url('img/2.svg')"
+            setDragAndDRop(td)
+            break;
+        case '3':
+            td.setAttribute("class", "normal-field bonus-field-3 empty");
+            td.style.backgroundImage = "url('img/3.svg')"
+            setDragAndDRop(td)
+            break;
+        case '4':
+            td.setAttribute("class", "normal-field bonus-field-4 empty");
+            td.style.backgroundImage = "url('img/4.svg')"
+            setDragAndDRop(td)
+            break;
+        case '5':
+            td.setAttribute("class", "normal-field bonus-field-5 empty");
+            td.style.backgroundImage = "url('img/5.svg')"
+            setDragAndDRop(td)
+            break;
+        case '6':
+            td.setAttribute("class", "normal-field bonus-field-6 empty");
+            td.style.backgroundImage = "url('img/6.svg')"
+            setDragAndDRop(td)
+            break;
+        case '7':
+            td.setAttribute("class", "normal-field bonus-field-7 empty");
+            td.style.backgroundImage = "url('img/7.svg')"
+            setDragAndDRop(td)
+            break;
+        case '8':
+            td.setAttribute("class", "normal-field bonus-field-8 empty");
+            td.style.backgroundImage = "url('img/8.svg')"
+            setDragAndDRop(td)
+            break;
+        case '9':
+            td.setAttribute("class", "normal-field bonus-field-9 empty");
+            td.style.backgroundImage = "url('img/9.svg')"
+            setDragAndDRop(td)
             break;
         case '!':
             td.setAttribute("class", "wall-field");
+            td.style.backgroundImage = "url('img/mountain1.svg')"
             break;
-        case '2L':
-            td.setAttribute("class", "normal-field bonus-field-2L empty");
-            td.setAttribute("ondrop", "drop(event)");
-            td.setAttribute("ondragover", "allowDrop(event)");
-            td.setAttribute("onclick", "changeMode(event)");
-            td.addEventListener('dragenter', onDragEnter);
-            td.addEventListener('dragleave', onDragLeave);
-            td.style.backgroundImage = "url('img/bonus-field-2l.svg')"
-            break;
-        case '3L':
-            td.setAttribute("class", "normal-field bonus-field-3L empty");
-            td.setAttribute("ondrop", "drop(event)");
-            td.setAttribute("ondragover", "allowDrop(event)");
-            td.setAttribute("onclick", "changeMode(event)");
-            td.addEventListener('dragenter', onDragEnter);
-            td.addEventListener('dragleave', onDragLeave);
-            td.style.backgroundImage = "url('img/bonus-field-3l.svg')"
-            break;
-        case '2W':
-            td.setAttribute("class", "normal-field bonus-field-2W empty");
-            td.setAttribute("ondrop", "drop(event)");
-            td.setAttribute("ondragover", "allowDrop(event)");
-            td.setAttribute("onclick", "changeMode(event)");
-            td.addEventListener('dragenter', onDragEnter);
-            td.addEventListener('dragleave', onDragLeave);
-            td.style.backgroundImage = "url('img/bonus-field-2w.svg')"
-            break;
-        case '3W':
-            td.setAttribute("class", "normal-field bonus-field-3W empty");
-            td.setAttribute("ondrop", "drop(event)");
-            td.setAttribute("ondragover", "allowDrop(event)");
-            td.setAttribute("onclick", "changeMode(event)");
-            td.addEventListener('dragenter', onDragEnter);
-            td.addEventListener('dragleave', onDragLeave);
-            td.style.backgroundImage = "url('img/bonus-field-3w.svg')"
-            break;
-        case '20':
-            td.setAttribute("class", "normal-field bonus-field-20 empty");
-            td.setAttribute("ondrop", "drop(event)");
-            td.setAttribute("ondragover", "allowDrop(event)");
-            td.setAttribute("onclick", "changeMode(event)");
-            td.addEventListener('dragenter', onDragEnter);
-            td.addEventListener('dragleave', onDragLeave);
-            td.style.backgroundImage = "url('img/bonus20.svg')"
-            break;
-        case '-20':
-            td.setAttribute("class", "normal-field penalty-field-20 empty");
-            td.setAttribute("ondrop", "drop(event)");
-            td.setAttribute("ondragover", "allowDrop(event)");
-            td.setAttribute("onclick", "changeMode(event)");
-            td.addEventListener('dragenter', onDragEnter);
-            td.addEventListener('dragleave', onDragLeave);
-            td.style.backgroundImage = "url('img/penalty-20.svg')"
-            break;
+        default:
+            let fieldtypes = [];
+            for (let fieldo of Object.keys(fieldsobj)) {
+                fieldtypes.push(fieldo);
+            }
+            if (fieldtype.includes('#')) {
+                for (let fieldo of Object.keys(fieldsobj)) {
+                    if (fieldo == fieldtype) {
+                        td.setAttribute("id", fieldtype);
+                        td.setAttribute("class", "picture-field");
+                        picture = document.createElement("input");
+                        td.appendChild(picture);
+                        picture.value = fieldsobj[fieldtype][1];
+                        picture.className = "picture";
+                        picture.setAttribute("type", "button");
+                        picture.setAttribute("inputmode", "none");
+                        picture.draggable = false;
+                        picture.setAttribute("onkeydown", "return false");
+                        picture.readonly = true;
+                        td.style.background = "";
+                        td.setAttribute("style", `background-image: url(${fieldsobj[fieldtype][2]})`);
+                        td.setAttribute("onmouseover", "switchDelay(event)");
+                        td.setAttribute("onclick", "displayContent(event)");
+                        td.setAttribute("onmouseout", "removeDisplayedContent()");
+                    }
+                }
+            } else {
+                if (!(fieldtypes.includes(fieldtype))) {
+                    value = fieldtype;
+                    letteri = restoreLetter(-1, value, "ontheboard");
+                    letteri.setAttribute("class", "letter leter-on-board start");
+                    letteri.draggable = false;
+                    letteri.disabled = true;
+                    td.appendChild(letteri);
+                    td.setAttribute("ondragover", "");
+                    td.setAttribute("class", "normal-field occupied");
+                    td.setAttribute("ondrop", "drop(event)");
+                }
+            }
     }
     parent.appendChild(td);
+    if (fieldtype != '-') {
+        let fog = document.createElement("div");
+        fog.className = "fog";
+        td.appendChild(fog);
+        fog.setAttribute("ondragover", "");
+    }
     return td;
+}
+
+function setDragAndDRop(td) {
+    td.setAttribute("ondrop", "drop(event)");
+    td.setAttribute("ondragover", "allowDrop(event)");
+    if (!td.classList.contains("rack-field")) {
+        td.setAttribute("onclick", "changeMode(event)");
+    }
+    td.addEventListener('dragenter', onDragEnter);
+    td.addEventListener('dragleave', onDragLeave);
+}
+
+function switchDelay(ev) {
+    delay = setTimeout(function () { displayContent(ev); }, 500);
+}
+
+function displayContent(ev) {
+    console.log(ev.target)
+    if (ev.target.classList.contains("fog")) {
+        return;
+    }
+    for (let fchild of ev.target.childNodes) {
+        if (fchild.classList.contains("content-of-field")) {
+            fchild.remove();
+            return;
+        }
+    }
+    let contentoffield = document.createElement("div");
+    ev.target.appendChild(contentoffield);
+    contentoffield.setAttribute("class", "content-of-field");
+    for (let fieldo of Object.keys(fieldsobj)) {
+        if (fieldo == ev.target.id) {
+            contentoffield.innerHTML = `<img style="padding:10px"  src="${fieldsobj[ev.target.id][2]}" alt="kép">${fieldsobj[ev.target.id][1]}`;
+            break;
+        }
+    }
+    let rectfield = getElementPosition(ev.target);
+    contentoffield.style.left = (rectfield.right + 2).toString() + "px";
+    contentoffield.style.top = (rectfield.bottom + 2).toString() + "px";
+}
+
+function removeDisplayedContent() {
+    clearTimeout(delay);
+    try {
+        document.querySelector(".content-of-field").remove();
+    } catch (err) { }
 }
 
 function drawBoard(board1) {
     let fieldtable = document.querySelector("#board");
     fieldtable.innerHTML = "";
-    let fieldtype;
+    let td;
     for (let i = 0; i < board1.length; i++) {
         fields[i] = [];
         let tr = document.createElement("tr");
@@ -250,6 +315,13 @@ function drawBoard(board1) {
             let id = "fieldtable-" + i.toString() + "-" + j.toString();
             td = createTd(board1[i][j], tr, id);
             fields[i].push(td);
+            if (td.childNodes.length > 1) {
+                td.firstChild.style.display = "none";
+            }
+            if (i == startfieldx && j == startfieldy) {
+                td.classList.add("start-field");
+                td.style.backgroundImage = "url('img/start.svg')";
+            }
         }
         fieldtable.appendChild(tr);
     }
@@ -264,7 +336,7 @@ function drawRack() {
     if (touchdevice) {
         td = document.createElement("td");
         let button1 = document.createElement("button");
-        button1.innerText = "Vissza";
+        button1.innerText = "Back";
         button1.addEventListener("click", back);
         button1.type = "button";
         button1.id = "back-tray";
@@ -280,7 +352,7 @@ function drawRack() {
     if (touchdevice) {
         td = document.createElement("td");
         let button2 = document.createElement("button");
-        button2.innerText = "Keverés";
+        button2.innerText = "Shuffle";
         button2.addEventListener("click", shuffle);
         button2.type = "button";
         button2.className = "tray-button";
@@ -290,7 +362,7 @@ function drawRack() {
 
         td = document.createElement("td");
         let button3 = document.createElement("button");
-        button3.innerText = "Kész";
+        button3.innerText = "Done";
         button3.addEventListener("click", passOrValidate);
         button3.type = "button";
         button3.className = "tray-button";
@@ -311,7 +383,6 @@ function changeMode(ev) {
     if (ev.target.classList.contains("normal-field") && ev.target.classList.contains("empty")) {
         if (!ev.target.hasChildNodes()) {
             mode = "mouseclick";
-            removeElements(".numberofwords");
             tryToRemoveArrow();
             arrowposition = [ev.target, "right"];
         }
@@ -324,11 +395,11 @@ function changeDirection() {
     if (arrowposition[0].innerHTML == '' || arrowposition[1] == "down") {
         arrowposition[1] = "right";
         arrowposition[0].innerHTML = `<b id="arrow" class="arrow">&#8594</b>`;
-        document.querySelector("#arrow").style.fontSize = fontsizeletter;
+        document.querySelector("#arrow").style.fontSize = fontsizeletter * 0.7;
     } else {
         arrowposition[1] = "down";
         arrowposition[0].innerHTML = `<b id="arrow" class="arrow">&#8595</b>`;
-        document.querySelector("#arrow").style.fontSize = fontsizeletter;
+        document.querySelector("#arrow").style.fontSize = fontsizeletter * 0.7;
     }
 }
 
@@ -337,7 +408,9 @@ function placeLetter(ev) {
     if (mode == "mouseclick" && arrowposition != []) {
         if (ev.target.classList.contains("letter-on-rack") && arrowposition != []) {
             tryToRemoveArrow();
-            arrowposition[0].appendChild(ev.target);
+            try {
+                arrowposition[0].appendChild(ev.target);
+            } catch (err) { }
             document.activeElement.blur();
             arrowposition[0].setAttribute("ondragover", "");
             if (arrowposition[0].classList.contains("empty")) {
@@ -380,7 +453,7 @@ function stepField() {
                 !fields[rindex][cindex + k].hasChildNodes()) {
                 arrowposition[0] = fields[rindex][cindex + k];
                 arrowposition[0].innerHTML = `<b id="arrow" class="arrow">&#8594</b>`;
-                document.querySelector("#arrow").style.fontSize = fontsizeletter;
+                document.querySelector("#arrow").style.fontSize = fontsizeletter * 0.7;
                 break;
             } else {
                 if (fields[rindex][cindex + k].className == "wall-field") {
@@ -403,7 +476,7 @@ function stepField() {
                 !fields[rindex + k][cindex].hasChildNodes()) {
                 arrowposition[0] = fields[rindex + k][cindex];
                 arrowposition[0].innerHTML = `<b id="arrow" class="arrow">&#8595</b>`;
-                document.querySelector("#arrow").style.fontSize = fontsizeletter;
+                document.querySelector("#arrow").style.fontSize = fontsizeletter * 0.7;
                 break;
             } else {
                 if (fields[rindex + k][cindex].className == "wall-field") {
@@ -431,19 +504,28 @@ function allowDrop(ev) {
 }
 
 function onDragLeave(ev) {
-    if (ev.target.classList.contains("bonus-field-20")) {
-        ev.target.style.backgroundImage = "url('img/bonus20.svg')"
-    } else if (ev.target.classList.contains("penalty-field-20")) {
-        ev.target.style.backgroundImage = "url('img/penalty-20.svg')"
-    } else if (ev.target.classList.contains("bonus-field-2L")) {
-        ev.target.style.backgroundImage = "url('img/bonus-field-2l.svg')"
-    } else if (ev.target.classList.contains("bonus-field-3L")) {
-        ev.target.style.backgroundImage = "url('img/bonus-field-3l.svg')"
-    } else if (ev.target.classList.contains("bonus-field-2W")) {
-        ev.target.style.backgroundImage = "url('img/bonus-field-2w.svg')"
-    } else if (ev.target.classList.contains("bonus-field-3W")) {
-        ev.target.style.backgroundImage = "url('img/bonus-field-3w.svg')"
-    } else ev.target.style.background = '';
+    ev.target.style.background = '';
+    if (ev.target.classList.contains("bonus-field-1")) {
+        ev.target.style.backgroundImage = "url('img/1.svg')"
+    } else if (ev.target.classList.contains("bonus-field-2")) {
+        ev.target.style.backgroundImage = "url('img/2.svg')"
+    } else if (ev.target.classList.contains("bonus-field-3")) {
+        ev.target.style.backgroundImage = "url('img/3.svg')"
+    } else if (ev.target.classList.contains("bonus-field-4")) {
+        ev.target.style.backgroundImage = "url('img/4.svg')"
+    } else if (ev.target.classList.contains("bonus-field-5")) {
+        ev.target.style.backgroundImage = "url('img/5.svg')"
+    } else if (ev.target.classList.contains("bonus-field-6")) {
+        ev.target.style.backgroundImage = "url('img/6.svg')"
+    } else if (ev.target.classList.contains("bonus-field-7")) {
+        ev.target.style.backgroundImage = "url('img/7.svg')"
+    } else if (ev.target.classList.contains("bonus-field-8")) {
+        ev.target.style.backgroundImage = "url('img/8.svg')"
+    } else if (ev.target.classList.contains("bonus-field-9")) {
+        ev.target.style.backgroundImage = "url('img/9.svg')"
+    } else if (ev.target.classList.contains("start-field")) {
+        ev.target.style.backgroundImage = "url('img/start.svg')"
+    }
 }
 
 function onDragEnter(ev) {
@@ -472,7 +554,7 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("application/x-moz-node");
     var data = ev.dataTransfer.getData("text/plain");
-    if (ev.target.classList.contains("letter-on-rack")) return;
+    if (ev.target.classList.contains("letter-on-rack") || ev.target.classList.contains("fog")) return; 
     if (ev.target.hasChildNodes()) return;
     appendedletter = ev.target.appendChild(document.getElementById(data));
     ev.target.setAttribute("ondragover", "");
@@ -488,38 +570,55 @@ function drop(ev) {
             parentofdraggedletter.classList.add("empty");
         }
     }
-    if (parentofdraggedletter.classList.contains("bonus-field-20")) {
-        parentofdraggedletter.style.backgroundImage = "url('img/bonus20.svg')"
-    } else if (parentofdraggedletter.classList.contains("penalty-field-20")) {
-        parentofdraggedletter.style.backgroundImage = "url('img/penalty-20.svg')"
-    } else if (parentofdraggedletter.classList.contains("bonus-field-2L")) {
-        parentofdraggedletter.style.backgroundImage = "url('img/bonus-field-2l.svg')"
-    } else if (parentofdraggedletter.classList.contains("bonus-field-3L")) {
-        parentofdraggedletter.style.backgroundImage = "url('img/bonus-field-3l.svg')"
-    } else if (parentofdraggedletter.classList.contains("bonus-field-2W")) {
-        parentofdraggedletter.style.backgroundImage = "url('img/bonus-field-2w.svg')"
-    } else if (parentofdraggedletter.classList.contains("bonus-field-3W")) {
-        parentofdraggedletter.style.backgroundImage = "url('img/bonus-field-3w.svg')"
-    } else parentofdraggedletter.style.background = "";
-    if (ev.target.classList.contains("bonus-field-20")) {
-        ev.target.style.backgroundImage = "url('img/bonus20.svg')"
-    } else if (ev.target.classList.contains("penalty-field-20")) {
-        ev.target.style.backgroundImage = "url('img/penalty-20.svg')"
-    } else if (ev.target.classList.contains("bonus-field-2L")) {
-        ev.target.style.backgroundImage = "url('img/bonus-field-2l.svg')"
-    } else if (ev.target.classList.contains("bonus-field-3L")) {
-        ev.target.style.backgroundImage = "url('img/bonus-field-3l.svg')"
-    } else if (ev.target.classList.contains("bonus-field-2W")) {
-        ev.target.style.backgroundImage = "url('img/bonus-field-2w.svg')"
-    } else if (ev.target.classList.contains("bonus-field-3W")) {
-        ev.target.style.backgroundImage = "url('img/bonus-field-3w.svg')"
-    } else ev.target.style.background = "";
+    parentofdraggedletter.style.background = "";
+    if (parentofdraggedletter.classList.contains("bonus-field-1")) {
+        parentofdraggedletter.style.backgroundImage = "url('img/1.svg')"
+    } else if (parentofdraggedletter.classList.contains("bonus-field-2")) {
+        parentofdraggedletter.style.backgroundImage = "url('img/2.svg')"
+    } else if (parentofdraggedletter.classList.contains("bonus-field-3")) {
+        parentofdraggedletter.style.backgroundImage = "url('img/3.svg')"
+    } else if (parentofdraggedletter.classList.contains("bonus-field-4")) {
+        parentofdraggedletter.style.backgroundImage = "url('img/4.svg')"
+    } else if (parentofdraggedletter.classList.contains("bonus-field-5")) {
+        parentofdraggedletter.style.backgroundImage = "url('img/5.svg')"
+    } else if (parentofdraggedletter.classList.contains("bonus-field-6")) {
+        parentofdraggedletter.style.backgroundImage = "url('img/6.svg')"
+    } else if (parentofdraggedletter.classList.contains("bonus-field-7")) {
+        parentofdraggedletter.style.backgroundImage = "url('img/7.svg')"
+    } else if (parentofdraggedletter.classList.contains("bonus-field-8")) {
+        parentofdraggedletter.style.backgroundImage = "url('img/8.svg')"
+    } else if (parentofdraggedletter.classList.contains("bonus-field-9")) {
+        parentofdraggedletter.style.backgroundImage = "url('img/9.svg')"
+    } else if (parentofdraggedletter.classList.contains("start-field")) {
+        parentofdraggedletter.style.backgroundImage = "url('img/start.svg')"
+    }
+    ev.target.style.background = "";
+    if (ev.target.classList.contains("bonus-field-1")) {
+        ev.target.style.backgroundImage = "url('img/1.svg')"
+    } else if (ev.target.classList.contains("bonus-field-2")) {
+        ev.target.style.backgroundImage = "url('img/2.svg')"
+    } else if (ev.target.classList.contains("bonus-field-3")) {
+        ev.target.style.backgroundImage = "url('img/3.svg')"
+    } else if (ev.target.classList.contains("bonus-field-4")) {
+        ev.target.style.backgroundImage = "url('img/4.svg')"
+    } else if (ev.target.classList.contains("bonus-field-5")) {
+        ev.target.style.backgroundImage = "url('img/5.svg')"
+    } else if (ev.target.classList.contains("bonus-field-6")) {
+        ev.target.style.backgroundImage = "url('img/6.svg')"
+    } else if (ev.target.classList.contains("bonus-field-7")) {
+        ev.target.style.backgroundImage = "url('img/7.svg')"
+    } else if (ev.target.classList.contains("bonus-field-8")) {
+        ev.target.style.backgroundImage = "url('img/8.svg')"
+    } else if (ev.target.classList.contains("bonus-field-9")) {
+        ev.target.style.backgroundImage = "url('img/9.svg')"
+    } else if (ev.target.classList.contains("start-field")) {
+        ev.target.style.backgroundImage = "url('img/start.svg')"
+    }
     if (appendedletter.classList.contains("joker")) {
         if (ev.target.classList.contains("normal-field")) {
             createPopup(ev.target);
         } else if (ev.target.classList.contains("rack-field") && ev.target.classList.contains("occupied")) {
             appendedletter.value = '*';
-            setLetterRadius(appendedletter, 1);
         }
     }
     testNewWords();
@@ -530,7 +629,8 @@ function drop(ev) {
 function setStateOfLetters() {
     for (let i = 0; i < fields.length; i++) {
         for (let j = 0; j < fields[i].length; ++j) {
-            if (fields[i][j].hasChildNodes()) {
+            if (fields[i][j].hasChildNodes() && !fields[i][j].classList.contains("picture-field")
+                && !fields[i][j].children[0].classList.contains("start") && !fields[i][j].children[0].classList.contains("fog")) {
                 fields[i][j].children[0].draggable = false;
                 fields[i][j].children[0].disabled = true;
                 fields[i][j].children[0].setAttribute("class", "letter letter-on-board old");
@@ -542,6 +642,7 @@ function setStateOfLetters() {
 
 function loadRack() {
     lockOnUI();
+    emptyRack();
     let randomletters = drawLetters();
     for (let lettercount = 0; lettercount < randomletters.length; lettercount++) {
         for (let rackfield of rackfields) {
@@ -559,7 +660,6 @@ function loadRack() {
     for (let letter of lettersonrack) {
         slettersonrackoriginal.push(letter.value);
     }
-    createAIFields();
     lockOffUI();
 }
 
@@ -582,90 +682,38 @@ function createLetter(lettercount, randomletter) {
     letteri.setAttribute("onclick", "placeLetter(event)");
     letteri.setAttribute("onkeydown", "return false");
     letteri.readonly = true;
-    letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.7).toString() + "px";
-    setLetterRadius(letteri, randomletter[1]);
+    letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.9).toString() + "px";
     return letteri;
 }
 
-function setLetterRadius(letteri, pointvalue) {
-    switch (pointvalue) {
-        case 1:
-            letteri.style.borderRadius = "25% 0 0 0";
-            break;
-        case 2:
-            letteri.style.borderRadius = "25% 25% 0 0";
-            break;
-        case 3:
-            letteri.style.borderRadius = "25% 25% 25% 0";
-            break;
-        case 4:
-            letteri.style.borderRadius = "25% 25% 25% 25%";
-            break;
-    }
-}
-
 function drawLetters() {
-    if (lettersinsack == 0) return [];
     let j = 0;
     let rand;
     randomletters = [];
     let lettersonrackobj = {};
-    let lettersonrack = document.querySelectorAll(".letter-on-rack");
-    for (let i = 0; i < lettersonrack.length; i++) {
-        if (lettersonrack[i].value in lettersonrackobj) {
-            lettersonrackobj[lettersonrack[i].value]++;
-        } else lettersonrackobj[lettersonrack[i].value] = 1;
-    }
-    while (j < racksize && lettersinsack > 0) { 
+    while (j < racksize) {
         if (rackfields[j].classList.contains("empty")) {
             while (1) {
                 rand = getRndInteger(0, sack.length);
-                if (sack[rand][1] == "used") {
+                if (lettersonrackobj[sack[rand][0]] == 2) {
                     continue;
-                } else {
-                    if (lettersonrackobj[sack[rand][0]] == 2) {
-                        let lettersinsackobj = differentLettersInSack();
-                        if (Object.keys(lettersinsackobj).length > 5) {
-                            continue;
-                        } else {
-                            break;
-                        }
-                    }
-                    if (sack[rand][0] in lettersonrackobj) {
-                        lettersonrackobj[sack[rand][0]]++;
-                    } else lettersonrackobj[sack[rand][0]] = 1;
-                    break;
                 }
-            }
-            randomletters.push(sack[rand]);
-            sack[rand] = [sack[rand][0], "used"];
-            lettersinsack--;
-            if (lettersinsack == 0) {
-                console.log("elfogytak a betűk")
+                if (sack[rand][0] in lettersonrackobj) {
+                    lettersonrackobj[sack[rand][0]]++;
+                } else lettersonrackobj[sack[rand][0]] = 1;
                 break;
             }
+            randomletters.push(sack[rand]);
         }
         j++;
     }
     return randomletters;
 }
 
-function differentLettersInSack() {
-    let lettersinsackobj = {};
-    for (letter of sack) {
-        if (letter[1] != "used") {
-            if (letter[0] in lettersinsackobj) {
-                lettersinsackobj[letter[0]]++;
-            } else lettersinsackobj[letter[0]] = 1;
-        }
-    }
-    return lettersinsackobj;
-}
-
 function displayTurn() {
     let t;
     t = document.querySelector("#turn");
-    t.setAttribute("value", `${turns} / ${idleturns}`);
+    t.setAttribute("value", `${turns} / ${turnlimit}`);
 }
 
 function getRndInteger(min, max) {
@@ -692,7 +740,7 @@ function startGame() {
         destroyPopup();
     } catch (err) { }
     if (ingame) {
-        displayMessage("Figyelem!", "Valóban új játékot akarsz kezdeni?<br> Ebben az esetben a megkezdett<br> játékban eddig elért eredményed<br> elvész.",
+        displayMessage("Warning", "Do you really want to start a new game?<br> In this case, the result you have achieved<br>so far will be lost.",
             newGame, cancel, "game-div", "#board-rack");
     } else {
         newGame();
@@ -704,6 +752,7 @@ function newGame() {
         destroyPopup();
     } catch (err) { }
     createSack();
+    turnlimit = 100;
     turns = 1;
     firstmove = true;
     idleturns = 0;
@@ -712,27 +761,43 @@ function newGame() {
     arrowposition = [];
     displayTurn();
     score = 0;
-    aiscore = 0;
-    selectedaimove = [];
     displayScore([]);
-    drawBoard(board_1);
+    drawBoard(board_1); let fieldtypes = [];
+    for (let fieldo of Object.keys(fieldsobj)) {
+        fieldtypes.push(fieldo);
+    }
+    removeFog(startfieldx, startfieldy);
     drawRack();
     adaptToChangedSize();
     loadRack();
     clearInterval(timeout);
     resetTimer(timelimit);
-    localStorage.setItem('SavedGame_Betuteboly', JSON.stringify(false));
+    localStorage.setItem('SavedGame_PathofMagicalWords', JSON.stringify(false));
     lockOffUI();
 }
 
+function removeFog(rindex, cindex) {
+    for (let i = rindex - racksize, k = 0; i < rindex + racksize, k < viewp.length; i++, k++) {
+        if (i < 0 || i > fields.length - 1) continue;
+        for (let j = cindex - racksize, l = 0; j < cindex + racksize, l < viewp[0].length; j++, l++) {
+            if (j < 0 || j > fields[0].length - 1 || viewp[k][l] == 0) continue;
+            for (let fchild of fields[i][j].childNodes) {
+                if (fchild.classList.contains("fog")) {
+                    fchild.remove();
+                }
+                if (fields[i][j].hasChildNodes() && !fields[i][j].classList.contains("picture-field")) {
+                    fields[i][j].lastChild.style.display = "block";
+                }
+            }
+        }
+    }
+}
+
 function saveGame() {
-    localStorage.setItem('SavedGame_Betuteboly', JSON.stringify(true));
-    localStorage.setItem('Language_Betuteboly', JSON.stringify(language));
-    localStorage.setItem('AIVocabulary_Betuteboly', JSON.stringify(aivocabulary));
-    localStorage.setItem('AIUsedLetters_Betuteboly', JSON.stringify(aiusedletters));
-    localStorage.setItem('AIStrength_Betuteboly', JSON.stringify(aistrength));
-    localStorage.setItem('TimeLimit_Betuteboly', JSON.stringify(timelimit));
-    localStorage.setItem('FirstMove_Betuteboly', JSON.stringify(firstmove));
+    localStorage.setItem('SavedGame_PathofMagicalWords', JSON.stringify(true));
+    localStorage.setItem('Language_PoMW', JSON.stringify(language));
+    localStorage.setItem('TimeLimit_PoMW', JSON.stringify(timelimit));
+    localStorage.setItem('FirstMove_PoMW', JSON.stringify(firstmove));
     let fieldstosave = [];
     for (let i = 0; i < fields.length; i++) {
         let rowtosave = [];
@@ -741,81 +806,131 @@ function saveGame() {
                 rowtosave.push("!");
             } else {
                 if (fields[i][j].classList.contains("empty")) {
-                    if (fields[i][j].classList.contains("bonus-field-2L")) {
-                        rowtosave.push("2L");
-                    } else if (fields[i][j].classList.contains("bonus-field-3L")) {
-                        rowtosave.push("3L");
-                    } else if (fields[i][j].classList.contains("bonus-field-2W")) {
-                        rowtosave.push("2W");
-                    } else if (fields[i][j].classList.contains("bonus-field-3W")) {
-                        rowtosave.push("3W");
-                    } else if (fields[i][j].classList.contains("bonus-field-20")) {
-                        rowtosave.push("20");
-                    } else if (fields[i][j].classList.contains("penalty-field-20")) {
-                        rowtosave.push("-20");
+                    if (fields[i][j].classList.contains("bonus-field-1")) {
+                        rowtosave.push("1");
+                    } else if (fields[i][j].classList.contains("bonus-field-2")) {
+                        rowtosave.push("2");
+                    } else if (fields[i][j].classList.contains("bonus-field-3")) {
+                        rowtosave.push("3");
+                    } else if (fields[i][j].classList.contains("bonus-field-4")) {
+                        rowtosave.push("4");
+                    } else if (fields[i][j].classList.contains("bonus-field-5")) {
+                        rowtosave.push("5");
+                    } else if (fields[i][j].classList.contains("bonus-field-6")) {
+                        rowtosave.push("6");
+                    } else if (fields[i][j].classList.contains("bonus-field-7")) {
+                        rowtosave.push("7");
+                    } else if (fields[i][j].classList.contains("bonus-field-8")) {
+                        rowtosave.push("8");
+                    } else if (fields[i][j].classList.contains("bonus-field-9")) {
+                        rowtosave.push("9");
                     } else rowtosave.push(".");
+                } else if (fields[i][j].classList.contains("picture-field")) {
+                    if (fields[i][j].firstChild.classList.contains("old")) {
+                        rowtosave.push(fields[i][j].id + "_o");
+                    }
+                    else rowtosave.push(fields[i][j].id);
+                } else if (fields[i][j].firstChild.classList.contains("start")) {
+                    if (fields[i][j].firstChild.classList.contains("old")) {
+                        rowtosave.push(fields[i][j].firstChild.value + "_o");
+                    }
+                    else rowtosave.push(fields[i][j].firstChild.value);
                 } else rowtosave.push(fields[i][j].firstChild.value);
             }
         }
         fieldstosave.push(rowtosave);
     }
-    localStorage.setItem('Board_Betuteboly', JSON.stringify(fieldstosave));
+    localStorage.setItem('Board_PoMW', JSON.stringify(fieldstosave));
+    fieldstosave = [];
+    for (let i = 0; i < fields.length; i++) {
+        let rowtosave = [];
+        for (let j = 0; j < fields[0].length; j++) {
+            if (fields[i][j].hasChildNodes() && fields[i][j].lastChild.classList.contains("fog")) {
+                rowtosave.push("1");
+            } else {
+                rowtosave.push("0");
+            }
+        }
+        fieldstosave.push(rowtosave);
+    }
+    localStorage.setItem('Fog_PoMW', JSON.stringify(fieldstosave));
     let rackfieldstosave = [];
     for (let i = 0; i < rackfields.length; i++) {
         try {
             rackfieldstosave.push(rackfields[i].firstChild.value);
         } catch (err) { }
     }
-    localStorage.setItem('Rack_Betuteboly', JSON.stringify(rackfieldstosave));
-    localStorage.setItem('Sack_Betuteboly', JSON.stringify(sack));
-    localStorage.setItem('WordsInGame_Betuteboly', JSON.stringify(wordsingame));
-    localStorage.setItem('Turns_Betuteboly', JSON.stringify(turns));
-    localStorage.setItem('IdleTurns_Betuteboly', JSON.stringify(idleturns));
-    localStorage.setItem('Score_Betuteboly', JSON.stringify(score));
-    localStorage.setItem('AIScore_Betuteboly', JSON.stringify(aiscore));
+    localStorage.setItem('Rack_PoMW', JSON.stringify(rackfieldstosave));
+    localStorage.setItem('Sack_PoMW', JSON.stringify(sack));
+    localStorage.setItem('WordsInGame_PoMW', JSON.stringify(wordsingame));
+    localStorage.setItem('Turns_PoMW', JSON.stringify(turns));
+    localStorage.setItem('TurnLimit_PoMW', JSON.stringify(turnlimit));
+    localStorage.setItem('IdleTurns_PoMW', JSON.stringify(idleturns));
+    localStorage.setItem('Score_PoMW', JSON.stringify(score));
 }
 
 function loadGame() {
-    let languages = localStorage.getItem('Language_Betuteboly');
+    let languages = localStorage.getItem('Language_PoMW');
     language = JSON.parse(languages);
     selectLanguage(language);
-    let aivocabularys = localStorage.getItem('AIVocabulary_Betuteboly');
-    aivocabulary = JSON.parse(aivocabularys);
-    let aiusedletterss = localStorage.getItem('AIUsedLetters_Betuteboly');
-    aiusedletters = JSON.parse(aiusedletterss);
-    let aistrengths = localStorage.getItem('AIStrength_Betuteboly');
-    aistrength = JSON.parse(aistrengths);
-    let timelimits = localStorage.getItem('TimeLimit_Betuteboly');
+    let timelimits = localStorage.getItem('TimeLimit_PoMW');
     timelimit = JSON.parse(timelimits);
-    let firstmoves = localStorage.getItem('FirstMove_Betuteboly');
+    let firstmoves = localStorage.getItem('FirstMove_PoMW');
     firstmove = JSON.parse(firstmoves);
     createPartsOfDictionary();
-    let turnss = localStorage.getItem('Turns_Betuteboly');
+    let turnss = localStorage.getItem('Turns_PoMW');
     turns = JSON.parse(turnss);
-    let idleturnss = localStorage.getItem('IdleTurns_Betuteboly');
+    let idleturnss = localStorage.getItem('IdleTurns_PoMW');
     idleturns = JSON.parse(idleturnss);
+    let turnslimits = localStorage.getItem('TurnLimit_PoMW');
+    turnlimit = JSON.parse(turnslimits);
     displayTurn();
-    let boardl = localStorage.getItem('Board_Betuteboly');
+    let boardl = localStorage.getItem('Board_PoMW');
     boardl1 = JSON.parse(boardl);
     drawBoard(board_1);
     let lettercount = 0;
+    let fieldtypes = [];
+    for (let fieldo of Object.keys(fieldsobj)) {
+        fieldtypes.push(fieldo);
+    }
     for (let i = 0; i < fields.length; i++) {
         for (let j = 0; j < fields[0].length; j++) {
             fieldtype = boardl1[i][j];
-            let fieldtypes = [".", "!", "2L", "3L", "2W", "3W", "20", "-20"];
             if (!(fieldtypes.includes(fieldtype))) {
-                value = boardl1[i][j];
-                letteri = restoreLetter(lettercount, value, "ontheboard");
-                fields[i][j].appendChild(letteri);
-                fields[i][j].setAttribute("ondragover", "");
-                lettercount += 1;
-                letteri.parentElement.setAttribute("class", "normal-field occupied");
-                letteri.parentElement.setAttribute("ondrop", "drop(event)");
+                if (fieldtype[fieldtype.length - 1] == "o") {
+                    fields[i][j].firstChild.classList.add("old")
+                } else {
+                    if (!fields[i][j].firstChild.classList.contains("start")) {
+                        value = boardl1[i][j];
+                        letteri = restoreLetter(lettercount, value, "ontheboard");
+                        fields[i][j].appendChild(letteri);
+                        fields[i][j].setAttribute("ondragover", "");
+                        lettercount += 1;
+                        letteri.parentElement.setAttribute("class", "normal-field occupied");
+                        letteri.parentElement.setAttribute("ondrop", "drop(event)");
+                    }
+                }
             }
         }
     }
     setStateOfLetters();
-    let rackl = localStorage.getItem('Rack_Betuteboly');
+    let fogl = localStorage.getItem('Fog_PoMW');
+    fogl1 = JSON.parse(fogl);
+    for (let i = 0; i < fields.length; i++) {
+        for (let j = 0; j < fields[0].length; j++) {
+            if (fogl1[i][j] == 0) {
+                for (let fchild of fields[i][j].childNodes) {
+                    if (fchild.classList.contains("fog")) {
+                        fchild.remove();
+                    }
+                    if (fields[i][j].hasChildNodes() && !fields[i][j].classList.contains("picture-field")) {
+                        fields[i][j].lastChild.style.display = "block";
+                    }
+                }
+            }
+        }
+    }
+    let rackl = localStorage.getItem('Rack_PoMW');
     rackl1 = JSON.parse(rackl);
     drawRack(rackl1);
     for (let lettercount = 0; lettercount < rackl1.length; lettercount++) {
@@ -825,25 +940,18 @@ function loadGame() {
         rackfields[lettercount].setAttribute("ondragover", "");
         rackfields[lettercount].setAttribute("class", "rack-field occupied");
     }
-    let sackls = localStorage.getItem('Sack_Betuteboly');
+    let sackls = localStorage.getItem('Sack_PoMW');
     sack = JSON.parse(sackls);
-    lettersinsack = 0;
-    for (let letter of sack) {
-        if (letter[1] != 'used') lettersinsack++;
-    }
-    let wordsingames = localStorage.getItem('WordsInGame_Betuteboly');
+    let wordsingames = localStorage.getItem('WordsInGame_PoMW');
     wordsingame = JSON.parse(wordsingames);
-    let scores = localStorage.getItem('Score_Betuteboly');
+    let scores = localStorage.getItem('Score_PoMW');
     score = JSON.parse(scores);
-    let aiscores = localStorage.getItem('AIScore_Betuteboly');
-    aiscore = JSON.parse(aiscores);
     displayScore([]);
     ingame = true;
     clearInterval(timeout);
     resetTimer(timelimit);
     progressbar.max = timelimit;
     displayTime();
-    createAIFields();
     lockOffUI();
 }
 
@@ -855,8 +963,10 @@ function restoreLetter(lettercount, value, where) {
     } else {
         trn = turns - 1;
     }
-    let id = "letter" + trn.toString() + "-" + lettercount.toString();
-    letteri.setAttribute("id", id);
+    if (lettercount >= 0) {
+        let id = "letter" + trn.toString() + "-" + lettercount.toString();
+        letteri.setAttribute("id", id);
+    }
     if (navigator.userAgent.indexOf("Firefox") != -1) {
         letteri.setAttribute("type", "text");
     } else {
@@ -876,20 +986,20 @@ function restoreLetter(lettercount, value, where) {
         letteri.setAttribute("ondragstart", "drag(event)");
         letteri.setAttribute("onclick", "placeLetter(event)");
     } else {
-        letteri.draggable = true;
         letteri.setAttribute("ondragstart", "");
         letteri.setAttribute("onclick", "");
+        letteri.draggable = false;
+        letteri.disabled = true;
     }
     letteri.setAttribute("onkeydown", "return false");
     letteri.readonly = true;
-    letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.7).toString() + "px";
+    letteri.style.fontSize = Math.floor((fieldsize - 2) * 0.9).toString() + "px";
     for (letter of letters) {
         if (letter[0] == letteri.value) {
             l1points = letter[2];
             break;
         }
     }
-    setLetterRadius(letteri, l1points);
     return letteri;
 }
 
@@ -902,7 +1012,7 @@ function cancel() {
 function pause() {
     hideBoard();
     clearInterval(timeout);
-    displayMessage("Szünet", "Kattints a gombra a folytatáshoz!", continueGame, "", "game-div", "#board-rack");
+    displayMessage("Pause", "Click the button to continue!", continueGame, "", "game-div", "#board-rack");
 }
 
 function continueGame() {
@@ -912,10 +1022,11 @@ function continueGame() {
 }
 
 function hideBoard() {
+    removeElements(".available-score");
     for (let i = 0; i < fields.length; i++) {
         for (let j = 0; j < fields[0].length; j++) {
             if (fields[i][j].hasChildNodes()) {
-                fields[i][j].firstChild.style.display = "none";
+                fields[i][j].lastChild.style.display = "none";
             }
             let e = document.createElement("div");
             e.className = "blind";
@@ -926,7 +1037,7 @@ function hideBoard() {
     }
     for (i = 0; i < rackfields.length; i++) {
         if (rackfields[i].hasChildNodes()) {
-            rackfields[i].firstChild.style.display = "none";
+            rackfields[i].lastChild.style.display = "none";
         }
         let e = document.createElement("div");
         e.className = "blind";
@@ -940,15 +1051,16 @@ function showBoard() {
     for (let i = 0; i < fields.length; i++) {
         for (let j = 0; j < fields[0].length; j++) {
             fields[i][j].lastChild.remove();
-            if (fields[i][j].hasChildNodes()) {
-                fields[i][j].firstChild.style.display = "block";
+            if (fields[i][j].hasChildNodes() && (!fields[i][j].classList.contains("picture-field")
+                || fields[i][j].lastChild.classList.contains("fog"))) {
+                fields[i][j].lastChild.style.display = "block";
             }
         }
     }
     for (i = 0; i < rackfields.length; i++) {
         rackfields[i].lastChild.remove();
         if (rackfields[i].hasChildNodes()) {
-            rackfields[i].firstChild.style.display = "block";
+            rackfields[i].lastChild.style.display = "block";
         }
     }
 }
@@ -973,7 +1085,6 @@ function back() {
                 rackfields[j].appendChild(lettersonrack[i]);
                 if (lettersonrack[i].classList.contains("letter-on-rack") && lettersonrack[i].classList.contains("joker")) {
                     lettersonrack[i].value = '*';
-                    setLetterRadius(lettersonrack[i], 1);
                 }
             }
             if (rackfields[j].hasChildNodes()) {
@@ -1052,7 +1163,7 @@ function testNewWords() {
     for (let wordl of wordsl) {
         let w1 = [];
         for (letter of wordl) {
-            w1.push(letter.value);
+            w1 = w1.concat((letter.value).split(""));
         }
         if (!dictionaryContains(w1, "full")) {
             for (let letter of lettersontheboard) {
@@ -1064,7 +1175,8 @@ function testNewWords() {
     for (let letter of lettersontheboard) {
         letter[0].style.color = "yellow";
     }
-    turnscore = scoring(wordsl);
+    scoringreturn = scoring(wordsl);
+    turnscore = scoringreturn[0];
     let availablescore = document.createElement("div");
     let priword;
     for (let wordl of wordsl) {
@@ -1080,7 +1192,10 @@ function testNewWords() {
         }
     }
     if (!priword) priword = wordsl[0];
-    let rectfield = getElementPosition(priword[priword.length - 1]);
+    let rectfield;
+    if (!priword[priword.length - 1].classList.contains("picture")) {
+        rectfield = getElementPosition(priword[priword.length - 1]);
+    } else rectfield = getElementPosition(priword[priword.length - 2]);
     priword[priword.length - 1].parentElement.appendChild(availablescore);
     availablescore.style.width = numberlabelsize.toString() + "px";
     availablescore.style.height = numberlabelsize.toString() + "px";
@@ -1104,7 +1219,7 @@ function removeElements(classofelement) {
 function passOrValidate() {
     let lettersontheboard = collectNewLettersOnBoard();
     if (lettersontheboard.length == 0) {
-        displayMessage("Figyelem!", "Biztos, hogy passzolsz ebben a fordulóban?", validateNewWords, cancel, "game-div", "#board-rack");
+        displayMessage("Warning", "Are you sure you want to pass this turn?", validateNewWords, cancel, "game-div", "#board-rack");
     }
     else {
         validateNewWords();
@@ -1120,69 +1235,72 @@ function validateNewWords() {
         pass1();
     } else {
         if (!fields[startfieldx][startfieldy].hasChildNodes()) {
-            displayMessage("Szabálytalan!", "Az első szónak át kell haladni a tábla közepén.", destroyPopup, "", "game-div", "#board-rack");
+            displayMessage("Error", "The first word should start at the top left.", destroyPopup, "", "game-div", "#board-rack");
             return 1;
         }
         let direction = decideDirection(lettersontheboard);
         if (direction == "not in line") {
-            displayMessage("Szabálytalan!", "A lerakott betűk nem esnek egy vonalba.", destroyPopup, "", "game-div", "#board-rack");
+            displayMessage("Error", "The placed letters do not fall in line.", destroyPopup, "", "game-div", "#board-rack");
             return 1;
         }
         if (!continuous(lettersontheboard, direction) || direction == "not contiguous") {
-            displayMessage("Szabálytalan!", "A betűk nem folyamatosan vannak lerakva.", destroyPopup, "", "game-div", "#board-rack");
+            displayMessage("Error", "The letters are not placed continuously.", destroyPopup, "", "game-div", "#board-rack");
             return 1;
         }
         let w = getAllString(lettersontheboard, direction);
         let words = w[0];
         let wordsl = w[1];
         if (words[0] == "not connected") {
-            displayMessage("Szabálytalan!", "Nem kapcsolódik a korábban táblára került szavakhoz.", destroyPopup, "", "game-div", "#board-rack");
+            displayMessage("Error", "Not connected to words previously on the board.", destroyPopup, "", "game-div", "#board-rack");
             return 1;
         }
         let nfsjoined = [];
         for (wordl of wordsl) {
             w1 = [];
             for (letter of wordl) {
-                w1.push(letter.value);
+                w1 = w1.concat((letter.value).split(""));
             }
             if (!dictionaryContains(w1, "full")) {
-                nfsjoined.push(w1.join(''));  
+                nfsjoined.push(w1.join(''));
             }
         }
-        if (nfsjoined.length>0){
-            displayMessage("Szabálytalan!", `${nfsjoined.join(", ")} nem található a szótárban`, destroyPopup, "", "game-div", "#board-rack");
+        if (nfsjoined.length > 0) {
+            displayMessage("Error", `${nfsjoined} not found in the dictionary`, destroyPopup, "", "game-div", "#board-rack");
             return 1;
         }
-        aiMove();
         let sc = displayScore(wordsl);
         let lobvalues = [];
         for (let letter of lettersontheboard) {
             lobvalues.push(letter[0].value);
         }
-        let aiwords = [selectedaimove[0].join("")];
-        for (secondaryword of selectedaimove[1]) {
-            if (secondaryword[0]) aiwords.push(secondaryword[0].join(""));
+        for (let wordl of wordsl) {
+            for (let letter of wordl) {
+                if (!letter.classList.contains("old")) {
+                    letter.classList.add("old");
+                }
+            }
         }
-        wordsingame.push([slettersonrackoriginal, ["     "], words, [sc.toString()], ["     "], aiwords, [selectedaimove[6].toString()]]);
+        wordsingame.push([slettersonrackoriginal, ["     "], words, [sc.toString()]]);
         setStateOfLetters();
         firstmove = false;
         idleturns = 0;
+        for (letter of lettersontheboard) {
+            removeFog(letter[1], letter[2]);
+
+        }
     }
     removeElements(".available-score");
     //printBoard();
-    if (!lettersinsack) {
-        let numoflettersonrack = 0;
-        for (let rackfield of rackfields) {
-            if (rackfield.hasChildNodes()) numoflettersonrack++;
-        }
-        if (!numoflettersonrack) endOfGame();
-    }
     if (ingame) {
         turns++;
-        loadRack();
-        displayTurn();
-        clearInterval(timeout);
-        resetTimer(timelimit);
+        if (turns > turnlimit) {
+            endOfGame();
+        } else {
+            loadRack();
+            displayTurn();
+            clearInterval(timeout);
+            resetTimer(timelimit);
+        }
     }
     return 0;
 }
@@ -1198,38 +1316,37 @@ function printBoard() {
             } else {
                 if (fields[i][j].classList.contains("wall-field")) {
                     row += "! ";
-                } else if (fields[i][j].classList.contains("bonus-field-2L")) {
-                    row += "2L";
-                } else if (fields[i][j].classList.contains("bonus-field-3L")) {
-                    row += "3L";
-                } else if (fields[i][j].classList.contains("bonus-field-2W")) {
-                    row += "2W";
-                } else if (fields[i][j].classList.contains("bonus-field-3W")) {
-                    row += "3W";
-                } else if (fields[i][j].classList.contains("bonus-field-20")) {
-                    row += "20";
-                } else if (fields[i][j].classList.contains("penalty-field-20")) {
-                    row += "2-";
+                } else if (fields[i][j].classList.contains("bonus-field-1")) {
+                    row += "1";
+                } else if (fields[i][j].classList.contains("bonus-field-2")) {
+                    row += "2";
+                } else if (fields[i][j].classList.contains("bonus-field-3")) {
+                    row += "3";
+                } else if (fields[i][j].classList.contains("bonus-field-4")) {
+                    row += "4";
+                } else if (fields[i][j].classList.contains("bonus-field-5")) {
+                    row += "5";
+                } else if (fields[i][j].classList.contains("bonus-field-6")) {
+                    row += "6";
+                } else if (fields[i][j].classList.contains("bonus-field-7")) {
+                    row += "7";
+                } else if (fields[i][j].classList.contains("bonus-field-8")) {
+                    row += "8";
+                } else if (fields[i][j].classList.contains("bonus-field-9")) {
+                    row += "9";
+                } else if (fields[i][j].classList.contains("picture-field")) {
+                    for (let fieldo of Object.keys(fieldsobj)) {
+                        if (fieldo == fields[i][j].id) {
+                            rowtosave.push(fields[i][j].id);
+                            break;
+                        }
+                    }
                 } else row += ". ";
             }
         }
         console.log(row);
     }
 }
-
-function createAIFields() {
-    aifields = [];
-    for (let i = 0; i < fields.length; i++) {
-        let fieldsrow = [];
-        for (let j = 0; j < fields[0].length; j++) {
-            if (fields[i][j].hasChildNodes()) {
-                fieldsrow.push(fields[i][j].firstChild.value);
-            } else fieldsrow.push(board_1[i][j]);
-        }
-        aifields.push(fieldsrow);
-    }
-}
-
 
 function collectNewLettersOnBoard() {
     let lettersonrack = document.querySelectorAll(".letter-on-rack");
@@ -1256,36 +1373,20 @@ function pass1() {
         clearInterval(timeout);
         endOfGame();
     } else {
-        back();
-        let sacktemp = [];
-        for (i of sack) {
-            sacktemp.push(i.slice());
+        if (turns > turnlimit) {
+            endOfGame();
+            return;
         }
-        backToSack();
-        selectedaimove = [];
+        back();
         displayScore([]);
         loadRack();
-        displayMessage("Figyelem!", "További " + (limitofidleturns - idleturns).toString() + " passz és a játék véget ér.", destroyPopup, "", "game-div", "#board-rack");
+        displayMessage("Warning", (limitofidleturns - idleturns).toString() + " more pass(es) and the game is over.", destroyPopup, "", "game-div", "#board-rack");
     }
 }
 
-function backToSack() {
+function emptyRack() {
     for (let rackfield of rackfields) {
         if (rackfield.hasChildNodes()) {
-            let l1points;
-            for (letter of letters) {
-                if (letter[0] == rackfield.firstChild.value) {
-                    l1points = letter[2];
-                    break;
-                }
-            }
-            for (letter of sack) {
-                if (letter[0] == rackfield.firstChild.value && letter[1] == "used") {
-                    letter[1] = l1points;
-                    lettersinsack++;
-                    break;
-                }
-            }
             rackfield.removeChild(rackfield.firstChild);
             rackfield.classList.remove("occupied");
             rackfield.classList.add("empty");
@@ -1299,13 +1400,48 @@ function endOfGame() {
         destroyPopup();
     } catch (err) { }
     lockOnUI();
+    localStorage.setItem('SavedGame_PathofMagicalWords', JSON.stringify(false));
     let lettersonrack = document.querySelectorAll(".letter-on-rack");
     for (let j = 0; j < lettersonrack.length; j++) {
         lettersonrack[j].draggable = false;
     }
     clearInterval(timeout);
+    let found = false;
+    for (let i = 0; i < fields.length; i++) {
+        for (let j = 0; j < fields[i].length; j++) {
+            if (fields[i][j].hasChildNodes() && fields[i][j].lastChild.classList.contains("fog")) {
+                found = true;
+            }
+        }
+    }
+    if (!found) score += 100;
+    found = false;
+    for (let i = 0; i < fields.length; i++) {
+        for (let j = 0; j < fields[i].length; j++) {
+            if (fields[i][j].hasChildNodes()) {
+                for (let fchild of fields[i][j].childNodes) {
+                    if (fchild.classList.contains("picture") && !fchild.classList.contains("old")) {
+                        found = true;
+                    }
+                }
+            }
+        }
+    }
+    if (!found) score += 100;
+    found = false;
+    for (let i = 0; i < fields.length; i++) {
+        for (let j = 0; j < fields[i].length; j++) {
+            if (fields[i][j].hasChildNodes()) {
+                for (let fchild of fields[i][j].childNodes) {
+                    if (fchild.classList.contains("picture") && !fchild.classList.contains("old")) {
+                        found = true;
+                    }
+                }
+            }
+        }
+    }
+    if (!found) score += 50;
     displayResult();
-    localStorage.setItem('SavedGame_Betuteboly', JSON.stringify(false));
 }
 
 function displayResult() {
@@ -1323,7 +1459,7 @@ function displayResult() {
     form1.appendChild(resultsfieldset);
     let legend1 = document.createElement("legend");
     legend1.style.fontSize = "50%"
-    legend1.innerHTML = "Eredmény";
+    legend1.innerHTML = "Result";
     resultsfieldset.appendChild(legend1);
     let table1 = document.createElement("table");
     resultsfieldset.appendChild(table1);
@@ -1340,7 +1476,7 @@ function displayResult() {
     let td2 = document.createElement("td");
     tr2.appendChild(td2);
     let button1 = document.createElement("button");
-    button1.innerText = "Rendben";
+    button1.innerText = "OK";
     button1.type = "button";
     button1.className = "UI-button";
     button1.addEventListener("click", destroyPopupResult);
@@ -1352,15 +1488,15 @@ function displayResult() {
     let td3 = document.createElement("td");
     tr3.appendChild(td3);
     let button2 = document.createElement("button");
-    button2.innerText = "Részletek";
-    button2.id = "reszletek";
+    button2.innerText = "Details";
+    button2.id = "details";
     button2.type = "button";
     button2.className = "UI-button";
     button2.addEventListener("click", displayDetails);
     button2.style.fontSize = fontsizebutton;
     button2.style.marginBottom = fontsizebutton;
-    button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
-    button2.style.height = Math.floor(fieldsize * 1).toString() + "px";
+    button1.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
+    button2.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
     td3.appendChild(button2);
     table1.style.display = "block";
 }
@@ -1390,7 +1526,7 @@ function displayDetails() {
     trh1.appendChild(th1);
     th1.style.fontWeight = "normal";
     th1.style.fontSize = "75%";
-    th1.innerHTML = "Betűk";
+    th1.innerHTML = "Letters drawn";
     let th2 = document.createElement("th");
     trh1.appendChild(th2);
     th2.innerHTML = " ";
@@ -1398,17 +1534,8 @@ function displayDetails() {
     trh1.appendChild(th3);
     th3.style.fontWeight = "normal";
     th3.style.fontSize = "75%"
-    th3.innerHTML = "Játékos";
+    th3.innerHTML = "Words";
     th3.colSpan = 2;
-    let th4 = document.createElement("th");
-    trh1.appendChild(th4);
-    th4.innerHTML = " ";
-    let th5 = document.createElement("th");
-    trh1.appendChild(th5);
-    th5.style.fontWeight = "normal";
-    th5.style.fontSize = "75%"
-    th5.innerHTML = "Számítógép";
-    th5.colSpan = 2;
 
     for (let words of wordsingame) {
         let tr1 = document.createElement("tr");
@@ -1431,11 +1558,11 @@ function displayDetails() {
         }
         rowcount++;
     }
-    document.getElementById("reszletek").disabled = true;
+    document.getElementById("details").disabled = true;
 }
 
 function resultText() {
-    let rtext = `<br><p style="white-space: pre">Játékos:  <span style="color:yellow; font-size: 200%; font-weight: bold">${score}</span>     Számítógép:  <span style="color:yellow; font-size: 200%; font-weight: bold">${aiscore}</span></p>`
+    let rtext = `<br><p style="white-space: pre">Score achieved:  <span style="color:yellow; font-size: 200%; font-weight: bold">${score}</span></p>`
     return rtext;
 }
 
@@ -1598,17 +1725,13 @@ function getAllString(lettersontheboard, direction) {
 }
 
 function displayScore(wordsl) {
-    let turnscore = scoring(wordsl);
-    let aisc, psc;
+    let scoringreturn = scoring(wordsl);
+    turnscore = scoringreturn[0];
+    turnlimit = scoringreturn[1];
+    let psc;
     score += turnscore;
-    if (selectedaimove[6]) {
-        aiturnscore = selectedaimove[6];
-    } else aiturnscore = 0;
-    aiscore += aiturnscore;
     psc = document.querySelector("#player-score");
     psc.setAttribute("value", `${turnscore} / ${score}`);
-    aisc = document.querySelector("#ai-score");
-    aisc.setAttribute("value", `${aiturnscore} / ${aiscore}`);
     return turnscore;
 }
 
@@ -1617,262 +1740,95 @@ function scoring(wordsl) {
     let scorefound = 0;
     let numofusedletters = 0;
     let added = [];
+    let newturnlimit = turnlimit;
     for (let wordl of wordsl) {
-        let wordmultiplier = 1;
         let wordscore = 0;
         numofusedletters = 0;
         for (let letter of wordl) {
             let pointforletter = 0;
             for (let l of letters) {
-                lettersinsack
                 if (l[0] == letter.value) {
                     pointforletter = l[2];
                     break;
                 }
             }
             if (!letter.classList.contains("old")) {
-                if (letter.parentElement.classList.contains("bonus-field-2L")) {
-                    pointforletter *= 2;
-                }
-                if (letter.parentElement.classList.contains("bonus-field-3L")) {
-                    pointforletter *= 3;
-                }
-                if (letter.parentElement.classList.contains("bonus-field-2W")) {
-                    wordmultiplier *= 2;
-                }
-                if (letter.parentElement.classList.contains("bonus-field-3W")) {
-                    wordmultiplier *= 3;
-                }
-                if (letter.parentElement.classList.contains("bonus-field-20") && !added.includes(letter)) {
-                    scorefound += 20;
+                if (letter.parentElement.classList.contains("bonus-field-1") && !added.includes(letter)) {
+                    scorefound += 1;
                     added.push(letter);
                 }
-                if (letter.parentElement.classList.contains("penalty-field-20") && !added.includes(letter)) {
-                    scorefound -= 20;
+                if (letter.parentElement.classList.contains("bonus-field-2") && !added.includes(letter)) {
+                    scorefound += 2;
                     added.push(letter);
                 }
-                numofusedletters += 1;
+                if (letter.parentElement.classList.contains("bonus-field-3") && !added.includes(letter)) {
+                    scorefound += 3;
+                    added.push(letter);
+                }
+                if (letter.parentElement.classList.contains("bonus-field-4") && !added.includes(letter)) {
+                    scorefound += 4;
+                    added.push(letter);
+                }
+                if (letter.parentElement.classList.contains("bonus-field-5") && !added.includes(letter)) {
+                    scorefound += 5;
+                    added.push(letter);
+                }
+                if (letter.parentElement.classList.contains("bonus-field-6") && !added.includes(letter)) {
+                    scorefound += 6;
+                    added.push(letter);
+                }
+                if (letter.parentElement.classList.contains("bonus-field-7") && !added.includes(letter)) {
+                    scorefound += 7;
+                    added.push(letter);
+                }
+                if (letter.parentElement.classList.contains("bonus-field-8") && !added.includes(letter)) {
+                    scorefound += 8;
+                    added.push(letter);
+                }
+                if (letter.parentElement.classList.contains("bonus-field-9") && !added.includes(letter)) {
+                    scorefound += 9;
+                    added.push(letter);
+                }
+                if (letter.classList.contains("start")){
+                    pointforletter += 5;
+                    counter+=1;
+                    console.log(counter)
+                    if (counter == 5){
+                        newturnlimit += 1;
+                        counter = 0;
+                    } 
+                }    
+                if (letter.classList.contains("picture")) {
+                    pointforletter += 10;
+                    newturnlimit += 1;
+                }
+                if (!letter.classList.contains("start") && !letter.classList.contains("picture")) {
+                    numofusedletters += 1;
+                }
             }
             wordscore += pointforletter;
         }
-        wordscore *= wordmultiplier;
         turnscore += wordscore;
         switch (numofusedletters) {
-            case 4:
+            case 5:
                 turnscore += 5;
                 break;
-            case 5:
+            case 6:
                 turnscore += 10;
                 break;
-            case 6:
-                turnscore += 20;
-                break;
             case 7:
-                turnscore += 40;
+                turnscore += 15;
                 break;
             case 8:
-                turnscore += 80;
+                turnscore += 20;
+                break;
+            case 9:
+                turnscore += 25;
                 break;
         }
     }
     turnscore += scorefound;
-    return turnscore
-}
-
-function aiMove() {
-    let slettersonrack = [];
-    let allvalidword = [];
-    let lettersonrack = document.querySelectorAll(".letter-on-rack");
-    for (let letter of lettersonrack) {
-        slettersonrack.push(letter.value);
-    }
-    let notjokerletters = [];
-    for (let letter of letters) {
-        if (letter[0] != '*' && !notjokerletters.includes(letter[0])) notjokerletters.push(letter[0]);
-    }
-    for (let numofletters = 1; numofletters < aiusedletters + 1; numofletters++) {
-        let validwords = aiFindPlace(numofletters, aifields, slettersonrack, notjokerletters);
-        if (validwords.length > 0) {
-            allvalidword = allvalidword.concat(validwords);
-        }
-    }
-    if (allvalidword.length > 0) {
-        let allvalidwordscores = aiScore(allvalidword);
-        selectMove(allvalidwordscores);
-    } else noValidWord();
-}
-
-function noValidWord() {
-
-}
-
-function aiFindPlace(numofletters, aifields, slettersonrack, notjokerletters) {
-    let patternswithdata = [];
-    let aifieldrc = aifields.length;
-    let aifieldcc = aifields[0].length;
-    let aifieldstransposed = [];
-    let validwords = [];
-    for (let i = 0; i < aifieldcc; i++) {
-        let newline = [];
-        for (let j = 0; j < aifieldrc; j++) {
-            newline.push(aifields[j][i]);
-        }
-        aifieldstransposed.push(newline);
-    }
-    for (let direction of ["across", "down"]) {
-        if (direction == "down") {
-            aifields = aifieldstransposed;
-            let s = aifieldrc;
-            aifieldrc = aifieldcc;
-            aifieldcc = s;
-        }
-        for (let i = 0; i < aifieldrc; i++) {
-            endofline = false;
-            for (let j = 0; j < aifieldcc; j++) {
-                if (aifields[i][j] == ("!")) continue;
-                if (j > 0 && !(aifields[i][j - 1]) in fieldsobj) continue;
-                let pattern1 = [];
-                let connected = false;
-                let startfield = false;
-                let wall = false;
-                let patternposition = 0;
-                let newletter = 0;
-                while (true) {
-                    if (aifields[i][j + patternposition] in fieldsobj) {
-                        pattern1.push(".");
-                        if (firstmove) {
-                            if (i == startfieldy && j + patternposition == startfieldx) {
-                                startfield = true;
-                            }
-                        }
-                        if (!connected) {
-                            if (i > 0) {
-                                if (!(aifields[i - 1][j + patternposition] in fieldsobj)) {
-                                    connected = true;
-                                }
-                            }
-                            if (i < aifieldrc - 1) {
-                                if (!(aifields[i + 1][j + patternposition] in fieldsobj)) {
-                                    connected = true;
-                                }
-                            }
-                        }
-                        patternposition += 1;
-                        newletter += 1;
-                    } else {
-                        pattern1.push(aifields[i][j + patternposition]);
-                        connected = true;
-                        patternposition += 1;
-                    }
-                    if (j + patternposition == aifieldcc) {
-                        endofline = true;
-                        break;
-                    }
-                    if (aifields[i][j + patternposition] == "!") {
-                        wall = true;
-                        break;
-                    }
-                    if (newletter == numofletters && aifields[i][j + patternposition] in fieldsobj) {
-                        break;
-                    }
-                }
-                if (newletter < numofletters) {
-                    if (endofline || wall) continue;
-                }
-                if (!connected && !firstmove) continue;
-                if (firstmove && !startfield) continue;
-
-                let found;
-                for (let p = 0; p < patternswithdata.length; p++) {
-                    if (patternswithdata[p][0] == pattern1) {
-                        found = p;
-                        break;
-                    }
-                }
-                let words;
-                if (found) {
-                    words = patternswithdata[found][1].slice();
-                } else {
-                    words = checkWords(pattern1, slettersonrack, notjokerletters)
-                    let rec = [];
-                    rec.push(pattern1);
-                    rec.push(words);
-                    patternswithdata.push(rec);
-                }
-                let primarywordwithdata;
-                if (words.length > 0) {
-                    for (primaryword of words) {
-                        primarywordwithdata = createLOB(primaryword, pattern1);
-                        let validword = aiValidMove(aifields, primarywordwithdata, i, j, direction, aifieldrc);
-                        if (validword.length > 0) {
-                            validwords.push(validword);
-                        }
-                    }
-                }
-            }
-        }
-    }
-    return validwords
-}
-
-function checkWords(pattern1, slettersonrack, notjokerletters) {
-    let words = [];
-    if (pattern1.length < 2) {
-        return words;
-    }
-    let letterstobegin;
-    if (pattern1[0] != '.') {
-        letterstobegin = [pattern1[0]]
-    } else {
-        if (slettersonrack.includes('*')) {
-            letterstobegin = notjokerletters.slice();
-        } else letterstobegin = slettersonrack.slice();
-    }
-    let usedbletter = [];
-    for (let letter of letterstobegin) {
-        if (!usedbletter.includes(letter)) {
-            usedbletter.push(letter);
-        } else continue;
-        for (let word1 of partsofdictionary[letter + pattern1.length.toString()]) {
-            suit = true;
-            for (let k = 0; k < pattern1.length; k++) {
-                if (pattern1[k] != word1[k] && pattern1[k] != '.') {
-                    suit = false;
-                    break;
-                }
-            }
-            if (!suit) continue;
-            slettersonrackcopy = slettersonrack.slice();
-            if (pattern1[0] == '.') {
-                res = removeFirstEqual(slettersonrackcopy, letter);
-                if (res == -1) {
-                    slettersonrackcopy = removeFirstEqual(slettersonrackcopy, '*');
-                } else slettersonrackcopy = res;
-            }
-            for (pidx = 1; pidx < pattern1.length; pidx++) {
-                if (pattern1[pidx] != '.') {
-                    if (word1[pidx] != pattern1[pidx]) {
-                        suit = false;
-                        break;
-                    }
-                } else {
-                    res = removeFirstEqual(slettersonrackcopy, word1[pidx]);
-                    if (res == -1) {
-                        res = removeFirstEqual(slettersonrackcopy, '*');
-                        if (res == -1) {
-                            suit = false;
-                            break;
-                        } else slettersonrackcopy = res;
-                    } else {
-                        slettersonrackcopy = res;
-                    }
-                }
-            }
-            if (!suit) continue;
-            words.push(word1);
-        }
-    }
-    return words;
+    return [turnscore, newturnlimit];
 }
 
 function removeFirstEqual(array1, value1) {
@@ -1890,219 +1846,22 @@ function dictionaryContains(wordl, vocabulary) {
         partofdictionary = partsofdictionary[wordl[0] + wordl.length.toString()];
     }
     for (let elem of partofdictionary) {
-        if (elem.length == wordl.length){
+        if (elem.length == wordl.length) {
             let found = true;
-            for (let i=0; i < elem.length; i++){
-                if (elem[i]!=wordl[i]){
+            for (let i = 0; i < elem.length; i++) {
+                if (elem[i] != wordl[i]) {
                     found = false;
-                    break;      
+                    break;
                 }
             }
             if (!found) {
                 continue;
-            } else{
+            } else {
                 return true;
-            }    
+            }
         }
     }
     return false;
-}
-
-function createLOB(primaryword, pattern1) {
-    let lob1 = [];
-    let primarywordwithdata = [];
-    for (let i = 0; i < pattern1.length; i++) {
-        if (pattern1[i] == '.') {
-            let found = false;
-            for (letter of letters) {
-                if (primaryword[i] == letter[0]) {
-                    lob1.push(letter);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) console.log("nincs ilyen betű a zsákban", primaryword[i]);
-        } else lob1.push('.');
-    }
-    primarywordwithdata.push(primaryword);
-    primarywordwithdata.push(lob1);
-    return primarywordwithdata;
-}
-
-function aiValidMove(aifields, primarywordwithdata, ii, jj, direction, aifieldrc) {
-    let validword = [];
-    let secondarywords = [];
-    let lob = primarywordwithdata[1];
-    for (let patternposition = 0; patternposition < lob.length; patternposition++) {
-        if (lob[patternposition][0] != '.') {
-            let inside = true;
-            let i = ii;
-            let wordl = [];
-            let lobs = [];
-            while (inside) {
-                if (i > 0 && !(aifields[i - 1][jj + patternposition] in fieldsobj)) {
-                    i -= 1;
-                } else inside = false;
-            }
-            let si = i;
-            let sj = jj + patternposition;
-            inside = true;
-            while (inside) {
-                if (i == ii) {
-                    wordl.push(primarywordwithdata[0][patternposition]);
-                    lobs.push(lob[patternposition]);
-                } else {
-                    wordl.push(aifields[i][jj + patternposition]);
-                    lobs.push('.');
-                }
-                if (i + 1 < aifieldrc) {
-                    if (!(aifields[i + 1][jj + patternposition] in fieldsobj) || i + 1 == ii) {
-                        i += 1;
-                    } else inside = false;
-                } else inside = false;
-            }
-            if (wordl.length > 1) {
-                if (!dictionaryContains(wordl, "part")) {
-                    return validword;
-                } else {
-                    rec = [];
-                    rec.push(wordl);
-                    if (direction == "across") {
-                        rec.push(si);
-                        rec.push(sj);
-                        rec.push("down");
-                    } else {
-                        rec.push(sj);
-                        rec.push(si);
-                        rec.push("across");
-                    }
-                    rec.push(lobs);
-                    secondarywords.push(rec);
-                }
-            }
-        }
-    }
-    validword.push(primarywordwithdata[0]);
-    validword.push(secondarywords);
-    if (direction == "across") {
-        validword.push(ii);
-        validword.push(jj);
-    } else {
-        validword.push(jj);
-        validword.push(ii);
-    }
-    validword.push(direction);
-    validword.push(primarywordwithdata[1]);
-    return validword;
-}
-
-function aiScore(allvalidword) {
-    for (validword of allvalidword) {
-        let score1 = wordScore(validword[0], validword[2], validword[3], validword[4], validword[5], "primaryword");
-        if (validword[1].length > 0) {
-            for (vword of validword[1]) {
-                let score2 = wordScore(vword[0], vword[1], vword[2], vword[3], vword[4], "secondaryword");
-                score1 += score2;
-            }
-        }
-        validword.push(score1);
-    }
-    return allvalidword;
-}
-
-function wordScore(word1, ii, jj, direction, lob1, category) {
-    let wordvaluemulti = 1;
-    let wordscore1 = 0;
-    let numofusedletters = 0;
-    let scorefound = 0;
-    if (direction == "across") {
-        for (let position = 0; position < word1.length; position++) {
-            if (!(aifields[ii][jj + position] in fieldsobj)) {
-                for (let l of letters) {
-                    if (aifields[ii][jj + position] == l[0]) {
-                        wordscore1 += l[2];
-                        break;
-                    }
-                }
-            } else {
-                let sc = parseInt(lob1[position][2], 10);
-                if (aifields[ii][jj + position] == "2W") {
-                    wordvaluemulti *= 2;
-                } else if (aifields[ii][jj + position] == "3W") {
-                    wordvaluemulti *= 3;
-                } else if (aifields[ii][jj + position] == "2L") {
-                    sc *= 2;
-                } else if (aifields[ii][jj + position] == "3L") {
-                    sc *= 3;
-                } else if (aifields[ii][jj + position] == "20" && category == "primaryword") {
-                    scorefound += 20;
-                } else if (aifields[ii][jj + position] == "-20" && category == "primaryword") {
-                    scorefound -= 20;
-                }
-                wordscore1 += sc;
-                numofusedletters += 1;
-            }
-        }
-    }
-    if (direction == "down") {
-        for (let position = 0; position < word1.length; position++) {
-            if (!(aifields[ii + position][jj] in fieldsobj)) {
-                for (let l of letters) {
-                    if (aifields[ii + position][jj] == l[0]) {
-                        wordscore1 += l[2];
-                        break;
-                    }
-                }
-            } else {
-                let sc = parseInt(lob1[position][2], 10);
-                if (aifields[ii + position][jj] == "2W") {
-                    wordvaluemulti *= 2;
-                } else if (aifields[ii + position][jj] == "3W") {
-                    wordvaluemulti *= 3;
-                } else if (aifields[ii + position][jj] == "2L") {
-                    sc *= 2;
-                } else if (aifields[ii + position][jj] == "3L") {
-                    sc *= 3;
-                } else if (aifields[ii + position][jj] == "20" && category == "primaryword") {
-                    scorefound += 20;
-                } else if (aifields[ii + position][jj] == "-20" && category == "primaryword") {
-                    scorefound -= 20;
-                }
-                wordscore1 += sc;
-                numofusedletters += 1;
-            }
-        }
-    }
-    wordscore1 = wordscore1 * wordvaluemulti;
-    switch (numofusedletters) {
-        case 4:
-            wordscore1 += 5;
-            break;
-        case 5:
-            wordscore1 += 10;
-            break;
-        case 6:
-            wordscore1 += 20;
-            break;
-        case 7:
-            wordscore1 += 40;
-            break;
-        case 8:
-            wordscore1 += 80;
-            break;
-    }
-    wordscore1 += scorefound;
-    return wordscore1;
-}
-
-function selectMove(allvalidwordscores) {
-    allvalidwordscores.sort(function (a, b) { return a[6] - b[6] });
-    let maxpoint = allvalidwordscores[allvalidwordscores.length - 1][6] * aistrength / 100;
-    for (let i = 0; i < allvalidwordscores.length; i++) {
-        if (!(allvalidwordscores[i][6] > maxpoint)) selectedaimove = allvalidwordscores[i];
-    }
-    bestmove = allvalidwordscores[allvalidwordscores.length - 1];
-    console.log("selected move, best move", selectedaimove, bestmove)
 }
 
 function displayMessage(legend, message, command1, command2, parente, elementunder) {
@@ -2143,22 +1902,22 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     let td2 = document.createElement("td");
     tr2.appendChild(td2);
     let button1 = document.createElement("button");
-    button1.innerText = "Rendben";
+    button1.innerText = "OK";
     button1.addEventListener("click", command1);
     button1.type = "button";
     button1.className = "UI-button";
-    button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
+    button1.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
     button1.style.fontSize = fontsizebutton;
     button1.style.marginRight = "20px";
     td2.appendChild(button1);
     td2.style.marginRight = "20px";
     if (command2) {
         let button2 = document.createElement("button");
-        button2.innerText = "Mégsem";
+        button2.innerText = "Cancel";
         button2.addEventListener("click", command2);
         button2.type = "button";
         button2.className = "UI-button";
-        button2.style.height = Math.floor(fieldsize * 1).toString() + "px";
+        button2.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
         button2.style.fontSize = fontsizebutton;
         button1.style.width = "40%";
         button2.style.width = "40%";
@@ -2211,7 +1970,7 @@ function createPopup(tfield) {
             td1.appendChild(input1);
             input1.setAttribute("type", "text");
             input1.setAttribute("class", "letter");
-            input1.style.fontSize = Math.floor((fieldsize - 2) * 0.7).toString() + "px";
+            input1.style.fontSize = Math.floor((fieldsize - 2) * 0.9).toString() + "px";
             input1.draggable = false;
             input1.readonly = true;
             input1.setAttribute("inputmode", "none");
@@ -2238,168 +1997,41 @@ function changeJoker(tfield, ev) {
             break;
         }
     }
-    setLetterRadius(tfield.children[0], l1points);
     popup1.remove();
     lockOffUI();
     testNewWords();
 }
 
-function placeYesMarks() {
-    let hunbutton = document.querySelector("#hun-lang");
-    let rectph = getElementPosition(hunbutton);
-    let yesmarkh = document.querySelector("#yes-mark-h");
-    yesmarkh.style.left = Math.floor(rectph.width / 2).toString() + "px";
-    yesmarkh.style.bottom = Math.floor(0).toString() + "px";
-
-    let engbutton = document.querySelector("#eng-lang");
-    let rectpe = getElementPosition(engbutton);
-    let yesmarke = document.querySelector("#yes-mark-e");
-    yesmarke.style.left = Math.floor(rectpe.width / 2).toString() + "px";
-    yesmarke.style.bottom = Math.floor(0).toString() + "px";
-
-    selectLanguage("hun")
-}
-
 function selectLanguage(lang) {
-    if (lang == "hun") {
-        language = "hun";
-        letters = letters_hun;
-        document.querySelector("#yes-mark-e").style.display = "none";
-        document.querySelector("#yes-mark-h").style.display = "inline-block";
-        document.querySelector("#yes-mark-h").style.position = "absolute";
-    } else {
-        language = "eng";
-        letters = letters_eng;
-        document.querySelector("#yes-mark-h").style.display = "none";
-        document.querySelector("#yes-mark-e").style.display = "inline-block";
-        document.querySelector("#yes-mark-e").style.position = "absolute";
-    }
+    language = "eng";
+    letters = letters_eng;
 }
 
 function createPartsOfDictionary() {
-    let abc;
     dictionary = [];
-    if (language == "hun") {
-        abc = ['A', 'Á', 'B', 'C', 'CS', 'D', 'E', 'É', 'F', 'G', 'GY', 'H', 'I', 'Í', 'J', 'K', 'L', 'LY', 'M', 'N', 'NY',
-            'O', 'Ó', 'Ö', 'Ő', 'P', 'Q', 'R', 'S', 'SZ', 'T', 'TY', 'U', 'Ú', 'Ü', 'Ű', 'V', 'W', 'X', 'Y', 'Z', 'ZS'];
-    } else {
-        abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+    const abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
             'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    }
     for (let letter of abc) {
         for (len = 2; len < 35; len++) {
             partsofdictionary[letter + len.toString()] = [];
         }
     }
-    if (language == "hun") {
-        dict = dictionary_hun;
-    } else dict = dictionary_eng;
+    dict = dictionary_eng;
     for (let word of dict) {
         let wordsl;
         let wordsldict;
-        if (language == "hun") {
-            if (aivocabulary == 2 && (word.length == 2 || word.length == 3)) {
-                wordsl = wordToListHUN(word[0]);
-                wordsldict = wordsl;
-            } else if (aivocabulary == 1 && word.length == 3) {
-                wordsl = wordToListHUN(word[0]);
-                wordsldict = wordsl;
-            } else {
-                wordsldict = wordToListHUN(word[0]);
-            }
-        } else {
-            wordsl = wordToListENG(word);
-            wordsldict = wordsl;
-        }
+        wordsl = wordToListENG(word);
+        wordsldict = wordsl;
         if (wordsl) {
             for (let word1 of wordsl) {
-                if (word1.includes('_')) {
-                    w1 = [];
-                    for (let letter of word1) {
-                        if (letter != '_') w1.push(letter);
-                    }
-                    word1 = w1;
-                }
                 key1 = [word1[0], word1.length.toString()].join("");
                 partsofdictionary[key1].push(word1);
             }
         }
         for (let word1 of wordsldict) {
-            if (word1.includes('_')) {
-                w1 = [];
-                for (let letter of word1) {
-                    if (letter != '_') w1.push(letter);
-                }
-                word1 = w1;
-            }
             dictionary.push(word1);
         }
     }
-}
-
-function wordToListHUN(word) {
-    let wordsl = [];
-    const digraph = ['CS', 'GY', 'LY', 'NY', 'SZ', 'TY', 'ZS'];
-    let position = [];
-    i = 0;
-    while (i < word.length - 1) {
-        if (digraph.includes(word.slice(i, i + 2))) {
-            position.push(i);
-            i += 1;
-        }
-        i += 1;
-    }
-    if (!position.length) {
-        wordsl.push(word.split(""));
-        return wordsl;
-    }
-    let words = [];
-    words.push(word);
-    let newword;
-    for (let j of position) {
-        for (let k = 0; k < words.length; k++) {
-            if (words[k].slice(j, j + 2) == 'CS') {
-                newword = [words[k].slice(0, j), '01', words[k].slice(j + 2)].join("");
-                words.push(newword);
-            } else if (words[k].slice(j, j + 2) == 'GY') {
-                newword = [words[k].slice(0, j), '02', words[k].slice(j + 2)].join("");
-                words.push(newword);
-            } else if (words[k].slice(j, j + 2) == 'LY') {
-                newword = [words[k].slice(0, j), '03', words[k].slice(j + 2)].join("");
-                words.push(newword);
-            } else if (words[k].slice(j, j + 2) == 'NY') {
-                newword = [words[k].slice(0, j), '04', words[k].slice(j + 2)].join("");
-                words.push(newword);
-            } else if (words[k].slice(j, j + 2) == 'SZ') {
-                newword = [words[k].slice(0, j), '05', words[k].slice(j + 2)].join("");
-                words.push(newword);
-            } else if (words[k].slice(j, j + 2) == 'TY') {
-                newword = [words[k].slice(0, j), '06', words[k].slice(j + 2)].join("");
-                words.push(newword);
-            } else if (words[k].slice(j, j + 2) == 'ZS') {
-                newword = [words[k].slice(0, j), '07', words[k].slice(j + 2)].join("");
-                words.push(newword);
-            }
-        }
-    }
-    for (let ws of words) {
-        wordl = ws.split("");
-        wordlnew = [];
-        for (let i = 0; i < wordl.length; i++) {
-            if (wordl[i] == '0') continue;
-            if (['1', '2', '3', '4', '5', '6', '7'].includes(wordl[i])) {
-                if (wordl[i] == '1') wordlnew.push('CS');
-                if (wordl[i] == '2') wordlnew.push('GY');
-                if (wordl[i] == '3') wordlnew.push('LY');
-                if (wordl[i] == '4') wordlnew.push('NY');
-                if (wordl[i] == '5') wordlnew.push('SZ');
-                if (wordl[i] == '6') wordlnew.push('TY');
-                if (wordl[i] == '7') wordlnew.push('ZS');
-            } else wordlnew.push(wordl[i]);
-        }
-        wordsl.push(wordlnew);
-    }
-    return wordsl;
 }
 
 function wordToListENG(word) {
@@ -2427,7 +2059,7 @@ function displayWordSearch() {
     let fieldset1 = document.createElement("fieldset");
     form1.appendChild(fieldset1);
     let legend1 = document.createElement("legend");
-    legend1.innerHTML = "Írd be a keresett szót";
+    legend1.innerHTML = "Type the word you are looking for";
     legend1.style.fontSize = "50%"
     fieldset1.appendChild(legend1);
     input1 = document.createElement("input");
@@ -2440,14 +2072,15 @@ function displayWordSearch() {
     input1.style.background = "white";
     input1.style.color = "darkred";
     input1.style.marginBottom = fieldsize.toString() + "px";
+    input1.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
     fieldset1.appendChild(input1);
     input1.addEventListener("keyup", wordSearch);
     let button1 = document.createElement("button");
-    button1.innerText = "Rendben";
+    button1.innerText = "OK";
     button1.addEventListener("click", destroyPopup);
     button1.type = "button";
     button1.className = "UI-button";
-    button1.style.height = Math.floor(fieldsize * 1).toString() + "px";
+    button1.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
     button1.style.fontSize = fontsizebutton;
     button1.style.width = "40%";
     fieldset1.appendChild(button1);
@@ -2517,27 +2150,21 @@ function manageProgressbar() {
 
 function createSack() {
     sack = [];
-    lettersinsack = 0;
     for (let i = 0; i < letters.length; i++) {
         for (let j = 0; j < letters[i][1]; j++) {
             sack.push([letters[i][0], letters[i][2]]);
-            lettersinsack++;
         }
     }
 }
 
 function adaptToChangedSize() {
     fieldsize = Math.floor((height - fields.length) / (fields.length + 4)) > 23 ? Math.floor((height - fields.length) / (fields.length + 4)) : 23;
-    if (touchdevice) {
-        rackfieldsize = Math.floor(fieldsize * (fields[0].length - 5) / racksize);
-        dashboard = document.querySelector("#dashboard");
-        dashboard.style.position = "sticky";
-    } else {
-        rackfieldsize = fieldsize;
-    }
-    fontsizeletter = Math.floor(fieldsize * 0.7).toString() + "px";
-    fontsizebutton = Math.floor(fieldsize * 0.7).toString() + "px";
-    fontsizelabel = Math.floor(fieldsize * 0.3).toString() + "px";
+    rackfieldsize = Math.floor(fieldsize * 3);
+    dashboard = document.querySelector("#dashboard");
+    dashboard.style.position = "sticky";
+    fontsizeletter = Math.floor(fieldsize * 0.9).toString() + "px";
+    fontsizebutton = Math.floor(fieldsize * 0.9).toString() + "px";
+    fontsizelabel = Math.floor(fieldsize * 0.4).toString() + "px";
     for (let rindex = 0; rindex < fields.length; rindex++) {
         for (let cindex = 0; cindex < fields[0].length; cindex++) {
             fields[rindex][cindex].style.width = fieldsize.toString() + "px";
@@ -2571,12 +2198,12 @@ function adaptToChangedSize() {
     let buttons = document.querySelectorAll(".UI-button");
     for (let button of buttons) {
         button.style.fontSize = fontsizebutton;
-        button.style.height = Math.floor(fieldsize * 1).toString() + "px";
+        button.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
     }
     let inputs = document.querySelectorAll(".UI-input");
     for (let input of inputs) {
         input.style.fontSize = fontsizebutton;
-        input.style.height = Math.floor(fieldsize * 1).toString() + "px";
+        input.style.height = Math.floor(fieldsize * 1.5).toString() + "px";
     }
     let labels = document.querySelectorAll(".input-label");
     for (let label of labels) {
@@ -2588,12 +2215,10 @@ function adaptToChangedSize() {
         traybutton.style.width = rackfieldsize.toString() + "px";
         traybutton.style.height = rackfieldsize.toString() + "px";
     }
-
-
     document.querySelector("h1").style.fontSize = fontsizebutton;
     document.querySelector("#small1").style.fontSize = fontsizelabel;
-    numberlabelsize = Math.floor(fieldsize * 0.5);
-    numberfontsize = Math.floor(fieldsize * 0.3);
+    numberlabelsize = Math.floor(fieldsize * 0.8);
+    numberfontsize = Math.floor(fieldsize * 0.5);
     let boardform = document.querySelector("#board-form");
     let rectboard = getElementPosition(boardform);
     let rackform = document.querySelector("#rack-form");
@@ -2627,13 +2252,12 @@ function initGame() {
     document.querySelector("#game-container").style.marginLeft = "2%";
     progressbar = document.querySelector("#progress");
     bindButtons();
-    let savedgames = localStorage.getItem('SavedGame_Betuteboly');
+    let savedgames = localStorage.getItem('SavedGame_PathofMagicalWords');
     savedgame = JSON.parse(savedgames);
     if (savedgame) {
         try {
             loadGame();
         } catch (err) {
-            console.log("nem sikerült betölteni", err)
             localStorage.clear();
         }
     } else {
@@ -2643,9 +2267,6 @@ function initGame() {
     adaptToChangedSize();
     if (!savedgame) {
         selectLanguage(language);
-        aivocabulary = parseInt(document.querySelector("#number-of-words").value, 10);
-        aiusedletters = parseInt(document.querySelector("#number-of-letters").value, 10);
-        aistrength = parseInt(document.querySelector("#ai-strength").value, 10);
         timelimit = parseInt(document.querySelector("#time-limit").value, 10);
         createPartsOfDictionary();
         progressbar.max = timelimit;
@@ -2654,34 +2275,16 @@ function initGame() {
     }
 }
 
-function numOfWordsChange() {
-    nw = document.querySelector("#number-of-words").value;
-    if (nw == 2) {
-        text1 = "normál";
-    } else text1 = "szűk";
-    document.querySelector("#number-of-words-value").innerHTML = text1;
-}
-
-function numOfLettersChange() {
-    nl = document.querySelector("#number-of-letters").value;
-    document.querySelector("#number-of-letters-value").innerHTML = nl;
-}
-
-function aiStrengthChange() {
-    ais = document.querySelector("#ai-strength").value;
-    document.querySelector("#ai-strength-value").innerHTML = ais;
-}
-
 function timeLimitChange() {
     tl = document.querySelector("#time-limit").value;
     document.querySelector("#time-limit-value").innerHTML = tl;
 }
 
 function checkSavedGame() {
-    let savedgames = localStorage.getItem('SavedGame_Betuteboly');
+    let savedgames = localStorage.getItem('SavedGame_PathofMagicalWords');
     savedgame = JSON.parse(savedgames);
     if (savedgame) {
-        displayMessage("Figyelem!", "Az előző játék félbeszakadt.<br> Szeretnéd folytatni?", initGame, setupNewGame, "setup-new-game", "#setup-new-game");
+        displayMessage("Warning", "The previous game was interrupted.<br> Want to continue?", initGame, setupNewGame, "setup-new-game", "#setup-new-game");
     } else {
         setupNewGame();
     }
@@ -2691,9 +2294,9 @@ function setupNewGame() {
     try {
         popup1.remove();
     } catch (err) { }
-    localStorage.setItem('SavedGame_Betuteboly', JSON.stringify(false));
+    localStorage.setItem('SavedGame_PathofMagicalWords', JSON.stringify(false));
     document.querySelector("#setup-new-game").style.visibility = "visible";
-    placeYesMarks();
+    selectLanguage("eng")
 }
 
 function initStartScreen() {
@@ -2703,7 +2306,7 @@ function initStartScreen() {
     fontsizeletter = 20 + "px";
     fontsizebutton = 20 + "px";
     startscreeninnerdiv = document.querySelector("#start-screen-inner-div");
-    startscreeninnerdiv.style.backgroundImage = "url('img/betutebolybackground.png')";
+    startscreeninnerdiv.style.backgroundImage = "url('img/pathofmagicalrotated1.png')";
     startscreeninnerdiv.style.backgroundRepeat = "no-repeat";
     startscreeninnerdiv.style.backgroundSize = "100%";
     startscreeninnerdiv.style.backgroundPosition = "top center";

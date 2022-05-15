@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0 user-scalable=no">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Word game. In each round there are 9 new letters, validation of words based on a built-in dictionary.
+    Fill in the board to the last square!">
+    <link rel="stylesheet" href="css/game.css">
+    <title>Path of Magical Words</title>
+</head>
+
+<body>
+    <div id="start-screen">
+        <div id="start-screen-inner-div" style="display:inline-block; padding-left: 3%; padding-right: 3%">
+            <br>
+            <h1 id="title" style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Path of Magical Words</h1>
+            <p id="small1" style="text-align:center; text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">word building game</p>
+            <div id="setup-new-game" style="visibility: hidden">
+                <br>
+                <h3  style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Goals:</h3>
+                <p  style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Explore the entire playing field for 100 points.</p>
+                <p  style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Use as many objects as you can, for 10 points each and an extra round, plus a 100-point reward at the end of the game if you can do it all.</p>
+                <p  style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Use as many pre-written letters as you can, for 5 points each and an extra turn per 5 letters, plus a 50-point reward at the end of the game if you get them all right.</p>
+                <p  style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Collect as many of the 1-9 point rewards as possible.</p>
+                <p  style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">Make as many words as you can for rewards based on the number of new letters you create in a round:</p>
+                <ul  style="text-shadow: 5px 5px 7px black, 0 0 25px darkblue, 0 0 15px darkblue">
+                    <li>5 letters - 5 points</li>
+                    <li>6 letters - 10 points</li>
+                    <li>7 letters - 15 points</li>
+                    <li>8 letters - 20 points</li>
+                    <li>9 letters - 25 points</li>
+                </ul>  
+                <br>
+                <fieldset id="game-setup" style="display:inline-block; width:100%; box-sizing: border-box; padding:30px; border-style: solid; border-width: 5px; border-radius: 20px; 
+                    border-color: lightblue; background-color: black; opacity:80%">
+                    <legend>Settings</legend>
+                    <div class="slidecontainer" style="padding-left:5%; padding-right:5%; padding-top:0">
+                        <p>Time:<span id="time-limit-value" style="float: right">100</span></p>
+                        <input id="time-limit" class="slider" type="range" min="60" max="180" value="100"
+                            onchange="timeLimitChange()">
+                    </div>
+                </fieldset>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <button id="start-button" type="button" style="display:inline-block; width:100%; box-sizing: border-box;  padding:30px; border-style: solid; 
+                    border-width: 5px; border-radius: 20px; font-size: 35px" onclick="initGame()">Start</button>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+    </div>
+    <h2 id="title1" style="display:none">Path of Magical Words <small id="small1"></small>
+        </h1>
+        <div id="game-container">
+            <div id="game-div">
+                <div id="board-rack">
+                    <form id="board-form">
+                        <table id="board">
+                        </table>
+                    </form>
+                    <br>
+                    <div id="rack-form">
+                        <form>
+                            <table id="rack">
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <div id="dashboard" style="display:none">
+                    <form>
+                        <table>
+                            <tbody>
+                                <tr class="dashboard-tr">
+                                    <td>
+                                        <button id="search" class="UI-button" type="button">Search</button>
+                                    </td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td>
+                                        <button id="rules" class="UI-button" formaction="pathofmagicalwordsrules.html"
+                                            formtarget="blank">Game rules</button>
+                                    </td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td>
+                                        <button id="start" class="UI-button" type="button">New game</button>
+                                    </td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td>
+                                        <button id="pause" class="UI-button" type="button" disabled>Pause</button>
+                                    </td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td>
+                                        <label for="turn">Current turn/Turn limit:</label>
+                                    </td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td>
+                                        <input name="turn" id="turn" class="UI-input" type="text" value="0 / 0" size="1"
+                                            maxlength="5" style="text-align: right" disabled>
+                                    </td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td>
+                                        <label for="time">Time:</label>
+                                    </td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td>
+                                        <input name="time" id="time" class="UI-input" type="text" value="0" size="1"
+                                            maxlength="5" style="text-align: right" disabled>
+                                    </td>
+                                </tr>
+                                <tr id="progressbar-container" class="dashboard-tr">
+                                    <td><progress id="progress" value="0" max="100"></progress></td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td>
+                                        <label for="lscore">Scores:</label>
+                                    </td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td>
+                                        <input name="player-score" id="player-score" class="UI-input" type="text"
+                                            value="0" size="1" maxlength="5" style="text-align: right" disabled>
+                                    </td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td> <button id="back" class="UI-button" type="button" disabled>Back</button>
+                                    </td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td> <button id="shuffle" class="UI-button" type="button" disabled>Shuffle</button>
+                                    </td>
+                                </tr>
+                                <tr class="dashboard-tr">
+                                    <td><button id="done" class="UI-button" type="button" disabled>Done</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+                <div id="game-results"></div>
+            </div>
+        </div>
+        <script src="js/dict.js"></script>
+        <script src="js/game.js"></script> 
+</body>
+
+</html>

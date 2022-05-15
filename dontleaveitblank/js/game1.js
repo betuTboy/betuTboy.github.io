@@ -806,7 +806,7 @@ function newGame() {
 
 function saveGame() {
     localStorage.setItem('SavedGame_Dontleaveitblank', JSON.stringify(true));
-    localStorage.setItem('BoardNumber', JSON.stringify(selectedboardnum));
+    localStorage.setItem('BoardNumber_Dontleaveitblank', JSON.stringify(selectedboardnum));
     let fieldstosave = [];
     for (let i = 0; i < fields.length; i++) {
         let rowtosave = [];
@@ -821,30 +821,30 @@ function saveGame() {
         }
         fieldstosave.push(rowtosave);
     }
-    localStorage.setItem('Board', JSON.stringify(fieldstosave));
+    localStorage.setItem('Board_Dontleaveitblank', JSON.stringify(fieldstosave));
     lettersonrack = document.querySelectorAll(".rack-field");
     let rackfieldstosave = [];
     for (let i = 0; i < lettersonrack.length; i++) {
         rackfieldstosave.push(lettersonrack[i].firstChild.value);
     }
-    localStorage.setItem('Rack', JSON.stringify(rackfieldstosave));
-    localStorage.setItem('WordsInGame', JSON.stringify(wordsingame));
-    localStorage.setItem('Turns', JSON.stringify(turns));
-    localStorage.setItem('IdleTurns', JSON.stringify(idleturns));
-    localStorage.setItem('Language', JSON.stringify(language));
-    localStorage.setItem('Score', JSON.stringify(score));
-    localStorage.setItem('TotalTime', JSON.stringify(totaltime));
+    localStorage.setItem('Rack_Dontleaveitblank', JSON.stringify(rackfieldstosave));
+    localStorage.setItem('WordsInGame_Dontleaveitblank', JSON.stringify(wordsingame));
+    localStorage.setItem('Turns_Dontleaveitblank', JSON.stringify(turns));
+    localStorage.setItem('IdleTurns_Dontleaveitblank', JSON.stringify(idleturns));
+    localStorage.setItem('Language_Dontleaveitblank', JSON.stringify(language));
+    localStorage.setItem('Score_Dontleaveitblank', JSON.stringify(score));
+    localStorage.setItem('TotalTime_Dontleaveitblank', JSON.stringify(totaltime));
 }
 
 function loadGame() {
-    let selectedboardnums = localStorage.getItem('BoardNumber');
+    let selectedboardnums = localStorage.getItem('BoardNumber_Dontleaveitblank');
     selectedboardnum = JSON.parse(selectedboardnums);
-    let turnss = localStorage.getItem('Turns');
+    let turnss = localStorage.getItem('Turns_Dontleaveitblank');
     turns = JSON.parse(turnss);
-    let idleturnss = localStorage.getItem('IdleTurns');
+    let idleturnss = localStorage.getItem('IdleTurns_Dontleaveitblank');
     idleturns = JSON.parse(idleturnss);
     displayTurn();
-    let boardl = localStorage.getItem('Board');
+    let boardl = localStorage.getItem('Board_Dontleaveitblank');
     boardl1 = JSON.parse(boardl);
     drawBoard(boardl1);
     let lettercount = 0;
@@ -863,7 +863,7 @@ function loadGame() {
         }
     }
     setStateOfLetters();
-    let rackl = localStorage.getItem('Rack');
+    let rackl = localStorage.getItem('Rack_Dontleaveitblank');
     rackl1 = JSON.parse(rackl);
     drawRack(rackl1);
     let rackfields = document.querySelectorAll(".rack-field");
@@ -874,14 +874,14 @@ function loadGame() {
         rackfields[lettercount].setAttribute("ondragover", "");
         rackfields[lettercount].setAttribute("class", "rack-field occupied");                                      // !!!!!
     }
-    let wordsingames = localStorage.getItem('WordsInGame');
+    let wordsingames = localStorage.getItem('WordsInGame_Dontleaveitblank');
     wordsingame = JSON.parse(wordsingames);
-    let totaltimes = localStorage.getItem('TotalTime');
+    let totaltimes = localStorage.getItem('TotalTime_Dontleaveitblank');
     totaltime = JSON.parse(totaltimes);
-    let scores = localStorage.getItem('Score');
+    let scores = localStorage.getItem('Score_Dontleaveitblank');
     score = JSON.parse(scores);
     displayScore(0);
-    let languages = localStorage.getItem('Language');
+    let languages = localStorage.getItem('Language_Dontleaveitblank');
     language = JSON.parse(languages);
     ingame = true;
     selectLanguage(language);

@@ -125,7 +125,7 @@ const letters_eng = [['*', 3, 0],
 ['Y', 3, 0],
 ['Z', 1, 0]];
 
-let halloffame = [["Felfe Dezső", 1000, 115], ["szófösvény", 403, 100], ["fekete_kalauz", 600, 120], ["Szó Virág", 800, 110]];
+let halloffame = [["Felfe Dezső", 1000, 115], ["szófösvény", 403, 100], ["fekete_kalauz", 687, 126], ["Szó Virág", 800, 110]];
 
 const startfieldx = 0;
 const startfieldy = 0;
@@ -309,7 +309,7 @@ function switchDelay(ev) {
 }
 
 function displayContent(ev) {
-    if (ev.target.lastChild.classList.contains("fog")) {
+    if (ev.target.classList.contains("fog")) {
         return;
     }
     for (let fchild of ev.target.childNodes) {
@@ -830,9 +830,9 @@ function removeFog(rindex, cindex) {
 
 function saveGame() {
     localStorage.setItem('SavedGame_Szoosveny', JSON.stringify(true));
-    localStorage.setItem('Language', JSON.stringify(language));
-    localStorage.setItem('TimeLimit', JSON.stringify(timelimit));
-    localStorage.setItem('FirstMove', JSON.stringify(firstmove));
+    localStorage.setItem('Language_Szoosveny', JSON.stringify(language));
+    localStorage.setItem('TimeLimit_Szoosveny', JSON.stringify(timelimit));
+    localStorage.setItem('FirstMove_Szoosveny', JSON.stringify(firstmove));
     let fieldstosave = [];
     for (let i = 0; i < fields.length; i++) {
         let rowtosave = [];
@@ -876,7 +876,7 @@ function saveGame() {
         fieldstosave.push(rowtosave);
         console.log(rowtosave)
     }
-    localStorage.setItem('Board', JSON.stringify(fieldstosave));
+    localStorage.setItem('Board_Szoosveny', JSON.stringify(fieldstosave));
     fieldstosave = [];
     for (let i = 0; i < fields.length; i++) {
         let rowtosave = [];
@@ -889,39 +889,39 @@ function saveGame() {
         }
         fieldstosave.push(rowtosave);
     }
-    localStorage.setItem('Fog', JSON.stringify(fieldstosave));
+    localStorage.setItem('Fog_Szoosveny', JSON.stringify(fieldstosave));
     let rackfieldstosave = [];
     for (let i = 0; i < rackfields.length; i++) {
         try {
             rackfieldstosave.push(rackfields[i].firstChild.value);
         } catch (err) { }
     }
-    localStorage.setItem('Rack', JSON.stringify(rackfieldstosave));
-    localStorage.setItem('Sack', JSON.stringify(sack));
-    localStorage.setItem('WordsInGame', JSON.stringify(wordsingame));
-    localStorage.setItem('Turns', JSON.stringify(turns));
-    localStorage.setItem('TurnLimit', JSON.stringify(turnlimit));
-    localStorage.setItem('IdleTurns', JSON.stringify(idleturns));
-    localStorage.setItem('Score', JSON.stringify(score));
+    localStorage.setItem('Rack_Szoosveny', JSON.stringify(rackfieldstosave));
+    localStorage.setItem('Sack_Szoosveny', JSON.stringify(sack));
+    localStorage.setItem('WordsInGame_Szoosveny', JSON.stringify(wordsingame));
+    localStorage.setItem('Turns_Szoosveny', JSON.stringify(turns));
+    localStorage.setItem('TurnLimit_Szoosveny', JSON.stringify(turnlimit));
+    localStorage.setItem('IdleTurns_Szoosveny', JSON.stringify(idleturns));
+    localStorage.setItem('Score_Szoosveny', JSON.stringify(score));
 }
 
 function loadGame() {
-    let languages = localStorage.getItem('Language');
+    let languages = localStorage.getItem('Language_Szoosveny');
     language = JSON.parse(languages);
     selectLanguage(language);
-    let timelimits = localStorage.getItem('TimeLimit');
+    let timelimits = localStorage.getItem('TimeLimit_Szoosveny');
     timelimit = JSON.parse(timelimits);
-    let firstmoves = localStorage.getItem('FirstMove');
+    let firstmoves = localStorage.getItem('FirstMove_Szoosveny');
     firstmove = JSON.parse(firstmoves);
     createPartsOfDictionary();
-    let turnss = localStorage.getItem('Turns');
+    let turnss = localStorage.getItem('Turns_Szoosveny');
     turns = JSON.parse(turnss);
-    let idleturnss = localStorage.getItem('IdleTurns');
+    let idleturnss = localStorage.getItem('IdleTurns_Szoosveny');
     idleturns = JSON.parse(idleturnss);
-    let turnslimits = localStorage.getItem('TurnLimit');
+    let turnslimits = localStorage.getItem('TurnLimit_Szoosveny');
     turnlimit = JSON.parse(turnslimits);
     displayTurn();
-    let boardl = localStorage.getItem('Board');
+    let boardl = localStorage.getItem('Board_Szoosveny');
     boardl1 = JSON.parse(boardl);
     drawBoard(board_1);
     let lettercount = 0;
@@ -950,7 +950,7 @@ function loadGame() {
         }
     }
     setStateOfLetters();
-    let fogl = localStorage.getItem('Fog');
+    let fogl = localStorage.getItem('Fog_Szoosveny');
     fogl1 = JSON.parse(fogl);
     for (let i = 0; i < fields.length; i++) {
         for (let j = 0; j < fields[0].length; j++) {
@@ -966,7 +966,7 @@ function loadGame() {
             }
         }
     }
-    let rackl = localStorage.getItem('Rack');
+    let rackl = localStorage.getItem('Rack_Szoosveny');
     rackl1 = JSON.parse(rackl);
     drawRack(rackl1);
     for (let lettercount = 0; lettercount < rackl1.length; lettercount++) {
@@ -976,11 +976,11 @@ function loadGame() {
         rackfields[lettercount].setAttribute("ondragover", "");
         rackfields[lettercount].setAttribute("class", "rack-field occupied");
     }
-    let sackls = localStorage.getItem('Sack');
+    let sackls = localStorage.getItem('Sack_Szoosveny');
     sack = JSON.parse(sackls);
-    let wordsingames = localStorage.getItem('WordsInGame');
+    let wordsingames = localStorage.getItem('WordsInGame_Szoosveny');
     wordsingame = JSON.parse(wordsingames);
-    let scores = localStorage.getItem('Score');
+    let scores = localStorage.getItem('Score_Szoosveny');
     score = JSON.parse(scores);
     displayScore([]);
     ingame = true;
