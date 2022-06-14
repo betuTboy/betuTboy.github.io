@@ -189,24 +189,8 @@ img{
 }
 
 .start{
-    font-family: inherit;
-    letter-spacing: -2px;
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
     background-color: green;
     color: white;
-    text-align: center;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    position: relative;
-    z-index:1;
-    -webkit-user-select: none;
-    -ms-user-select: none; 
-    user-select: none;
-    -moz-user-select: none;
 }
 
 .letter::selection{
@@ -215,14 +199,9 @@ img{
 
 .letter-on-rack{
     color: black;
-    margin: 0;
-    padding: 0;
-    z-index:1;
 }
 
 .letter-on-board{
-    margin: 0;
-    padding: 0;
     color: black;
 }
 
@@ -239,8 +218,6 @@ img{
     text-decoration: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    text-align:center;
     z-index: 1;
 }
 
@@ -555,10 +532,6 @@ ul{
     -ms-user-select: none; 
     user-select: none;
     -moz-user-select: none;
-}
-
-.yes-mark{
-    position: absolute; 
 }
 
 #start-button{

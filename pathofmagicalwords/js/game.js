@@ -273,7 +273,6 @@ function switchDelay(ev) {
 }
 
 function displayContent(ev) {
-    console.log(ev.target)
     if (ev.target.classList.contains("fog")) {
         return;
     }
@@ -405,7 +404,7 @@ function changeDirection() {
 
 function placeLetter(ev) {
     let parentofclickedletter = ev.target.parentElement;
-    if (mode == "mouseclick" && arrowposition != []) {
+    if (mode == "mouseclick" && arrowposition.length > 0) {
         if (ev.target.classList.contains("letter-on-rack") && arrowposition != []) {
             tryToRemoveArrow();
             try {
@@ -554,7 +553,7 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("application/x-moz-node");
     var data = ev.dataTransfer.getData("text/plain");
-    if (ev.target.classList.contains("letter-on-rack") || ev.target.classList.contains("fog")) return; 
+    if (ev.target.classList.contains("letter-on-rack") || ev.target.classList.contains("fog")) return;
     if (ev.target.hasChildNodes()) return;
     appendedletter = ev.target.appendChild(document.getElementById(data));
     ev.target.setAttribute("ondragover", "");
@@ -865,6 +864,7 @@ function saveGame() {
     localStorage.setItem('WordsInGame_PoMW', JSON.stringify(wordsingame));
     localStorage.setItem('Turns_PoMW', JSON.stringify(turns));
     localStorage.setItem('TurnLimit_PoMW', JSON.stringify(turnlimit));
+    localStorage.setItem('Counter_PoMW', JSON.stringify(counter));
     localStorage.setItem('IdleTurns_PoMW', JSON.stringify(idleturns));
     localStorage.setItem('Score_PoMW', JSON.stringify(score));
 }
@@ -884,6 +884,8 @@ function loadGame() {
     idleturns = JSON.parse(idleturnss);
     let turnslimits = localStorage.getItem('TurnLimit_PoMW');
     turnlimit = JSON.parse(turnslimits);
+    let counters = localStorage.getItem('Counter_PoMW');
+    counter = JSON.parse(counters);
     displayTurn();
     let boardl = localStorage.getItem('Board_PoMW');
     boardl1 = JSON.parse(boardl);
@@ -939,6 +941,11 @@ function loadGame() {
         rackfields[lettercount].appendChild(letteri);
         rackfields[lettercount].setAttribute("ondragover", "");
         rackfields[lettercount].setAttribute("class", "rack-field occupied");
+    }
+    let lettersonrack = document.querySelectorAll(".letter-on-rack");
+    slettersonrackoriginal = [];
+    for (let letter of lettersonrack) {
+        slettersonrackoriginal.push(letter.value);
     }
     let sackls = localStorage.getItem('Sack_PoMW');
     sack = JSON.parse(sackls);
@@ -1280,7 +1287,7 @@ function validateNewWords() {
                 }
             }
         }
-        wordsingame.push([slettersonrackoriginal, ["     "], words, [sc.toString()]]);
+        wordsingame.push([slettersonrackoriginal, words, [sc.toString()]]);
         setStateOfLetters();
         firstmove = false;
         idleturns = 0;
@@ -1433,7 +1440,7 @@ function endOfGame() {
         for (let j = 0; j < fields[i].length; j++) {
             if (fields[i][j].hasChildNodes()) {
                 for (let fchild of fields[i][j].childNodes) {
-                    if (fchild.classList.contains("picture") && !fchild.classList.contains("old")) {
+                    if (fchild.classList.contains("start") && !fchild.classList.contains("old")) {
                         found = true;
                     }
                 }
@@ -1527,9 +1534,6 @@ function displayDetails() {
     th1.style.fontWeight = "normal";
     th1.style.fontSize = "75%";
     th1.innerHTML = "Letters drawn";
-    let th2 = document.createElement("th");
-    trh1.appendChild(th2);
-    th2.innerHTML = " ";
     let th3 = document.createElement("th");
     trh1.appendChild(th3);
     th3.style.fontWeight = "normal";
@@ -1552,7 +1556,7 @@ function displayDetails() {
             tr1.appendChild(td1);
             td1.style.backgroundColor = wordbgcolor;
             td1.innerHTML = `<div class="words-table" style="background-color: ${wordbgcolor}">${words[field].join(', ')}</div>`;
-            if (field == 3 || field == 6) {
+            if (field == 2) {
                 td1.style.textAlign = "right";
             }
         }
@@ -1728,6 +1732,14 @@ function displayScore(wordsl) {
     let scoringreturn = scoring(wordsl);
     turnscore = scoringreturn[0];
     turnlimit = scoringreturn[1];
+    let counter1 = scoringreturn[2];
+    for (let c = 0; c < counter1; c++) {
+        counter++;
+        if (counter == 3) {
+            turnlimit += 1;
+            counter = 0;
+        }
+    }
     let psc;
     score += turnscore;
     psc = document.querySelector("#player-score");
@@ -1741,6 +1753,7 @@ function scoring(wordsl) {
     let numofusedletters = 0;
     let added = [];
     let newturnlimit = turnlimit;
+    let counter1 = 0;
     for (let wordl of wordsl) {
         let wordscore = 0;
         numofusedletters = 0;
@@ -1789,15 +1802,10 @@ function scoring(wordsl) {
                     scorefound += 9;
                     added.push(letter);
                 }
-                if (letter.classList.contains("start")){
+                if (letter.classList.contains("start")) {
                     pointforletter += 5;
-                    counter+=1;
-                    console.log(counter)
-                    if (counter == 5){
-                        newturnlimit += 1;
-                        counter = 0;
-                    } 
-                }    
+                    counter1 += 1;
+                }
                 if (letter.classList.contains("picture")) {
                     pointforletter += 10;
                     newturnlimit += 1;
@@ -1828,7 +1836,7 @@ function scoring(wordsl) {
         }
     }
     turnscore += scorefound;
-    return [turnscore, newturnlimit];
+    return [turnscore, newturnlimit, counter1];
 }
 
 function removeFirstEqual(array1, value1) {
@@ -1929,7 +1937,7 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    if (touchdevice){
+    if (touchdevice) {
         popup1.style.top = "0px";
     } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
@@ -1983,7 +1991,7 @@ function createPopup(tfield) {
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    if (touchdevice){
+    if (touchdevice) {
         popup1.style.top = "0px";
     } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
@@ -2010,7 +2018,7 @@ function selectLanguage(lang) {
 function createPartsOfDictionary() {
     dictionary = [];
     const abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-            'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     for (let letter of abc) {
         for (len = 2; len < 35; len++) {
             partsofdictionary[letter + len.toString()] = [];
@@ -2089,7 +2097,7 @@ function displayWordSearch() {
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    if (touchdevice){
+    if (touchdevice) {
         popup1.style.top = "0px";
     } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
@@ -2162,7 +2170,7 @@ function adaptToChangedSize() {
     rackfieldsize = Math.floor(fieldsize * 3);
     dashboard = document.querySelector("#dashboard");
     dashboard.style.position = "sticky";
-    fontsizeletter = Math.floor(fieldsize * 0.9).toString() + "px";
+    fontsizeletter = Math.floor(fieldsize * 0.8).toString() + "px";
     fontsizebutton = Math.floor(fieldsize * 0.9).toString() + "px";
     fontsizelabel = Math.floor(fieldsize * 0.4).toString() + "px";
     for (let rindex = 0; rindex < fields.length; rindex++) {
