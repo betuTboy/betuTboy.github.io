@@ -97,36 +97,6 @@ const letters_hun = [['*', 3, 0],
 ['Y', 2, 0],
 ['Z', 7, 0]];
 
-const letters_eng = [['*', 3, 0],
-['A', 11, 0],
-['B', 3, 0],
-['C', 3, 0],
-['D', 7, 0],
-['E', 15, 0],
-['F', 3, 0],
-['G', 7, 0],
-['H', 4, 0],
-['I', 6, 0],
-['J', 2, 0],
-['K', 3, 0],
-['L', 8, 0],
-['M', 5, 0],
-['N', 7, 0],
-['O', 8, 0],
-['P', 3, 0],
-['Q', 1, 0],
-['R', 10, 0],
-['S', 8, 0],
-['T', 6, 0],
-['U', 5, 0],
-['V', 3, 0],
-['W', 3, 0],
-['X', 2, 0],
-['Y', 3, 0],
-['Z', 1, 0]];
-
-let halloffame = [["Felfe Dezső", 1000, 115], ["szófösvény", 403, 100], ["fekete_kalauz", 687, 126], ["Szó Virág", 800, 110]];
-
 const startfieldx = 0;
 const startfieldy = 0;
 let firstmove = true;
@@ -182,6 +152,8 @@ let arrowposition = [];
 let rect;
 
 let touchdevice;
+
+let counter = 0;
 
 function createTd(fieldtype, parent, id) {
     let td = document.createElement("td");
@@ -327,7 +299,6 @@ function displayContent(ev) {
             break;
         }
     }
-    console.log("content", ev.target, contentoffield)
     let rectfield = getElementPosition(ev.target);
     contentoffield.style.left = (rectfield.right + 2).toString() + "px";
     contentoffield.style.top = (rectfield.bottom + 2).toString() + "px";
@@ -441,11 +412,12 @@ function changeDirection() {
 
 function placeLetter(ev) {
     let parentofclickedletter = ev.target.parentElement;
-    if (mode == "mouseclick" && arrowposition != []) {
+    if (mode == "mouseclick" && arrowposition.length > 0) {
         if (ev.target.classList.contains("letter-on-rack") && arrowposition != []) {
             tryToRemoveArrow();
-            arrowposition[0].appendChild(ev.target);
-            console.log("arrowposition[0]", arrowposition[0])
+            try {
+                arrowposition[0].appendChild(ev.target);
+            } catch (err) { }
             document.activeElement.blur();
             arrowposition[0].setAttribute("ondragover", "");
             if (arrowposition[0].classList.contains("empty")) {
@@ -589,7 +561,7 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("application/x-moz-node");
     var data = ev.dataTransfer.getData("text/plain");
-    if (ev.target.classList.contains("letter-on-rack") || ev.target.classList.contains("fog")) return; 
+    if (ev.target.classList.contains("letter-on-rack") || ev.target.classList.contains("fog")) return;
     if (ev.target.hasChildNodes()) return;
     appendedletter = ev.target.appendChild(document.getElementById(data));
     ev.target.setAttribute("ondragover", "");
@@ -874,7 +846,6 @@ function saveGame() {
             }
         }
         fieldstosave.push(rowtosave);
-        console.log(rowtosave)
     }
     localStorage.setItem('Board_Szoosveny', JSON.stringify(fieldstosave));
     fieldstosave = [];
@@ -920,6 +891,8 @@ function loadGame() {
     idleturns = JSON.parse(idleturnss);
     let turnslimits = localStorage.getItem('TurnLimit_Szoosveny');
     turnlimit = JSON.parse(turnslimits);
+    let counters = localStorage.getItem('Counter_Szoosveny');
+    counter = JSON.parse(counters);
     displayTurn();
     let boardl = localStorage.getItem('Board_Szoosveny');
     boardl1 = JSON.parse(boardl);
@@ -975,6 +948,11 @@ function loadGame() {
         rackfields[lettercount].appendChild(letteri);
         rackfields[lettercount].setAttribute("ondragover", "");
         rackfields[lettercount].setAttribute("class", "rack-field occupied");
+    }
+    let lettersonrack = document.querySelectorAll(".letter-on-rack");
+    slettersonrackoriginal = [];
+    for (let letter of lettersonrack) {
+        slettersonrackoriginal.push(letter.value);
     }
     let sackls = localStorage.getItem('Sack_Szoosveny');
     sack = JSON.parse(sackls);
@@ -1058,6 +1036,7 @@ function continueGame() {
 }
 
 function hideBoard() {
+    removeElements(".available-score");
     for (let i = 0; i < fields.length; i++) {
         for (let j = 0; j < fields[0].length; j++) {
             if (fields[i][j].hasChildNodes()) {
@@ -1285,7 +1264,6 @@ function validateNewWords() {
         let w = getAllString(lettersontheboard, direction);
         let words = w[0];
         let wordsl = w[1];
-        console.log(words, wordsl);
         if (words[0] == "not connected") {
             displayMessage("Szabálytalan!", "Nem kapcsolódik a korábban táblára került szavakhoz.", destroyPopup, "", "game-div", "#board-rack");
             return 1;
@@ -1316,7 +1294,7 @@ function validateNewWords() {
                 }
             }
         }
-        wordsingame.push([slettersonrackoriginal, ["     "], words, [sc.toString()]]);
+        wordsingame.push([slettersonrackoriginal, words, [sc.toString()]]);
         setStateOfLetters();
         firstmove = false;
         idleturns = 0;
@@ -1399,7 +1377,6 @@ function collectNewLettersOnBoard() {
             if (found) break;
         }
     }
-    console.log(lettersontheboard)
     return lettersontheboard;
 }
 
@@ -1448,7 +1425,6 @@ function endOfGame() {
         for (let j = 0; j < fields[i].length; j++) {
             if (fields[i][j].hasChildNodes() && fields[i][j].lastChild.classList.contains("fog")) {
                 found = true;
-                console.log("nincs az egész játéktér felfedezve")
             }
         }
     }
@@ -1460,7 +1436,6 @@ function endOfGame() {
                 for (let fchild of fields[i][j].childNodes) {
                     if (fchild.classList.contains("picture") && !fchild.classList.contains("old")) {
                         found = true;
-                        console.log("nincs minden objektum felhasználva")
                     }
                 }
             }
@@ -1472,9 +1447,8 @@ function endOfGame() {
         for (let j = 0; j < fields[i].length; j++) {
             if (fields[i][j].hasChildNodes()) {
                 for (let fchild of fields[i][j].childNodes) {
-                    if (fchild.classList.contains("picture") && !fchild.classList.contains("old")) {
+                    if (fchild.classList.contains("start") && !fchild.classList.contains("old")) {
                         found = true;
-                        console.log("nincs minden előre beírt betű felhasználva")
                     }
                 }
             }
@@ -1567,9 +1541,6 @@ function displayDetails() {
     th1.style.fontWeight = "normal";
     th1.style.fontSize = "75%";
     th1.innerHTML = "Sorsolt betűk";
-    let th2 = document.createElement("th");
-    trh1.appendChild(th2);
-    th2.innerHTML = " ";
     let th3 = document.createElement("th");
     trh1.appendChild(th3);
     th3.style.fontWeight = "normal";
@@ -1592,7 +1563,7 @@ function displayDetails() {
             tr1.appendChild(td1);
             td1.style.backgroundColor = wordbgcolor;
             td1.innerHTML = `<div class="words-table" style="background-color: ${wordbgcolor}">${words[field].join(', ')}</div>`;
-            if (field == 3 || field == 6) {
+            if (field == 2) {
                 td1.style.textAlign = "right";
             }
         }
@@ -1768,6 +1739,14 @@ function displayScore(wordsl) {
     let scoringreturn = scoring(wordsl);
     turnscore = scoringreturn[0];
     turnlimit = scoringreturn[1];
+    let counter1 = scoringreturn[2];
+    for (let c = 0; c < counter1; c++) {
+        counter++;
+        if (counter == 3) {
+            turnlimit += 1;
+            counter = 0;
+        }
+    }
     let psc;
     score += turnscore;
     psc = document.querySelector("#player-score");
@@ -1781,6 +1760,7 @@ function scoring(wordsl) {
     let numofusedletters = 0;
     let added = [];
     let newturnlimit = turnlimit;
+    let counter1 = 0;
     for (let wordl of wordsl) {
         let wordscore = 0;
         numofusedletters = 0;
@@ -1829,7 +1809,10 @@ function scoring(wordsl) {
                     scorefound += 9;
                     added.push(letter);
                 }
-                if (letter.classList.contains("start")) pointforletter += 5;
+                if (letter.classList.contains("start")) {
+                    pointforletter += 5;
+                    counter1 += 1;
+                }
                 if (letter.classList.contains("picture")) {
                     pointforletter += 10;
                     newturnlimit += 1;
@@ -1860,7 +1843,7 @@ function scoring(wordsl) {
         }
     }
     turnscore += scorefound;
-    return [turnscore, newturnlimit];
+    return [turnscore, newturnlimit, counter1];
 }
 
 function removeFirstEqual(array1, value1) {
@@ -1961,7 +1944,7 @@ function displayMessage(legend, message, command1, command2, parente, elementund
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    if (touchdevice){
+    if (touchdevice) {
         popup1.style.top = "0px";
     } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
@@ -2015,7 +1998,7 @@ function createPopup(tfield) {
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    if (touchdevice){
+    if (touchdevice) {
         popup1.style.top = "0px";
     } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
@@ -2034,66 +2017,26 @@ function changeJoker(tfield, ev) {
     testNewWords();
 }
 
-function placeYesMarks() {
-    let hunbutton = document.querySelector("#hun-lang");
-    let rectph = getElementPosition(hunbutton);
-    let yesmarkh = document.querySelector("#yes-mark-h");
-    yesmarkh.style.left = Math.floor(rectph.width / 2).toString() + "px";
-    yesmarkh.style.bottom = Math.floor(0).toString() + "px";
-
-    let engbutton = document.querySelector("#eng-lang");
-    let rectpe = getElementPosition(engbutton);
-    let yesmarke = document.querySelector("#yes-mark-e");
-    yesmarke.style.left = Math.floor(rectpe.width / 2).toString() + "px";
-    yesmarke.style.bottom = Math.floor(0).toString() + "px";
-
-    selectLanguage("hun")
-}
-
 function selectLanguage(lang) {
-    if (lang == "hun") {
-        language = "hun";
-        letters = letters_hun;
-        document.querySelector("#yes-mark-e").style.display = "none";
-        document.querySelector("#yes-mark-h").style.display = "inline-block";
-        document.querySelector("#yes-mark-h").style.position = "absolute";
-    } else {
-        language = "eng";
-        letters = letters_eng;
-        document.querySelector("#yes-mark-h").style.display = "none";
-        document.querySelector("#yes-mark-e").style.display = "inline-block";
-        document.querySelector("#yes-mark-e").style.position = "absolute";
-    }
+    lang == "hun";
+    letters = letters_hun;
 }
 
 function createPartsOfDictionary() {
-    let abc;
     dictionary = [];
-    if (language == "hun") {
-        abc = ['A', 'Á', 'B', 'C', 'CS', 'D', 'E', 'É', 'F', 'G', 'GY', 'H', 'I', 'Í', 'J', 'K', 'L', 'LY', 'M', 'N', 'NY',
+    const abc = ['A', 'Á', 'B', 'C', 'CS', 'D', 'E', 'É', 'F', 'G', 'GY', 'H', 'I', 'Í', 'J', 'K', 'L', 'LY', 'M', 'N', 'NY',
             'O', 'Ó', 'Ö', 'Ő', 'P', 'Q', 'R', 'S', 'SZ', 'T', 'TY', 'U', 'Ú', 'Ü', 'Ű', 'V', 'W', 'X', 'Y', 'Z', 'ZS'];
-    } else {
-        abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-            'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    }
     for (let letter of abc) {
         for (len = 2; len < 35; len++) {
             partsofdictionary[letter + len.toString()] = [];
         }
     }
-    if (language == "hun") {
-        dict = dictionary_hun;
-    } else dict = dictionary_eng;
+    dict = dictionary_hun;
     for (let word of dict) {
         let wordsl;
         let wordsldict;
-        if (language == "hun") {
-            wordsl = wordToListHUN(word[0]);
-            wordsldict = wordsl;
-        } else {
-            wordsl = wordToListENG(word);
-            wordsldict = wordsl;
-        }
+        wordsl = wordToListHUN(word[0]);
+        wordsldict = wordsl;
         if (wordsl) {
             for (let word1 of wordsl) {
                 if (word1.includes('_')) {
@@ -2185,12 +2128,6 @@ function wordToListHUN(word) {
     return wordsl;
 }
 
-function wordToListENG(word) {
-    let wordsl = [];
-    wordsl.push(word.split(""));
-    return wordsl;
-}
-
 function displayWordSearch() {
     try {
         destroyPopup();
@@ -2240,7 +2177,7 @@ function displayWordSearch() {
     let rectb = getElementPosition(boardandrack);
     let rectp = getElementPosition(form1);
     popup1.style.left = Math.floor(rectb.left + (rectb.width - rectp.width) / 2).toString() + "px";
-    if (touchdevice){
+    if (touchdevice) {
         popup1.style.top = "0px";
     } else popup1.style.top = Math.floor(rectb.top + (rectb.height - rectp.height) / 2).toString() + "px";
 }
@@ -2313,7 +2250,7 @@ function adaptToChangedSize() {
     rackfieldsize = Math.floor(fieldsize * 3);
     dashboard = document.querySelector("#dashboard");
     dashboard.style.position = "sticky";
-    fontsizeletter = Math.floor(fieldsize * 0.9).toString() + "px";
+    fontsizeletter = Math.floor(fieldsize * 0.8).toString() + "px";
     fontsizebutton = Math.floor(fieldsize * 0.9).toString() + "px";
     fontsizelabel = Math.floor(fieldsize * 0.4).toString() + "px";
     for (let rindex = 0; rindex < fields.length; rindex++) {
@@ -2409,7 +2346,6 @@ function initGame() {
         try {
             loadGame();
         } catch (err) {
-            console.log("nem sikerült betölteni", err)
             localStorage.clear();
         }
     } else {
@@ -2425,24 +2361,6 @@ function initGame() {
         progressbar.value = currenttime;
         lockOffMain_Rules_Start();
     }
-}
-
-function numOfWordsChange() {
-    nw = document.querySelector("#number-of-words").value;
-    if (nw == 2) {
-        text1 = "normál";
-    } else text1 = "szűk";
-    document.querySelector("#number-of-words-value").innerHTML = text1;
-}
-
-function numOfLettersChange() {
-    nl = document.querySelector("#number-of-letters").value;
-    document.querySelector("#number-of-letters-value").innerHTML = nl;
-}
-
-function aiStrengthChange() {
-    ais = document.querySelector("#ai-strength").value;
-    document.querySelector("#ai-strength-value").innerHTML = ais;
 }
 
 function timeLimitChange() {
@@ -2466,7 +2384,7 @@ function setupNewGame() {
     } catch (err) { }
     localStorage.setItem('SavedGame_Szoosveny', JSON.stringify(false));
     document.querySelector("#setup-new-game").style.visibility = "visible";
-    placeYesMarks();
+    selectLanguage("hun")
 }
 
 function initStartScreen() {
